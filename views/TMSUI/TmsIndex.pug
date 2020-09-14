@@ -51,35 +51,35 @@ block content
     .col-lg-3
       div#accordion
         div
-          h3
-            span 小學
-          table(width="100%")
-            +accor_li("/internal/TMS/trianing.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
-          h3
-            span 中一
-          table(width="100%")
-            each sub in f1data
-              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
-          h3
-            span 中二
-          table(width="100%")
-            each sub in f2data
-              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
-          h3(width="100%")
-            span 中三
-          table  
-            each sub in f2data
-              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
 
           h3
-            span 數學練習(張SIR)
+            span 數學練習(韋教授)
           table(width="100%")
             +accor_li("/internal/TMS/trianing.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
             +accor_li("/internal/TMS/trianing.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
             +accor_li("/internal/TMS/trianing.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
             +accor_li("/internal/TMS/trianing.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
 
+          h3
+            span 小學
+          table(width="100%")
+            +accor_li("/internal/TMS/trianing.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
+            +accor_li("/internal/TMS/trianing.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
+          h3
+            span 中一(建設中)
+          table(width="100%")
+            each sub in f1data
+              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+          h3
+            span 中二(建設中)
+          table(width="100%")
+            each sub in f2data
+              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+          h3(width="100%")
+            span 中三(建設中)
+          table  
+            each sub in f2data
+              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
     .col-lg-7
   div(title="Info Dialog",style="display:none")#ClassSelectorDialog
     form(action="#")#ClassSelectorDialogForm
@@ -119,6 +119,10 @@ block content
           td
           td
             input(type="submit",value="submit")
+  footer
+    p( class="float-right")
+      a( href="#") Back to top
+    p 澳門浸信中學 &nbsp;版權所有&nbsp;Copyright&nbsp;&#169; 1999 Macau Baptist College.All Rights Reserved
   
   script.
     $(document).ready(function(){

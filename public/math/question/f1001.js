@@ -1,6 +1,7 @@
 //f1001,name:有理數的運算(符)
 //Option Explicit
 'use strict';
+//保留
 if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils');var calc = require("../utils/tmsCalcu").calc; }
 
 const tmsU=new TmsUts();
@@ -55,14 +56,6 @@ function CreatAEq(Tx, Tk, Range) {
     Range["F114"] = a;
     Range["G114"] = b;
     Range["H114"] = opr;
-    /*Range["F114"] = a           //                                         ' a/b "x" + c/d = e/f "x" + g/h
-     Range["F115"] = b
-     Range["G114"] = b
-     Range["G115"] = d
-     Range["H114"] = e
-     Range["H115"] = f
-     Range["I114"] = g
-     Range["I115"] = h*/
     Range["F116"] = TE.CalcVal;
     return TE;
 }
@@ -79,5 +72,5 @@ function p2_main(){
     }
 }
 p2_main();
-
+//保留
 if (typeof module !== 'undefined' && module.exports) {     module.exports = {    example:main,    CreatAEq:CreatAEq}; }

@@ -51,4 +51,47 @@ CREATE TABLE `reltbl` (
   UNIQUE KEY `fn` (`fn`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 
+profile{
+  id: 112081777900361093115,
+  displayName: "FirstName, SecondName(20SC3A01)",
+  username: "FirstName, SecondName(20SC3A01)",
+  email: "7ee0000a@mail.mbc.edu.mo",
+  encode_username: "base64_encode()",
+  image:".jpg"
+}
+
+```
+config.js
+```
+'use strict';
+const nconf = module.exports = require('nconf');
+const path = require('path');
+nconf
+  // 1. Command-line arguments
+  .argv()
+  // 2. Environment variables
+  .env([
+    'MYSQL_USER',
+    'MYSQL_PASSWORD',
+    'NODE_ENV',
+    'PORT',
+    'SECRET'
+  ])
+  // 3. Config file
+  .file({ file: path.join(__dirname, 'config.json') })
+  // 4. Defaults
+  .defaults({
+    MYSQL_USER: '',
+    MYSQL_PASSWORD: '',
+    PORT: 81,
+    MATHSMYSQL_HOST: '127.0.0.1',
+    MATHSMYSQL_USER: '',
+    MATHSMYSQL_PASSWORD: '',
+    MATHSMYSQL_DATABASE: 'maths',
+    // Set this a secret string of your choosing
+    SECRET: 'catcat',
+    REDISSTOREHOST:'127.0.0.1',
+    REDISPASSWORD:'',
+  });
+
 ```
