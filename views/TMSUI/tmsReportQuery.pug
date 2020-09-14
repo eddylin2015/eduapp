@@ -1,0 +1,30 @@
+extends ./base.pug
+  
+block content
+  P .
+  P .
+  P .
+
+  form(method="post")
+    table
+      tr
+        td START TIME
+        td
+          input(name="sd",type="date",value=dt)
+      tr
+        td END TIME      
+        td          
+          input(name="ed",type="date",value=dt)
+      tr
+        td fmt
+        td    
+          input(type="radio",name="fmt",value="A",checked)   
+          span HTML        
+          input(type="radio",name="fmt",value="B")          
+          span plain Text
+          input(type="radio",name="fmt",value="C")          
+          span plain detail          
+      tr
+        td
+        td    
+          input(type="submit")

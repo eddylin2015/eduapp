@@ -1,0 +1,4076 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Easy Copy MathJax</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+   <script type="text/javascript" async src="/MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+</head>
+<body data-spy="scroll" data-target="#navbar-example">
+	<header>
+		<a href="./">Easy Copy MathJax</a>
+	</header>
+<div class="wrapper">
+	<nav id="navbar-example">
+<!-- nav ここから -->
+<ul class='nav'><li>
+	<span class='ja'>数式</span><br /><span class='en'>formula</span>
+	<ul class='nav'>
+		<li><a href='#number'><span class='ja'>数</span><br /><span class='en'>Number</span></a></li>
+		<li><a href='#arithmetic-operation'><span class='ja'>四則演算</span><br /><span class='en'>Arithmetic Operation</span></a></li>
+		<li><a href='#greater-or-less'><span class='ja'>大小</span><br /><span class='en'>Greater or Less</span></a></li>
+		<li><a href='#multiple-line-equations'><span class='ja'>複数行数式</span><br /><span class='en'>Multiple Line Equations</span></a></li>
+		<li><a href='#set'><span class='ja'>集合</span><br /><span class='en'>Set</span></a></li>
+		<li><a href='#logic-notation'><span class='ja'>論理</span><br /><span class='en'>Logic Notation</span></a></li>
+		<li><a href='#permutation-and-combination'><span class='ja'>順列と組合せ</span><br /><span class='en'>Permutation and Combination</span></a></li>
+		<li><a href='#summation-and-product'><span class='ja'>総和・総乗</span><br /><span class='en'>Summation and Product</span></a></li>
+		<li><a href='#exponent-and-logarithm'><span class='ja'>指数・対数</span><br /><span class='en'>Exponent and Logarithm</span></a></li>
+		<li><a href='#shape'><span class='ja'>図形</span><br /><span class='en'>Shape</span></a></li>
+		<li><a href='#trigonometric-function-etc'><span class='ja'>三角関数など</span><br /><span class='en'>Trigonometric Function etc</span></a></li>
+		<li><a href='#limit'><span class='ja'>極限</span><br /><span class='en'>Limit</span></a></li>
+		<li><a href='#differentiation'><span class='ja'>微分</span><br /><span class='en'>Differentiation</span></a></li>
+		<li><a href='#integral'><span class='ja'>積分</span><br /><span class='en'>Integral</span></a></li>
+		<li><a href='#vector'><span class='ja'>ベクトル</span><br /><span class='en'>Vector</span></a></li>
+		<li><a href='#matrix'><span class='ja'>行列</span><br /><span class='en'>Matrix</span></a></li>
+		<li><a href='#table'><span class='ja'>表</span><br /><span class='en'>Table</span></a></li>
+		<li><a href='#commutative-diagram'><span class='ja'>可換図式</span><br /><span class='en'>Commutative Diagram</span></a></li>
+	</ul>
+</li></ul>
+<ul class='nav'><li>
+	<span class='ja'>記号</span><br /><span class='en'>symbol</span>
+	<ul class='nav'>
+		<li><a href='#line'><span class='ja'>線</span><br /><span class='en'>Line</span></a></li>
+		<li><a href='#arrow'><span class='ja'>矢印</span><br /><span class='en'>Arrow</span></a></li>
+		<li><a href='#bracket'><span class='ja'>括弧</span><br /><span class='en'>Bracket</span></a></li>
+		<li><a href='#dot'><span class='ja'>点</span><br /><span class='en'>Dot</span></a></li>
+		<li><a href='#circle'><span class='ja'>丸</span><br /><span class='en'>Circle</span></a></li>
+		<li><a href='#triangle'><span class='ja'>三角形</span><br /><span class='en'>Triangle</span></a></li>
+		<li><a href='#binary-operations'><span class='ja'>二項演算</span><br /><span class='en'>Binary Operations</span></a></li>
+		<li><a href='#general-symbol'><span class='ja'>一般的な記号</span><br /><span class='en'>General Symbol</span></a></li>
+	</ul>
+</li></ul>
+<ul class='nav'><li>
+	<span class='ja'>文字</span><br /><span class='en'>character</span>
+	<ul class='nav'>
+		<li><a href='#space'><span class='ja'>空白</span><br /><span class='en'>Space</span></a></li>
+		<li><a href='#letter-size'><span class='ja'>文字サイズ</span><br /><span class='en'>Letter size</span></a></li>
+		<li><a href='#font'><span class='ja'>フォント</span><br /><span class='en'>Font</span></a></li>
+		<li><a href='#superscript-and-subscript'><span class='ja'>上付き・下付き</span><br /><span class='en'>Superscript and Subscript</span></a></li>
+		<li><a href='#accent'><span class='ja'>アクセント</span><br /><span class='en'>Accent</span></a></li>
+		<li><a href='#greek-alphabet'><span class='ja'>ギリシャ文字</span><br /><span class='en'>Greek alphabet</span></a></li>
+		<li><a href='#special-character'><span class='ja'>特殊文字</span><br /><span class='en'>Special character</span></a></li>
+		<li><a href='#logo'><span class='ja'>ロゴ</span><br /><span class='en'>Logo</span></a></li>
+	</ul>
+</li></ul>
+<!-- nav ここまで -->
+	</nav>
+	
+	<main>
+		<h1>Easy Copy MathJax</h1>
+<div class='abstract'>
+	このサイトは、<a href="https://www.mathjax.org/" target="_blank">MathJax</a>(LaTeX)で数式を書くためのコマンドを紹介し、簡単にコピーできるサイトです。
+	さらに詳しい説明は、<a href="#description">こちらをご覧ください</a>。1000px以上の画面で見ると、見やすいです。<br />
+	This site shows commands of <a href="https://www.mathjax.org/" target="_blank">MathJax</a> (or LaTeX) by which you can display beautiful formulas, 
+	and enables you to easily copy the commands.
+	<a href="#description">More information</a>. I recommend over 1000px width monitor.
+</div>
+		
+<!-- code ここから -->
+
+<div class='formula'>
+	<h2><span class='ja'>数式</span> <span class='en'>formula</span></h2>
+	<div id='number' class ='sample-list'>
+		<h3><span class='ja'>数</span> <span class='en'>Number</span></h3>
+		<ul>
+		<li class='sample fraction inline'>
+			<div class='ja'>分数</div>
+			<div class='en'>fraction</div>
+			<div class='code'>$\frac{ 1 }{ 2 }$</div>
+			<pre>\frac{ 1 }{ 2 }</pre><br />
+			<input type='text' value='\frac{ 1 }{ 2 }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample fraction-large inline'>
+			<div class='ja'>分数（大）</div>
+			<div class='en'>fraction large</div>
+			<div class='code'>$\displaystyle \frac{ 1 }{ 2 }$</div>
+			<pre>\displaystyle \frac{ 1 }{ 2 }</pre><br />
+			<input type='text' value='\displaystyle \frac{ 1 }{ 2 }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample fraction-and-parentheses inline'>
+			<div class='ja'>分数と括弧</div>
+			<div class='en'>fraction and parentheses</div>
+			<div class='code'>$\left( - \frac{ 1 }{ 2 } \right )^2$</div>
+			<pre>\left( - \frac{ 1 }{ 2 } \right )^2</pre><br />
+			<input type='text' value='\left( - \frac{ 1 }{ 2 } \right )^2' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample continued-fraction inline'>
+			<div class='ja'>連分数</div>
+			<div class='en'>continued fraction</div>
+			<div class='code'>$\frac{ a + b }{ c + \frac{ d }{ e } }$</div>
+			<pre>\frac{ a + b }{ c + \frac{ d }{ e } }</pre><br />
+			<input type='text' value='\frac{ a + b }{ c + \frac{ d }{ e } }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample infinite-continued-fraction inline'>
+			<div class='ja'>無限連分数</div>
+			<div class='en'>infinite continued fraction</div>
+			<div class='code'>$\begin{eqnarray}
+1 + \frac{ 1 }{ 1 + \frac{ 1 }{ 1 + \frac{ 1 }{ 1 + \ddots } } }
+= \frac{ 1 }{ 2 } \left( 1 + \sqrt{ 5 } \right)
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+1 + \frac{ 1 }{ 1 + \frac{ 1 }{ 1 + \frac{ 1 }{ 1 + \ddots } } }
+= \frac{ 1 }{ 2 } \left( 1 + \sqrt{ 5 } \right)
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}1 + \frac{ 1 }{ 1 + \frac{ 1 }{ 1 + \frac{ 1 }{ 1 + \ddots } } }= \frac{ 1 }{ 2 } \left( 1 + \sqrt{ 5 } \right)\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample decimal inline'>
+			<div class='ja'>小数</div>
+			<div class='en'>decimal</div>
+			<div class='code'>$0.123$</div>
+			<pre>0.123</pre><br />
+			<input type='text' value='0.123' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample repeating-decimal inline'>
+			<div class='ja'>循環小数</div>
+			<div class='en'>repeating decimal</div>
+			<div class='code'>$\frac{ 1 }{ 11 } = 0.\dot{ 0 } \dot{ 9 }$</div>
+			<pre>\frac{ 1 }{ 11 } = 0.\dot{ 0 } \dot{ 9 }</pre><br />
+			<input type='text' value='\frac{ 1 }{ 11 } = 0.\dot{ 0 } \dot{ 9 }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample infinite-decimal inline'>
+			<div class='ja'>無限小数</div>
+			<div class='en'>infinite decimal</div>
+			<div class='code'>$3.14 \ldots$</div>
+			<pre>3.14 \ldots</pre><br />
+			<input type='text' value='3.14 \ldots' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample irrational-number-sample inline'>
+			<div class='ja'>無理数サンプル</div>
+			<div class='en'>irrational number sample</div>
+			<div class='code'>$\sqrt{ 2 } = 1.4142 \ldots$</div>
+			<pre>\sqrt{ 2 } = 1.4142 \ldots</pre><br />
+			<input type='text' value='\sqrt{ 2 } = 1.4142 \ldots' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample infty inline'>
+			<div class='ja'>無限大</div>
+			<div class='en'>infty</div>
+			<div class='code'>$\infty$</div>
+			<pre>\infty</pre><br />
+			<input type='text' value='\infty' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample absolute-value inline'>
+			<div class='ja'>絶対値</div>
+			<div class='en'>absolute value</div>
+			<div class='code'>$| x |$</div>
+			<pre>| x |</pre><br />
+			<input type='text' value='| x |' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample absolute-value-2 inline'>
+			<div class='ja'>絶対値2</div>
+			<div class='en'>absolute value 2</div>
+			<div class='code'>$\vert x \vert$</div>
+			<pre>\vert x \vert</pre><br />
+			<input type='text' value='\vert x \vert' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample fraction-and-absolute-value inline'>
+			<div class='ja'>分数と絶対値</div>
+			<div class='en'>fraction and absolute value</div>
+			<div class='code'>$\left| \frac{ x }{ 2 } \right|$</div>
+			<pre>\left| \frac{ x }{ 2 } \right|</pre><br />
+			<input type='text' value='\left| \frac{ x }{ 2 } \right|' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Gauss-brackets inline'>
+			<div class='ja'>ガウス記号</div>
+			<div class='en'>Gauss brackets</div>
+			<div class='code'>$[ x ]$</div>
+			<pre>[ x ]</pre><br />
+			<input type='text' value='[ x ]' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Gauss-brackets-2 inline'>
+			<div class='ja'>ガウス記号</div>
+			<div class='en'>Gauss brackets 2</div>
+			<div class='code'>$\lbrack x \rbrack$</div>
+			<pre>\lbrack x \rbrack</pre><br />
+			<input type='text' value='\lbrack x \rbrack' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample floor-function inline'>
+			<div class='ja'>床関数</div>
+			<div class='en'>floor function</div>
+			<div class='code'>$\lfloor x \rfloor$</div>
+			<pre>\lfloor x \rfloor</pre><br />
+			<input type='text' value='\lfloor x \rfloor' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample ceiling-function inline'>
+			<div class='ja'>天井関数</div>
+			<div class='en'>ceiling function</div>
+			<div class='code'>$\lceil x \rceil$</div>
+			<pre>\lceil x \rceil</pre><br />
+			<input type='text' value='\lceil x \rceil' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='arithmetic-operation' class ='sample-list'>
+		<h3><span class='ja'>四則演算</span> <span class='en'>Arithmetic Operation</span></h3>
+		<ul>
+		<li class='sample plus inline'>
+			<div class='ja'>足す</div>
+			<div class='en'>plus</div>
+			<div class='code'>$1 + 2$</div>
+			<pre>1 + 2</pre><br />
+			<input type='text' value='1 + 2' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample minus inline'>
+			<div class='ja'>引く</div>
+			<div class='en'>minus</div>
+			<div class='code'>$3 - 1$</div>
+			<pre>3 - 1</pre><br />
+			<input type='text' value='3 - 1' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample times inline'>
+			<div class='ja'>掛ける</div>
+			<div class='en'>times</div>
+			<div class='code'>$2 \times 3$</div>
+			<pre>2 \times 3</pre><br />
+			<input type='text' value='2 \times 3' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample divide inline'>
+			<div class='ja'>割る</div>
+			<div class='en'>divide</div>
+			<div class='code'>$6 \div 3$</div>
+			<pre>6 \div 3</pre><br />
+			<input type='text' value='6 \div 3' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample plus-minus inline'>
+			<div class='ja'>プラスマイナス</div>
+			<div class='en'>plus minus</div>
+			<div class='code'>$\pm 1$</div>
+			<pre>\pm 1</pre><br />
+			<input type='text' value='\pm 1' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample minus-plus inline'>
+			<div class='ja'>マイナスプラス</div>
+			<div class='en'>minus plus</div>
+			<div class='code'>$\mp 1$</div>
+			<pre>\mp 1</pre><br />
+			<input type='text' value='\mp 1' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample times-dot inline'>
+			<div class='ja'>掛ける（簡略）</div>
+			<div class='en'>times dot</div>
+			<div class='code'>$a \cdot b = ab$</div>
+			<pre>a \cdot b = ab</pre><br />
+			<input type='text' value='a \cdot b = ab' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample divide-fraction inline'>
+			<div class='ja'>割る（分数）</div>
+			<div class='en'>divide fraction</div>
+			<div class='code'>$a / b = \frac{a}{b}$</div>
+			<pre>a / b = \frac{a}{b}</pre><br />
+			<input type='text' value='a / b = \frac{a}{b}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample modular-equivalence inline'>
+			<div class='ja'>合同式</div>
+			<div class='en'>modular equivalence</div>
+			<div class='code'>$a \equiv b \bmod n$</div>
+			<pre>a \equiv b \bmod n</pre><br />
+			<input type='text' value='a \equiv b \bmod n' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample modular-equivalence-with-parentheses inline'>
+			<div class='ja'>合同式（括弧付）</div>
+			<div class='en'>modular equivalence with parentheses</div>
+			<div class='code'>$a \equiv b \pmod n$</div>
+			<pre>a \equiv b \pmod n</pre><br />
+			<input type='text' value='a \equiv b \pmod n' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample proportional inline'>
+			<div class='ja'>比例</div>
+			<div class='en'>proportional</div>
+			<div class='code'>$x \propto y$</div>
+			<pre>x \propto y</pre><br />
+			<input type='text' value='x \propto y' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='greater-or-less' class ='sample-list'>
+		<h3><span class='ja'>大小</span> <span class='en'>Greater or Less</span></h3>
+		<ul>
+		<li class='sample greater-than inline'>
+			<div class='ja'>大なり</div>
+			<div class='en'>greater than</div>
+			<div class='code'>$a \gt b$</div>
+			<pre>a \gt b</pre><br />
+			<input type='text' value='a \gt b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample greater-than-or-equal inline'>
+			<div class='ja'>大なりイコール</div>
+			<div class='en'>greater than or equal</div>
+			<div class='code'>$a \geq b$</div>
+			<pre>a \geq b</pre><br />
+			<input type='text' value='a \geq b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample greater-than-or-equal-2 inline'>
+			<div class='ja'>大なりイコール2</div>
+			<div class='en'>greater than or equal 2</div>
+			<div class='code'>$a \geqq b$</div>
+			<pre>a \geqq b</pre><br />
+			<input type='text' value='a \geqq b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample less-than inline'>
+			<div class='ja'>小なり</div>
+			<div class='en'>less than</div>
+			<div class='code'>$a \lt b$</div>
+			<pre>a \lt b</pre><br />
+			<input type='text' value='a \lt b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample less-than-or-equal inline'>
+			<div class='ja'>小なりイコール</div>
+			<div class='en'>less than or equal</div>
+			<div class='code'>$a \leq b$</div>
+			<pre>a \leq b</pre><br />
+			<input type='text' value='a \leq b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample less-than-or-equal-2 inline'>
+			<div class='ja'>小なりイコール2</div>
+			<div class='en'>less than or equal 2</div>
+			<div class='code'>$a \leqq b$</div>
+			<pre>a \leqq b</pre><br />
+			<input type='text' value='a \leqq b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample equal inline'>
+			<div class='ja'>等しい</div>
+			<div class='en'>equal</div>
+			<div class='code'>$a = b$</div>
+			<pre>a = b</pre><br />
+			<input type='text' value='a = b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample not-equal inline'>
+			<div class='ja'>等しくない</div>
+			<div class='en'>not equal</div>
+			<div class='code'>$a \neq b$</div>
+			<pre>a \neq b</pre><br />
+			<input type='text' value='a \neq b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample nearly-equal inline'>
+			<div class='ja'>ほぼ等しい</div>
+			<div class='en'>nearly equal</div>
+			<div class='code'>$a \fallingdotseq b$</div>
+			<pre>a \fallingdotseq b</pre><br />
+			<input type='text' value='a \fallingdotseq b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample nearly-equal-2 inline'>
+			<div class='ja'>ほぼ等しい2</div>
+			<div class='en'>nearly equal 2</div>
+			<div class='code'>$a \sim b$</div>
+			<pre>a \sim b</pre><br />
+			<input type='text' value='a \sim b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample nearly-equal-3 inline'>
+			<div class='ja'>ほぼ等しい3</div>
+			<div class='en'>nearly equal 3</div>
+			<div class='code'>$a \simeq b$</div>
+			<pre>a \simeq b</pre><br />
+			<input type='text' value='a \simeq b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample nearly-equal-4 inline'>
+			<div class='ja'>ほぼ等しい4</div>
+			<div class='en'>nearly equal 4</div>
+			<div class='code'>$a \approx b$</div>
+			<pre>a \approx b</pre><br />
+			<input type='text' value='a \approx b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample much-greater-than inline'>
+			<div class='ja'>十分大きい</div>
+			<div class='en'>much greater than</div>
+			<div class='code'>$a \gg b$</div>
+			<pre>a \gg b</pre><br />
+			<input type='text' value='a \gg b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample much-less-than inline'>
+			<div class='ja'>十分小さい</div>
+			<div class='en'>much less than</div>
+			<div class='code'>$a \ll b$</div>
+			<pre>a \ll b</pre><br />
+			<input type='text' value='a \ll b' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample maximum inline'>
+			<div class='ja'>最大</div>
+			<div class='en'>maximum</div>
+			<div class='code'>$\max f(x)$</div>
+			<pre>\max f(x)</pre><br />
+			<input type='text' value='\max f(x)' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample minimum inline'>
+			<div class='ja'>最小</div>
+			<div class='en'>minimum</div>
+			<div class='code'>$\min f(x)$</div>
+			<pre>\min f(x)</pre><br />
+			<input type='text' value='\min f(x)' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample max-sample inline'>
+			<div class='ja'>最大サンプル</div>
+			<div class='en'>max sample</div>
+			<div class='code'>$\begin{eqnarray}
+\max ( a, b )
+ =
+  \begin{cases}
+    a & ( a \geqq b ) \\
+    b & ( a \lt b )
+  \end{cases}
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\max ( a, b )
+ =
+  \begin{cases}
+    a & ( a \geqq b ) \\
+    b & ( a \lt b )
+  \end{cases}
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\max ( a, b ) =  \begin{cases}    a & ( a \geqq b ) \\    b & ( a \lt b )  \end{cases}\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='multiple-line-equations' class ='sample-list'>
+		<h3><span class='ja'>複数行数式</span> <span class='en'>Multiple Line Equations</span></h3>
+		<ul>
+		<li class='sample line-break inline'>
+			<div class='ja'>改行</div>
+			<div class='en'>line break</div>
+			<div class='code'>$\begin{eqnarray}
+aaa \\
+bbb
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+aaa \\
+bbb
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}aaa \\bbb\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample big-line-break inline'>
+			<div class='ja'>改行（サイズ指定）</div>
+			<div class='en'>big line break</div>
+			<div class='code'>$\begin{eqnarray}
+aaa \\[ 5pt ]
+bbb
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+aaa \\[ 5pt ]
+bbb
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}aaa \\[ 5pt ]bbb\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample alignment inline'>
+			<div class='ja'>位置合わせ</div>
+			<div class='en'>alignment</div>
+			<div class='code'>$\begin{eqnarray}
+x + 2x &=& 3 \\
+x &=& 1
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+x + 2x &=& 3 \\
+x &=& 1
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}x + 2x &=& 3 \\x &=& 1\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample simultaneous-equations inline'>
+			<div class='ja'>連立方程式</div>
+			<div class='en'>simultaneous equations</div>
+			<div class='code'>$\begin{eqnarray}
+  \left\{
+    \begin{array}{l}
+      x + y = 10 \\
+      2x + 4y = 32
+    \end{array}
+  \right.
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+  \left\{
+    \begin{array}{l}
+      x + y = 10 \\
+      2x + 4y = 32
+    \end{array}
+  \right.
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}  \left\{    \begin{array}{l}      x + y = 10 \\      2x + 4y = 32    \end{array}  \right.\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample case inline'>
+			<div class='ja'>場合分け</div>
+			<div class='en'>case</div>
+			<div class='code'>$\begin{eqnarray}
+| x |
+ =
+  \begin{cases}
+    x & ( x \geqq 0 ) \\
+    -x & ( x \lt 0 )
+  \end{cases}
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+| x |
+ =
+  \begin{cases}
+    x & ( x \geqq 0 ) \\
+    -x & ( x \lt 0 )
+  \end{cases}
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}| x | =  \begin{cases}    x & ( x \geqq 0 ) \\    -x & ( x \lt 0 )  \end{cases}\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='set' class ='sample-list'>
+		<h3><span class='ja'>集合</span> <span class='en'>Set</span></h3>
+		<ul>
+		<li class='sample belong-to inline'>
+			<div class='ja'>帰属関係</div>
+			<div class='en'>belong to</div>
+			<div class='code'>$x \in A$</div>
+			<pre>x \in A</pre><br />
+			<input type='text' value='x \in A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample belong-to-2 inline'>
+			<div class='ja'>帰属関係2</div>
+			<div class='en'>belong to 2</div>
+			<div class='code'>$A \ni x$</div>
+			<pre>A \ni x</pre><br />
+			<input type='text' value='A \ni x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample not-belong-to inline'>
+			<div class='ja'>帰属していない</div>
+			<div class='en'>not belong to</div>
+			<div class='code'>$x \notin A$</div>
+			<pre>x \notin A</pre><br />
+			<input type='text' value='x \notin A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample subset inline'>
+			<div class='ja'>部分集合</div>
+			<div class='en'>subset</div>
+			<div class='code'>$A \subset B$</div>
+			<pre>A \subset B</pre><br />
+			<input type='text' value='A \subset B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample subset-2 inline'>
+			<div class='ja'>部分集合2</div>
+			<div class='en'>subset 2</div>
+			<div class='code'>$A \subseteq B$</div>
+			<pre>A \subseteq B</pre><br />
+			<input type='text' value='A \subseteq B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample subset-3 inline'>
+			<div class='ja'>部分集合3</div>
+			<div class='en'>subset 3</div>
+			<div class='code'>$A \subseteqq B$</div>
+			<pre>A \subseteqq B</pre><br />
+			<input type='text' value='A \subseteqq B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample subset-reverse inline'>
+			<div class='ja'>部分集合（逆向き）</div>
+			<div class='en'>subset reverse</div>
+			<div class='code'>$A \supset B$</div>
+			<pre>A \supset B</pre><br />
+			<input type='text' value='A \supset B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample subset-reverse-2 inline'>
+			<div class='ja'>部分集合（逆向き）2</div>
+			<div class='en'>subset reverse 2</div>
+			<div class='code'>$A \supseteq B$</div>
+			<pre>A \supseteq B</pre><br />
+			<input type='text' value='A \supseteq B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample subset-reverse-3 inline'>
+			<div class='ja'>部分集合（逆向き）3</div>
+			<div class='en'>subset reverse 3</div>
+			<div class='code'>$A \supseteqq B$</div>
+			<pre>A \supseteqq B</pre><br />
+			<input type='text' value='A \supseteqq B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample not-subset inline'>
+			<div class='ja'>部分集合でない</div>
+			<div class='en'>not subset</div>
+			<div class='code'>$A \not \subset B$</div>
+			<pre>A \not \subset B</pre><br />
+			<input type='text' value='A \not \subset B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample proper-subset inline'>
+			<div class='ja'>真の部分集合</div>
+			<div class='en'>proper subset</div>
+			<div class='code'>$A \subsetneqq B$</div>
+			<pre>A \subsetneqq B</pre><br />
+			<input type='text' value='A \subsetneqq B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample intersection inline'>
+			<div class='ja'>集合の交わり</div>
+			<div class='en'>intersection</div>
+			<div class='code'>$A \cap B$</div>
+			<pre>A \cap B</pre><br />
+			<input type='text' value='A \cap B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample union inline'>
+			<div class='ja'>集合の結び</div>
+			<div class='en'>union</div>
+			<div class='code'>$A \cup B$</div>
+			<pre>A \cup B</pre><br />
+			<input type='text' value='A \cup B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample empty-set inline'>
+			<div class='ja'>空集合</div>
+			<div class='en'>empty set</div>
+			<div class='code'>$\varnothing$</div>
+			<pre>\varnothing</pre><br />
+			<input type='text' value='\varnothing' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample complement-set inline'>
+			<div class='ja'>補集合</div>
+			<div class='en'>complement set</div>
+			<div class='code'>$A^c$</div>
+			<pre>A^c</pre><br />
+			<input type='text' value='A^c' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample complement-set-2 inline'>
+			<div class='ja'>補集合2</div>
+			<div class='en'>complement set 2</div>
+			<div class='code'>$\overline{ A }$</div>
+			<pre>\overline{ A }</pre><br />
+			<input type='text' value='\overline{ A }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample relative-complement inline'>
+			<div class='ja'>差集合</div>
+			<div class='en'>relative complement</div>
+			<div class='code'>$A \setminus B$</div>
+			<pre>A \setminus B</pre><br />
+			<input type='text' value='A \setminus B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample relative-complement-sample inline'>
+			<div class='ja'>差集合サンプル</div>
+			<div class='en'>relative complement sample</div>
+			<div class='code'>$A \setminus B
+ = A \cap B^c
+ = \{ x \mid x \in A, x \notin B \}$</div>
+			<pre>A \setminus B
+ = A \cap B^c
+ = \{ x \mid x \in A, x \notin B \}</pre><br />
+			<input type='text' value='A \setminus B = A \cap B^c = \{ x \mid x \in A, x \notin B \}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample all-natural-numbers inline'>
+			<div class='ja'>自然数全体の集合</div>
+			<div class='en'>all natural numbers</div>
+			<div class='code'>$\mathbb{ N }$</div>
+			<pre>\mathbb{ N }</pre><br />
+			<input type='text' value='\mathbb{ N }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample all-integers inline'>
+			<div class='ja'>整数全体の集合</div>
+			<div class='en'>all integers</div>
+			<div class='code'>$\mathbb{ Z }$</div>
+			<pre>\mathbb{ Z }</pre><br />
+			<input type='text' value='\mathbb{ Z }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample all-rational-numbers inline'>
+			<div class='ja'>有理数全体の集合</div>
+			<div class='en'>all rational numbers</div>
+			<div class='code'>$\mathbb{ Q }$</div>
+			<pre>\mathbb{ Q }</pre><br />
+			<input type='text' value='\mathbb{ Q }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample all-real-numbers inline'>
+			<div class='ja'>実数全体の集合</div>
+			<div class='en'>all real numbers</div>
+			<div class='code'>$\mathbb{ R }$</div>
+			<pre>\mathbb{ R }</pre><br />
+			<input type='text' value='\mathbb{ R }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample all-complex-numbers inline'>
+			<div class='ja'>複素数全体の集合</div>
+			<div class='en'>all complex numbers</div>
+			<div class='code'>$\mathbb{ C }$</div>
+			<pre>\mathbb{ C }</pre><br />
+			<input type='text' value='\mathbb{ C }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample all-quaternions inline'>
+			<div class='ja'>四元数全体の集合</div>
+			<div class='en'>all quaternions</div>
+			<div class='code'>$\mathbb{ H }$</div>
+			<pre>\mathbb{ H }</pre><br />
+			<input type='text' value='\mathbb{ H }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample supremum inline'>
+			<div class='ja'>上限</div>
+			<div class='en'>supremum</div>
+			<div class='code'>$\sup A$</div>
+			<pre>\sup A</pre><br />
+			<input type='text' value='\sup A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample infimum inline'>
+			<div class='ja'>下限</div>
+			<div class='en'>infimum</div>
+			<div class='code'>$\inf A$</div>
+			<pre>\inf A</pre><br />
+			<input type='text' value='\inf A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample aleph-number inline'>
+			<div class='ja'>アレフ数</div>
+			<div class='en'>aleph number</div>
+			<div class='code'>$\aleph$</div>
+			<pre>\aleph</pre><br />
+			<input type='text' value='\aleph' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='logic-notation' class ='sample-list'>
+		<h3><span class='ja'>論理</span> <span class='en'>Logic Notation</span></h3>
+		<ul>
+		<li class='sample logical-conjunction inline'>
+			<div class='ja'>論理積</div>
+			<div class='en'>logical conjunction</div>
+			<div class='code'>$P \land Q$</div>
+			<pre>P \land Q</pre><br />
+			<input type='text' value='P \land Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample logical-disjunction inline'>
+			<div class='ja'>論理和</div>
+			<div class='en'>logical disjunction</div>
+			<div class='code'>$P \lor Q$</div>
+			<pre>P \lor Q</pre><br />
+			<input type='text' value='P \lor Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample negation inline'>
+			<div class='ja'>否定</div>
+			<div class='en'>negation</div>
+			<div class='code'>$\lnot P$</div>
+			<pre>\lnot P</pre><br />
+			<input type='text' value='\lnot P' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample negation-2 inline'>
+			<div class='ja'>否定2</div>
+			<div class='en'>negation 2</div>
+			<div class='code'>$\overline{ P }$</div>
+			<pre>\overline{ P }</pre><br />
+			<input type='text' value='\overline{ P }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample negation-3 inline'>
+			<div class='ja'>否定3</div>
+			<div class='en'>negation 3</div>
+			<div class='code'>$!P$</div>
+			<pre>!P</pre><br />
+			<input type='text' value='!P' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample implication inline'>
+			<div class='ja'>含意</div>
+			<div class='en'>implication</div>
+			<div class='code'>$P \Rightarrow Q$</div>
+			<pre>P \Rightarrow Q</pre><br />
+			<input type='text' value='P \Rightarrow Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample implication-2 inline'>
+			<div class='ja'>含意2</div>
+			<div class='en'>implication 2</div>
+			<div class='code'>$P \to Q$</div>
+			<pre>P \to Q</pre><br />
+			<input type='text' value='P \to Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample implication-3 inline'>
+			<div class='ja'>含意3</div>
+			<div class='en'>implication 3</div>
+			<div class='code'>$P \implies Q$</div>
+			<pre>P \implies Q</pre><br />
+			<input type='text' value='P \implies Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample implication-reverse inline'>
+			<div class='ja'>含意（逆向き）</div>
+			<div class='en'>implication reverse</div>
+			<div class='code'>$P \Leftarrow  Q$</div>
+			<pre>P \Leftarrow  Q</pre><br />
+			<input type='text' value='P \Leftarrow  Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample implication-reverse-2 inline'>
+			<div class='ja'>含意（逆向き）2</div>
+			<div class='en'>implication reverse 2</div>
+			<div class='code'>$P \gets  Q$</div>
+			<pre>P \gets  Q</pre><br />
+			<input type='text' value='P \gets  Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample equivalence inline'>
+			<div class='ja'>同値</div>
+			<div class='en'>equivalence</div>
+			<div class='code'>$P \Leftrightarrow Q$</div>
+			<pre>P \Leftrightarrow Q</pre><br />
+			<input type='text' value='P \Leftrightarrow Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample equivalence-2 inline'>
+			<div class='ja'>同値2</div>
+			<div class='en'>equivalence 2</div>
+			<div class='code'>$P \leftrightarrow Q$</div>
+			<pre>P \leftrightarrow Q</pre><br />
+			<input type='text' value='P \leftrightarrow Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample equivalence-3 inline'>
+			<div class='ja'>同値3</div>
+			<div class='en'>equivalence 3</div>
+			<div class='code'>$P \iff Q$</div>
+			<pre>P \iff Q</pre><br />
+			<input type='text' value='P \iff Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample equivalence-4 inline'>
+			<div class='ja'>同値4</div>
+			<div class='en'>equivalence 4</div>
+			<div class='code'>$P \equiv Q$</div>
+			<pre>P \equiv Q</pre><br />
+			<input type='text' value='P \equiv Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample logical-consequence inline'>
+			<div class='ja'>論理的帰結</div>
+			<div class='en'>logical consequence</div>
+			<div class='code'>$P \models Q$</div>
+			<pre>P \models Q</pre><br />
+			<input type='text' value='P \models Q' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample for-all inline'>
+			<div class='ja'>すべての</div>
+			<div class='en'>for all</div>
+			<div class='code'>$\forall x$</div>
+			<pre>\forall x</pre><br />
+			<input type='text' value='\forall x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample for-some inline'>
+			<div class='ja'>在る</div>
+			<div class='en'>for some</div>
+			<div class='code'>$\exists x$</div>
+			<pre>\exists x</pre><br />
+			<input type='text' value='\exists x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample not-exists inline'>
+			<div class='ja'>存在しない</div>
+			<div class='en'>not exists</div>
+			<div class='code'>$\nexists$</div>
+			<pre>\nexists</pre><br />
+			<input type='text' value='\nexists' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample therefore inline'>
+			<div class='ja'>よって</div>
+			<div class='en'>therefore</div>
+			<div class='code'>$\therefore$</div>
+			<pre>\therefore</pre><br />
+			<input type='text' value='\therefore' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample because inline'>
+			<div class='ja'>なぜならば</div>
+			<div class='en'>because</div>
+			<div class='code'>$\because$</div>
+			<pre>\because</pre><br />
+			<input type='text' value='\because' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample logic-notation-sample inline'>
+			<div class='ja'>論理記号サンプル</div>
+			<div class='en'>logic notation sample</div>
+			<div class='code'>$\begin{eqnarray}
+& & {}^\forall \varepsilon \gt 0, {}^\exists \delta \gt 0 \mbox{ s.t. } \\
+& & {}^\forall x \in \mathbb{ R }, 0 \lt |x - a| \lt \delta
+\Rightarrow |f(x) - b| \lt \varepsilon 
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+& & {}^\forall \varepsilon \gt 0, {}^\exists \delta \gt 0 \mbox{ s.t. } \\
+& & {}^\forall x \in \mathbb{ R }, 0 \lt |x - a| \lt \delta
+\Rightarrow |f(x) - b| \lt \varepsilon 
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}& & {}^\forall \varepsilon \gt 0, {}^\exists \delta \gt 0 \mbox{ s.t. } \\& & {}^\forall x \in \mathbb{ R }, 0 \lt |x - a| \lt \delta\Rightarrow |f(x) - b| \lt \varepsilon \end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='permutation-and-combination' class ='sample-list'>
+		<h3><span class='ja'>順列と組合せ</span> <span class='en'>Permutation and Combination</span></h3>
+		<ul>
+		<li class='sample permutation inline'>
+			<div class='ja'>順列</div>
+			<div class='en'>permutation</div>
+			<div class='code'>${}_n \mathrm{ P }_k$</div>
+			<pre>{}_n \mathrm{ P }_k</pre><br />
+			<input type='text' value='{}_n \mathrm{ P }_k' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample combination inline'>
+			<div class='ja'>組合せ</div>
+			<div class='en'>combination</div>
+			<div class='code'>${}_n \mathrm{ C }_k$</div>
+			<pre>{}_n \mathrm{ C }_k</pre><br />
+			<input type='text' value='{}_n \mathrm{ C }_k' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample factorial inline'>
+			<div class='ja'>階乗</div>
+			<div class='en'>factorial</div>
+			<div class='code'>$n!$</div>
+			<pre>n!</pre><br />
+			<input type='text' value='n!' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample binomial-coefficient inline'>
+			<div class='ja'>二項係数</div>
+			<div class='en'>binomial coefficient</div>
+			<div class='code'>$\binom{ n }{ k }$</div>
+			<pre>\binom{ n }{ k }</pre><br />
+			<input type='text' value='\binom{ n }{ k }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample binomial-coefficient-2 inline'>
+			<div class='ja'>二項係数2</div>
+			<div class='en'>binomial coefficient 2</div>
+			<div class='code'>${ n \choose k }$</div>
+			<pre>{ n \choose k }</pre><br />
+			<input type='text' value='{ n \choose k }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample repeated-permutation inline'>
+			<div class='ja'>重複順列</div>
+			<div class='en'>repeated permutation</div>
+			<div class='code'>${}_n \prod_k$</div>
+			<pre>{}_n \prod_k</pre><br />
+			<input type='text' value='{}_n \prod_k' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample repeated-combination inline'>
+			<div class='ja'>重複組合せ</div>
+			<div class='en'>repeated combination</div>
+			<div class='code'>${}_n \mathrm{ H }_k$</div>
+			<pre>{}_n \mathrm{ H }_k</pre><br />
+			<input type='text' value='{}_n \mathrm{ H }_k' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample permutation-sample inline'>
+			<div class='ja'>順列サンプル</div>
+			<div class='en'>permutation sample</div>
+			<div class='code'>$\begin{eqnarray}
+{}_n \mathrm{ P }_k
+ = n \cdot ( n - 1 ) \cdots ( n - k + 1 )
+ = \frac{ n! }{ ( n - k )! }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+{}_n \mathrm{ P }_k
+ = n \cdot ( n - 1 ) \cdots ( n - k + 1 )
+ = \frac{ n! }{ ( n - k )! }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}{}_n \mathrm{ P }_k = n \cdot ( n - 1 ) \cdots ( n - k + 1 ) = \frac{ n! }{ ( n - k )! }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample combination-sample inline'>
+			<div class='ja'>組合せサンプル</div>
+			<div class='en'>combination sample</div>
+			<div class='code'>$\begin{eqnarray}
+{}_n \mathrm{ C }_k
+ = \binom{ n }{ k }
+ = \frac{ n! }{ k! ( n - k )! }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+{}_n \mathrm{ C }_k
+ = \binom{ n }{ k }
+ = \frac{ n! }{ k! ( n - k )! }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}{}_n \mathrm{ C }_k = \binom{ n }{ k } = \frac{ n! }{ k! ( n - k )! }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='summation-and-product' class ='sample-list'>
+		<h3><span class='ja'>総和・総乗</span> <span class='en'>Summation and Product</span></h3>
+		<ul>
+		<li class='sample summation inline'>
+			<div class='ja'>総和</div>
+			<div class='en'>summation</div>
+			<div class='code'>$\sum_{ i = 1 }^{ n } a_n$</div>
+			<pre>\sum_{ i = 1 }^{ n } a_n</pre><br />
+			<input type='text' value='\sum_{ i = 1 }^{ n } a_n' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample summation-large inline'>
+			<div class='ja'>総和（大）</div>
+			<div class='en'>summation large</div>
+			<div class='code'>$\displaystyle \sum_{ i = 1 }^{ n } a_n$</div>
+			<pre>\displaystyle \sum_{ i = 1 }^{ n } a_n</pre><br />
+			<input type='text' value='\displaystyle \sum_{ i = 1 }^{ n } a_n' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample summation-sample inline'>
+			<div class='ja'>総和サンプル</div>
+			<div class='en'>summation sample</div>
+			<div class='code'>$\begin{eqnarray}
+\sum_{ k = 1 }^{ n } k^2
+ = \overbrace{ 1^2 + 2^2 + \cdots + n^2 }^{ n }
+ = \frac{ 1 }{ 6 } n ( n + 1 ) ( 2n + 1 )
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\sum_{ k = 1 }^{ n } k^2
+ = \overbrace{ 1^2 + 2^2 + \cdots + n^2 }^{ n }
+ = \frac{ 1 }{ 6 } n ( n + 1 ) ( 2n + 1 )
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\sum_{ k = 1 }^{ n } k^2 = \overbrace{ 1^2 + 2^2 + \cdots + n^2 }^{ n } = \frac{ 1 }{ 6 } n ( n + 1 ) ( 2n + 1 )\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample product inline'>
+			<div class='ja'>総乗</div>
+			<div class='en'>product</div>
+			<div class='code'>$\prod_{ i = 0 }^n x_i$</div>
+			<pre>\prod_{ i = 0 }^n x_i</pre><br />
+			<input type='text' value='\prod_{ i = 0 }^n x_i' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample product-large inline'>
+			<div class='ja'>総乗（大）</div>
+			<div class='en'>product large</div>
+			<div class='code'>$\displaystyle \prod_{ i = 0 }^n x_i$</div>
+			<pre>\displaystyle \prod_{ i = 0 }^n x_i</pre><br />
+			<input type='text' value='\displaystyle \prod_{ i = 0 }^n x_i' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample product-sample inline'>
+			<div class='ja'>総乗サンプル</div>
+			<div class='en'>product sample</div>
+			<div class='code'>$\begin{eqnarray}
+n! = \prod_{ k = 1 }^n k
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+n! = \prod_{ k = 1 }^n k
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}n! = \prod_{ k = 1 }^n k\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample product-sample-2 inline'>
+			<div class='ja'>総乗サンプル2</div>
+			<div class='en'>product sample 2</div>
+			<div class='code'>$\begin{eqnarray}
+\zeta (s)
+ = \prod_{ p:\mathrm{ prime } }
+   \frac{ 1 }{ 1 - p^{ -s } }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\zeta (s)
+ = \prod_{ p:\mathrm{ prime } }
+   \frac{ 1 }{ 1 - p^{ -s } }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\zeta (s) = \prod_{ p:\mathrm{ prime } }   \frac{ 1 }{ 1 - p^{ -s } }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='exponent-and-logarithm' class ='sample-list'>
+		<h3><span class='ja'>指数・対数</span> <span class='en'>Exponent and Logarithm</span></h3>
+		<ul>
+		<li class='sample power inline'>
+			<div class='ja'>べき乗</div>
+			<div class='en'>power</div>
+			<div class='code'>$2^3$</div>
+			<pre>2^3</pre><br />
+			<input type='text' value='2^3' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample power-2 inline'>
+			<div class='ja'>べき乗2</div>
+			<div class='en'>power 2</div>
+			<div class='code'>$e^{ i \pi }$</div>
+			<pre>e^{ i \pi }</pre><br />
+			<input type='text' value='e^{ i \pi }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample exponential-function inline'>
+			<div class='ja'>指数関数</div>
+			<div class='en'>exponential function</div>
+			<div class='code'>$\exp ( x )$</div>
+			<pre>\exp ( x )</pre><br />
+			<input type='text' value='\exp ( x )' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample square-root inline'>
+			<div class='ja'>平方根</div>
+			<div class='en'>square root</div>
+			<div class='code'>$\sqrt{ 2 }$</div>
+			<pre>\sqrt{ 2 }</pre><br />
+			<input type='text' value='\sqrt{ 2 }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample square-root-same-height inline'>
+			<div class='ja'>平方根（高さを揃える）</div>
+			<div class='en'>square root same height</div>
+			<div class='code'>$\sqrt{ \mathstrut a } + \sqrt{ \mathstrut b }$</div>
+			<pre>\sqrt{ \mathstrut a } + \sqrt{ \mathstrut b }</pre><br />
+			<input type='text' value='\sqrt{ \mathstrut a } + \sqrt{ \mathstrut b }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample nth-root inline'>
+			<div class='ja'>べき根</div>
+			<div class='en'>nth root</div>
+			<div class='code'>$\sqrt[ n ]{ x }$</div>
+			<pre>\sqrt[ n ]{ x }</pre><br />
+			<input type='text' value='\sqrt[ n ]{ x }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample logarithm inline'>
+			<div class='ja'>対数</div>
+			<div class='en'>logarithm</div>
+			<div class='code'>$\log x$</div>
+			<pre>\log x</pre><br />
+			<input type='text' value='\log x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample logarithm-to-base inline'>
+			<div class='ja'>対数（底）</div>
+			<div class='en'>logarithm to base</div>
+			<div class='code'>$\log_{ 2 } x$</div>
+			<pre>\log_{ 2 } x</pre><br />
+			<input type='text' value='\log_{ 2 } x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample natural-logarithm inline'>
+			<div class='ja'>自然対数</div>
+			<div class='en'>natural logarithm</div>
+			<div class='code'>$\ln x$</div>
+			<pre>\ln x</pre><br />
+			<input type='text' value='\ln x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='shape' class ='sample-list'>
+		<h3><span class='ja'>図形</span> <span class='en'>Shape</span></h3>
+		<ul>
+		<li class='sample degree inline'>
+			<div class='ja'>角度（度数）</div>
+			<div class='en'>degree</div>
+			<div class='code'>$90^{ \circ }$</div>
+			<pre>90^{ \circ }</pre><br />
+			<input type='text' value='90^{ \circ }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample radian inline'>
+			<div class='ja'>角度（ラジアン）</div>
+			<div class='en'>radian</div>
+			<div class='code'>$\frac{ \pi }{ 2 }$</div>
+			<pre>\frac{ \pi }{ 2 }</pre><br />
+			<input type='text' value='\frac{ \pi }{ 2 }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample angle-symbol inline'>
+			<div class='ja'>角記号</div>
+			<div class='en'>angle symbol</div>
+			<div class='code'>$\angle A$</div>
+			<pre>\angle A</pre><br />
+			<input type='text' value='\angle A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample parallel-Japanese-style inline'>
+			<div class='ja'>平行（日本スタイル）</div>
+			<div class='en'>parallel Japanese style</div>
+			<div class='code'>$AB /\!/ CD$</div>
+			<pre>AB /\!/ CD</pre><br />
+			<input type='text' value='AB /\!/ CD' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample parallel-international-style inline'>
+			<div class='ja'>平行（海外スタイル）</div>
+			<div class='en'>parallel international style</div>
+			<div class='code'>$AB \parallel CD$</div>
+			<pre>AB \parallel CD</pre><br />
+			<input type='text' value='AB \parallel CD' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample perpendicular inline'>
+			<div class='ja'>垂直</div>
+			<div class='en'>perpendicular</div>
+			<div class='code'>$AB \perp CD$</div>
+			<pre>AB \perp CD</pre><br />
+			<input type='text' value='AB \perp CD' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample triangle inline'>
+			<div class='ja'>三角形</div>
+			<div class='en'>triangle</div>
+			<div class='code'>$\triangle ABC$</div>
+			<pre>\triangle ABC</pre><br />
+			<input type='text' value='\triangle ABC' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample quadrangle inline'>
+			<div class='ja'>四角形</div>
+			<div class='en'>quadrangle</div>
+			<div class='code'>$\Box ABCD$</div>
+			<pre>\Box ABCD</pre><br />
+			<input type='text' value='\Box ABCD' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample arc inline'>
+			<div class='ja'>弧</div>
+			<div class='en'>arc</div>
+			<div class='code'>$\stackrel{ \Large \frown }{ AB }$</div>
+			<pre>\stackrel{ \Large \frown }{ AB }</pre><br />
+			<input type='text' value='\stackrel{ \Large \frown }{ AB }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample congruence inline'>
+			<div class='ja'>合同</div>
+			<div class='en'>congruence</div>
+			<div class='code'>$\triangle ABC \equiv \triangle DEF$</div>
+			<pre>\triangle ABC \equiv \triangle DEF</pre><br />
+			<input type='text' value='\triangle ABC \equiv \triangle DEF' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample similar-Japanese-style inline'>
+			<div class='ja'>相似（日本スタイル）</div>
+			<div class='en'>similar Japanese style</div>
+			<div class='code'>$\triangle ABC \backsim \triangle DEF$</div>
+			<pre>\triangle ABC \backsim \triangle DEF</pre><br />
+			<input type='text' value='\triangle ABC \backsim \triangle DEF' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample similar-international-style inline'>
+			<div class='ja'>相似（海外スタイル）</div>
+			<div class='en'>similar international style</div>
+			<div class='code'>$\triangle ABC \sim \triangle DEF$</div>
+			<pre>\triangle ABC \sim \triangle DEF</pre><br />
+			<input type='text' value='\triangle ABC \sim \triangle DEF' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='trigonometric-function-etc' class ='sample-list'>
+		<h3><span class='ja'>三角関数など</span> <span class='en'>Trigonometric Function etc</span></h3>
+		<ul>
+		<li class='sample sin inline'>
+			<div class='ja'>サイン</div>
+			<div class='en'>sin</div>
+			<div class='code'>$\sin x$</div>
+			<pre>\sin x</pre><br />
+			<input type='text' value='\sin x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample cos inline'>
+			<div class='ja'>コサイン</div>
+			<div class='en'>cos</div>
+			<div class='code'>$\cos x$</div>
+			<pre>\cos x</pre><br />
+			<input type='text' value='\cos x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample tan inline'>
+			<div class='ja'>タンジェント</div>
+			<div class='en'>tan</div>
+			<div class='code'>$\tan x$</div>
+			<pre>\tan x</pre><br />
+			<input type='text' value='\tan x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample sin-sample inline'>
+			<div class='ja'>サインサンプル</div>
+			<div class='en'>sin sample</div>
+			<div class='code'>$\begin{eqnarray}
+\sin 45^\circ
+ = \frac{ \sqrt{2} }{ 2 }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\sin 45^\circ
+ = \frac{ \sqrt{2} }{ 2 }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\sin 45^\circ = \frac{ \sqrt{2} }{ 2 }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample cos-sample inline'>
+			<div class='ja'>コサインサンプル</div>
+			<div class='en'>cos sample</div>
+			<div class='code'>$\begin{eqnarray}
+\cos \frac{ \pi }{ 3 }
+ = \frac{ 1 }{ 2 }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\cos \frac{ \pi }{ 3 }
+ = \frac{ 1 }{ 2 }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\cos \frac{ \pi }{ 3 } = \frac{ 1 }{ 2 }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample tan-sample inline'>
+			<div class='ja'>タンジェントサンプル</div>
+			<div class='en'>tan sample</div>
+			<div class='code'>$\begin{eqnarray}
+\tan \theta
+ = \frac{ \sin \theta }{ \cos \theta }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\tan \theta
+ = \frac{ \sin \theta }{ \cos \theta }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\tan \theta = \frac{ \sin \theta }{ \cos \theta }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample sec inline'>
+			<div class='ja'>セカント</div>
+			<div class='en'>sec</div>
+			<div class='code'>$\sec x$</div>
+			<pre>\sec x</pre><br />
+			<input type='text' value='\sec x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample csc inline'>
+			<div class='ja'>コセカント</div>
+			<div class='en'>csc</div>
+			<div class='code'>$\csc x$</div>
+			<pre>\csc x</pre><br />
+			<input type='text' value='\csc x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample cot inline'>
+			<div class='ja'>コタンジェント</div>
+			<div class='en'>cot</div>
+			<div class='code'>$\cot x$</div>
+			<pre>\cot x</pre><br />
+			<input type='text' value='\cot x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample arcsin inline'>
+			<div class='ja'>アークサイン</div>
+			<div class='en'>arcsin</div>
+			<div class='code'>$\arcsin x$</div>
+			<pre>\arcsin x</pre><br />
+			<input type='text' value='\arcsin x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample arccos inline'>
+			<div class='ja'>アークコサイン</div>
+			<div class='en'>arccos</div>
+			<div class='code'>$\arccos x$</div>
+			<pre>\arccos x</pre><br />
+			<input type='text' value='\arccos x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample arctan inline'>
+			<div class='ja'>アークタンジェント</div>
+			<div class='en'>arctan</div>
+			<div class='code'>$\arctan x$</div>
+			<pre>\arctan x</pre><br />
+			<input type='text' value='\arctan x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample sinh inline'>
+			<div class='ja'>ハイパボリックサイン</div>
+			<div class='en'>sinh</div>
+			<div class='code'>$\sinh x$</div>
+			<pre>\sinh x</pre><br />
+			<input type='text' value='\sinh x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample cosh inline'>
+			<div class='ja'>ハイパボリックコサイン</div>
+			<div class='en'>cosh</div>
+			<div class='code'>$\cosh x$</div>
+			<pre>\cosh x</pre><br />
+			<input type='text' value='\cosh x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample tanh inline'>
+			<div class='ja'>ハイパボリックタンジェント</div>
+			<div class='en'>tanh</div>
+			<div class='code'>$\tanh x$</div>
+			<pre>\tanh x</pre><br />
+			<input type='text' value='\tanh x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample coth inline'>
+			<div class='ja'>ハイパボリックコタンジェント</div>
+			<div class='en'>coth</div>
+			<div class='code'>$\coth x$</div>
+			<pre>\coth x</pre><br />
+			<input type='text' value='\coth x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='limit' class ='sample-list'>
+		<h3><span class='ja'>極限</span> <span class='en'>Limit</span></h3>
+		<ul>
+		<li class='sample limit inline'>
+			<div class='ja'>極限</div>
+			<div class='en'>limit</div>
+			<div class='code'>$\lim_{ x \to +0 } \frac{ 1 }{ x } = \infty$</div>
+			<pre>\lim_{ x \to +0 } \frac{ 1 }{ x } = \infty</pre><br />
+			<input type='text' value='\lim_{ x \to +0 } \frac{ 1 }{ x } = \infty' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample limit-large inline'>
+			<div class='ja'>極限（大）</div>
+			<div class='en'>limit large</div>
+			<div class='code'>$\displaystyle \lim_{ n \to \infty } f_n(x) = f(x)$</div>
+			<pre>\displaystyle \lim_{ n \to \infty } f_n(x) = f(x)</pre><br />
+			<input type='text' value='\displaystyle \lim_{ n \to \infty } f_n(x) = f(x)' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample limit-superior inline'>
+			<div class='ja'>上極限</div>
+			<div class='en'>limit superior</div>
+			<div class='code'>$\limsup_{ n \to \infty } a_n$</div>
+			<pre>\limsup_{ n \to \infty } a_n</pre><br />
+			<input type='text' value='\limsup_{ n \to \infty } a_n' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample limit-superior-simple inline'>
+			<div class='ja'>上極限（簡略）</div>
+			<div class='en'>limit superior simple</div>
+			<div class='code'>$\varlimsup_{ n \to \infty } a_n$</div>
+			<pre>\varlimsup_{ n \to \infty } a_n</pre><br />
+			<input type='text' value='\varlimsup_{ n \to \infty } a_n' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample limit-inferior inline'>
+			<div class='ja'>下極限</div>
+			<div class='en'>limit inferior</div>
+			<div class='code'>$\liminf_{ n \to \infty } a_n$</div>
+			<pre>\liminf_{ n \to \infty } a_n</pre><br />
+			<input type='text' value='\liminf_{ n \to \infty } a_n' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample limit-inferior-simple inline'>
+			<div class='ja'>下極限（簡略）</div>
+			<div class='en'>limit inferior simple</div>
+			<div class='code'>$\varliminf_{ n \to \infty } a_n$</div>
+			<pre>\varliminf_{ n \to \infty } a_n</pre><br />
+			<input type='text' value='\varliminf_{ n \to \infty } a_n' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample limit-superior-sample inline'>
+			<div class='ja'>上極限サンプル</div>
+			<div class='en'>limit superior sample</div>
+			<div class='code'>$\begin{eqnarray}
+\varlimsup_{ n \to \infty } a_n
+ = \lim_{ n \to \infty } \sup_{ k \geqq n } a_k
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\varlimsup_{ n \to \infty } a_n
+ = \lim_{ n \to \infty } \sup_{ k \geqq n } a_k
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\varlimsup_{ n \to \infty } a_n = \lim_{ n \to \infty } \sup_{ k \geqq n } a_k\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample limit-inferior-sample inline'>
+			<div class='ja'>下極限サンプル</div>
+			<div class='en'>limit inferior sample</div>
+			<div class='code'>$\begin{eqnarray}
+\varliminf_{ n \to \infty } A_n
+ = \bigcup_{ n = 1 }^{ \infty } \bigcap_{ k = n }^{ \infty } A_k
+ = \bigcup_{ n \in \mathbb{ N } } \bigcap_{ k \geqq n } A_k
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\varliminf_{ n \to \infty } A_n
+ = \bigcup_{ n = 1 }^{ \infty } \bigcap_{ k = n }^{ \infty } A_k
+ = \bigcup_{ n \in \mathbb{ N } } \bigcap_{ k \geqq n } A_k
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\varliminf_{ n \to \infty } A_n = \bigcup_{ n = 1 }^{ \infty } \bigcap_{ k = n }^{ \infty } A_k = \bigcup_{ n \in \mathbb{ N } } \bigcap_{ k \geqq n } A_k\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='differentiation' class ='sample-list'>
+		<h3><span class='ja'>微分</span> <span class='en'>Differentiation</span></h3>
+		<ul>
+		<li class='sample differentiation-Leibniz inline'>
+			<div class='ja'>微分（ライプニッツ）</div>
+			<div class='en'>differentiation Leibniz</div>
+			<div class='code'>$\frac{ dy }{ dx }$</div>
+			<pre>\frac{ dy }{ dx }</pre><br />
+			<input type='text' value='\frac{ dy }{ dx }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample differentiation-Leibniz-2 inline'>
+			<div class='ja'>微分（ライプニッツ）2</div>
+			<div class='en'>differentiation Leibniz 2</div>
+			<div class='code'>$\frac{ \mathrm{ d } y }{ \mathrm{ d } x }$</div>
+			<pre>\frac{ \mathrm{ d } y }{ \mathrm{ d } x }</pre><br />
+			<input type='text' value='\frac{ \mathrm{ d } y }{ \mathrm{ d } x }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample nth-differentiation-Leibniz inline'>
+			<div class='ja'>n回微分（ライプニッツ）</div>
+			<div class='en'>nth differentiation Leibniz</div>
+			<div class='code'>$\frac{ d^n y }{ dx^n }$</div>
+			<pre>\frac{ d^n y }{ dx^n }</pre><br />
+			<input type='text' value='\frac{ d^n y }{ dx^n }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample differentiation-Leibniz-at-a-point inline'>
+			<div class='ja'>ある点での微分（ライプニッツ）</div>
+			<div class='en'>differentiation Leibniz at a point</div>
+			<div class='code'>$\left. \frac{ dy }{ dx } \right|_{ x = a }$</div>
+			<pre>\left. \frac{ dy }{ dx } \right|_{ x = a }</pre><br />
+			<input type='text' value='\left. \frac{ dy }{ dx } \right|_{ x = a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample differentiation-Lagrange inline'>
+			<div class='ja'>微分（ラグランジュ）</div>
+			<div class='en'>differentiation Lagrange</div>
+			<div class='code'>$f'$</div>
+			<pre>f'</pre><br />
+			<input type='text' value='f&#39;' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample nth-differentiation-Lagrange inline'>
+			<div class='ja'>n回微分（ラグランジュ）</div>
+			<div class='en'>nth differentiation Lagrange</div>
+			<div class='code'>$f^{ ( n ) }$</div>
+			<pre>f^{ ( n ) }</pre><br />
+			<input type='text' value='f^{ ( n ) }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample differentiation-Euler inline'>
+			<div class='ja'>微分（オイラー）</div>
+			<div class='en'>differentiation Euler</div>
+			<div class='code'>$Df$</div>
+			<pre>Df</pre><br />
+			<input type='text' value='Df' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample differentiation-Euler-2 inline'>
+			<div class='ja'>微分（オイラー）2</div>
+			<div class='en'>differentiation Euler 2</div>
+			<div class='code'>$D_x f$</div>
+			<pre>D_x f</pre><br />
+			<input type='text' value='D_x f' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample nth-differentiation-Euler inline'>
+			<div class='ja'>n回微分（オイラー）</div>
+			<div class='en'>nth differentiation Euler</div>
+			<div class='code'>$D^n f$</div>
+			<pre>D^n f</pre><br />
+			<input type='text' value='D^n f' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample differentiation-Newton inline'>
+			<div class='ja'>微分（ニュートン）</div>
+			<div class='en'>differentiation Newton</div>
+			<div class='code'>$\dot{ y } = \frac{ dy }{ dt }$</div>
+			<pre>\dot{ y } = \frac{ dy }{ dt }</pre><br />
+			<input type='text' value='\dot{ y } = \frac{ dy }{ dt }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample 4th-differentiation-Newton inline'>
+			<div class='ja'>4回微分（ニュートン）</div>
+			<div class='en'>4th differentiation Newton</div>
+			<div class='code'>$\ddddot{ y } = \frac{ d^4 y }{ dt^4 }$</div>
+			<pre>\ddddot{ y } = \frac{ d^4 y }{ dt^4 }</pre><br />
+			<input type='text' value='\ddddot{ y } = \frac{ d^4 y }{ dt^4 }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample differentiation-sample inline'>
+			<div class='ja'>微分サンプル</div>
+			<div class='en'>differentiation sample</div>
+			<div class='code'>$\begin{eqnarray}
+f'(x)
+ = \frac{ df }{ dx }
+ = \lim_{ \Delta x \to 0 } \frac{ f(x + \Delta x) - f(x) }{ \Delta x }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+f'(x)
+ = \frac{ df }{ dx }
+ = \lim_{ \Delta x \to 0 } \frac{ f(x + \Delta x) - f(x) }{ \Delta x }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}f&#39;(x) = \frac{ df }{ dx } = \lim_{ \Delta x \to 0 } \frac{ f(x + \Delta x) - f(x) }{ \Delta x }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample partial-differentiation inline'>
+			<div class='ja'>偏微分</div>
+			<div class='en'>partial differentiation</div>
+			<div class='code'>$\frac{ \partial f }{ \partial x }$</div>
+			<pre>\frac{ \partial f }{ \partial x }</pre><br />
+			<input type='text' value='\frac{ \partial f }{ \partial x }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample 2nd-partial-differentiation inline'>
+			<div class='ja'>2回偏微分</div>
+			<div class='en'>2nd partial differentiation</div>
+			<div class='code'>$\frac{ \partial }{ \partial y } \frac{ \partial }{ \partial x } z$</div>
+			<pre>\frac{ \partial }{ \partial y } \frac{ \partial }{ \partial x } z</pre><br />
+			<input type='text' value='\frac{ \partial }{ \partial y } \frac{ \partial }{ \partial x } z' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample partial-differentiation-simple inline'>
+			<div class='ja'>偏微分（簡略）</div>
+			<div class='en'>partial differentiation simple</div>
+			<div class='code'>$f_x$</div>
+			<pre>f_x</pre><br />
+			<input type='text' value='f_x' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample 2nd-partial-differentiation-simple inline'>
+			<div class='ja'>2回偏微分（簡略）</div>
+			<div class='en'>2nd partial differentiation simple</div>
+			<div class='code'>$f_{ xy }$</div>
+			<pre>f_{ xy }</pre><br />
+			<input type='text' value='f_{ xy }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample del inline'>
+			<div class='ja'>ナブラ</div>
+			<div class='en'>del</div>
+			<div class='code'>$\nabla f$</div>
+			<pre>\nabla f</pre><br />
+			<input type='text' value='\nabla f' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample lapracian inline'>
+			<div class='ja'>ラプラシアン</div>
+			<div class='en'>lapracian</div>
+			<div class='code'>$\Delta f$</div>
+			<pre>\Delta f</pre><br />
+			<input type='text' value='\Delta f' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample lapracian-sample inline'>
+			<div class='ja'>ラプラシアン サンプル</div>
+			<div class='en'>lapracian sample</div>
+			<div class='code'>$\begin{eqnarray}
+\Delta \varphi
+ = \nabla^2 \varphi
+ = \frac{ \partial^2 \varphi }{ \partial x^2 }
+   + \frac{ \partial^2 \varphi }{ \partial y^2 }
+   + \frac{ \partial^2 \varphi }{ \partial z^2 }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\Delta \varphi
+ = \nabla^2 \varphi
+ = \frac{ \partial^2 \varphi }{ \partial x^2 }
+   + \frac{ \partial^2 \varphi }{ \partial y^2 }
+   + \frac{ \partial^2 \varphi }{ \partial z^2 }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\Delta \varphi = \nabla^2 \varphi = \frac{ \partial^2 \varphi }{ \partial x^2 }   + \frac{ \partial^2 \varphi }{ \partial y^2 }   + \frac{ \partial^2 \varphi }{ \partial z^2 }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample first-derivative-test-table inline'>
+			<div class='ja'>増減表</div>
+			<div class='en'>first derivative test table</div>
+			<div class='code'>$\begin{array}{c|ccccc}
+  x     & \cdots & -1 & \cdots & 1 & \cdots \\ 
+  \hline
+  f’(x) & + & 0 & – & 0 & + \\ 
+  \hline
+  f(x)  & \nearrow & e & \searrow & -e & \nearrow
+\end{array}$</div>
+			<pre>\begin{array}{c|ccccc}
+  x     & \cdots & -1 & \cdots & 1 & \cdots \\ 
+  \hline
+  f’(x) & + & 0 & – & 0 & + \\ 
+  \hline
+  f(x)  & \nearrow & e & \searrow & -e & \nearrow
+\end{array}</pre><br />
+			<input type='text' value='\begin{array}{c|ccccc}  x     & \cdots & -1 & \cdots & 1 & \cdots \\   \hline  f’(x) & + & 0 & – & 0 & + \\   \hline  f(x)  & \nearrow & e & \searrow & -e & \nearrow\end{array}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='integral' class ='sample-list'>
+		<h3><span class='ja'>積分</span> <span class='en'>Integral</span></h3>
+		<ul>
+		<li class='sample integral inline'>
+			<div class='ja'>積分</div>
+			<div class='en'>integral</div>
+			<div class='code'>$\int_0^1 f(x) dx$</div>
+			<pre>\int_0^1 f(x) dx</pre><br />
+			<input type='text' value='\int_0^1 f(x) dx' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample integral-large inline'>
+			<div class='ja'>積分（大）</div>
+			<div class='en'>integral large</div>
+			<div class='code'>$\displaystyle \int_{ - \infty }^{ \infty } f(x) dx$</div>
+			<pre>\displaystyle \int_{ - \infty }^{ \infty } f(x) dx</pre><br />
+			<input type='text' value='\displaystyle \int_{ - \infty }^{ \infty } f(x) dx' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample integral-sample inline'>
+			<div class='ja'>積分サンプル</div>
+			<div class='en'>integral sample</div>
+			<div class='code'>$\begin{eqnarray}
+\int_0^1 x dx
+ = \left[ \frac{ x^2 }{ 2 } \right]_0^1
+ = \frac{ 1 }{ 2 }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\int_0^1 x dx
+ = \left[ \frac{ x^2 }{ 2 } \right]_0^1
+ = \frac{ 1 }{ 2 }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\int_0^1 x dx = \left[ \frac{ x^2 }{ 2 } \right]_0^1 = \frac{ 1 }{ 2 }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample double-integral inline'>
+			<div class='ja'>2重積分</div>
+			<div class='en'>double integral</div>
+			<div class='code'>$\iint_D f(x,y) dxdy$</div>
+			<pre>\iint_D f(x,y) dxdy</pre><br />
+			<input type='text' value='\iint_D f(x,y) dxdy' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample quad-integral inline'>
+			<div class='ja'>4重積分</div>
+			<div class='en'>quad integral</div>
+			<div class='code'>$\iiiint_D f dxdydzdw$</div>
+			<pre>\iiiint_D f dxdydzdw</pre><br />
+			<input type='text' value='\iiiint_D f dxdydzdw' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample multiple-integral inline'>
+			<div class='ja'>多重積分</div>
+			<div class='en'>multiple integral</div>
+			<div class='code'>$\idotsint_D f(x_1, x_2, \ldots , x_n) dx_1 \cdots dx_n$</div>
+			<pre>\idotsint_D f(x_1, x_2, \ldots , x_n) dx_1 \cdots dx_n</pre><br />
+			<input type='text' value='\idotsint_D f(x_1, x_2, \ldots , x_n) dx_1 \cdots dx_n' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample contour-integral inline'>
+			<div class='ja'>周回積分</div>
+			<div class='en'>contour integral</div>
+			<div class='code'>$\oint_C f(z) dz$</div>
+			<pre>\oint_C f(z) dz</pre><br />
+			<input type='text' value='\oint_C f(z) dz' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='vector' class ='sample-list'>
+		<h3><span class='ja'>ベクトル</span> <span class='en'>Vector</span></h3>
+		<ul>
+		<li class='sample vector inline'>
+			<div class='ja'>ベクトル</div>
+			<div class='en'>vector</div>
+			<div class='code'>$\vec{ a }$</div>
+			<pre>\vec{ a }</pre><br />
+			<input type='text' value='\vec{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample vector-2 inline'>
+			<div class='ja'>ベクトル2文字</div>
+			<div class='en'>vector 2</div>
+			<div class='code'>$\overrightarrow{ AB }$</div>
+			<pre>\overrightarrow{ AB }</pre><br />
+			<input type='text' value='\overrightarrow{ AB }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample vector-bold inline'>
+			<div class='ja'>ベクトル太文字</div>
+			<div class='en'>vector bold</div>
+			<div class='code'>$\boldsymbol{ A }$</div>
+			<pre>\boldsymbol{ A }</pre><br />
+			<input type='text' value='\boldsymbol{ A }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample row-vector inline'>
+			<div class='ja'>横ベクトル</div>
+			<div class='en'>row vector</div>
+			<div class='code'>$( a_1, a_2, \ldots, a_n )$</div>
+			<pre>( a_1, a_2, \ldots, a_n )</pre><br />
+			<input type='text' value='( a_1, a_2, \ldots, a_n )' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample column-vector inline'>
+			<div class='ja'>縦ベクトル</div>
+			<div class='en'>column vector</div>
+			<div class='code'>$\left(
+  \begin{array}{c}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n
+  \end{array}
+\right)$</div>
+			<pre>\left(
+  \begin{array}{c}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n
+  \end{array}
+\right)</pre><br />
+			<input type='text' value='\left(  \begin{array}{c}    a_1 \\    a_2 \\    \vdots \\    a_n  \end{array}\right)' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample vector-sample inline'>
+			<div class='ja'>ベクトルサンプル</div>
+			<div class='en'>vector sample</div>
+			<div class='code'>$\begin{eqnarray}
+\boldsymbol{ 1 }
+ = ( \underbrace{ 1, 1, \ldots, 1 }_{ n } )^{ \mathrm{ T } }
+ = \left(
+     \begin{array}{c}
+       1 \\
+       1 \\
+       \vdots \\
+       1
+     \end{array}
+   \right)
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\boldsymbol{ 1 }
+ = ( \underbrace{ 1, 1, \ldots, 1 }_{ n } )^{ \mathrm{ T } }
+ = \left(
+     \begin{array}{c}
+       1 \\
+       1 \\
+       \vdots \\
+       1
+     \end{array}
+   \right)
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\boldsymbol{ 1 } = ( \underbrace{ 1, 1, \ldots, 1 }_{ n } )^{ \mathrm{ T } } = \left(     \begin{array}{c}       1 \\       1 \\       \vdots \\       1     \end{array}   \right)\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample unit-vector-sample inline'>
+			<div class='ja'>単位ベクトルサンプル</div>
+			<div class='en'>unit vector sample</div>
+			<div class='code'>$\boldsymbol{ \rm{ e } }_k
+ = ( 0, \ldots, 0, \stackrel{ k }{ 1 }, 0, \ldots, 0 )^{ \mathrm{ T } }$</div>
+			<pre>\boldsymbol{ \rm{ e } }_k
+ = ( 0, \ldots, 0, \stackrel{ k }{ 1 }, 0, \ldots, 0 )^{ \mathrm{ T } }</pre><br />
+			<input type='text' value='\boldsymbol{ \rm{ e } }_k = ( 0, \ldots, 0, \stackrel{ k }{ 1 }, 0, \ldots, 0 )^{ \mathrm{ T } }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample norm inline'>
+			<div class='ja'>ノルム</div>
+			<div class='en'>norm</div>
+			<div class='code'>$\| x \|$</div>
+			<pre>\| x \|</pre><br />
+			<input type='text' value='\| x \|' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample inner-product inline'>
+			<div class='ja'>内積</div>
+			<div class='en'>inner product</div>
+			<div class='code'>$\vec{ a } \cdot \vec{ b }$</div>
+			<pre>\vec{ a } \cdot \vec{ b }</pre><br />
+			<input type='text' value='\vec{ a } \cdot \vec{ b }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample cross-product inline'>
+			<div class='ja'>外積</div>
+			<div class='en'>cross product</div>
+			<div class='code'>$\vec{ a } \times \vec{ b }$</div>
+			<pre>\vec{ a } \times \vec{ b }</pre><br />
+			<input type='text' value='\vec{ a } \times \vec{ b }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='matrix' class ='sample-list'>
+		<h3><span class='ja'>行列</span> <span class='en'>Matrix</span></h3>
+		<ul>
+		<li class='sample martix-parentheses inline'>
+			<div class='ja'>行列（丸かっこ）</div>
+			<div class='en'>martix parentheses</div>
+			<div class='code'>$\begin{pmatrix} a & b \\ c & d \end{pmatrix}$</div>
+			<pre>\begin{pmatrix} a & b \\ c & d \end{pmatrix}</pre><br />
+			<input type='text' value='\begin{pmatrix} a & b \\ c & d \end{pmatrix}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample martix-brackets inline'>
+			<div class='ja'>行列（角かっこ）</div>
+			<div class='en'>martix brackets</div>
+			<div class='code'>$\begin{bmatrix} a & b \\ c & d \end{bmatrix}$</div>
+			<pre>\begin{bmatrix} a & b \\ c & d \end{bmatrix}</pre><br />
+			<input type='text' value='\begin{bmatrix} a & b \\ c & d \end{bmatrix}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample transposed-matrix inline'>
+			<div class='ja'>転置行列</div>
+			<div class='en'>transposed matrix</div>
+			<div class='code'>$A^{ \mathrm{ T } }$</div>
+			<pre>A^{ \mathrm{ T } }</pre><br />
+			<input type='text' value='A^{ \mathrm{ T } }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample transposed-matrix-2 inline'>
+			<div class='ja'>転置行列2</div>
+			<div class='en'>transposed matrix 2</div>
+			<div class='code'>${}^t \! A$</div>
+			<pre>{}^t \! A</pre><br />
+			<input type='text' value='{}^t \! A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample dimension inline'>
+			<div class='ja'>次元</div>
+			<div class='en'>dimension</div>
+			<div class='code'>$\dim$</div>
+			<pre>\dim</pre><br />
+			<input type='text' value='\dim' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample matrix-rank inline'>
+			<div class='ja'>行列の階数</div>
+			<div class='en'>matrix rank</div>
+			<div class='code'>$\mathrm{ rank } A$</div>
+			<pre>\mathrm{ rank } A</pre><br />
+			<input type='text' value='\mathrm{ rank } A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample trace inline'>
+			<div class='ja'>対角和</div>
+			<div class='en'>trace</div>
+			<div class='code'>$\mathrm{ Tr } A$</div>
+			<pre>\mathrm{ Tr } A</pre><br />
+			<input type='text' value='\mathrm{ Tr } A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample determinant inline'>
+			<div class='ja'>行列式</div>
+			<div class='en'>determinant</div>
+			<div class='code'>$\mathrm{ det }A$</div>
+			<pre>\mathrm{ det }A</pre><br />
+			<input type='text' value='\mathrm{ det }A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample determinant-sample inline'>
+			<div class='ja'>行列式サンプル</div>
+			<div class='en'>determinant sample</div>
+			<div class='code'>$\begin{eqnarray}
+\mathrm{ det }A
+ = | A |
+ = \begin{vmatrix} a & b \\ c & d \end{vmatrix}
+ = ad - bc
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\mathrm{ det }A
+ = | A |
+ = \begin{vmatrix} a & b \\ c & d \end{vmatrix}
+ = ad - bc
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\mathrm{ det }A = | A | = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample martix-large inline'>
+			<div class='ja'>行列（大）</div>
+			<div class='en'>martix large</div>
+			<div class='code'>$\begin{eqnarray}
+\left(
+  \begin{array}{ccc}
+    a & b & c \\
+    d & e & f \\
+    g & h & i
+  \end{array}
+\right)
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\left(
+  \begin{array}{ccc}
+    a & b & c \\
+    d & e & f \\
+    g & h & i
+  \end{array}
+\right)
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\left(  \begin{array}{ccc}    a & b & c \\    d & e & f \\    g & h & i  \end{array}\right)\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample right-alignment-matrix inline'>
+			<div class='ja'>行列（右寄せ）</div>
+			<div class='en'>right alignment matrix</div>
+			<div class='code'>$\begin{eqnarray}
+\left(
+  \begin{array}{rrr}
+    111 & 111 & 111 \\
+    22 & 0.2 & -2 \\
+    3 & 3 & 3
+  \end{array}
+\right)
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\left(
+  \begin{array}{rrr}
+    111 & 111 & 111 \\
+    22 & 0.2 & -2 \\
+    3 & 3 & 3
+  \end{array}
+\right)
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\left(  \begin{array}{rrr}    111 & 111 & 111 \\    22 & 0.2 & -2 \\    3 & 3 & 3  \end{array}\right)\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample mxn-matrix inline'>
+			<div class='ja'>行列（m行n列）</div>
+			<div class='en'>mxn matrix</div>
+			<div class='code'>$\begin{eqnarray}
+A = \left(
+  \begin{array}{cccc}
+    a_{ 11 } & a_{ 12 } & \ldots & a_{ 1n } \\
+    a_{ 21 } & a_{ 22 } & \ldots & a_{ 2n } \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{ m1 } & a_{ m2 } & \ldots & a_{ mn }
+  \end{array}
+\right)
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+A = \left(
+  \begin{array}{cccc}
+    a_{ 11 } & a_{ 12 } & \ldots & a_{ 1n } \\
+    a_{ 21 } & a_{ 22 } & \ldots & a_{ 2n } \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{ m1 } & a_{ m2 } & \ldots & a_{ mn }
+  \end{array}
+\right)
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}A = \left(  \begin{array}{cccc}    a_{ 11 } & a_{ 12 } & \ldots & a_{ 1n } \\    a_{ 21 } & a_{ 22 } & \ldots & a_{ 2n } \\    \vdots & \vdots & \ddots & \vdots \\    a_{ m1 } & a_{ m2 } & \ldots & a_{ mn }  \end{array}\right)\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample block-matrix inline'>
+			<div class='ja'>ブロック行列</div>
+			<div class='en'>block matrix</div>
+			<div class='code'>$\begin{eqnarray}
+\left(
+  \begin{array}{cc|cc}
+    a & b & 0 & 0 \\
+    c & d & 0 & 0 \\
+    \hline
+    x & y & 1 & 0 \\
+    z & w & 0 & 1 \\
+  \end{array}
+\right)
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\left(
+  \begin{array}{cc|cc}
+    a & b & 0 & 0 \\
+    c & d & 0 & 0 \\
+    \hline
+    x & y & 1 & 0 \\
+    z & w & 0 & 1 \\
+  \end{array}
+\right)
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\left(  \begin{array}{cc|cc}    a & b & 0 & 0 \\    c & d & 0 & 0 \\    \hline    x & y & 1 & 0 \\    z & w & 0 & 1 \\  \end{array}\right)\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Jordan-block inline'>
+			<div class='ja'>ジョルダン細胞</div>
+			<div class='en'>Jordan block</div>
+			<div class='code'>$\begin{eqnarray}
+\begin{pmatrix}
+  \lambda & 1 &   &  & 0 \\
+    & \lambda & 1 &   &   \\
+    &   & \ddots & \ddots &   \\
+    &   &   & \lambda & 1  \\
+  0 &   &   &   & \lambda
+\end{pmatrix}
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\begin{pmatrix}
+  \lambda & 1 &   &  & 0 \\
+    & \lambda & 1 &   &   \\
+    &   & \ddots & \ddots &   \\
+    &   &   & \lambda & 1  \\
+  0 &   &   &   & \lambda
+\end{pmatrix}
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\begin{pmatrix}  \lambda & 1 &   &  & 0 \\    & \lambda & 1 &   &   \\    &   & \ddots & \ddots &   \\    &   &   & \lambda & 1  \\  0 &   &   &   & \lambda\end{pmatrix}\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample cofactor inline'>
+			<div class='ja'>余因子</div>
+			<div class='en'>cofactor</div>
+			<div class='code'>$\begin{eqnarray}
+& & (-1)^{ i+j } \times \\[5pt]
+& & \quad
+\begin{vmatrix}
+  a_{1,1} & \ldots & a_{1,j-1} & a_{1,j+1} & \ldots & a_{1,n} \\
+  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+  a_{i-1,1} & \ldots & a_{i-1, j-1} & a_{i-1, j+1} & \ldots & a_{i-1, n} \\
+  a_{i+1,1} & \ldots & a_{i+1, j-1} & a_{i+1, j+1} & \ldots & a_{i+1, n} \\
+  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+  a_{n,1} & \ldots & a_{n, j-1} & a_{n, j+1} & \ldots & a_{n, n}
+\end{vmatrix}
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+& & (-1)^{ i+j } \times \\[5pt]
+& & \quad
+\begin{vmatrix}
+  a_{1,1} & \ldots & a_{1,j-1} & a_{1,j+1} & \ldots & a_{1,n} \\
+  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+  a_{i-1,1} & \ldots & a_{i-1, j-1} & a_{i-1, j+1} & \ldots & a_{i-1, n} \\
+  a_{i+1,1} & \ldots & a_{i+1, j-1} & a_{i+1, j+1} & \ldots & a_{i+1, n} \\
+  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+  a_{n,1} & \ldots & a_{n, j-1} & a_{n, j+1} & \ldots & a_{n, n}
+\end{vmatrix}
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}& & (-1)^{ i+j } \times \\[5pt]& & \quad\begin{vmatrix}  a_{1,1} & \ldots & a_{1,j-1} & a_{1,j+1} & \ldots & a_{1,n} \\  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\  a_{i-1,1} & \ldots & a_{i-1, j-1} & a_{i-1, j+1} & \ldots & a_{i-1, n} \\  a_{i+1,1} & \ldots & a_{i+1, j-1} & a_{i+1, j+1} & \ldots & a_{i+1, n} \\  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\  a_{n,1} & \ldots & a_{n, j-1} & a_{n, j+1} & \ldots & a_{n, n}\end{vmatrix}\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='table' class ='sample-list'>
+		<h3><span class='ja'>表</span> <span class='en'>Table</span></h3>
+		<ul>
+		<li class='sample table-simple inline'>
+			<div class='ja'>表</div>
+			<div class='en'>table simple</div>
+			<div class='code'>$\begin{array}{ccc}
+  xxx & yyy & zzz \\
+  1   & 2   & 3
+\end{array}$</div>
+			<pre>\begin{array}{ccc}
+  xxx & yyy & zzz \\
+  1   & 2   & 3
+\end{array}</pre><br />
+			<input type='text' value='\begin{array}{ccc}  xxx & yyy & zzz \\  1   & 2   & 3\end{array}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample table-with-vertical-line inline'>
+			<div class='ja'>表（縦線付）</div>
+			<div class='en'>table with vertical line</div>
+			<div class='code'>$\begin{array}{|c|c|c|}
+  xxx & yyy & zzz \\
+  1   & 2   & 3 \\
+\end{array}$</div>
+			<pre>\begin{array}{|c|c|c|}
+  xxx & yyy & zzz \\
+  1   & 2   & 3 \\
+\end{array}</pre><br />
+			<input type='text' value='\begin{array}{|c|c|c|}  xxx & yyy & zzz \\  1   & 2   & 3 \\\end{array}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample table-with-horizontal-line inline'>
+			<div class='ja'>表（横線付）</div>
+			<div class='en'>table with horizontal line</div>
+			<div class='code'>$\begin{array}{ccc}
+  \hline
+  xxx & yyy & zzz \\
+  \hline
+  1   & 2   & 3 \\
+  \hline
+\end{array}$</div>
+			<pre>\begin{array}{ccc}
+  \hline
+  xxx & yyy & zzz \\
+  \hline
+  1   & 2   & 3 \\
+  \hline
+\end{array}</pre><br />
+			<input type='text' value='\begin{array}{ccc}  \hline  xxx & yyy & zzz \\  \hline  1   & 2   & 3 \\  \hline\end{array}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample table-sample inline'>
+			<div class='ja'>表サンプル</div>
+			<div class='en'>table sample</div>
+			<div class='code'>$\begin{array}{c|ccccc}
+  x     & \cdots & -1 & \cdots & 1 & \cdots \\ 
+  \hline
+  f’(x) & + & 0 & – & 0 & + \\ 
+  \hline
+  f(x)  & \nearrow & e & \searrow & -e & \nearrow
+\end{array}$</div>
+			<pre>\begin{array}{c|ccccc}
+  x     & \cdots & -1 & \cdots & 1 & \cdots \\ 
+  \hline
+  f’(x) & + & 0 & – & 0 & + \\ 
+  \hline
+  f(x)  & \nearrow & e & \searrow & -e & \nearrow
+\end{array}</pre><br />
+			<input type='text' value='\begin{array}{c|ccccc}  x     & \cdots & -1 & \cdots & 1 & \cdots \\   \hline  f’(x) & + & 0 & – & 0 & + \\   \hline  f(x)  & \nearrow & e & \searrow & -e & \nearrow\end{array}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='commutative-diagram' class ='sample-list'>
+		<h3><span class='ja'>可換図式</span> <span class='en'>Commutative Diagram</span></h3>
+		<ul>
+		<li class='sample commutative-diagram-sample inline'>
+			<div class='ja'>可換図式サンプル</div>
+			<div class='en'>commutative diagram sample</div>
+			<div class='code'>$\require{AMScd}
+\begin{CD}
+A @>{f}>> B\\
+@V{gg}VV {\large\circlearrowleft} @VV{hh}V\\
+C @>>{k}> D
+\end{CD}$</div>
+			<pre>\require{AMScd}
+\begin{CD}
+A @>{f}>> B\\
+@V{gg}VV {\large\circlearrowleft} @VV{hh}V\\
+C @>>{k}> D
+\end{CD}</pre><br />
+			<input type='text' value='\require{AMScd}\begin{CD}A @>{f}>> B\\@V{gg}VV {\large\circlearrowleft} @VV{hh}V\\C @>>{k}> D\end{CD}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+</div>
+
+<div class='symbol'>
+	<h2><span class='ja'>記号</span> <span class='en'>symbol</span></h2>
+	<div id='line' class ='sample-list'>
+		<h3><span class='ja'>線</span> <span class='en'>Line</span></h3>
+		<ul>
+		<li class='sample vertical-line inline'>
+			<div class='ja'>縦線</div>
+			<div class='en'>vertical line</div>
+			<div class='code'>$| x |$</div>
+			<pre>| x |</pre><br />
+			<input type='text' value='| x |' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample vertical-line-2 inline'>
+			<div class='ja'>縦線2</div>
+			<div class='en'>vertical line 2</div>
+			<div class='code'>$\vert x \vert$</div>
+			<pre>\vert x \vert</pre><br />
+			<input type='text' value='\vert x \vert' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample vertical-line-3 inline'>
+			<div class='ja'>縦線3</div>
+			<div class='en'>vertical line 3</div>
+			<div class='code'>$\{ x \mid x \in A \}$</div>
+			<pre>\{ x \mid x \in A \}</pre><br />
+			<input type='text' value='\{ x \mid x \in A \}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-vertical-line inline'>
+			<div class='ja'>2重縦線</div>
+			<div class='en'>double vertical line</div>
+			<div class='code'>$\Vert x \Vert$</div>
+			<pre>\Vert x \Vert</pre><br />
+			<input type='text' value='\Vert x \Vert' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-vertical-line-2 inline'>
+			<div class='ja'>2重縦線2</div>
+			<div class='en'>double vertical line 2</div>
+			<div class='code'>$AB \parallel CD$</div>
+			<pre>AB \parallel CD</pre><br />
+			<input type='text' value='AB \parallel CD' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample overline inline'>
+			<div class='ja'>上線</div>
+			<div class='en'>overline</div>
+			<div class='code'>$\overline{ A }$</div>
+			<pre>\overline{ A }</pre><br />
+			<input type='text' value='\overline{ A }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample overline-2 inline'>
+			<div class='ja'>上線2</div>
+			<div class='en'>overline 2</div>
+			<div class='code'>$\bar{ A }$</div>
+			<pre>\bar{ A }</pre><br />
+			<input type='text' value='\bar{ A }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample underline inline'>
+			<div class='ja'>下線</div>
+			<div class='en'>underline</div>
+			<div class='code'>$\underline{ A }$</div>
+			<pre>\underline{ A }</pre><br />
+			<input type='text' value='\underline{ A }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample slash inline'>
+			<div class='ja'>斜線</div>
+			<div class='en'>slash</div>
+			<div class='code'>$/$</div>
+			<pre>/</pre><br />
+			<input type='text' value='/' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample slash-2 inline'>
+			<div class='ja'>斜線2</div>
+			<div class='en'>slash 2</div>
+			<div class='code'>$\backslash$</div>
+			<pre>\backslash</pre><br />
+			<input type='text' value='\backslash' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='arrow' class ='sample-list'>
+		<h3><span class='ja'>矢印</span> <span class='en'>Arrow</span></h3>
+		<ul>
+		<li class='sample left-arrow inline'>
+			<div class='ja'>左矢印</div>
+			<div class='en'>left arrow</div>
+			<div class='code'>$\leftarrow$</div>
+			<pre>\leftarrow</pre><br />
+			<input type='text' value='\leftarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample long-left-arrow inline'>
+			<div class='ja'>左矢印（長い）</div>
+			<div class='en'>long left arrow</div>
+			<div class='code'>$\longleftarrow$</div>
+			<pre>\longleftarrow</pre><br />
+			<input type='text' value='\longleftarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample right-arrow inline'>
+			<div class='ja'>右矢印</div>
+			<div class='en'>right arrow</div>
+			<div class='code'>$\rightarrow$</div>
+			<pre>\rightarrow</pre><br />
+			<input type='text' value='\rightarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample long-right-arrow inline'>
+			<div class='ja'>右矢印（長い）</div>
+			<div class='en'>long right arrow</div>
+			<div class='code'>$\longrightarrow$</div>
+			<pre>\longrightarrow</pre><br />
+			<input type='text' value='\longrightarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample up-arrow inline'>
+			<div class='ja'>上矢印</div>
+			<div class='en'>up arrow</div>
+			<div class='code'>$\uparrow$</div>
+			<pre>\uparrow</pre><br />
+			<input type='text' value='\uparrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample down-arrow inline'>
+			<div class='ja'>下矢印</div>
+			<div class='en'>down arrow</div>
+			<div class='code'>$\downarrow$</div>
+			<pre>\downarrow</pre><br />
+			<input type='text' value='\downarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample left-right-arrow inline'>
+			<div class='ja'>左右矢印</div>
+			<div class='en'>left right arrow</div>
+			<div class='code'>$\leftrightarrow$</div>
+			<pre>\leftrightarrow</pre><br />
+			<input type='text' value='\leftrightarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample long-left-right-arrow inline'>
+			<div class='ja'>左右矢印（長い）</div>
+			<div class='en'>long left right arrow</div>
+			<div class='code'>$\longleftrightarrow$</div>
+			<pre>\longleftrightarrow</pre><br />
+			<input type='text' value='\longleftrightarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample up-down-arrow inline'>
+			<div class='ja'>上下矢印</div>
+			<div class='en'>up down arrow</div>
+			<div class='code'>$\updownarrow$</div>
+			<pre>\updownarrow</pre><br />
+			<input type='text' value='\updownarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample double-left-arrow inline'>
+			<div class='ja'>2重左矢印</div>
+			<div class='en'>double left arrow</div>
+			<div class='code'>$\Leftarrow$</div>
+			<pre>\Leftarrow</pre><br />
+			<input type='text' value='\Leftarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-long-left-arrow inline'>
+			<div class='ja'>2重左矢印（長い）</div>
+			<div class='en'>double long left arrow</div>
+			<div class='code'>$\Longleftarrow$</div>
+			<pre>\Longleftarrow</pre><br />
+			<input type='text' value='\Longleftarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-right-arrow inline'>
+			<div class='ja'>2重右矢印</div>
+			<div class='en'>double right arrow</div>
+			<div class='code'>$\Rightarrow$</div>
+			<pre>\Rightarrow</pre><br />
+			<input type='text' value='\Rightarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-long-right-arrow inline'>
+			<div class='ja'>2重右矢印（長い）</div>
+			<div class='en'>double long right arrow</div>
+			<div class='code'>$\Longrightarrow$</div>
+			<pre>\Longrightarrow</pre><br />
+			<input type='text' value='\Longrightarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-up-arrow inline'>
+			<div class='ja'>2重上矢印</div>
+			<div class='en'>double up arrow</div>
+			<div class='code'>$\Uparrow$</div>
+			<pre>\Uparrow</pre><br />
+			<input type='text' value='\Uparrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-down-arrow inline'>
+			<div class='ja'>2重下矢印</div>
+			<div class='en'>double down arrow</div>
+			<div class='code'>$\Downarrow$</div>
+			<pre>\Downarrow</pre><br />
+			<input type='text' value='\Downarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-left-right-arrow inline'>
+			<div class='ja'>2重左右矢印</div>
+			<div class='en'>double left right arrow</div>
+			<div class='code'>$\Leftrightarrow$</div>
+			<pre>\Leftrightarrow</pre><br />
+			<input type='text' value='\Leftrightarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-long-left-right-arrow inline'>
+			<div class='ja'>2重左右矢印（長い）</div>
+			<div class='en'>double long left right arrow</div>
+			<div class='code'>$\Longleftrightarrow$</div>
+			<pre>\Longleftrightarrow</pre><br />
+			<input type='text' value='\Longleftrightarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-up-down-arrow inline'>
+			<div class='ja'>2重上下矢印</div>
+			<div class='en'>double up down arrow</div>
+			<div class='code'>$\Updownarrow$</div>
+			<pre>\Updownarrow</pre><br />
+			<input type='text' value='\Updownarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample arrow-with-bar inline'>
+			<div class='ja'>棒付矢印</div>
+			<div class='en'>arrow with bar</div>
+			<div class='code'>$\mapsto$</div>
+			<pre>\mapsto</pre><br />
+			<input type='text' value='\mapsto' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample long-arrow-with-bar inline'>
+			<div class='ja'>棒付矢印（長い）</div>
+			<div class='en'>long arrow with bar</div>
+			<div class='code'>$\longmapsto$</div>
+			<pre>\longmapsto</pre><br />
+			<input type='text' value='\longmapsto' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample north-east-arrow inline'>
+			<div class='ja'>右上矢印</div>
+			<div class='en'>north east arrow</div>
+			<div class='code'>$\nearrow$</div>
+			<pre>\nearrow</pre><br />
+			<input type='text' value='\nearrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample south-east-arrow inline'>
+			<div class='ja'>右下矢印</div>
+			<div class='en'>south east arrow</div>
+			<div class='code'>$\searrow$</div>
+			<pre>\searrow</pre><br />
+			<input type='text' value='\searrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample north-west-arrow inline'>
+			<div class='ja'>左上矢印</div>
+			<div class='en'>north west arrow</div>
+			<div class='code'>$\nwarrow$</div>
+			<pre>\nwarrow</pre><br />
+			<input type='text' value='\nwarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample south-west-arrow inline'>
+			<div class='ja'>左下矢印</div>
+			<div class='en'>south west arrow</div>
+			<div class='code'>$\swarrow$</div>
+			<pre>\swarrow</pre><br />
+			<input type='text' value='\swarrow' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample arrow-sample inline'>
+			<div class='ja'>矢印サンプル</div>
+			<div class='en'>arrow sample</div>
+			<div class='code'>$\begin{eqnarray}
+\downarrow \searrow \rightarrow + \mathrm{P} \\
+\rightarrow \downarrow \searrow + \mathrm{P} \\
+\downarrow \swarrow \leftarrow + \mathrm{K}
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+\downarrow \searrow \rightarrow + \mathrm{P} \\
+\rightarrow \downarrow \searrow + \mathrm{P} \\
+\downarrow \swarrow \leftarrow + \mathrm{K}
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}\downarrow \searrow \rightarrow + \mathrm{P} \\\rightarrow \downarrow \searrow + \mathrm{P} \\\downarrow \swarrow \leftarrow + \mathrm{K}\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample over-arrow inline'>
+			<div class='ja'>頭に矢印</div>
+			<div class='en'>over arrow</div>
+			<div class='code'>$\vec{ a }$</div>
+			<pre>\vec{ a }</pre><br />
+			<input type='text' value='\vec{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample over-arrow-2 inline'>
+			<div class='ja'>頭に矢印2</div>
+			<div class='en'>over arrow 2</div>
+			<div class='code'>$\overrightarrow{ AB }$</div>
+			<pre>\overrightarrow{ AB }</pre><br />
+			<input type='text' value='\overrightarrow{ AB }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample over-left-arrow inline'>
+			<div class='ja'>頭に矢印（左向き）</div>
+			<div class='en'>over left arrow</div>
+			<div class='code'>$\overleftarrow{ AB }$</div>
+			<pre>\overleftarrow{ AB }</pre><br />
+			<input type='text' value='\overleftarrow{ AB }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='bracket' class ='sample-list'>
+		<h3><span class='ja'>括弧</span> <span class='en'>Bracket</span></h3>
+		<ul>
+		<li class='sample parenthese inline'>
+			<div class='ja'>丸括弧</div>
+			<div class='en'>parenthese</div>
+			<div class='code'>$( x )$</div>
+			<pre>( x )</pre><br />
+			<input type='text' value='( x )' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample bracket inline'>
+			<div class='ja'>角括弧</div>
+			<div class='en'>bracket</div>
+			<div class='code'>$[ x ]$</div>
+			<pre>[ x ]</pre><br />
+			<input type='text' value='[ x ]' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample bracket-2 inline'>
+			<div class='ja'>角括弧2</div>
+			<div class='en'>bracket 2</div>
+			<div class='code'>$\lbrack x \rbrack$</div>
+			<pre>\lbrack x \rbrack</pre><br />
+			<input type='text' value='\lbrack x \rbrack' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample square-bracket inline'>
+			<div class='ja'>かぎ括弧</div>
+			<div class='en'>square bracket</div>
+			<div class='code'>$\lceil x \rfloor$</div>
+			<pre>\lceil x \rfloor</pre><br />
+			<input type='text' value='\lceil x \rfloor' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample square-bracket-2 inline'>
+			<div class='ja'>かぎ括弧2</div>
+			<div class='en'>square bracket 2</div>
+			<div class='code'>$\lfloor x \rceil$</div>
+			<pre>\lfloor x \rceil</pre><br />
+			<input type='text' value='\lfloor x \rceil' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample brace inline'>
+			<div class='ja'>波括弧</div>
+			<div class='en'>brace</div>
+			<div class='code'>$\{ x \}$</div>
+			<pre>\{ x \}</pre><br />
+			<input type='text' value='\{ x \}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample brace-2 inline'>
+			<div class='ja'>波括弧2</div>
+			<div class='en'>brace 2</div>
+			<div class='code'>$\lbrace x \rbrace$</div>
+			<pre>\lbrace x \rbrace</pre><br />
+			<input type='text' value='\lbrace x \rbrace' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample angle-bracket inline'>
+			<div class='ja'>山括弧</div>
+			<div class='en'>angle bracket</div>
+			<div class='code'>$\langle x \rangle$</div>
+			<pre>\langle x \rangle</pre><br />
+			<input type='text' value='\langle x \rangle' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample big-bracket inline'>
+			<div class='ja'>大きい括弧</div>
+			<div class='en'>big bracket</div>
+			<div class='code'>$\left[ \frac{ 1 }{ 2 } \right]$</div>
+			<pre>\left[ \frac{ 1 }{ 2 } \right]</pre><br />
+			<input type='text' value='\left[ \frac{ 1 }{ 2 } \right]' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample over-brace inline'>
+			<div class='ja'>上括弧</div>
+			<div class='en'>over brace</div>
+			<div class='code'>$\overbrace{ x + y + z }$</div>
+			<pre>\overbrace{ x + y + z }</pre><br />
+			<input type='text' value='\overbrace{ x + y + z }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample over-brace-and-letter inline'>
+			<div class='ja'>上括弧と文字</div>
+			<div class='en'>over brace and letter</div>
+			<div class='code'>$\overbrace{ a_1 + \cdots + a_n }^{ n }$</div>
+			<pre>\overbrace{ a_1 + \cdots + a_n }^{ n }</pre><br />
+			<input type='text' value='\overbrace{ a_1 + \cdots + a_n }^{ n }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample under-brace inline'>
+			<div class='ja'>下括弧</div>
+			<div class='en'>under brace</div>
+			<div class='code'>$\underbrace{ x + y + z }$</div>
+			<pre>\underbrace{ x + y + z }</pre><br />
+			<input type='text' value='\underbrace{ x + y + z }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample under-brace-and-letter inline'>
+			<div class='ja'>下括弧と文字</div>
+			<div class='en'>under brace and letter</div>
+			<div class='code'>$\underbrace{ a_1 + \cdots + a_n }_{ n }$</div>
+			<pre>\underbrace{ a_1 + \cdots + a_n }_{ n }</pre><br />
+			<input type='text' value='\underbrace{ a_1 + \cdots + a_n }_{ n }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='dot' class ='sample-list'>
+		<h3><span class='ja'>点</span> <span class='en'>Dot</span></h3>
+		<ul>
+		<li class='sample center-dot inline'>
+			<div class='ja'>点（中央）</div>
+			<div class='en'>center dot</div>
+			<div class='code'>$\cdot$</div>
+			<pre>\cdot</pre><br />
+			<input type='text' value='\cdot' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample center-dots inline'>
+			<div class='ja'>複数の点（中央横向き）</div>
+			<div class='en'>center dots</div>
+			<div class='code'>$\cdots$</div>
+			<pre>\cdots</pre><br />
+			<input type='text' value='\cdots' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample low-dots inline'>
+			<div class='ja'>複数の点（下側横向き）</div>
+			<div class='en'>low dots</div>
+			<div class='code'>$\ldots$</div>
+			<pre>\ldots</pre><br />
+			<input type='text' value='\ldots' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample vertical-dots inline'>
+			<div class='ja'>複数の点（中央縦向き）</div>
+			<div class='en'>vertical dots</div>
+			<div class='code'>$\vdots$</div>
+			<pre>\vdots</pre><br />
+			<input type='text' value='\vdots' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample diagonal-dots inline'>
+			<div class='ja'>複数の点（斜め）</div>
+			<div class='en'>diagonal dots</div>
+			<div class='code'>$\ddots$</div>
+			<pre>\ddots</pre><br />
+			<input type='text' value='\ddots' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample over-dot inline'>
+			<div class='ja'>頭に点</div>
+			<div class='en'>over dot</div>
+			<div class='code'>$\dot{ a }$</div>
+			<pre>\dot{ a }</pre><br />
+			<input type='text' value='\dot{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample over-dots inline'>
+			<div class='ja'>頭に2つの点</div>
+			<div class='en'>over dots</div>
+			<div class='code'>$\ddot{ a }$</div>
+			<pre>\ddot{ a }</pre><br />
+			<input type='text' value='\ddot{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='circle' class ='sample-list'>
+		<h3><span class='ja'>丸</span> <span class='en'>Circle</span></h3>
+		<ul>
+		<li class='sample white-circle inline'>
+			<div class='ja'>白丸</div>
+			<div class='en'>white circle</div>
+			<div class='code'>$\circ$</div>
+			<pre>\circ</pre><br />
+			<input type='text' value='\circ' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample black-circle inline'>
+			<div class='ja'>黒丸</div>
+			<div class='en'>black circle</div>
+			<div class='code'>$\bullet$</div>
+			<pre>\bullet</pre><br />
+			<input type='text' value='\bullet' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample big-circle inline'>
+			<div class='ja'>大きい丸</div>
+			<div class='en'>big circle</div>
+			<div class='code'>$\bigcirc$</div>
+			<pre>\bigcirc</pre><br />
+			<input type='text' value='\bigcirc' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample circle-and-plus inline'>
+			<div class='ja'>丸にプラス</div>
+			<div class='en'>circle and plus</div>
+			<div class='code'>$\oplus$</div>
+			<pre>\oplus</pre><br />
+			<input type='text' value='\oplus' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample circle-and-minus inline'>
+			<div class='ja'>丸にマイナス</div>
+			<div class='en'>circle and minus</div>
+			<div class='code'>$\ominus$</div>
+			<pre>\ominus</pre><br />
+			<input type='text' value='\ominus' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample circle-and-times inline'>
+			<div class='ja'>丸に掛ける</div>
+			<div class='en'>circle and times</div>
+			<div class='code'>$\otimes$</div>
+			<pre>\otimes</pre><br />
+			<input type='text' value='\otimes' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample circle-and-dot inline'>
+			<div class='ja'>丸に点</div>
+			<div class='en'>circle and dot</div>
+			<div class='code'>$\odot$</div>
+			<pre>\odot</pre><br />
+			<input type='text' value='\odot' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='triangle' class ='sample-list'>
+		<h3><span class='ja'>三角形</span> <span class='en'>Triangle</span></h3>
+		<ul>
+		<li class='sample triangle inline'>
+			<div class='ja'>三角形</div>
+			<div class='en'>triangle</div>
+			<div class='code'>$\triangle$</div>
+			<pre>\triangle</pre><br />
+			<input type='text' value='\triangle' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample big-triangle-up inline'>
+			<div class='ja'>大きな上向き三角形</div>
+			<div class='en'>big triangle up</div>
+			<div class='code'>$\bigtriangleup$</div>
+			<pre>\bigtriangleup</pre><br />
+			<input type='text' value='\bigtriangleup' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample big-triangle-down inline'>
+			<div class='ja'>大きな下向き三角形</div>
+			<div class='en'>big triangle down</div>
+			<div class='code'>$\bigtriangledown$</div>
+			<pre>\bigtriangledown</pre><br />
+			<input type='text' value='\bigtriangledown' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample triangle-left inline'>
+			<div class='ja'>左向き三角形</div>
+			<div class='en'>triangle left</div>
+			<div class='code'>$\triangleleft$</div>
+			<pre>\triangleleft</pre><br />
+			<input type='text' value='\triangleleft' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample triangle-left-2 inline'>
+			<div class='ja'>左向き三角形2</div>
+			<div class='en'>triangle left 2</div>
+			<div class='code'>$\lhd$</div>
+			<pre>\lhd</pre><br />
+			<input type='text' value='\lhd' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample triangle-right inline'>
+			<div class='ja'>右向き三角形</div>
+			<div class='en'>triangle right</div>
+			<div class='code'>$\triangleright$</div>
+			<pre>\triangleright</pre><br />
+			<input type='text' value='\triangleright' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample triangle-right-2 inline'>
+			<div class='ja'>右向き三角形2</div>
+			<div class='en'>triangle right 2</div>
+			<div class='code'>$\rhd$</div>
+			<pre>\rhd</pre><br />
+			<input type='text' value='\rhd' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample triangle-left-and-underline inline'>
+			<div class='ja'>左向き三角形と下線</div>
+			<div class='en'>triangle left and underline</div>
+			<div class='code'>$\unlhd$</div>
+			<pre>\unlhd</pre><br />
+			<input type='text' value='\unlhd' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample triangle-right-and-underline inline'>
+			<div class='ja'>右向き三角形と下線</div>
+			<div class='en'>triangle right and underline</div>
+			<div class='code'>$\unrhd$</div>
+			<pre>\unrhd</pre><br />
+			<input type='text' value='\unrhd' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='binary-operations' class ='sample-list'>
+		<h3><span class='ja'>二項演算</span> <span class='en'>Binary Operations</span></h3>
+		<ul>
+		<li class='sample asterisk inline'>
+			<div class='ja'>アスタリスク</div>
+			<div class='en'>asterisk</div>
+			<div class='code'>$\ast$</div>
+			<pre>\ast</pre><br />
+			<input type='text' value='\ast' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample star inline'>
+			<div class='ja'>スター</div>
+			<div class='en'>star</div>
+			<div class='code'>$\star$</div>
+			<pre>\star</pre><br />
+			<input type='text' value='\star' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample left-line-and-times inline'>
+			<div class='ja'>左線と掛ける</div>
+			<div class='en'>left line and times</div>
+			<div class='code'>$\ltimes$</div>
+			<pre>\ltimes</pre><br />
+			<input type='text' value='\ltimes' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample right-line-and-times inline'>
+			<div class='ja'>右線と掛ける</div>
+			<div class='en'>right line and times</div>
+			<div class='code'>$\rtimes$</div>
+			<pre>\rtimes</pre><br />
+			<input type='text' value='\rtimes' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='general-symbol' class ='sample-list'>
+		<h3><span class='ja'>一般的な記号</span> <span class='en'>General Symbol</span></h3>
+		<ul>
+		<li class='sample diamond inline'>
+			<div class='ja'>ダイヤモンド</div>
+			<div class='en'>diamond</div>
+			<div class='code'>$\diamondsuit$</div>
+			<pre>\diamondsuit</pre><br />
+			<input type='text' value='\diamondsuit' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample heart inline'>
+			<div class='ja'>ハート</div>
+			<div class='en'>heart</div>
+			<div class='code'>$\heartsuit$</div>
+			<pre>\heartsuit</pre><br />
+			<input type='text' value='\heartsuit' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample club inline'>
+			<div class='ja'>クラブ</div>
+			<div class='en'>club</div>
+			<div class='code'>$\clubsuit$</div>
+			<pre>\clubsuit</pre><br />
+			<input type='text' value='\clubsuit' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample spade inline'>
+			<div class='ja'>スペード</div>
+			<div class='en'>spade</div>
+			<div class='code'>$\spadesuit$</div>
+			<pre>\spadesuit</pre><br />
+			<input type='text' value='\spadesuit' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample flat inline'>
+			<div class='ja'>フラット</div>
+			<div class='en'>flat</div>
+			<div class='code'>$\flat$</div>
+			<pre>\flat</pre><br />
+			<input type='text' value='\flat' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample natural inline'>
+			<div class='ja'>ナチュラル</div>
+			<div class='en'>natural</div>
+			<div class='code'>$\natural$</div>
+			<pre>\natural</pre><br />
+			<input type='text' value='\natural' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample sharp inline'>
+			<div class='ja'>シャープ</div>
+			<div class='en'>sharp</div>
+			<div class='code'>$\sharp$</div>
+			<pre>\sharp</pre><br />
+			<input type='text' value='\sharp' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample dagger inline'>
+			<div class='ja'>ダガー</div>
+			<div class='en'>dagger</div>
+			<div class='code'>$\dagger$</div>
+			<pre>\dagger</pre><br />
+			<input type='text' value='\dagger' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample dagger-2 inline'>
+			<div class='ja'>ダガー2</div>
+			<div class='en'>dagger 2</div>
+			<div class='code'>$\ddagger$</div>
+			<pre>\ddagger</pre><br />
+			<input type='text' value='\ddagger' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+</div>
+
+<div class='character'>
+	<h2><span class='ja'>文字</span> <span class='en'>character</span></h2>
+	<div id='space' class ='sample-list'>
+		<h3><span class='ja'>空白</span> <span class='en'>Space</span></h3>
+		<ul>
+		<li class='sample space inline'>
+			<div class='ja'>空白</div>
+			<div class='en'>space</div>
+			<div class='code'>$aaa \ bbb$</div>
+			<pre>aaa \ bbb</pre><br />
+			<input type='text' value='aaa \ bbb' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample wide-space inline'>
+			<div class='ja'>広い空白</div>
+			<div class='en'>wide space</div>
+			<div class='code'>$aaa \quad bbb$</div>
+			<pre>aaa \quad bbb</pre><br />
+			<input type='text' value='aaa \quad bbb' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample wide-space-2 inline'>
+			<div class='ja'>広い空白2</div>
+			<div class='en'>wide space 2</div>
+			<div class='code'>$aaa \qquad bbb$</div>
+			<pre>aaa \qquad bbb</pre><br />
+			<input type='text' value='aaa \qquad bbb' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample specified-space-size inline'>
+			<div class='ja'>空白（サイズ指定）</div>
+			<div class='en'>specified space size</div>
+			<div class='code'>$aaa \hspace{ 10pt } bbb$</div>
+			<pre>aaa \hspace{ 10pt } bbb</pre><br />
+			<input type='text' value='aaa \hspace{ 10pt } bbb' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample no-space inline'>
+			<div class='ja'>空白をなくす</div>
+			<div class='en'>no space</div>
+			<div class='code'>$aaa \! bbb$</div>
+			<pre>aaa \! bbb</pre><br />
+			<input type='text' value='aaa \! bbb' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample new-line inline'>
+			<div class='ja'>改行</div>
+			<div class='en'>new line</div>
+			<div class='code'>$aaa \\ bbb$</div>
+			<pre>aaa \\ bbb</pre><br />
+			<input type='text' value='aaa \\ bbb' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample specified-new-line-size inline'>
+			<div class='ja'>改行（サイズ指定）</div>
+			<div class='en'>specified new line size</div>
+			<div class='code'>$aaa \\[ 5pt ] bbb$</div>
+			<pre>aaa \\[ 5pt ] bbb</pre><br />
+			<input type='text' value='aaa \\[ 5pt ] bbb' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample specified-new-line-size-sample inline'>
+			<div class='ja'>改行（サイズ指定）サンプル</div>
+			<div class='en'>specified new line size sample</div>
+			<div class='code'>$\begin{eqnarray}
+& & \frac{ 1 }{ 2 } + \frac{ 1 }{ 3 } + \frac{ 1 }{ 6 } \\[ 5pt ]
+&=& \frac{ 3 }{ 6 } + \frac{ 2 }{ 6 } + \frac{ 1 }{ 6 } \\
+&=& 1
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+& & \frac{ 1 }{ 2 } + \frac{ 1 }{ 3 } + \frac{ 1 }{ 6 } \\[ 5pt ]
+&=& \frac{ 3 }{ 6 } + \frac{ 2 }{ 6 } + \frac{ 1 }{ 6 } \\
+&=& 1
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}& & \frac{ 1 }{ 2 } + \frac{ 1 }{ 3 } + \frac{ 1 }{ 6 } \\[ 5pt ]&=& \frac{ 3 }{ 6 } + \frac{ 2 }{ 6 } + \frac{ 1 }{ 6 } \\&=& 1\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='letter-size' class ='sample-list'>
+		<h3><span class='ja'>文字サイズ</span> <span class='en'>Letter size</span></h3>
+		<ul>
+		<li class='sample tiny inline'>
+			<div class='ja'>極小サイズ</div>
+			<div class='en'>tiny</div>
+			<div class='code'>$\tiny{ abc ABC }$</div>
+			<pre>\tiny{ abc ABC }</pre><br />
+			<input type='text' value='\tiny{ abc ABC }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample small-size inline'>
+			<div class='ja'>小さいサイズ</div>
+			<div class='en'>small size</div>
+			<div class='code'>$\scriptsize{ abc ABC }$</div>
+			<pre>\scriptsize{ abc ABC }</pre><br />
+			<input type='text' value='\scriptsize{ abc ABC }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample small-size-2 inline'>
+			<div class='ja'>小さいサイズ2</div>
+			<div class='en'>small size 2</div>
+			<div class='code'>$\small{ abc ABC }$</div>
+			<pre>\small{ abc ABC }</pre><br />
+			<input type='text' value='\small{ abc ABC }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample normal-size inline'>
+			<div class='ja'>ノーマルサイズ</div>
+			<div class='en'>normal size</div>
+			<div class='code'>$\normalsize{ abc ABC }$</div>
+			<pre>\normalsize{ abc ABC }</pre><br />
+			<input type='text' value='\normalsize{ abc ABC }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample large-size inline'>
+			<div class='ja'>大きいサイズ</div>
+			<div class='en'>large size</div>
+			<div class='code'>$\large{ abc ABC }$</div>
+			<pre>\large{ abc ABC }</pre><br />
+			<input type='text' value='\large{ abc ABC }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample large-size-2 inline'>
+			<div class='ja'>大きいサイズ2</div>
+			<div class='en'>large size 2</div>
+			<div class='code'>$\Large{ abc ABC }$</div>
+			<pre>\Large{ abc ABC }</pre><br />
+			<input type='text' value='\Large{ abc ABC }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample large-size-3 inline'>
+			<div class='ja'>大きいサイズ3</div>
+			<div class='en'>large size 3</div>
+			<div class='code'>$\LARGE{ abc ABC }$</div>
+			<pre>\LARGE{ abc ABC }</pre><br />
+			<input type='text' value='\LARGE{ abc ABC }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample huge-size inline'>
+			<div class='ja'>極大サイズ</div>
+			<div class='en'>huge size</div>
+			<div class='code'>$\huge{ abc ABC }$</div>
+			<pre>\huge{ abc ABC }</pre><br />
+			<input type='text' value='\huge{ abc ABC }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample huge-size-2 inline'>
+			<div class='ja'>極大サイズ2</div>
+			<div class='en'>huge size 2</div>
+			<div class='code'>$\Huge{ abc ABC }$</div>
+			<pre>\Huge{ abc ABC }</pre><br />
+			<input type='text' value='\Huge{ abc ABC }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='font' class ='sample-list'>
+		<h3><span class='ja'>フォント</span> <span class='en'>Font</span></h3>
+		<ul>
+		<li class='sample roman-font inline'>
+			<div class='ja'>ローマン体</div>
+			<div class='en'>roman font</div>
+			<div class='code'>$\mathrm{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }$</div>
+			<pre>\mathrm{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }</pre><br />
+			<input type='text' value='\mathrm{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample type-writer-font inline'>
+			<div class='ja'>タイプライターフォント</div>
+			<div class='en'>type writer font</div>
+			<div class='code'>$\mathtt{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }$</div>
+			<pre>\mathtt{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }</pre><br />
+			<input type='text' value='\mathtt{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample sans-serif inline'>
+			<div class='ja'>サンセリフ</div>
+			<div class='en'>sans serif</div>
+			<div class='code'>$\mathsf{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }$</div>
+			<pre>\mathsf{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }</pre><br />
+			<input type='text' value='\mathsf{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample calligraphy-font inline'>
+			<div class='ja'>カリグラフィーフォント</div>
+			<div class='en'>calligraphy font</div>
+			<div class='code'>$\mathcal{ ABCDEFGHIJKLMNOPQRSTUVWXYZ }$</div>
+			<pre>\mathcal{ ABCDEFGHIJKLMNOPQRSTUVWXYZ }</pre><br />
+			<input type='text' value='\mathcal{ ABCDEFGHIJKLMNOPQRSTUVWXYZ }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample bold-font inline'>
+			<div class='ja'>太文字</div>
+			<div class='en'>bold font</div>
+			<div class='code'>$\mathbf{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }$</div>
+			<pre>\mathbf{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }</pre><br />
+			<input type='text' value='\mathbf{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample italic inline'>
+			<div class='ja'>イタリック</div>
+			<div class='en'>italic</div>
+			<div class='code'>$\mathit{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }$</div>
+			<pre>\mathit{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }</pre><br />
+			<input type='text' value='\mathit{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample blackboard-bold inline'>
+			<div class='ja'>中抜き文字</div>
+			<div class='en'>blackboard bold</div>
+			<div class='code'>$\mathbb{ ABCDEFGHIJKLMNOPQRSTUVWXYZ }$</div>
+			<pre>\mathbb{ ABCDEFGHIJKLMNOPQRSTUVWXYZ }</pre><br />
+			<input type='text' value='\mathbb{ ABCDEFGHIJKLMNOPQRSTUVWXYZ }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample script-letters inline'>
+			<div class='ja'>スクリプトフォント</div>
+			<div class='en'>script letters</div>
+			<div class='code'>$\mathscr{ ABCDEFGHIJKLMN \\ OPQRSTUVWXYZ }$</div>
+			<pre>\mathscr{ ABCDEFGHIJKLMN \\ OPQRSTUVWXYZ }</pre><br />
+			<input type='text' value='\mathscr{ ABCDEFGHIJKLMN \\ OPQRSTUVWXYZ }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Fraktur inline'>
+			<div class='ja'>フラクトゥール</div>
+			<div class='en'>Fraktur</div>
+			<div class='code'>$\mathfrak{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }$</div>
+			<pre>\mathfrak{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }</pre><br />
+			<input type='text' value='\mathfrak{ ABCDEFGHIJKLMNOPQRSTUVWXYZ \\ abcdefghijklmnopqrstuvwxyz }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='superscript-and-subscript' class ='sample-list'>
+		<h3><span class='ja'>上付き・下付き</span> <span class='en'>Superscript and Subscript</span></h3>
+		<ul>
+		<li class='sample superscript inline'>
+			<div class='ja'>上付き文字</div>
+			<div class='en'>superscript</div>
+			<div class='code'>$a^{ xy }$</div>
+			<pre>a^{ xy }</pre><br />
+			<input type='text' value='a^{ xy }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample superscript-left inline'>
+			<div class='ja'>上付き文字（左）</div>
+			<div class='en'>superscript left</div>
+			<div class='code'>${}^{ xy } a$</div>
+			<pre>{}^{ xy } a</pre><br />
+			<input type='text' value='{}^{ xy } a' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample subscript inline'>
+			<div class='ja'>下付き文字</div>
+			<div class='en'>subscript</div>
+			<div class='code'>$a_{ xy }$</div>
+			<pre>a_{ xy }</pre><br />
+			<input type='text' value='a_{ xy }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample subscript-left inline'>
+			<div class='ja'>下付き文字（左）</div>
+			<div class='en'>subscript left</div>
+			<div class='code'>${}_{ xy } a$</div>
+			<pre>{}_{ xy } a</pre><br />
+			<input type='text' value='{}_{ xy } a' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample subscript-sample inline'>
+			<div class='ja'>下付きサンプル</div>
+			<div class='en'>subscript sample</div>
+			<div class='code'>$\begin{eqnarray}
+a_n^2 + a_{ n + 1 }^2 = a_{ 2n + 1 }
+\end{eqnarray}$</div>
+			<pre>\begin{eqnarray}
+a_n^2 + a_{ n + 1 }^2 = a_{ 2n + 1 }
+\end{eqnarray}</pre><br />
+			<input type='text' value='\begin{eqnarray}a_n^2 + a_{ n + 1 }^2 = a_{ 2n + 1 }\end{eqnarray}' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='accent' class ='sample-list'>
+		<h3><span class='ja'>アクセント</span> <span class='en'>Accent</span></h3>
+		<ul>
+		<li class='sample hat inline'>
+			<div class='ja'>ハット</div>
+			<div class='en'>hat</div>
+			<div class='code'>$\hat{ a }$</div>
+			<pre>\hat{ a }</pre><br />
+			<input type='text' value='\hat{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample grave inline'>
+			<div class='ja'>グレイブ</div>
+			<div class='en'>grave</div>
+			<div class='code'>$\grave{ a }$</div>
+			<pre>\grave{ a }</pre><br />
+			<input type='text' value='\grave{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample acute inline'>
+			<div class='ja'>アキュート</div>
+			<div class='en'>acute</div>
+			<div class='code'>$\acute{ a }$</div>
+			<pre>\acute{ a }</pre><br />
+			<input type='text' value='\acute{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample dot inline'>
+			<div class='ja'>ドット</div>
+			<div class='en'>dot</div>
+			<div class='code'>$\dot{ a }$</div>
+			<pre>\dot{ a }</pre><br />
+			<input type='text' value='\dot{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample double-dots inline'>
+			<div class='ja'>ダブルドット</div>
+			<div class='en'>double dots</div>
+			<div class='code'>$\ddot{ a }$</div>
+			<pre>\ddot{ a }</pre><br />
+			<input type='text' value='\ddot{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample bar inline'>
+			<div class='ja'>バー</div>
+			<div class='en'>bar</div>
+			<div class='code'>$\bar{ a }$</div>
+			<pre>\bar{ a }</pre><br />
+			<input type='text' value='\bar{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample arrow inline'>
+			<div class='ja'>矢印</div>
+			<div class='en'>arrow</div>
+			<div class='code'>$\vec{ a }$</div>
+			<pre>\vec{ a }</pre><br />
+			<input type='text' value='\vec{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample check inline'>
+			<div class='ja'>チェック</div>
+			<div class='en'>check</div>
+			<div class='code'>$\check{ a }$</div>
+			<pre>\check{ a }</pre><br />
+			<input type='text' value='\check{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample tilde inline'>
+			<div class='ja'>チルダ</div>
+			<div class='en'>tilde</div>
+			<div class='code'>$\tilde{ a }$</div>
+			<pre>\tilde{ a }</pre><br />
+			<input type='text' value='\tilde{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample breve inline'>
+			<div class='ja'>ブリーブ</div>
+			<div class='en'>breve</div>
+			<div class='code'>$\breve{ a }$</div>
+			<pre>\breve{ a }</pre><br />
+			<input type='text' value='\breve{ a }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample wide-hat inline'>
+			<div class='ja'>広いハット</div>
+			<div class='en'>wide hat</div>
+			<div class='code'>$\widehat{ AAA }$</div>
+			<pre>\widehat{ AAA }</pre><br />
+			<input type='text' value='\widehat{ AAA }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample wide-tilde inline'>
+			<div class='ja'>広いチルダ</div>
+			<div class='en'>wide tilde</div>
+			<div class='code'>$\widetilde{ AAA }$</div>
+			<pre>\widetilde{ AAA }</pre><br />
+			<input type='text' value='\widetilde{ AAA }' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='greek-alphabet' class ='sample-list'>
+		<h3><span class='ja'>ギリシャ文字</span> <span class='en'>Greek alphabet</span></h3>
+		<ul>
+		<li class='sample alpha inline'>
+			<div class='ja'>アルファ</div>
+			<div class='en'>alpha</div>
+			<div class='code'>$\alpha$</div>
+			<pre>\alpha</pre><br />
+			<input type='text' value='\alpha' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample beta inline'>
+			<div class='ja'>ベータ</div>
+			<div class='en'>beta</div>
+			<div class='code'>$\beta$</div>
+			<pre>\beta</pre><br />
+			<input type='text' value='\beta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample gamma inline'>
+			<div class='ja'>ガンマ</div>
+			<div class='en'>gamma</div>
+			<div class='code'>$\gamma$</div>
+			<pre>\gamma</pre><br />
+			<input type='text' value='\gamma' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample delta inline'>
+			<div class='ja'>デルタ</div>
+			<div class='en'>delta</div>
+			<div class='code'>$\delta$</div>
+			<pre>\delta</pre><br />
+			<input type='text' value='\delta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample epsilon inline'>
+			<div class='ja'>イプシロン</div>
+			<div class='en'>epsilon</div>
+			<div class='code'>$\epsilon$</div>
+			<pre>\epsilon</pre><br />
+			<input type='text' value='\epsilon' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample epsilon-2 inline'>
+			<div class='ja'>イプシロン2</div>
+			<div class='en'>epsilon-2</div>
+			<div class='code'>$\varepsilon$</div>
+			<pre>\varepsilon</pre><br />
+			<input type='text' value='\varepsilon' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample zeta inline'>
+			<div class='ja'>ゼータ</div>
+			<div class='en'>zeta</div>
+			<div class='code'>$\zeta$</div>
+			<pre>\zeta</pre><br />
+			<input type='text' value='\zeta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample eta inline'>
+			<div class='ja'>イータ</div>
+			<div class='en'>eta</div>
+			<div class='code'>$\eta$</div>
+			<pre>\eta</pre><br />
+			<input type='text' value='\eta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample theta inline'>
+			<div class='ja'>シータ</div>
+			<div class='en'>theta</div>
+			<div class='code'>$\theta$</div>
+			<pre>\theta</pre><br />
+			<input type='text' value='\theta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample theta-2 inline'>
+			<div class='ja'>シータ2</div>
+			<div class='en'>theta-2</div>
+			<div class='code'>$\vartheta$</div>
+			<pre>\vartheta</pre><br />
+			<input type='text' value='\vartheta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample iota inline'>
+			<div class='ja'>イオタ</div>
+			<div class='en'>iota</div>
+			<div class='code'>$\iota$</div>
+			<pre>\iota</pre><br />
+			<input type='text' value='\iota' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample kappa inline'>
+			<div class='ja'>カッパ</div>
+			<div class='en'>kappa</div>
+			<div class='code'>$\kappa$</div>
+			<pre>\kappa</pre><br />
+			<input type='text' value='\kappa' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample lambda inline'>
+			<div class='ja'>ラムダ</div>
+			<div class='en'>lambda</div>
+			<div class='code'>$\lambda$</div>
+			<pre>\lambda</pre><br />
+			<input type='text' value='\lambda' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample mu inline'>
+			<div class='ja'>ミュー</div>
+			<div class='en'>mu</div>
+			<div class='code'>$\mu$</div>
+			<pre>\mu</pre><br />
+			<input type='text' value='\mu' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample nu inline'>
+			<div class='ja'>ニュー</div>
+			<div class='en'>nu</div>
+			<div class='code'>$\nu$</div>
+			<pre>\nu</pre><br />
+			<input type='text' value='\nu' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample xi inline'>
+			<div class='ja'>クシー</div>
+			<div class='en'>xi</div>
+			<div class='code'>$\xi$</div>
+			<pre>\xi</pre><br />
+			<input type='text' value='\xi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample o inline'>
+			<div class='ja'>オミクロン</div>
+			<div class='en'>o</div>
+			<div class='code'>$o$</div>
+			<pre>o</pre><br />
+			<input type='text' value='o' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample pi inline'>
+			<div class='ja'>パイ</div>
+			<div class='en'>pi</div>
+			<div class='code'>$\pi$</div>
+			<pre>\pi</pre><br />
+			<input type='text' value='\pi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample pi-2 inline'>
+			<div class='ja'>パイ2</div>
+			<div class='en'>pi-2</div>
+			<div class='code'>$\varpi$</div>
+			<pre>\varpi</pre><br />
+			<input type='text' value='\varpi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample rho inline'>
+			<div class='ja'>ロー</div>
+			<div class='en'>rho</div>
+			<div class='code'>$\rho$</div>
+			<pre>\rho</pre><br />
+			<input type='text' value='\rho' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample rho-2 inline'>
+			<div class='ja'>ロー2</div>
+			<div class='en'>rho-2</div>
+			<div class='code'>$\varrho$</div>
+			<pre>\varrho</pre><br />
+			<input type='text' value='\varrho' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample sigma inline'>
+			<div class='ja'>シグマ</div>
+			<div class='en'>sigma</div>
+			<div class='code'>$\sigma$</div>
+			<pre>\sigma</pre><br />
+			<input type='text' value='\sigma' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample sigma-2 inline'>
+			<div class='ja'>シグマ2</div>
+			<div class='en'>sigma-2</div>
+			<div class='code'>$\varsigma$</div>
+			<pre>\varsigma</pre><br />
+			<input type='text' value='\varsigma' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample tau inline'>
+			<div class='ja'>タウ</div>
+			<div class='en'>tau</div>
+			<div class='code'>$\tau$</div>
+			<pre>\tau</pre><br />
+			<input type='text' value='\tau' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample upsilon inline'>
+			<div class='ja'>ユプシロン</div>
+			<div class='en'>upsilon</div>
+			<div class='code'>$\upsilon$</div>
+			<pre>\upsilon</pre><br />
+			<input type='text' value='\upsilon' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample phi inline'>
+			<div class='ja'>ファイ</div>
+			<div class='en'>phi</div>
+			<div class='code'>$\phi$</div>
+			<pre>\phi</pre><br />
+			<input type='text' value='\phi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample phi-2 inline'>
+			<div class='ja'>ファイ2</div>
+			<div class='en'>phi-2</div>
+			<div class='code'>$\varphi$</div>
+			<pre>\varphi</pre><br />
+			<input type='text' value='\varphi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample chi inline'>
+			<div class='ja'>カイ</div>
+			<div class='en'>chi</div>
+			<div class='code'>$\chi$</div>
+			<pre>\chi</pre><br />
+			<input type='text' value='\chi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample psi inline'>
+			<div class='ja'>プシー</div>
+			<div class='en'>psi</div>
+			<div class='code'>$\psi$</div>
+			<pre>\psi</pre><br />
+			<input type='text' value='\psi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample omega inline'>
+			<div class='ja'>オメガ</div>
+			<div class='en'>omega</div>
+			<div class='code'>$\omega$</div>
+			<pre>\omega</pre><br />
+			<input type='text' value='\omega' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul><ul>
+		<li class='sample Alpha inline'>
+			<div class='ja'>アルファ(大)</div>
+			<div class='en'>Alpha</div>
+			<div class='code'>$A$</div>
+			<pre>A</pre><br />
+			<input type='text' value='A' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Beta inline'>
+			<div class='ja'>ベータ(大)</div>
+			<div class='en'>Beta</div>
+			<div class='code'>$B$</div>
+			<pre>B</pre><br />
+			<input type='text' value='B' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Gamma inline'>
+			<div class='ja'>ガンマ(大)</div>
+			<div class='en'>Gamma</div>
+			<div class='code'>$\Gamma$</div>
+			<pre>\Gamma</pre><br />
+			<input type='text' value='\Gamma' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Gamma-2 inline'>
+			<div class='ja'>ガンマ(大)2</div>
+			<div class='en'>Gamma-2</div>
+			<div class='code'>$\varGamma$</div>
+			<pre>\varGamma</pre><br />
+			<input type='text' value='\varGamma' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Delta inline'>
+			<div class='ja'>デルタ(大)</div>
+			<div class='en'>Delta</div>
+			<div class='code'>$\Delta$</div>
+			<pre>\Delta</pre><br />
+			<input type='text' value='\Delta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Delta-2 inline'>
+			<div class='ja'>デルタ(大)2</div>
+			<div class='en'>Delta-2</div>
+			<div class='code'>$\varDelta$</div>
+			<pre>\varDelta</pre><br />
+			<input type='text' value='\varDelta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Epsilon inline'>
+			<div class='ja'>イプシロン(大)</div>
+			<div class='en'>Epsilon</div>
+			<div class='code'>$E$</div>
+			<pre>E</pre><br />
+			<input type='text' value='E' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Zeta inline'>
+			<div class='ja'>ゼータ(大)</div>
+			<div class='en'>Zeta</div>
+			<div class='code'>$Z$</div>
+			<pre>Z</pre><br />
+			<input type='text' value='Z' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Eta inline'>
+			<div class='ja'>イータ(大)</div>
+			<div class='en'>Eta</div>
+			<div class='code'>$H$</div>
+			<pre>H</pre><br />
+			<input type='text' value='H' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Theta inline'>
+			<div class='ja'>シータ(大)</div>
+			<div class='en'>Theta</div>
+			<div class='code'>$\Theta$</div>
+			<pre>\Theta</pre><br />
+			<input type='text' value='\Theta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Theta-2 inline'>
+			<div class='ja'>シータ(大)2</div>
+			<div class='en'>Theta-2</div>
+			<div class='code'>$\varTheta$</div>
+			<pre>\varTheta</pre><br />
+			<input type='text' value='\varTheta' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Iota inline'>
+			<div class='ja'>イオタ(大)</div>
+			<div class='en'>Iota</div>
+			<div class='code'>$I$</div>
+			<pre>I</pre><br />
+			<input type='text' value='I' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Kappa inline'>
+			<div class='ja'>カッパ(大)</div>
+			<div class='en'>Kappa</div>
+			<div class='code'>$K$</div>
+			<pre>K</pre><br />
+			<input type='text' value='K' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Lambda inline'>
+			<div class='ja'>ラムダ(大)</div>
+			<div class='en'>Lambda</div>
+			<div class='code'>$\Lambda$</div>
+			<pre>\Lambda</pre><br />
+			<input type='text' value='\Lambda' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Lambda-2 inline'>
+			<div class='ja'>ラムダ(大)2</div>
+			<div class='en'>Lambda-2</div>
+			<div class='code'>$\varLambda$</div>
+			<pre>\varLambda</pre><br />
+			<input type='text' value='\varLambda' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Mu inline'>
+			<div class='ja'>ミュー(大)</div>
+			<div class='en'>Mu</div>
+			<div class='code'>$M$</div>
+			<pre>M</pre><br />
+			<input type='text' value='M' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Nu inline'>
+			<div class='ja'>ニュー(大)</div>
+			<div class='en'>Nu</div>
+			<div class='code'>$N$</div>
+			<pre>N</pre><br />
+			<input type='text' value='N' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Xi inline'>
+			<div class='ja'>クシー(大)</div>
+			<div class='en'>Xi</div>
+			<div class='code'>$\Xi$</div>
+			<pre>\Xi</pre><br />
+			<input type='text' value='\Xi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Xi-2 inline'>
+			<div class='ja'>クシー(大)2</div>
+			<div class='en'>Xi-2</div>
+			<div class='code'>$\varXi$</div>
+			<pre>\varXi</pre><br />
+			<input type='text' value='\varXi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample O inline'>
+			<div class='ja'>オミクロン(大)</div>
+			<div class='en'>O</div>
+			<div class='code'>$O$</div>
+			<pre>O</pre><br />
+			<input type='text' value='O' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Pi inline'>
+			<div class='ja'>パイ(大)</div>
+			<div class='en'>Pi</div>
+			<div class='code'>$\Pi$</div>
+			<pre>\Pi</pre><br />
+			<input type='text' value='\Pi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Pi-2 inline'>
+			<div class='ja'>パイ(大)2</div>
+			<div class='en'>Pi-2</div>
+			<div class='code'>$\varPi$</div>
+			<pre>\varPi</pre><br />
+			<input type='text' value='\varPi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Rho inline'>
+			<div class='ja'>ロー(大)</div>
+			<div class='en'>Rho</div>
+			<div class='code'>$P$</div>
+			<pre>P</pre><br />
+			<input type='text' value='P' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Sigma inline'>
+			<div class='ja'>シグマ(大)</div>
+			<div class='en'>Sigma</div>
+			<div class='code'>$\Sigma$</div>
+			<pre>\Sigma</pre><br />
+			<input type='text' value='\Sigma' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Sigma-2 inline'>
+			<div class='ja'>シグマ(大)2</div>
+			<div class='en'>Sigma-2</div>
+			<div class='code'>$\varSigma$</div>
+			<pre>\varSigma</pre><br />
+			<input type='text' value='\varSigma' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Tau inline'>
+			<div class='ja'>タウ(大)</div>
+			<div class='en'>Tau</div>
+			<div class='code'>$T$</div>
+			<pre>T</pre><br />
+			<input type='text' value='T' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Upsilon inline'>
+			<div class='ja'>ユプシロン(大)</div>
+			<div class='en'>Upsilon</div>
+			<div class='code'>$\Upsilon$</div>
+			<pre>\Upsilon</pre><br />
+			<input type='text' value='\Upsilon' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Upsilon-2 inline'>
+			<div class='ja'>ユプシロン(大)2</div>
+			<div class='en'>Upsilon-2</div>
+			<div class='code'>$\varUpsilon$</div>
+			<pre>\varUpsilon</pre><br />
+			<input type='text' value='\varUpsilon' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Phi inline'>
+			<div class='ja'>ファイ(大)</div>
+			<div class='en'>Phi</div>
+			<div class='code'>$\Phi$</div>
+			<pre>\Phi</pre><br />
+			<input type='text' value='\Phi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Phi-2 inline'>
+			<div class='ja'>ファイ(大)2</div>
+			<div class='en'>Phi-2</div>
+			<div class='code'>$\varPhi$</div>
+			<pre>\varPhi</pre><br />
+			<input type='text' value='\varPhi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Chi inline'>
+			<div class='ja'>カイ(大)</div>
+			<div class='en'>Chi</div>
+			<div class='code'>$X$</div>
+			<pre>X</pre><br />
+			<input type='text' value='X' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Psi inline'>
+			<div class='ja'>プシー(大)</div>
+			<div class='en'>Psi</div>
+			<div class='code'>$\Psi$</div>
+			<pre>\Psi</pre><br />
+			<input type='text' value='\Psi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Psi-2 inline'>
+			<div class='ja'>プシー(大)2</div>
+			<div class='en'>Psi-2</div>
+			<div class='code'>$\varPsi$</div>
+			<pre>\varPsi</pre><br />
+			<input type='text' value='\varPsi' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Omega inline'>
+			<div class='ja'>オメガ(大)</div>
+			<div class='en'>Omega</div>
+			<div class='code'>$\Omega$</div>
+			<pre>\Omega</pre><br />
+			<input type='text' value='\Omega' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample Omega-2 inline'>
+			<div class='ja'>オメガ(大)2</div>
+			<div class='en'>Omega-2</div>
+			<div class='code'>$\varOmega$</div>
+			<pre>\varOmega</pre><br />
+			<input type='text' value='\varOmega' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='special-character' class ='sample-list'>
+		<h3><span class='ja'>特殊文字</span> <span class='en'>Special character</span></h3>
+		<ul>
+		<li class='sample section inline'>
+			<div class='ja'>セクション</div>
+			<div class='en'>section</div>
+			<div class='code'>$\S$</div>
+			<pre>\S</pre><br />
+			<input type='text' value='\S' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+	<div id='logo' class ='sample-list'>
+		<h3><span class='ja'>ロゴ</span> <span class='en'>Logo</span></h3>
+		<ul>
+		<li class='sample tex inline'>
+			<div class='ja'>tex</div>
+			<div class='en'>tex</div>
+			<div class='code'>$\TeX$</div>
+			<pre>\TeX</pre><br />
+			<input type='text' value='\TeX' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		<li class='sample latex inline'>
+			<div class='ja'>latex</div>
+			<div class='en'>latex</div>
+			<div class='code'>$\LaTeX$</div>
+			<pre>\LaTeX</pre><br />
+			<input type='text' value='\LaTeX' onfocus='this.select();' readonly class='form-control'>
+		</li>
+
+		</ul>
+	</div>
+</div>
+
+<!-- code ここまで -->
+
+<div id="description">
+	<h2>MathJaxの使い方 How to use MathJax</h2>
+	<p>
+		LaTeXは、数式をきれいに表示するためのツールであり、
+		<a href="https://www.mathjax.org/" target="_blank">MathJax</a>は、HTMLでLaTeXコマンドを使って数式を書くためのツールです。<br />
+		LaTeX is widely used for displaying beautiful formulas, 
+		and <a href="https://www.mathjax.org/" target="_blank">MathJax</a> allows you to use LaTeX commands in your web pages. 
+	</p>
+	
+	<p>
+		headタグ内に次の文を書けば、MathJaxを使えるようになります。<br />
+		Add the following sentence in the head tag to use MathJax.<br />
+	</p>
+	<pre class="block">
+&lt;script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"&gt;
+&lt;/script&gt;</pre>
+	<br />
+
+	<p>
+		html内で、<code>\(</code>と<code>\)</code>内にLaTeXコマンドを打つと、インラインモードで数式が表示されます。<br />
+		When you add LaTeX commands between <code>\(</code> and <code>\)</code>, formulas are displayed in inline mode.<br />
+	</p>
+
+	<p>
+		もし、<code>\( \)</code>ではなく<code>$ $</code>を使いたければ、headタグに次のように設定します。<br />
+		To use <code>$ $</code> instead of <code>\( \)</code>, add the sentences below in the head tag.<br />
+	</p>
+	<pre class="block">
+&lt;script type="text/x-mathjax-config"&gt;
+  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+&lt;/script&gt;
+&lt;script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"&gt;
+&lt;/script&gt;</pre>
+	<br />
+
+</div>
+
+</body>
+</html>
+
+</body>
+</html>

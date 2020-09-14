@@ -1,0 +1,50 @@
+<html>
+   <body>
+         <script src="/math/distr/MathClass.js"></script>
+         <script src="/math/tmsUtils.js"></script>
+         <script src="/math/tmsCalcu.js"></script>
+         <script src="/math/f1.js"></script>
+
+    
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+     
+     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+   });
+   </script>
+   <script type="text/javascript" async src="/MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+   <!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+<div>
+When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+</div>
+
+<table id=formula>
+
+ 
+</table>
+<script > 
+         
+      let x = document.getElementById("formula");
+     for(let TiXing=1;TiXing<5;TiXing++)
+
+        for (let i = 0; i < 5; i++) {
+         var row = x.insertRow();
+         var  cell= row.insertCell();
+         var  cell1= row.insertCell();
+         var  cell2= row.insertCell();
+              let Range = {};
+              Range["D15"] = "*";
+              Range["E15"] = "/";
+              console.log(i,TiXing)
+              let s1 =CreatAEq(TiXing, 9, Range);
+              console.log(s1);
+              cell.innerHTML+="\\("+s1.St+"\\)";
+              cell1.innerHTML+=""+s1.Val+"";
+              cell2.innerHTML+="    "+s1.CalcVal+"";
+              
+        }
+     
+     </script>
+</body>
+</html>

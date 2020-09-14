@@ -1,0 +1,33 @@
+extends layout
+  
+block content
+  <div class="container">
+  p &nbps;
+  p &nbps;
+  h1= title
+  
+  p Welcome to #{title} Profile
+  p id: #{profile.id}
+  if profile.image
+                img.img-circle(src=profile.image, width=124)
+  p displayName: #{profile.displayName}
+  p username: #{profile.username} 
+  p email: #{profile.email} 
+  if profile.email == "lammou@mail.mbc.edu.mo"
+    p
+      a(href="/internal/sslforfree") sslforfree
+    p
+      a(href="/internal/sslforfree/ca") ca
+  //-var auth_= profile.id == '2002024'
+  //if auth_ 
+  p
+    a(href="/internal/dashboard/sharefiles/markreportlistnodejs") files folder
+  p
+    a(href="/internal/dashboard/ckeditorimages/markreportlistnodejs") ckeditor images
+  
+  p
+    a(href="/internal/dashboard") dashboard
+  
+  //p #{profilestr}
+  p
+  a(href="/logout") Logout

@@ -1,0 +1,71 @@
+extends ./base.pug
+  
+block content
+  p .
+  p .
+  script.  
+    function fn21(x){
+        x= x.split(" ");
+        if(x && x.length>0){
+        document.write(x[x.length-1]);
+        }else{
+          document.write('---');
+        }
+    }    
+  div= `total ${data.length} rec.`
+  -let cnt=0
+  each r in data
+    -let fn_=r.fn.split('_'  ) 
+
+    table(border=1)
+      tr
+        th ID
+        th Qiz
+        th tx
+        th UserName
+        th DateTime
+        th FileName
+      tr
+        td= r.id
+        td= fn_[1]
+        td= fn_[2]
+        td= r.username
+        td= r.md
+        td= r.fn        
+    
+    -let arr = JSON.parse(r.jsondata)
+    -let rowcnt=0
+    -let total=0
+    -let tx=0
+    -let txtime=0
+    -let totalflag=0
+    table
+      if arr  
+        each arr1 in arr
+          -let txflag=(arr1[0]==fn_[2])
+          //span= `~${txflag}~`
+          - cnt++ 
+          if arr1.length>2 
+            tr
+              if txflag
+                - tx= arr1[0]
+                - total=total + Number(arr1[2])
+                - rowcnt++
+                - txtime+=Number(arr1[3])
+              td= cnt
+              td= r.username
+              each arr2 in arr1
+                td= arr2
+              -totalflag = arr1.length
+        if totalflag >2    
+          tr
+            td= cnt
+            td= r.username 
+            td= `總計(${fn_[1]}):`
+            td= rowcnt-2
+            td= total
+            td= txtime.toFixed(2)
+            td= `tx=${fn_[2]}`
+      else
+        div ERROR    
+    hr

@@ -1,0 +1,38 @@
+//<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+//<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+//<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+doctype html
+html(lang="zh")
+  script(src="/math/utils/tmsUtils.js") 
+  script(src="/math/utils/tmsCalcu.js") 
+  script(src="/math/tmsUIMathClass.js")   
+  script.
+    var ft='<c:out value="${param.ft }" default="" />'; if(ft.length>6) {ft='!{ft}';} ; 
+    var username='<c:out value="${fn:escapeXml(userName)}" default="" />'; if(username.length>30){username="";} 
+  if profile
+    script.
+      if(username=="") {username='!{profile.displayName}'; }
+  head
+    title One-Dimensional Equation
+    meta(charset='utf-8')
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel='stylesheet', href='/math/css/tmsUITrain.css')
+    
+    //link(rel='stylesheet', href='/css/main.css')
+    //link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    //script(src='/javascripts/jquery.js')
+    //script(src='/javascripts/bootstrap.js') 
+    //script(src='/jquery-ui-dist/jquery-ui.min.js')    
+    //link( href='/jquery-ui-dist/jquery-ui.min.css',rel='stylesheet' )     
+
+    link(href="https://getbootstrap.com/docs/3.4/dist/css/bootstrap.min.css",rel="stylesheet" )
+    script(src='https://themes.getbootstrap.com/wp-content/themes/bootstrap-marketplace/assets/javascript/jquery.min.js')
+    link(href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css", rel="stylesheet" )
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")    
+    script(src='https://getbootstrap.com/docs/3.4/dist/js/bootstrap.min.js')
+    //script(src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML')
+    script(src='https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815')
+  body
+    
+    .container
+    block content  

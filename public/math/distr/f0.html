@@ -1,0 +1,59 @@
+<html>
+   <body>
+         <script src="/math/distr/MathClass.js"></script>
+         <script src="/math/distr/vba.js"></script>
+         <script src="/math/distr/calcvm.js"></script>
+         <script src="/math/distr/f1.js"></script>
+
+    
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+     
+     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+   });
+   </script>
+   <script type="text/javascript" async src="/MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<table id=formula>
+
+   
+</table>
+<script > 
+         
+      let x = document.getElementById("formula");
+     for(let TiXing=1;TiXing<5;TiXing++)
+
+        for (let i = 0; i < 1; i++) {
+         var row = x.insertRow();
+         var  cell= row.insertCell();
+         var  cell1= row.insertCell();
+         var  cell2= row.insertCell();
+              let Range = {};
+              Range["D15"] = "*";
+              Range["E15"] = "/";
+              let s1 =CreatAEq(TiXing, 9, Range);
+              cell.innerHTML+="\\("+s1.St+"\\)";
+              cell1.innerHTML+=""+s1.Val+"";
+              cell2.innerHTML+="    "+s1.CalcVal+"";
+              
+        }
+     
+     </script>
+
+<div>
+   When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+   $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+   
+   math Constant Value
+   Pi	3.1415926	
+   e	2.718	
+   fi	0.618	1.618
+   自由落體：指在地表附近，將物體由靜止自由釋放下落，只受重力作用的一種等加速度運動。 其加速度約為9.8m/s2，稱為重力加速度，方向向下。
+
+
+   https://sites.google.com/a/ntjh.ntct.edu.tw/phys-chem/001ke-wen-nei-rong-yao-dian/03guo-san-shang/002-1-2su-lue-yu-su-du
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿extends layout
+block content
+  script(src='/javascripts/es_menu.js')
+  p Welcome to #{title}
+  p Welcome to #{title}
+  .row
+    .col-lg-2
+      ul(class="nav nav-pills nav-stacked")
+        li(class="dropdown")
+          a(class="dropdown-toggle", data-toggle="dropdown", href="#") 學習平台
+            span( class="caret")
+          ul(class="dropdown-menu", id="xuexi_mnu")
+            each val in mnu0
+              li
+                a(href= val.lnk)= val.n
+        //li(class="dropdown")
+          a(class="dropdown-toggle", data-toggle="dropdown", href="#") 學校共用資料
+            span( class="caret")
+          ul(class="dropdown-menu", id="xuexiao_mnu")
+            each val in mnu1
+              li
+                a(href= val.lnk)= val.n
+        //li(class="dropdown")
+          a(class="dropdown-toggle", data-toggle="dropdown", href="#") 校內須知/各種表格
+            span( class="caret")
+          ul(class="dropdown-menu", id="xuexiaoform_mnu")
+            each val in mnu2
+              li
+                a(href= val.lnk)= val.n
+        //li(class="dropdown")
+          a(class="dropdown-toggle", data-toggle="dropdown", href="#") 校內教務資料
+            span( class="caret")
+          ul(class="dropdown-menu", id="xuewu_mnu")
+            each val in mnu3
+              li
+                a(href= val.lnk)= val.n
+        li(class="dropdown")
+          a(class="dropdown-toggle", data-toggle="dropdown", href="#") 內部功能
+            span( class="caret")
+          ul(class="dropdown-menu", id="inter_mnu")
+            each val in mnu4
+              li
+                a(href= val.lnk)= val.n
+        if(profile)
+        else
+          li(class="dropdown")
+            a( href="/login") Sign Up                
+    .col-lg-8
+      div(align="right")
+        //iframe(src="https://www.dsej.gov.mo/~webdsej/www/tvshow/ppt/weather-pic-dsej.php", height="30", width="400", frameborder=0, scrolling="no", marginheight="0", marginwidth="0", allowtransparency="true")
+      div(class="card mt-4")
+      div(id="myCarousel", class="carousel slide", data-ride="carousel")
+        ol(class="carousel-indicators")
+          li(data-target="#myCarousel", data-slide-to="0", class="active")
+          li(data-target="#myCarousel", data-slide-to="1")
+        div( class="carousel-inner")
+          div(class="item active")
+            img(src="/images/frontpage.jpg", alt="Front Page", style="width:100%;")
+          div( class="item")
+            img(src="/images/teacherday.jpg", alt="TeacherDay", style="width:100%;")
+          a(class="left carousel-control", href="#myCarousel", data-slide="prev")
+            span( class="glyphicon glyphicon-chevron-left")
+            span( class="sr-only") Previous
+          a(class="right carousel-control", href="#myCarousel", data-slide="next")
+            span( class="glyphicon glyphicon-chevron-right")
+            span( class="sr-only") Next
+      div(class="container marketing")      
+        div(class="row")
+          div(class="col-lg-2")
+            a(class="btn btn-secondary",href="/internal/TMS",role="button")
+              img(class='rounded-circle',src='/images/mathsico.png',alt="maths",width='120',height='120')
+            h2 Math
+            p TestMySelf
+          div(class="col-lg-2")
+            a(class="btn btn-secondary",href="/internal/ACTREG",role="button")
+              img(class='rounded-circle',src='/images/report.jpg',alt="Activity Reg",width='120',height='120')
+            h2 Activity
+            p Reg Table
+
+
+  footer
+    p( class="float-right")
+      a( href="#") Back to top
+    p 澳門浸信中學 &nbsp;版權所有&nbsp;Copyright&nbsp;&#169; 1999 Macau Baptist College.All Rights Reserved
+  

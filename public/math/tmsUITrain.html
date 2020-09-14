@@ -1,0 +1,450 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<!DOCTYPE html>
+<html lang="zh">
+<script src="/math/utils/tmsUtils.js"> </script>
+<script src="/math/utils/tmsCalcu.js"> </script>
+<script src="/math/tmsUIMathClass.js">  </script>
+<script>var ft = '<c:out value="${param.ft }" default="" />'; if (ft.length > 6) { ft = 'p5'; };
+    var username = '<c:out value="${fn:escapeXml(userName)}" default="" />'; if (username.length > 30) { username = ""; } </script>
+
+<head>
+    <title>One-Dimensional Equation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/math/css/tmsUITrain.css">
+    <!--link(rel='stylesheet', href='/css/main.css')-->
+    <!--link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')-->
+    <!--script(src='/javascripts/jquery.js')-->
+    <!--script(src='/javascripts/bootstrap.js') -->
+    <!--script(src='/jquery-ui-dist/jquery-ui.min.js')    -->
+    <!--link( href='/jquery-ui-dist/jquery-ui.min.css',rel='stylesheet' )     -->
+    <link href="https://getbootstrap.com/docs/3.4/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script
+        src="https://themes.getbootstrap.com/wp-content/themes/bootstrap-marketplace/assets/javascript/jquery.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">   </script>
+    <script src="https://getbootstrap.com/docs/3.4/dist/js/bootstrap.min.js"></script>
+    <!--script(src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML')-->
+    <script
+        src="https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815"></script>
+</head>
+
+<body>
+    <div class="container"></div>
+    <table id=login_forom>
+        <c:choose>
+            <c:when test="${empty userEmail}">
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <td>請<a href="/login">登入</a>!
+            </c:when>
+            <c:otherwise>
+            </c:otherwise>
+        </c:choose>
+    </table>
+    <ul class="nav nav-tabs">
+        <li class="nav-item"><a href="/mathindex.jsp"> <span class="glyphicon glyphicon-arrow-left"></span><span
+                    style="display:none">方程式</span></a></li>
+        <li class="active"><a data-toggle="tab" href="#menu1">題型1</a></li>
+        <li><a data-toggle="tab" href="#menu2">題型2</a></li>
+        <li><a data-toggle="tab" href="#menu3">題型3</a></li>
+        <li><a data-toggle="tab" href="#menu4">題型4</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="menu1">
+            <table style="margin:10px auto;">
+                <tr>
+                    <td><span id="QNO001">命題:&nbsp;&nbsp;</span></td>
+                    <td>
+                        <div id="QT001"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>解題: </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><input class="AnsInput" type="number" name="ANSQT001" id="ANSQT001"></td>
+                            </tr>
+                            <tr style="border-top:1px solid black;">
+                                <td> <input class="AnsInput" type="number" name="ANSQTM001" id="ANSQTM001"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="btn btn-info btn-sm" id="CHKQT001">Start</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="menu2">
+            <table style="margin:10px auto;">
+                <tr>
+                    <td><span id="QNO002">命題:&nbsp;&nbsp;</span></td>
+                    <td>
+                        <div id="QT002"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>解題: </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><input class="AnsInput" type="number" name="ANSQT002" id="ANSQT002"></td>
+                            </tr>
+                            <tr style="border-top:1px solid black;">
+                                <td> <input class="AnsInput" type="number" name="ANSQTM002" id="ANSQTM002"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="btn btn-info btn-sm" id="CHKQT002">Start</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="menu3">
+            <table style="margin:10px auto;">
+                <tr>
+                    <td><span id="QNO003">命題:&nbsp;&nbsp;</span></td>
+                    <td>
+                        <div id="QT003"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>解題: </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><input class="AnsInput" type="number" name="ANSQT003" id="ANSQT003"></td>
+                            </tr>
+                            <tr style="border-top:1px solid black;">
+                                <td> <input class="AnsInput" type="number" name="ANSQTM003" id="ANSQTM003"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="btn btn-info btn-sm" id="CHKQT003">Start</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="menu4">
+            <table style="margin:10px auto;">
+                <tr>
+                    <td><span id="QNO004">命題:&nbsp;&nbsp;</span></td>
+                    <td>
+                        <div id="QT004"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>解題: </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><input class="AnsInput" type="number" name="ANSQT004" id="ANSQT004"></td>
+                            </tr>
+                            <tr style="border-top:1px solid black;">
+                                <td> <input class="AnsInput" type="number" name="ANSQTM004" id="ANSQTM004"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="btn btn-info btn-sm" id="CHKQT004">Start</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="infomsg">
+        <div>步驟：</div>
+        <div>1. 選擇題型。</div>
+        <div>2. 做题：</div>
+        <div>(1)【下一題】，</div>
+        <div>(2) 做題并開始計時，</div>
+        <div>(3) 填写答案。</div>
+        <div>3. 【確定】 --- 評判答案幷打分。</div>
+        <div>說明：</div>
+        <div>1. 可以用紙筆計算，也可以用計算器輔助。</div>
+        <div>2. 单行分數写法如右，例如：𝑎/𝑏 写成 a / b --分数线用斜横。</div>
+        <div>3. 单行指数写法如右，例如： x2+1 写成 x^2+1 --用指数符"^"。</div>
+        <div>4. 单行根式写法如右，例如：√(𝑥+1) 写成 J(x+1) --大写 J+ 括弧。</div>
+        <div>5. 每題10分。內設基準時間，提前完成加分，超時完成扣分。</div>
+        <div>6. 一次测验必须做滿10題，然後电脑自動填寫報表。</div>
+    </div>
+    <div class="msgrelative" id="AnsMsgbox" style="display:none"><Span id="AnsMsgboxCheckAns">OX</Span><span
+            style="display:none">題型</span><span style="display:none" id="AnsMsgboxQT"></span>
+        <sapn style="display:none">第</sapn><span style="display:none" id="AnsMsgboxQNO"></span>
+        <sapn style="display:none">題</sapn><span>正確答案:</span><span id="AnsMsgboxRAns">__</span><span
+            style="display:none">解:</span><Span style="display:none" id="AnsMsgboxAns">__ </Span><button
+            class="btn btn-info btn-sm" style="float:right;" onclick="AnsMsgboxNext(this)" id="AnsMsgboxNext">下1題
+        </button>
+    </div>
+    <div class="footmsg"><button class="btn btn-default btn-sm" type="button" id="ttl"><span
+                class="glyphicon glyphicon-exclamation-sign"> </span></button><button class="btn btn-default btn-sm"
+            type="button"><span class="glyphicon glyphicon-exclamation-sign" id="btnAnsMsgRes">得分</span></button><span
+            class="glyphicon glyphicon-grain"></span><span style="background-color: #222;color:white;font-size:12px;"
+            id="txtuser"> </span><span style="background-color: #222;color:white;font-size:12px;" id="txtdate">
+        </span><span style="background-color: #222;color:white;font-size:12px;" id="txttime"></span><span>|</span><span
+            style="background-color: #222;color:white;font-size:12px;" id="txtft"></span><span style="font-size:12px;"
+            id="MathTitle"></span><span>|</span></div>
+    <div id="AnsMsgRes">
+        <table class="table table-dark" id="AnsMsgResTable">
+            <tr>
+                <th scope="col">題型</th>
+                <th scope="col">題號</th>
+                <th scope="col">對/錯</th>
+                <th scope="col">耗時</th>
+                <th scope="col">得分</th>
+                <th scope="col">命題</th>
+                <th scope="col">解題</th>
+                <th scope="col">標準答案</th>
+            </tr>
+            <tr>
+                <td>總計</td>
+            </tr>
+        </table>
+    </div>
+    <div class="infocenter" id="infobox" style="display:none">
+        <div><b>信息: </b><span id="infobox_txt"></span></div>
+        <div class="msgboxclosebtn"><button onclick="close_msgbox('infobox')">x</button></div>
+    </div>
+    <div class="msgcenter" id="msgbox" style="display:none">
+        <div><b>信息: </b><span id="msgbox_txt"></span></div>
+        <div class="msgboxclosebtn"><button onclick="close_msgbox('msgbox')">x </button></div>
+    </div>
+    <script>function AnsMsgboxNext(paras) {
+            close_msgbox('AnsMsgbox');
+            let qt = document.getElementById("AnsMsgboxQT").innerHTML;
+            let gno = document.getElementById("AnsMsgboxQNO").innerHTML;
+            GetQuestion(qt);
+        }
+        function show_AnsMsgbox(x, qno, ansZ, ansM) {
+            let equans = App.getEquAns(x, qno);
+            document.getElementById("AnsMsgboxQT").innerHTML = x;
+            document.getElementById("AnsMsgboxQNO").innerHTML = qno;
+            if ((typeof equans) == "object") {
+                document.getElementById("AnsMsgboxRAns").innerHTML = equans["F116"] + "/" + equans["G116"];
+            } else {
+                document.getElementById("AnsMsgboxRAns").innerHTML = App.getStAns(x, qno);
+            }
+            document.getElementById("AnsMsgboxAns").innerHTML = ansZ;
+            let ans_res = [];
+            ans_res[0] = x;
+            ans_res[1] = qno;
+            if (App.equalAns(x, qno, ansZ, ansM)) {
+                ans_res[2] = "1";
+                document.getElementById("AnsMsgboxCheckAns").innerHTML = "<span class='glyphicon glyphicon-ok'></span>"
+            } else {
+                ans_res[2] = "0";
+                document.getElementById("AnsMsgboxCheckAns").innerHTML = "<span class='glyphicon glyphicon-remove'></span>"
+            }
+            ans_res[3] = App.getEquTime(x, qno);
+            ans_res[4] = ans_res[2];
+            ans_res[5] = App.getSt(x, qno);
+            ans_res[6] = ansZ;
+            if (App.isfraction(x, qno)) ans_res[6] = ansZ + " / " + ansM;
+            ans_res[7] = App.getStAns(x, qno);
+            var table = document.getElementById("AnsMsgResTable");
+            table.deleteRow(table.rows.length - 1);
+            var row = table.insertRow();//0 first row
+            for (let j = 0; j < ans_res.length; j++) {
+                var cell = row.insertCell(j);
+                cell.innerHTML = ans_res[j];
+            }
+            let totalrow = ["", 0, 0, 0, 0, 0];
+            for (var i = 1, row_; row_ = table.rows[i]; i++) {
+                totalrow[0] = row_.cells[0].innerText;
+                totalrow[1]++;
+                totalrow[2] += Number(row_.cells[2].innerText);
+                totalrow[3] += Number(row_.cells[3].innerText);
+                totalrow[4] += Number(row_.cells[4].innerText);
+                totalrow[5] = Number(row_.cells[0].innerText);
+            }
+            row = table.insertRow(); //0 first row
+            cell = row.insertCell();
+            cell.innerHTML = ft +"總計():";
+            for (let j = 1; j < totalrow.length; j++) { var cell = row.insertCell(j); cell.innerHTML = Math.ceil(totalrow[j]); }
+            document.getElementById('AnsMsgbox').style.display = "block";
+            document.getElementById('AnsMsgboxNext').focus();
+            if (qno >= App.AQT[x - 1].length) {
+                document.getElementById("CHKQT00" + x).style.display = "none";
+                document.getElementById("QT00" + x).style.display = "none";
+                document.getElementById("ANSQT00" + x).style.display = "none";
+                document.getElementById("ANSQTM00" + x).style.display = "none";
+
+                $("#AnsMsgRes").dialog("open");
+                alert("上載成績!!");
+                alertmsg("處理中..請等待..!");
+                //var data = JSON.stringify( $(AnsMsgResTable).serializeArray() ); //  <-----------
+                //var tabdata = JSON.stringify( $(AnsMsgResTable) ); //  <-----------
+                //var table = document.getElementById("AnsMsgResTable");    
+                let tabData = [];
+                for (var i = 0, row_; row_ = table.rows[i]; i++) {
+                    tabData[i] = [];
+                    for (var j = 0, col_; col_ = row_.cells[j]; j++) {
+                        tabData[i][j] = col_.innerText
+                    }
+                }
+                tabData = JSON.stringify(tabData);
+                if (username == "") {
+                    alertmsg("Please USER login first! ");
+                } else {
+                    $.post("/TMS/AddTMSQF", { "fileid": "$('#FileId').val()", "fn": "" + ft + "_" + x + "_" + $("#txtdate").text(), "data": tabData },
+                        function (data) {
+                            alertmsg(data);
+                        });
+                }
+                close_msgbox("AnsMsgbox");
+            }
+        }
+        //infobox
+        function show_infobox(x) {
+            document.getElementById("infobox_txt").innerHTML = x;
+            document.getElementById('infobox').style.display = "block";
+        }
+        function close_msgbox(x) {
+            document.getElementById(x).style.display = "none";
+        }
+        function alertmsg(x) {
+            document.getElementById("msgbox_txt").innerHTML = x;
+            document.getElementById("msgbox").style.display = "block";
+        }     </script>
+    <style>
+        .MathJax span {
+            font-size: 20px;
+        }
+    </style>
+    <!--if formulajs script(src=`/math/question/${formulajs}.js`) -->
+    <script>class MathClassF1equ extends UIMathClass {
+            genEquData() {
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 10; j++) {
+                        let TiXing = i + 1;
+                        let Range = {}
+                        Range["D15"] = "*"
+                        Range["E15"] = "%"
+                        let s1 = CreatAEq(TiXing, 9, Range)
+                        this.QT[i][j] = s1.St;
+                        this.AQT[i][j] = s1.CalcVal;
+                        console.log(Range)
+                    }
+                }
+            }
+            showEqu(qti, qno) {
+                super.showEqu(qti, qno);
+                return this.QT[Number(qti) - 1][qno - 1];
+            }
+            equalAns(qti, qno, AnsZ, AnsM) {
+                let ansx = App.AQT[Number(qti) - 1][qno - 1];
+                if (this.isfraction(qti, qno)) {
+                    return Math.abs(ansx - (AnsZ / AnsM)) < 0.0001
+                } else {
+                    if ((typeof ansx) == "number") return ansx == AnsZ;
+                    if ((typeof ansx) == "string") return ansx == AnsZ;
+                    if ((typeof ansx) == "object") return ansx["F116"] == AnsZ && ansx["G116"] == AnsM;
+                }
+            }
+            getAnsNum(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["F116"]; }
+            getAnsDen(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["G116"]; }
+            getStAns(qti, qno) { return this.AQT[Number(qti) - 1][qno - 1]; }
+        }
+        let App = new MathClassF1equ();
+        //if(`p5`=="f1"){  App=new F1_UIMathClass();  }
+        var script = document.createElement('script');
+        script.onload = function () {
+            //do stuff with the script
+            if (ft == "f201") { App = new F201_UIMathClass(); }
+            else if (ft == "f202") { App = new F202_UIMathClass(); }
+            else if (ft == "f2") { App = new F2_UIMathClass(); }
+            else if (ft == "f1") { App = new MathClassF1equ(); }
+            else if (ft == "p2") { App = new MathClassF1equ(); }
+            else if (ft == "p5") { App = new MathClassF1equ(); }
+            else { App = new MathClassF1equ(); }
+            App.genEquData();
+        };
+        script.src = "/math/question/" + ft + ".js";
+        document.head.appendChild(script);
+        function GetQuestion(x) {
+            let qno = ($('#CHKQT00' + x).text() == "Start") ? 1 : Number($('#CHKQT00' + x).text().split("/")[0]) + 1;
+            $("#ANSQT00" + x).val("");
+            $("#ANSQTM00" + x).val("");
+            $("#ANSQT00" + x).prop('disabled', false);
+            $("#ANSQT00" + x).css("display", "block");
+            $("#ANSQT00" + x).focus();
+            $("#ANSQTM00" + x).css("display", "block");
+            if (!App.isfraction(x, qno)) {
+                $("#ANSQTM00" + x).css("display", "none");
+                $("#ANSQTM00" + x).val("1");
+            }
+            $('#CHKQT00' + x).text(qno + "/10确定");
+            $('#QT00' + x).html("\\(" + App.showEqu(x, qno) + "\\)");
+            App.updateMathContent(x);
+            close_msgbox('AnsMsgbox');
+        }
+        function GetCheckAns(x) {
+            if ($('#CHKQT00' + x).text() == "Start") {
+                GetQuestion(x);
+            } else {
+                let qno = Number($('#CHKQT00' + x).text().split("/")[0]);
+                let ansZ = $("#ANSQT00" + x).val();
+                let ansM = $("#ANSQTM00" + x).val();
+                if (ansZ == "" || ansM == "") { }
+                else {
+                    $("#ANSQT00" + x).prop('disabled', true);
+                    show_AnsMsgbox(x, qno, ansZ, ansM);
+                }
+            }
+        }
+        $(document).ready(function () {
+            var d = (new Date()).toISOString().substring(0, 10).replace(/-/g, "");
+            var t = (new Date()).toISOString().substring(11, 19).split(':');
+            let h = Number(t[0]) + 8;
+            h = h > 9 ? "" + h : "0" + h;
+            var ti = h + "" + t[1] + "" + t[2];   //Number(t[0])+8 +""+t[1]+""+t[2];
+            $("#txtdate").text(d + ti);
+            let mathtitle = { "f1": "一元一次方程", "f2": "有理數運算", "f201": "十字相乘法因式分", "f202": "一元二次方程式", "p2": "加減", "p5": "方程式" };
+            $("#MathTitle").text(mathtitle[ft]);
+            $("#txtuser").text(username);
+            $("#txtft").text(ft);
+            $("#AnsMsgRes").dialog({ autoOpen: false, width: '80%' });
+            $("#btnAnsMsgRes").click(function () { $("#AnsMsgRes").dialog("open"); });
+            $("#infomsg").dialog({
+                autoOpen: false, width: '100%', height: 500,
+                modal: true, buttons: { OK: function () { $(this).dialog("close"); } }
+            });
+            $("#infomsg").dialog("open");
+            $('#ttl').click(function () { $("#infomsg").dialog("open"); });
+            $('#CHKQT001').click(function () { GetCheckAns(1); });
+            $('#CHKQT002').click(function () { GetCheckAns(2); });
+            $('#CHKQT003').click(function () { GetCheckAns(3); });
+            $('#CHKQT004').click(function () { GetCheckAns(4); });
+            $('input').keyup(function (e) {
+                if (e.keyCode == 13) {
+                    let id = $(this).attr("id");
+                    id = id.substring(id.length - 1);
+                    let ansZ = $("#ANSQT00" + id).val();
+                    let ansM = $("#ANSQTM00" + id).val();
+                    if (ansZ == "" || ansM == "") {
+                        if (ansZ == "") $("#ANSQT00" + id).focus();
+                        else if (ansM == "") $("#ANSQTM00" + id).focus();
+                    } else {
+                        switch (Number(id)) {
+                            case 1: GetCheckAns(1); break;
+                            case 2: GetCheckAns(2); break;
+                            case 3: GetCheckAns(3); break;
+                            case 4: GetCheckAns(4); break;
+                        }
+                    }
+                }
+            });
+        });</script>
+</body>
+
+</html>
