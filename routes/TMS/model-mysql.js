@@ -64,7 +64,7 @@ function listBy(id, limit, token, cb) {
 }
 function AddTMSQF(fn,md,jsondata,username,cb){
     let data={id:0,fn:fn,md:md,jsondata:jsondata,username:username};
-    //console.log(data);
+    console.log(data);
     pool.getConnection(function (err, connection) {
         if(err){cb(err);return;}
         connection.query('INSERT INTO `reltbl` SET ? ', [data], (err, res) => {

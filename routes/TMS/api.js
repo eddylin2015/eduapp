@@ -14,13 +14,10 @@
 'use strict';
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const model = require('./model-mysql');
-
 const router = express.Router();
-
 // Automatically parse request body as JSON
-router.use(bodyParser.json());
+
 
 /**
  * GET /api/books

@@ -14,15 +14,14 @@
 'use strict';
 
 const express = require('express');
-//const images = require('../../lib/images');
-const oauth2 = require('../../lib/oauth2');
+//const images = require('./images');
 const model = require('./model-mysql');
 const images = require('./images');
 const router = express.Router();
 
 // Use the oauth middleware to automatically get the user's profile
 // information and expose login/logout URLs to templates.
-router.use(oauth2.template);
+
 
 // Set Content-Type for all responses for these routes
 router.use((req, res, next) => {

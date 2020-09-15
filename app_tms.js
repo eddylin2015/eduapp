@@ -2,33 +2,40 @@
 var path = require('path');
 var express = require('express');
 var config = require('./config');
-var favicon = require('serve-favicon');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 // passport
 var passport = require('passport');
 const session = require('express-session')
 var RedisStore = require('connect-redis')(session);
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var app = express();
 // view engine setup
+app.disable('etag');
+app.use(require('morgan')('combined'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'), 86400000));
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('trust proxy', true);
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));//default false
 // uncomment after placing your favicon in /public
+
 app.use(session({  
     store: new RedisStore({host:config.get("REDISSTOREHOST"),password:config.get('REDISPASSWORD')}),
     secret: config.get('SECRET'),
     resave: false,
     saveUninitialized: false
 }));
-// app.use(session({ secret: secretkeyboard, resave: false, saveUninitialized: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(session({ secret: "secretkeyboard", resave: false, saveUninitialized: false }));
 // OAuth2
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(require('./db/internalOauth2').router);
+app.use(require('./db/internalOauth2').router);
 // or
-app.use(require('./lib/oauth2').router);  //google-Oauth
+//app.use(require('./lib/oauth2').router);  //google-Oauth
 app.get('/', function (req, res) {
     res.end('local app');
 });

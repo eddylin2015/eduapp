@@ -15,7 +15,7 @@
 const express = require('express');
 // [START setup]
 const passport = require('passport');
-const Strategy = require('passport-local').Strategy;
+const LOCALStrategy = require('passport-local').Strategy;
 const users = require('./internal_users');
 
 
@@ -35,16 +35,10 @@ function extractProfile(profile) {
 // (`username` and `password`) submitted by the user.  The function must verify
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
-passport.use(new Strategy(
+passport.use(new LOCALStrategy (
     function (username, password, cb) {
-        /*
-        db.users.findByUsername(username, function (err, user) {
-            if (err) { return cb(err); }
-            if (!user) { return cb(null, false); }
-            if (user.password != password) { return cb(null, false); }
-            return cb(null, user);
-        });*/
-        users.findByUsernamePassword(username, password, function (err, user) {
+        console.log(username,password);
+        users.findByUsername(username, function (err, user) {
             if (err) { return cb(err); }
             if (!user) { return cb(null, false); }
             if (user.password != password) { return cb(null, false); }
