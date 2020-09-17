@@ -1,0 +1,20 @@
+﻿body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    color: white;
+    /*color: #112211;background-color: #f3d778;*/
+	background-color:#151414
+}
+
+a {
+    color: #00B7FF;
+}
+textarea {
+  color: #f0f0f0;
+  background-color: #050c02;
+}

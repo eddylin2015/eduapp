@@ -50,7 +50,7 @@ router.get('/mathindex.jsp', (req, res, next) => {
 router.post('/AddTMSQF', (req, res, next) => {
   if(!req.user){ res.end("Error: no login user!"); }
   else{
-    let username=req.user.username;
+    let username=req.user.displayName;
     let studref=req.user.email.split('@')[0];
     let fn=req.body.fn;
     let d=new Date();
@@ -63,9 +63,7 @@ router.post('/AddTMSQF', (req, res, next) => {
       if(err) {console.log(err);return res.end("error");}
       res.end(`存儲成功. 記錄編號: ${ins_id} .`);
     });
-    
   //console.log(fnn,md,jsondata);
-  
   //res.end(JSON.stringify(req.body));
   }
 });
@@ -148,7 +146,23 @@ model.TMSQFlistbydate(sd,ed,(err,maths_data)=>{
  });
 });
 });
-
+router.get('/tmsMyReport', require('connect-ensure-login').ensureLoggedIn(), (req, Response, next) => {
+  Response.render('TMSUI/tmsReportQuery.pug', {
+      profile:req.user,
+      dt: fmt_now()
+ });
+});
+router.post('/tmsMyReport', images.multer.array('upload',16),    require('connect-ensure-login').ensureLoggedIn(), (req, Response, next) => {
+let sd=d2s(req.body.sd,"000000");
+let ed=d2s(req.body.ed,"999999");
+let fmt=req.body.fmt;
+model.TMSQFlistbyUserName(sd,ed,req.user.username,(err,maths_data)=>{
+  Response.render('TMSUI/tmsReport.pug', {
+      profile:req.user,
+      data:maths_data
+ });
+});
+});
 
 /**
  * Errors on "/books/*" routes.

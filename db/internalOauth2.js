@@ -16,7 +16,7 @@ const express = require('express');
 // [START setup]
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
-const users = require('./internal_users');
+const users = require('./internal_users_redis');
 
 
 function extractProfile(profile) {
@@ -37,19 +37,19 @@ function extractProfile(profile) {
 // will be set at `req.user` in route handlers after authentication.
 passport.use(new Strategy(
     function (username, password, cb) {
-        /*
-        db.users.findByUsername(username, function (err, user) {
-            if (err) { return cb(err); }
-            if (!user) { return cb(null, false); }
-            if (user.password != password) { return cb(null, false); }
-            return cb(null, user);
-        });*/
-        users.findByUsernamePassword(username, password, function (err, user) {
+        users.findByUsername(username, function (err, user) {
             if (err) { return cb(err); }
             if (!user) { return cb(null, false); }
             if (user.password != password) { return cb(null, false); }
             return cb(null, user);
         });
+        /*
+        users.findByUsernamePassword(username, password, function (err, user) {
+            if (err) { return cb(err); }
+            if (!user) { return cb(null, false); }
+            if (user.password != password) { return cb(null, false); }
+            return cb(null, user);
+        });*/
     }));
 // Configure Passport authenticated session persistence.
 // In order to restore authentication state across HTTP requests, Passport needs
@@ -70,7 +70,7 @@ passport.deserializeUser(function (id, cb) {
 
 const router = express.Router();
 router.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login' }),
+    passport.authenticate('local', { failureRedirect: '/internal/login' }),
     function (req, res) {
         res.redirect('/internal/');
     });
@@ -83,8 +83,18 @@ router.post('/auth/login',
 // Deletes the user's credentials and profile from the session.
 // This does not revoke any active tokens.
 router.get('/logout', (req, res) => {
+    let g=false;
+    if(req.user && req.user.gact) g=true;
     req.logout();
+    if(g)
+    {res.redirect('/internal/gactlogout');}
+    else{
     res.redirect('/internal/');
+    }
+});
+router.get('/gactlogout', (req, res) => {
+    res.set({'content-type':'text/html ;charset=utf-8'});
+    res.end('<a href="/internal">back</a>; 是否登出當前G帳號 <a href=https://accounts.google.com/logout>Click Logout Google Account!</a>');
 });
 router.get('/auth/logout', (req, res) => {
     req.logout();
@@ -93,7 +103,7 @@ router.get('/auth/logout', (req, res) => {
 function authRequired(req, res, next) {
     if (!req.user) {
         req.session.oauth2return = req.originalUrl;
-        return res.redirect('/auth/login');
+        return res.redirect('/internal/auth/login');
     }
     next();
 }

@@ -1,5 +1,6 @@
 *.*~
 *.*.swp
+db/internal_users_records.js
 favicon.ico
 app.js
 mailrelaydata.js
@@ -28,9 +29,7 @@ public/ckeditorimages/
 public/doc/
 public/fonts/
 public/images/
-public/javascripts/
 public/jquery-ui-dist/
-public/stylesheets/
 sslcert/
 routes/attend/
 routes/azwg/

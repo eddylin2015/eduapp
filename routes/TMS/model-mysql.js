@@ -91,6 +91,20 @@ function TMSQFlistbydate(sd,ed,cb) {
         })
       })
       }
+      
+      function TMSQFlistbyUserName(sd,ed,username,cb) {
+        pool.getConnection(function (err, connection) {
+            if(err){cb(err);return;}
+            connection.query('SELECT * FROM reltbl where md >= ? and md <= ? and username=?;',[sd,ed,username], function (err, rows) {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                cb(null, rows);
+                connection.release();
+            })
+          })
+          }      
 function create(userid, data, cb) {
   
     pool.getConnection(function (err, connection) {
@@ -156,6 +170,7 @@ function _delete(userid,id ,cb) {
 module.exports = {
     AddTMSQF:AddTMSQF,    
     TMSQFlistbydate:TMSQFlistbydate,
+    TMSQFlistbyUserName:TMSQFlistbyUserName,
     list: list,
 	listBy: listBy,
     listMore: listMore,

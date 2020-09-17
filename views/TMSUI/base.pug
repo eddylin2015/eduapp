@@ -46,8 +46,12 @@ html(lang="en")
             li
               a(href="/internal/TMS") 
                 span 數學
+            li
+              a(href="/internal/TMS/tmsMyReport") 
+                span 列表
+
             if(profile)    
-              -let flag=profile.email=="lammou@mail.mbc.edu.mo"||profile.email=="lammou@mail.mbc.edu.mo"    
+              -let flag=profile.email=="lammou@mail.mbc.edu.mo"||profile.email=="lammou@mail.mbc.edu.mo" ||profile.email=="laitakseng@mail.mbc.edu.mo"    
               if(flag)
                 li
                   a(href="/internal/TMS/tmsReportQuery") 

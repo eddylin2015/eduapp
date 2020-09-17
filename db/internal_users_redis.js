@@ -1,5 +1,7 @@
 ﻿var http = require('http');
 const config = require('../config');
+var reids=require("redis");
+var client=reids.createClient();
 var records = require('./internal_users_records').records;
 function encode_key(x) {
     var d = new Date();
@@ -18,7 +20,11 @@ exports.findById = function (id, cb) {
                 return cb(null, record);
             }
         }
-        cb(new Error('User ' + id + ' does not exist'));
+        client.hget("Users",id.toString(),function(err,result){
+            if(err) cb(new Error('User ' + id + ' does not exist'));
+            let user=JSON.parse(result);
+            return cb(null,user);
+        });
     });
 }
 
