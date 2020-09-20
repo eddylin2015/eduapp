@@ -1,11 +1,11 @@
 //分數
 class AFrc {
     constructor(){}
-    FenZ = 0;   // 分數的結構
-    FenM = 0;    // 分子，正整型數
-    Sgn = 0;     //' 符號，只取±1
-    Val = 0;     //  ' 分數的值，單精型數
-    St = "";    //     ' 分數的單行運算式，字串
+    FenZ = 0;   //' 分數的結構
+    FenM = 0;   //' 分子，正整型數
+    Sgn = 0;    //' 符號，只取±1
+    Val = 0;    //' 分數的值，單精型數
+    St = "";    //' 分數的單行運算式，字串
 }
 //'運算式(最多4項)的結構
 class AExps {      
@@ -15,48 +15,14 @@ class AExps {
    Val = 0 ;                  // As Single   ' 值
    St  = "" ;                 // As String   ' 代數表逹式子 ' 單行字串式
 }
-/*
-Public TiHao             As Integer               ' 題號
-Public TiXing            As Integer                 ' 題型
-Public Epslon            As Single                  ' 允許誤差
-Public T1                  As Single                  ' 起始計時
-Public StdTime(4)     As Single                  ' 標準時間(解題的限定時間)
-Public Over               As Boolean              ' 10題練習完成
-Public SwJie             As Boolean               ' 是否已經解答
-Public TZD               As String                   ' 滑鼠停駐點
-Public TExps             As AExps
-*/
+
 //計算公具
 class TmsUts{
- Val(s) { return Number(s) }  //文字轉數值
- Int(s) { return Math.floor(s) } //取整數
- Str(x) { return x.toString(); } //轉文字
- //數值的符號 +1 ,-1;
- Sgn(x) { if(isNaN(x))return NaN; if(x==-0) return -1;if(x==+0) return +1;if(x>0) return +1; if(x<0) return -1; }
- Abs(x) { return Math.abs(x); }
- Rnd(){ return Math.random();}
- Max(a, b) { return a > b ? a : b; }
- Min(a, b) { return a < b ? a : b; }
- Mid(Sd, a, b=-1) { let bb = b == -1 ? Sd.length - a : b; return Sd.substring(a, a + bb); }
- Left(Sd, a) { return Sd.substring(0, a); }
- Len(Sd){return Sd.length;}
- InStr(s1, s2) { return s1.indexOf(s2);/* string.indexOf(searchvalue, start)*/ }
- InStr2(Start, Ss, Sa) { return Ss.indexOf(Sa, Start); }
- Right(s1, n) { return s1.substring(s1.length - n); }
- Replace(str,find,replacewith){  var re = new RegExp("["+find+"]", 'g'); return str.replace(re,replacewith);}
- Trim(str){ return str.replace(/^\s+|\s+$/gm,'');}
- CDbl(v){Number(v);}
- AllTrim(Ss) {
-    let s1 = "", s2; 
-    for (let i = 0; i < Ss.length; i++) { s2 = Ss[i]; if (s2 != ' ') s1 += s2;  }
-    return s1;
-}
-/*
 
+/*
  '------ 取得[Ta, Tb] 間亂數, 小數位 Desm --------
  ' ------ 限制範圍 [Tc, Td]
  ' ------SwIs 是 限制 開關, 0 不限制, 1 限制區域， 2 限制2點
-
 * TakeARnd : Take a Rnd
 * rang Ta - Tb    -10..10
 * Desm 10^Desm 取整的進位調整 default=0
@@ -81,31 +47,14 @@ TakeARnd(Ta, Tb, Desm, SwIs, Tc, Td) //As Single
     }
     return r;
 }
-
-//' ------------- 最大公約數 ------------
-//' ------- i, j HCF  ------
-//Public Function HCF(i As Single, j As Single) As Single
-HCF(i, j) //As Single
-{
-    let m, n, r, k
-    m = Math.abs(i); n = Math.abs(j);
-    if (this.Sgn(m) * this.Sgn(n) == 0) {
-        n = 1;
-    } else {
-        if (m < n) { r = m; m = n; n = r }
-        r = m % n;
-        k = n
-        if (r > 0) { n = this.HCF(k, r); }
-    }
-    return n
-}
 /*
  ' ------ 建構一個隨機分數,  ---------------
- ' ----- 分子為(-k , k) 內的整數-------
- ' ------  分數的SwIs ：0  不允許整數，1 允許整數，2 真分數，3 假分數
+ ' -----  分子為(-k , k) 內的整數-------
+ ' ------ 分數的SwIs ：0  不允許整數，1 允許整數，2 真分數，3 假分數
+ '  ------亂數的SwIs 是 限制 開關, 0 不限制, 1 限制區域， 2 限制2點
 */
 // Public Function TakeAFrc(k As Single, SwIs As Integer) As AFrc
-// k = TakeARnd    SwIs 0,1,2
+// k = TakeARnd SwIs 0,1,2
  TakeAFrc(k, SwIs)//As AFrc
 {
     let a, b, c, r;
@@ -133,6 +82,25 @@ HCF(i, j) //As Single
     f.St = (f.Sgn * f.FenZ) + "/" + (f.FenM)
     return f
 }
+
+//' ------------- 最大公約數 ------------
+//' ------- i, j HCF  ------
+//Public Function HCF(i As Single, j As Single) As Single
+HCF(i, j) //As Single
+{
+    let m, n, r, k
+    m = Math.abs(i); n = Math.abs(j);
+    if (this.Sgn(m) * this.Sgn(n) == 0) {
+        n = 1;
+    } else {
+        if (m < n) { r = m; m = n; n = r }
+        r = m % n;
+        k = n
+        if (r > 0) { n = this.HCF(k, r); }
+    }
+    return n
+}
+
 //' ------ ·ÖÊý³Ë·¨ ------
 //' ----- ·ÖÊý x ·ÖÊý -------
 //Public Function FxF(Tf1 As AFrc, Tf2 As AFrc) As AFrc
@@ -217,7 +185,6 @@ HCF(i, j) //As Single
 /*
 ' ------ 分數加法 ---------------
 ' ------- Ts 是 ± 號
-//' ------- Ts ÊÇ ¡À ºÅ
 */
 //Public Function FPlusF(Tf1 As AFrc, Tf2 As AFrc, Ts As String) As AFrc
  FPlusF(Tf1, Tf2, Ts) {
@@ -329,6 +296,29 @@ HCF(i, j) //As Single
     } catch (e) { }
 }
  getRndInteger(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min;}
+ Val(s) { return Number(s) }  //文字轉數值
+ Int(s) { return Math.floor(s) } //取整數
+ Str(x) { return x.toString(); } //轉文字
+ //數值的符號 +1 ,-1;
+ Sgn(x) { if(isNaN(x))return NaN; if(x==-0) return -1;if(x==+0) return +1;if(x>0) return +1; if(x<0) return -1; }
+ Abs(x) { return Math.abs(x); }
+ Rnd(){ return Math.random();}
+ Max(a, b) { return a > b ? a : b; }
+ Min(a, b) { return a < b ? a : b; }
+ Mid(Sd, a, b=-1) { let bb = b == -1 ? Sd.length - a : b; return Sd.substring(a, a + bb); }
+ Left(Sd, a) { return Sd.substring(0, a); }
+ Len(Sd){return Sd.length;}
+ InStr(s1, s2) { return s1.indexOf(s2);/* string.indexOf(searchvalue, start)*/ }
+ InStr2(Start, Ss, Sa) { return Ss.indexOf(Sa, Start); }
+ Right(s1, n) { return s1.substring(s1.length - n); }
+ Replace(str,find,replacewith){  var re = new RegExp("["+find+"]", 'g'); return str.replace(re,replacewith);}
+ Trim(str){ return str.replace(/^\s+|\s+$/gm,'');}
+ CDbl(v){Number(v);}
+ AllTrim(Ss) {
+    let s1 = "", s2; 
+    for (let i = 0; i < Ss.length; i++) { s2 = Ss[i]; if (s2 != ' ') s1 += s2;  }
+    return s1;
+}
 }
 if (typeof module !== 'undefined' && module.exports) {
 module.exports = {    AFrc: AFrc,   AExps: AExps, TmsUts:TmsUts     };

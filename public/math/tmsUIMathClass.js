@@ -6,8 +6,19 @@ class UIMathClass {
         //super(height, width);  
         this.QT = [[], [], [], []];//題目
         this.AQT = [[], [], [], []];//答案
-        this.AQTR = [[], [], [], []];//RANGE[]
+        this.AQTR = [[], [], [], []];//答案儲存陣列RANGE[]
         this.QTTime = [[], [], [], []]; //時間
+        /*
+        Public TiHao             As Integer               ' 題號
+        Public TiXing            As Integer                 ' 題型
+        Public Epslon            As Single                  ' 允許誤差
+        Public T1                  As Single                  ' 起始計時
+        Public StdTime(4)     As Single                  ' 標準時間(解題的限定時間)
+        Public Over               As Boolean              ' 10題練習完成
+        Public SwJie             As Boolean               ' 是否已經解答
+        Public TZD               As String                   ' 滑鼠停駐點
+        Public TExps             As AExps
+        */
     }
     //顯示代數書寫表達樣本
     updateMathContent(x) {
