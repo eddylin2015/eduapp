@@ -1,43 +1,55 @@
 //Option Explicit
 'use strict';
+//UI介面接口
 class UIMathClass {
     constructor() {
         //super(height, width);  
-        this.QT = [[], [], [], []];
-        this.AQT = [[], [], [], []];
-        this.AQTR = [[], [], [], []];
-        this.QTTime = [[], [], [], []];
+        this.QT = [[], [], [], []];//題目
+        this.AQT = [[], [], [], []];//答案
+        this.AQTR = [[], [], [], []];//RANGE[]
+        this.QTTime = [[], [], [], []]; //時間
     }
+    //顯示代數書寫表達樣本
     updateMathContent(x) {
         var math = document.getElementById("QT00" + x);
         MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] } });
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "QT00" + x]);
     }
+    //檢查答案相等
     equalAns(qti, qno, AnsZ, AnsM) {
         let ansx = App.AQT[Number(qti) - 1][qno - 1];
         if ((typeof ansx) == "number") return ansx == AnsZ;
         if ((typeof ansx) == "string") return ansx == AnsZ;
     }
+    //產生等式數據
     genEquData() { }
+    //顯示式子,記下開始時間
     showEqu(qti, qno) {
         this.QTTime[qti - 1, qno - 1] = Date.now();
     }
+    //取得式子描述
     getSt(qti,qno){
       return  this.QT[Number(qti) - 1][qno - 1];
     }
+    //取得式子答案描述
     getStAns(qti,qno){
       return "nothing"
     }
+    //取得等式答案
     getEquAns(qti, qno) {
         this.QTTime[qti - 1, qno - 1] = Date.now() - this.QTTime[qti - 1, qno - 1];
         return App.AQT[Number(qti) - 1][qno - 1];
     }
+    //取得解題時間
     getEquTime(qti, qno) {
         if (this.QTTime[qti - 1, qno - 1] / 1000 > 1200) return 1200;
         return (this.QTTime[qti - 1, qno - 1] / 1000).toFixed(2);
     }
+    //取得答案數值
     getAnsNum(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]; }
+    //取得答案數分母值
     getAnsDen(qti, qno) { return 1; }
+    //昰答案整數或是分數
     isfraction(qti,qno) { return App.AQT[Number(qti) - 1][qno - 1].toString().indexOf('.')>0;}
 }
 class MathClassG2 extends UIMathClass {

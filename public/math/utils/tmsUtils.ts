@@ -1,23 +1,37 @@
+//分數
 class AFrc {
     constructor(){}
-    FenZ = 0;    
-    FenM = 0;    
-    Sgn = 0;
-    Val = 0;
-    St = "";
+    FenZ = 0;   // 分數的結構
+    FenM = 0;    // 分子，正整型數
+    Sgn = 0;     //' 符號，只取±1
+    Val = 0;     //  ' 分數的值，單精型數
+    St = "";    //     ' 分數的單行運算式，字串
 }
+//'運算式(最多4項)的結構
 class AExps {      
-   constructor() {                                                        //  '桶湛宒(郔嗣4砐)腔賦凳
-      }
-   Nf = [new AFrc(),new AFrc(),new AFrc(),new AFrc(),new AFrc()];  //  As AFrc                      ' 跪砐褫眕岆煦杅麼淕杅(fenzㄘ
-   OPr= ["","","","",""];     // As String   ' 堍呾睫ㄗ嬤說睿硌杅)
-   Val = 0 ;                    // As Single 
-   St  = "" ;                   // As String   ' 等俴趼揹宒
+   constructor() {   }
+   Nf = [new AFrc(),new AFrc(),new AFrc(),new AFrc(),new AFrc()];  //  As AFrc ' 各項可以是分數或整數(fenz）                    ' 跪砐褫眕岆煦杅麼淕杅(fenzㄘ
+   OPr= ["","","","",""];     // As String   ' 操作符' 運運算元（括弧和指數)
+   Val = 0 ;                  // As Single   ' 值
+   St  = "" ;                 // As String   ' 代數表逹式子 ' 單行字串式
 }
+/*
+Public TiHao             As Integer               ' 題號
+Public TiXing            As Integer                 ' 題型
+Public Epslon            As Single                  ' 允許誤差
+Public T1                  As Single                  ' 起始計時
+Public StdTime(4)     As Single                  ' 標準時間(解題的限定時間)
+Public Over               As Boolean              ' 10題練習完成
+Public SwJie             As Boolean               ' 是否已經解答
+Public TZD               As String                   ' 滑鼠停駐點
+Public TExps             As AExps
+*/
+//計算公具
 class TmsUts{
- Val(s) { return Number(s) }
- Int(s) { return Math.floor(s) }
- Str(x) { return x.toString(); }
+ Val(s) { return Number(s) }  //文字轉數值
+ Int(s) { return Math.floor(s) } //取整數
+ Str(x) { return x.toString(); } //轉文字
+ //數值的符號 +1 ,-1;
  Sgn(x) { if(isNaN(x))return NaN; if(x==-0) return -1;if(x==+0) return +1;if(x>0) return +1; if(x<0) return -1; }
  Abs(x) { return Math.abs(x); }
  Rnd(){ return Math.random();}
@@ -38,6 +52,11 @@ class TmsUts{
     return s1;
 }
 /*
+
+ '------ 取得[Ta, Tb] 間亂數, 小數位 Desm --------
+ ' ------ 限制範圍 [Tc, Td]
+ ' ------SwIs 是 限制 開關, 0 不限制, 1 限制區域， 2 限制2點
+
 * TakeARnd : Take a Rnd
 * rang Ta - Tb    -10..10
 * Desm 10^Desm 取整的進位調整 default=0
@@ -63,10 +82,10 @@ TakeARnd(Ta, Tb, Desm, SwIs, Tc, Td) //As Single
     return r;
 }
 
-//' ------------- Á½¸öÊýµÄ HCF ------------
-//' ------- i, j ¿ÉÒÔÎª¸º¿ÉÒÔÎª0£¬µ«HCF ×ÜÊÇÕýµÄ ------
+//' ------------- 最大公約數 ------------
+//' ------- i, j HCF  ------
 //Public Function HCF(i As Single, j As Single) As Single
- HCF(i, j) //As Single
+HCF(i, j) //As Single
 {
     let m, n, r, k
     m = Math.abs(i); n = Math.abs(j);
@@ -80,20 +99,20 @@ TakeARnd(Ta, Tb, Desm, SwIs, Tc, Td) //As Single
     }
     return n
 }
-
-//' ------ ½¨¹¹Ò»¸öËæ»ú·ÖÊý,  ---------------
-//' ----- ·Ö×ÓÎª(-k , k) ÄÚµÄÕûÊý-------
-//' ------  ·ÖÊýµÄSwIs £º0  ²»ÔÊÐíÕûÊý£¬1 ÔÊÐíÕûÊý£¬2 Õæ·ÖÊý£¬3 ¼Ù·ÖÊý
-//'  ------Ëæ»úÊýµÄSwIs ÊÇ ÏÞÖÆ ¿ª¹Ø, 0 ²»ÏÞÖÆ, 1 ÏÞÖÆÇøÓò£¬ 2 ÏÞÖÆ2µã
+/*
+ ' ------ 建構一個隨機分數,  ---------------
+ ' ----- 分子為(-k , k) 內的整數-------
+ ' ------  分數的SwIs ：0  不允許整數，1 允許整數，2 真分數，3 假分數
+*/
 // Public Function TakeAFrc(k As Single, SwIs As Integer) As AFrc
-// k = tabeARnd    SwIs 0,1,2
+// k = TakeARnd    SwIs 0,1,2
  TakeAFrc(k, SwIs)//As AFrc
 {
     let a, b, c, r;
     let f = new AFrc, BL = true;
     while (BL) {
-        a = this.TakeARnd(-k, k, 0, 1, 0, 0);
-        b = this.TakeARnd(1, k, 0, 1, 0, 0);
+        a = this.TakeARnd(-k, k, 0, 1, 0, 0);// '  分子
+        b = this.TakeARnd(1, k, 0, 1, 0, 0);//    ' 分母
         r = this.HCF(a, b);
         a = a / r; b = b / r
         switch (SwIs) {
@@ -107,8 +126,8 @@ TakeARnd(Ta, Tb, Desm, SwIs, Tc, Td) //As Single
                 BL = Math.abs(a) <= Math.abs(b) || b == 1;
         }
     }
-    f.Sgn = this.Sgn(a)                              //      ' ·ÖÄ¸×ÜÎªÕý, ´Ó·Ö×ÓÈ¡µÃ·ûºÅ
-    f.FenZ = Math.abs(a)                              //    ' È¡µÄ·ûºÅáá£¬·Ö×Ó¸ÄÎªÕý
+    f.Sgn = this.Sgn(a)                              //    ' 分母總為正, 從分子取得符號
+    f.FenZ = Math.abs(a)                              //    ' 取的符號後，分子改為正
     f.FenM = b
     f.Val = f.Sgn * (f.FenZ / f.FenM)
     f.St = (f.Sgn * f.FenZ) + "/" + (f.FenM)
@@ -195,8 +214,11 @@ TakeARnd(Ta, Tb, Desm, SwIs, Tc, Td) //As Single
     }
     return F1
 }
-//' ------ ·ÖÊý¼Ó·¨ ---------------
+/*
+' ------ 分數加法 ---------------
+' ------- Ts 是 ± 號
 //' ------- Ts ÊÇ ¡À ºÅ
+*/
 //Public Function FPlusF(Tf1 As AFrc, Tf2 As AFrc, Ts As String) As AFrc
  FPlusF(Tf1, Tf2, Ts) {
     let a1, b1, a2, b2;//Int
