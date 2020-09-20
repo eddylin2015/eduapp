@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
+var oauth2=require('../db/internalOauth2.js')
 /* GET home page. */
 
 router.get('/internal', function (req, res) {   
@@ -37,7 +38,7 @@ router.get('/internal/logout',
     });
 
 router.get('/internal/profile',
-    require('connect-ensure-login').ensureLoggedIn(),
+    oauth2.required,
     function (req, res) {
         res.render('profile', { profile: req.user, profilestr: JSON.stringify(req.user) });
     });
@@ -56,19 +57,5 @@ var staticlogfile = function (filename, mimetype, res) {
         return res.end();
     });
 }
-router.get('/internal/gs_gateway_log',
-    require('connect-ensure-login').ensureLoggedIn(),
-    function (req, res) {
-        let mimetype = "text/plain";
-        let filename = "c:/code/sslweb/gsuite_gmail_inboundgateway_mailrelayserver_log.txt";
-        staticlogfile(filename, mimetype, res);
-    });
-router.get('/internal/smtp_helo_domain_log',
-    require('connect-ensure-login').ensureLoggedIn(),
-    function (req, res) {
-        let mimetype = "text/plain";
-        let filename = "c:/code/coolmail2/mlogdomain.txt";
-        staticlogfile(filename, mimetype, res);
-    });
 //
 module.exports = router;

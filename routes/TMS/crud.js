@@ -17,6 +17,7 @@ const express = require('express');
 //const images = require('./images');
 const model = require('./model-mysql');
 const images = require('./images');
+const oauth2=require('../../db/internalOauth2')
 const router = express.Router();
 
 // Use the oauth middleware to automatically get the user's profile
@@ -34,7 +35,7 @@ router.use((req, res, next) => {
  *
  * Display a page of books (up to ten at a time).
  */
-router.get('/', require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/', oauth2.required, (req, res, next) => {
     res.render('TMSUI/TmsIndex.pug', {
   });
 });
@@ -103,18 +104,18 @@ router.get('/v0trianing.jsp',(req, res, next) => {
     profile:req.user
 });
 });
-router.get('/f1onedimeq',require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/f1onedimeq',oauth2.required, (req, res, next) => {
   res.render('TMSUI/F1OneDimEqu.pug', {
     MathTitle:'一元一次程式'
 });
 });
 
-router.get('/f1equ',require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/f1equ',oauth2.required, (req, res, next) => {
   res.render('TMSUI/g2arithmeticf1.pug', {
     MathTitle:'一元一次程式'
 });
 });
-router.get('/g2arithmetic',require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/g2arithmetic',oauth2.required, (req, res, next) => {
   res.render('TMSUI/g2arithmetic.pug', {
     MathTitle:'一元一次程式'
 });
@@ -130,13 +131,13 @@ function d2s(x,fix) {
   var y = d.getFullYear(); var m = d.getMonth() + 1; var d_ = d.getDate();
   return  y +  (m < 10 ? "0" : "") + m +  (d_ < 10 ? "0" : "") + d_ +fix;
 }
-router.get('/tmsReportQuery', require('connect-ensure-login').ensureLoggedIn(), (req, Response, next) => {
+router.get('/tmsReportQuery', oauth2.required, (req, Response, next) => {
   Response.render('TMSUI/tmsReportQuery.pug', {
       profile:req.user,
       dt: fmt_now()
  });
 });
-router.post('/tmsReportQuery', images.multer.array('upload',16),    require('connect-ensure-login').ensureLoggedIn(), (req, Response, next) => {
+router.post('/tmsReportQuery', images.multer.array('upload',16),    oauth2.required, (req, Response, next) => {
 let sd=d2s(req.body.sd,"000000");
 let ed=d2s(req.body.ed,"999999");
 let fmt=req.body.fmt;

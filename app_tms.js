@@ -7,7 +7,6 @@ var users = require('./routes/users');
 // passport
 var passport = require('passport');
 const session = require('express-session')
-var RedisStore = require('connect-redis')(session);
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
@@ -23,6 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));//default false
 // uncomment after placing your favicon in /public
 
+var RedisStore = require('connect-redis')(session);
 app.use(session({  
     store: new RedisStore({host:config.get("REDISSTOREHOST"),password:config.get('REDISPASSWORD')}),
     secret: config.get('SECRET'),
@@ -72,5 +72,5 @@ app.use(function (err, req, res, next) {
 });
 app.set('port', 81);
 var server = app.listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + server.address().port);
+   console.log('Express server listening on port ' + server.address().port);
 });
