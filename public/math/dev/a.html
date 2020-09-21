@@ -205,7 +205,7 @@
             GetQuestion(qt);
         }
         function show_AnsMsgbox(x, qno, ansZ, ansM) {
-            let equans = App.getEquAns(x, qno);
+            let equans = App.GetQizAns(x, qno);
             document.getElementById("AnsMsgboxQT").innerHTML = x;
             document.getElementById("AnsMsgboxQNO").innerHTML = qno;
             if ((typeof equans) == "object") {
@@ -217,18 +217,18 @@
             let ans_res = [];
             ans_res[0] = x;
             ans_res[1] = qno;
-            if (App.equalAns(x, qno, ansZ, ansM)) {
+            if (App.CheckAns(x, qno, ansZ, ansM)) {
                 ans_res[2] = "1";
                 document.getElementById("AnsMsgboxCheckAns").innerHTML = "<span class='glyphicon glyphicon-ok'></span>"
             } else {
                 ans_res[2] = "0";
                 document.getElementById("AnsMsgboxCheckAns").innerHTML = "<span class='glyphicon glyphicon-remove'></span>"
             }
-            ans_res[3] = App.getEquTime(x, qno);
+            ans_res[3] = App.GetUseTime(x, qno);
             ans_res[4] = ans_res[2];
-            ans_res[5] = App.getSt(x, qno);
+            ans_res[5] = App.GetQizSt(x, qno);
             ans_res[6] = ansZ;
-            ans_res[7] = App.getAnsNum(x, qno);
+            ans_res[7] = App.GetAns_Num(x, qno);
             var table = document.getElementById("AnsMsgResTable");
             table.deleteRow(table.rows.length - 1);
             var row = table.insertRow();//0 first row
@@ -270,7 +270,7 @@
     <script src="/math/tmsUIMathClass.js">  </script>
     <script src="/math/question/f201.js"> </script>
     <script>class MathClassF1equ extends UIMathClass {
-            genEquData() {
+            InitQizData() {
                 for (let i = 0; i < 4; i++) {
                     for (let j = 0; j < 10; j++) {
                         let TiXing = i + 1;
@@ -284,13 +284,13 @@
                     }
                 }
             }
-            showEqu(qti, qno) {
-                super.showEqu(qti, qno);
+            GetQizStatement(qti, qno) {
+                super.GetQizStatement(qti, qno);
                 return this.QT[Number(qti) - 1][qno - 1];
             }
-            equalAns(qti, qno, AnsZ, AnsM) {
+            CheckAns(qti, qno, AnsZ, AnsM) {
                 let ansx = App.AQT[Number(qti) - 1][qno - 1];
-                if (this.isfraction(qti, qno)) {
+                if (this.IsFraction(qti, qno)) {
                     return Math.abs(ansx - (AnsZ / AnsM)) < 0.0001
                 } else {
                     if ((typeof ansx) == "number") return ansx == AnsZ;
@@ -298,14 +298,14 @@
                     if ((typeof ansx) == "object") return ansx["F116"] == AnsZ && ansx["G116"] == AnsM;
                 }
             }
-            getAnsNum(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["F116"]; }
-            getAnsDen(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["G116"]; }
+            GetAns_Num(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["F116"]; }
+            GetAns_Den(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["G116"]; }
         }
         let App = new MathClassF1equ();
         if (`f201` == "f201") {
             App = new F201_UIMathClass();
         }
-        App.genEquData();
+        App.InitQizData();
 
         function GetQuestion(x) {
             let qno = ($('#CHKQT00' + x).text() == "Start") ? 1 : Number($('#CHKQT00' + x).text().split("/")[0]) + 1;
@@ -315,13 +315,13 @@
             $("#ANSQT00" + x).css("display", "block");
             $("#ANSQT00" + x).focus();
             $("#ANSQTM00" + x).css("display", "block");
-            if (!App.isfraction(x, qno)) {
+            if (!App.IsFraction(x, qno)) {
                 $("#ANSQTM00" + x).css("display", "none");
                 $("#ANSQTM00" + x).val("1");
             }
             $('#CHKQT00' + x).text(qno + "/10确定")
-            $('#QT00' + x).html("\\(" + App.showEqu(x, qno) + "\\)");
-            App.updateMathContent(x);
+            $('#QT00' + x).html("\\(" + App.GetQizStatement(x, qno) + "\\)");
+            App.UpdateMathContent(x);
             close_msgbox('AnsMsgbox');
         }
         function GetCheckAns(x) {

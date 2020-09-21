@@ -11,7 +11,7 @@ function encode_key(x) {
     var res = String.fromCharCode(n+64);
     if (n < 10) n = '0' + n;
     var n = n + res;
-    return n + new Buffer(x).toString('base64');
+    return n + new Buffer.from(x).toString('base64');
 }
 exports.findById = function (id, cb) {
     process.nextTick(function () {

@@ -251,7 +251,7 @@ function f2_main() {
 }
 f2_main();
 class F2_UIMathClass extends UIMathClass {
-    genEquData(){
+    InitQizData(){
       for (let i = 0; i < 4; i++) {
           for(let j=0;j<10;j++){
             let TiXing = i+1;
@@ -266,20 +266,20 @@ class F2_UIMathClass extends UIMathClass {
           }
         }
     }     
-    showEqu(qti,qno)
+    GetQizStatement(qti,qno)
     {
-      super.showEqu(qti,qno);
+      super.GetQizStatement(qti,qno);
       return this.QT[Number(qti)-1][qno-1] ;   
     }
-    getSt(qti,qno)
+    GetQizSt(qti,qno)
     {
         return this.AQTR[Number(qti)-1][qno-1]["F116"]
         //return  this.QT[Number(qti) - 1][qno - 1];
     }
-    getStAns(qti,qno)
+    GetAnsSt(qti,qno)
     {
         let res="";
-        if(this.isfraction(qti,qno)){
+        if(this.IsFraction(qti,qno)){
             res= this.AQTR[Number(qti)-1][qno-1]["F116"]
             let frc_st=calc_frc_expr(res);
             res= `=${frc_st}`;        
@@ -288,10 +288,10 @@ class F2_UIMathClass extends UIMathClass {
         }
         return res;        
     }
-    equalAns(qti,qno, AnsZ,AnsM)
+    CheckAns(qti,qno, AnsZ,AnsM)
     {
       let ansx= App.AQT[Number(qti)-1][qno-1];
-      if(this.isfraction(qti,qno)){
+      if(this.IsFraction(qti,qno)){
         return Math.abs(ansx-(AnsZ/AnsM))<0.0001
       }else{
         if((typeof ansx)=="number") return ansx==AnsZ;
@@ -299,7 +299,7 @@ class F2_UIMathClass extends UIMathClass {
         if((typeof ansx)=="object") return ansx["F116"]==AnsZ && ansx["G116"]==AnsM;
       }
     }
-    getAnsNum(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
-    getAnsDen(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
+    GetAns_Num(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
+    GetAns_Den(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
 }
 if (typeof module !== 'undefined' && module.exports) { module.exports = { f2_main: f2_main, CreatAEq: CreatAEq } }

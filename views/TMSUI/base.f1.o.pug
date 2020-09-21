@@ -31,6 +31,32 @@ html(lang="zh")
     //script(src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML')
     script(src='https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815')
   body
+    if !profile        
+      <table id=login_forom>
+        <c:choose>
+        <c:when test="${empty userEmail}">
+        <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;<td>請<a href="/login">登入</a>!
+        </c:when>
+        <c:otherwise>           
+        </c:otherwise>
+        </c:choose>      
+      </table>          
+    ul(class="nav nav-tabs")
+      li(class="nav-item")
+        a(href="/internal/TMS/mathindex.jsp") 
+          span(class="glyphicon glyphicon-arrow-left")
+          span(style="display:none")= MathTitle     
+          if profile
+             span(style="display:none") #{profile.displayName} &nbsp;
+      li(class="active")
+        a(data-toggle="tab" href="#menu1") 題型1
+      li
+        a(data-toggle="tab" href="#menu2") 題型2
+      li
+        a(data-toggle="tab" href="#menu3") 題型3
+      li
+        a(data-toggle="tab" href="#menu4") 題型4
     
     .container
     block content  
