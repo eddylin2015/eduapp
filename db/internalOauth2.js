@@ -72,7 +72,12 @@ const router = express.Router();
 router.post('/login',
     passport.authenticate('local', { failureRedirect: '/internal/login' }),
     function (req, res) {
-        res.redirect('/internal/');
+        if(req.body.subpath)
+        {
+            res.redirect('/internal/'+req.body.subpath);
+        }else{
+           res.redirect('/internal/');
+        }
     });
 router.post('/auth/login',
     passport.authenticate('local', { failureRedirect: '/login' }),
@@ -94,7 +99,7 @@ router.get('/logout', (req, res) => {
 });
 router.get('/gactlogout', (req, res) => {
     res.set({'content-type':'text/html ;charset=utf-8'});
-    res.end('<a href="/internal">back</a>; 是否登出當前G帳號 <a href=https://accounts.google.com/logout>Click Logout Google Account!</a>');
+    res.end('如果是私人電腦,不需要進一步登出G帳戶,請按<a href="/internal">返回</a>; 如果是公衆電腦, 是否要完全登出Google帳號 <a href=https://accounts.google.com/logout>Click Logout Google Account!</a>');
 });
 router.get('/auth/logout', (req, res) => {
     req.logout();

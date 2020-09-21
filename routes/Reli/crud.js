@@ -54,7 +54,7 @@ router.get('/', (req, res, next) => {
             });
         });
     }else{
-        res.redirect("/internal/login");
+        res.redirect("/internal/login?subpath=RELI");
     }
 });
 router.post('/reli2021_term_start_post.php',images.multer.single('image'),  (req, res, next) => {

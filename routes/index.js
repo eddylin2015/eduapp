@@ -27,7 +27,12 @@ router.get('/login',
     });
 router.get('/internal/login',
     function (req, res) {
-        res.render('login');
+        if(req.query.subpath)
+        {
+            res.render('login',{subpath:req.query.subpath});
+        }else{
+            res.render('login');
+        }
     });
 
 router.get('/internal/logout',
