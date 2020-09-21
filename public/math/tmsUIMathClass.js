@@ -2,33 +2,52 @@
 'use strict';
 class UIMathClass {
     constructor() {
-        //super(height, width);  
-        this.QT = [[], [], [], []];
-        this.AQT = [[], [], [], []];
-        this.AQTR = [[], [], [], []];
-        this.QTTime = [[], [], [], []];
+      //super();  
+      this.QT = [[], [], [], []];//題目
+      this.AQT = [[], [], [], []];//答案
+      this.AQTR = [[], [], [], []];//答案儲存陣列RANGE[]
+      this.QTTime = [[], [], [], []]; //時間
+      /*
+      Public TiHao             As Integer               ' 題號
+      Public TiXing            As Integer                 ' 題型
+      Public Epslon            As Single                  ' 允許誤差
+      Public T1                  As Single                  ' 起始計時
+      Public StdTime(4)     As Single                  ' 標準時間(解題的限定時間)
+      Public Over               As Boolean              ' 10題練習完成
+      Public SwJie             As Boolean               ' 是否已經解答
+      Public TZD               As String                   ' 滑鼠停駐點
+      Public TExps             As AExps
+      */    
     }
     updateMathContent(x) {
+        //顯示代數書寫表達樣本
         var math = document.getElementById("QT00" + x);
         MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] } });
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "QT00" + x]);
     }
     equalAns(qti, qno, AnsZ, AnsM) {
+        //檢查 比對答案
         let ansx = App.AQT[Number(qti) - 1][qno - 1];
         if ((typeof ansx) == "number") return ansx == AnsZ;
         if ((typeof ansx) == "string") return ansx == AnsZ;
     }
-    genEquData() { }
+    genEquData() {
+        //構建式子數據
+     }
     showEqu(qti, qno) {
+        //顯示式子,記下開始時間
         this.QTTime[qti - 1, qno - 1] = Date.now();
     }
     getSt(qti,qno){
+      //取得代數表逹式子 ' 單行字串式
       return  this.QT[Number(qti) - 1][qno - 1];
     }
     getStAns(qti,qno){
+      //取得式子答案描述,代數表逹式子' 單行字串式
       return "nothing"
     }
     getEquAns(qti, qno) {
+        //取得答案
         this.QTTime[qti - 1, qno - 1] = Date.now() - this.QTTime[qti - 1, qno - 1];
         return App.AQT[Number(qti) - 1][qno - 1];
     }
@@ -36,8 +55,11 @@ class UIMathClass {
         if (this.QTTime[qti - 1, qno - 1] / 1000 > 1200) return 1200;
         return (this.QTTime[qti - 1, qno - 1] / 1000).toFixed(2);
     }
+    //取得答案數值
     getAnsNum(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]; }
+    //取得答案數分母值
     getAnsDen(qti, qno) { return 1; }
+    //昰答案整數或是分數
     isfraction(qti,qno) { return App.AQT[Number(qti) - 1][qno - 1].toString().indexOf('.')>0;}
 }
 class MathClassG2 extends UIMathClass {

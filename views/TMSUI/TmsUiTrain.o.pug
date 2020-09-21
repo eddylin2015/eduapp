@@ -1,4 +1,4 @@
-extends ./base.f1.pug
+extends ./base.f1.o.pug
 block content
   mixin MathTestPanel(tabid,pstyle,pintype)
     table(style="margin:10px auto;")
@@ -95,7 +95,7 @@ block content
         div(id=`menu${tabid}` class=tabpane[tabid])
           +MathTestPanel(tabid,instyle,inTxt)
    
-  include include/frm.pug
+  include include/frm.o.pug
   style.
     .MathJax span{font-size:20px;}
   script.
