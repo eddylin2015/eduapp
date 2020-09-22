@@ -13,7 +13,7 @@
 
 </style>
   </head>
-<body>
+<body style="margin-left:2px;margin-right:2px;">
 <script>var jsondata=!{JSON.stringify(JRES)};</script>
 <script type="text/javascript" src="/javascripts/reli.js"></script>   
 <a href="/internal">返回</a>
@@ -30,36 +30,45 @@
 <div class="declaration_note">你所提供的信仰資料只會用於開展校內的福音工作上。</div>
 <div class="declaration_note">你的信仰資料校方不會向第三方披露，同時你有權</div>
 <div class="declaration_note">查閱及更改你提供給校方的個人資料。</div>
-<p>
+<p></p>
 
 <form action="/internal/RELI/reli2021_term_start_post.php"  enctype="multipart/form-data" method="post"  method="post" onsubmit="return AIM.submit(this, {'onStart' : SubmitStudReligionFormstartCallback, 'onComplete' : SubmitStudReligionFormcompleteCallback})">
 <table>
 <tr>
-<td><div id="BASIC">學生証編號：<td><input id="stud_ref" name="stud_ref" readonly="readonly">
+<td><div id="BASIC">學生証號：<td><input id="stud_ref" name="stud_ref" readonly="readonly">
+<tr>
 <td>填報日期：<td><input id="modified_date" size="10" name="modified_date" readonly="readonly">
 <tr>
 <td>姓名：<td><input id="name" name="name" readonly="readonly">
-<td>學號：<td><input id="seat" name="seat" size="2">(<input id="性別0" name="性別" value="男" type="radio">男<input id="性別1" name="性別" value="女" type="radio">女)&nbsp; &nbsp;	班別：<input id="classno" name="classno" size="4">(eg. SG1A)&nbsp; &nbsp; 	年齡：<input id="年齡" name="年齡" size="2" maxlength="2">
+<tr>
+<td>學號：<td><input id="seat" name="seat" size="2">(<input id="性別0" name="性別" value="男" type="radio">男<input id="性別1" name="性別" value="女" type="radio">女)&nbsp; &nbsp;	
+<tr><td>班別：<td><input id="classno" name="classno" size="4">(eg. SG1A)&nbsp; &nbsp;
+<tr><td>年齡：<td><input id="年齡" name="年齡" size="2" maxlength="2">
 </table>
 
 <div>你的<b>宗教信仰</b>：</div>
 <table border="0">
 <tr><td>
   <input id="宗教信仰0" name="宗教信仰" value="基督教" type="radio">基督教：<td>
-  <span>&nbsp;&nbsp;</span>信主年數：<input name="信主年數" id="信主年數" size="2" maxlength="2">年
-  <span>&nbsp;&nbsp;</span>所屬教會：<input name="教會" id="教會"><br>
-  <span>&nbsp;返教會次數：&nbsp;</span>
-<input id="返教會次數0" name="返教會次數" value="每週" type="radio">每週 
-<input id="返教會次數1" name="返教會次數" value="每月一兩次" type="radio">每月一兩次 
-<input id="返教會次數2" name="返教會次數" value="每年兩三次" type="radio">每年兩三次 
-<input id="返教會次數3" name="返教會次數" value="甚少" type="radio">甚少<br>
-<span>&nbsp;有否接受洗禮/浸禮：&nbsp;</span>
-<input id="洗浸禮0" name="洗浸禮" value="有" type="radio">有 
-<input id="洗浸禮1" name="洗浸禮" value="沒有" type="radio">沒有
-<input id="洗浸禮2" name="洗浸禮" value="考慮中" type="radio">考慮中<br>
+  <span style="white-space:break-space;">信主年數：<input name="信主年數" id="信主年數" size="2" maxlength="2">年</span>&nbsp;<br>
+  <span style="white-space:break-space">所屬教會：<input name="教會" id="教會" style="width:50%"><span><br>
+  <span>&nbsp;返教會次數：&nbsp;</span><br>
+<span style="white-space:nowrap"><input id="返教會次數0" name="返教會次數" value="每週" type="radio">每週 </span>
+<span style="white-space:nowrap"><input id="返教會次數1" name="返教會次數" value="每月一兩次" type="radio">每月一兩次 </span>
+<span style="white-space:nowrap"><input id="返教會次數2" name="返教會次數" value="每年兩三次" type="radio">每年兩三次 </span>
+<span style="white-space:nowrap"><input id="返教會次數3" name="返教會次數" value="甚少" type="radio">甚少</span><br>
+<span>&nbsp;有否接受洗禮/浸禮：&nbsp;</span><br>
+<span style="white-space:nowrap"><input id="洗浸禮0" name="洗浸禮" value="有" type="radio">有 </span>
+<span style="white-space:nowrap"><input id="洗浸禮1" name="洗浸禮" value="沒有" type="radio">沒有</span>
+<span style="white-space:nowrap"><input id="洗浸禮2" name="洗浸禮" value="考慮中" type="radio">考慮中</span><br>
 <tr><td>
-  <input id="宗教信仰1" name="宗教信仰" value="天主教" type="radio">天主教：<td> &nbsp;&nbsp;返聖堂次數：&nbsp; 
-  <input id="返聖堂次數0" name="返聖堂次數" value="每週" type="radio">每週&nbsp; &nbsp;<input id="返聖堂次數1" name="返聖堂次數" value="每月一兩次" type="radio">每月一兩次 &nbsp;<input id="返聖堂次數2" name="返聖堂次數" value="每年兩三次" type="radio">每年兩三次 <input id="返聖堂次數3" name="返聖堂次數" value="甚少" type="radio">甚少<br>
+  <input id="宗教信仰1" name="宗教信仰" value="天主教" type="radio">天主教：
+  <td> &nbsp;&nbsp;返聖堂次數：&nbsp; <br>
+  <span style="white-space:nowrap"><input id="返聖堂次數0" name="返聖堂次數" value="每週" type="radio">每週&nbsp; &nbsp;</span>
+  <span style="white-space:nowrap"><input id="返聖堂次數1" name="返聖堂次數" value="每月一兩次" type="radio">每月一兩次 &nbsp;</span>
+  <span style="white-space:nowrap"><input id="返聖堂次數2" name="返聖堂次數" value="每年兩三次" type="radio">每年兩三次 </span>
+  <span style="white-space:nowrap"><input id="返聖堂次數3" name="返聖堂次數" value="甚少" type="radio">甚少</span>
+  <br>
 <tr><td>
   <input id="宗教信仰2" name="宗教信仰" value="佛教" type="radio">佛教<br>
 <tr><td colspan="2">
@@ -92,10 +101,11 @@
 <td><input id="A1信主原因0" name="A1信主原因[]" value=".1.自小接觸信仰" type="checkbox">自小接觸信仰 &nbsp; &nbsp; &nbsp;
 <td><input id="A1信主原因1" name="A1信主原因[]" value=".2.認為神愛我" type="checkbox">認為神愛我 &nbsp; &nbsp; &nbsp;&nbsp;
 <td><input id="A1信主原因2" name="A1信主原因[]" value=".3.相信耶穌是真神" type="checkbox">相信耶穌是真神 &nbsp;&nbsp;
-<td><input id="A1信主原因3" name="A1信主原因[]" value=".4.覺得自己有罪" type="checkbox">覺得自己有罪&nbsp;  
 <tr>
+<td><input id="A1信主原因3" name="A1信主原因[]" value=".4.覺得自己有罪" type="checkbox">覺得自己有罪&nbsp;  
 <td><input id="A1信主原因4" name="A1信主原因[]" value=".5.想得到永生" type="checkbox">想得到永生&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;
 <td><input id="A1信主原因5" name="A1信主原因[]" value=".6.覺得需要神" type="checkbox">覺得需要神 &nbsp; &nbsp;  &nbsp;&nbsp;
+<tr>
 <td><input id="A1信主原因6" name="A1信主原因[]" value=".7.覺得基督徒很好" type="checkbox">覺得基督徒很好 
 <tr>
 <td colspan=4>  <input id="A1信主原因7" name="A1信主原因[]" value=".8.希望從神得到" type="checkbox">希望從神得到<input id="AF希望從神得到" name="AF希望從神得到"> 
@@ -136,6 +146,7 @@
 
   <input id="A6活動時段0" name="A6活動時段[]" value=".1.週一至五中午" type="checkbox">週一至五中午 
   <input id="A6活動時段1" name="A6活動時段[]" value=".2.週一至五下午放學後" type="checkbox">週一至五下午放學後 
+  <br>
   <input id="A6活動時段2" name="A6活動時段[]" value=".3.週六上午" type="checkbox">週六上午 
   <input id="A6活動時段3" name="A6活動時段[]" value=".4.週六下午" type="checkbox">週六下午 <br>
 
@@ -147,8 +158,11 @@
 <table>
 <tr> 
   <td><input id="A8JOIN事奉0" name="A8JOIN事奉" value="是" type="radio">是&nbsp;&nbsp;&nbsp;&nbsp;事奉的崗位：
-  <td><input id="A9事奉0" name="A9事奉[]" value=".1.職員" type="checkbox">職員&nbsp; <input id="A9事奉1" name="A9事奉[]" value=".2.領詩" type="checkbox">領詩&nbsp;
-  <input id="A9事奉2" name="A9事奉[]" value=".3.主席" type="checkbox">主席&nbsp; <input id="A9事奉3" name="A9事奉[]" value=".4.司琴" type="checkbox">司琴&nbsp; 
+  <td>
+  <input id="A9事奉0" name="A9事奉[]" value=".1.職員" type="checkbox">職員&nbsp; <input id="A9事奉1" name="A9事奉[]" value=".2.領詩" type="checkbox">領詩&nbsp;
+  <input id="A9事奉2" name="A9事奉[]" value=".3.主席" type="checkbox">主席&nbsp; 
+  <span style="white-space:nowrap"><input id="A9事奉3" name="A9事奉[]" value=".4.司琴" type="checkbox">司琴</span>&nbsp; 
+  <br>
   <input id="A9事奉3" name="A9事奉[]" value=".5.司儀" type="checkbox">司儀&nbsp; &nbsp; 
   <input id="A9事奉4" name="A9事奉[]" value=".6.帶領活動" type="checkbox">帶領活動 <br>
 <tr>
@@ -161,7 +175,7 @@
 <br>
 <div>A 5. 如果「基教部」舉辦學生<b>福音聚會/活動</b>，你會參與協助嗎？(可選多項)</div>
 <table>
-  <tr><td valign=top><input id="ABJOIN協助0" name="ABJOIN協助" value="會" type="radio">會&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以協助： 
+  <tr><td valign=top><input id="ABJOIN協助0" name="ABJOIN協助" value="會" type="radio">會&nbsp;&nbsp;可以協助： 
 <td><table >
 <tr><td>
 <table>
@@ -169,6 +183,7 @@
 <td><input id="AC協助0" name="AC協助[]" value=".1.鋼琴伴奏" type="checkbox">鋼琴伴奏&nbsp; &nbsp; 
 <td><input id="AC協助1" name="AC協助[]" value=".2.吉他伴奏" type="checkbox">吉他伴奏&nbsp; &nbsp; 
 <td><input id="AC協助2" name="AC協助[]" value=".3.領詩" type="checkbox">領詩&nbsp; &nbsp; 
+<tr>
 <td><input id="AC協助3" name="AC協助[]" value=".4.領禱" type="checkbox">領禱&nbsp; &nbsp; 
 <td><input id="AC協助4" name="AC協助[]" value=".5.分享見證" type="checkbox">分享見證&nbsp; &nbsp; 
 <tr>
@@ -199,6 +214,7 @@
 <tr><td><input id="AE培訓3" name="AE培訓[]" value=".4.傳福音技巧" type="checkbox">傳福音技巧&nbsp; &nbsp; 
 <td><input id="AE培訓4" name="AE培訓[]" value=".5.福音營小組長" type="checkbox">福音營小組長&nbsp; &nbsp; 
 <td><input id="AE培訓5" name="AE培訓[]" value=".6.病患關懷" type="checkbox">病患關懷&nbsp; &nbsp; 
+<tr>
 <td><input id="AE培訓6" name="AE培訓[]" value=".7.福音或信仰課程" type="checkbox">福音/信仰課程&nbsp; &nbsp; 
 <tr><td colspan=4>	 
 <input id="AE培訓7" name="AE培訓[]" value=".8.其他" type="checkbox">其他(請在此列明）： &nbsp; <input id="AE其他培訓" name="AE其他培訓" size="30"> </table>
@@ -212,24 +228,24 @@
 <input type=radio id="AF聖經科1" name="AF聖經科" value="非常滿意">非常滿意 
 <input type=radio id="AF聖經科2" name="AF聖經科" value="頗滿意">頗滿意    
 <input type=radio id="AF聖經科3" name="AF聖經科" value="一般">一般    
-<input type=radio id="AF聖經科4" name="AF聖經科" value="不太滿意">不太滿意   
+<span style="white-space:nowrap"><input type=radio id="AF聖經科4" name="AF聖經科" value="不太滿意">不太滿意</span>
 <input type=radio id="AF聖經科5" name="AF聖經科" value="非常不滿意">非常不滿意  <br>
-<span>原因 / 建議：</span><input id="AF建議" name="AF建議" size=64>                                                               <br><br>             
+<span>原因 / 建議：</span><input id="AF建議" name="AF建議" style="width:50%">                                                               <br><br>             
 <div>A8. 對學校在過往所舉辦的<b>福音活動/聚會</b>中，你比較喜歡哪些? (可選多項, 新同學請選 “不適用”)</div>
 <input type=checkbox id="AG喜歡福音活動聚會0" name="AG喜歡福音活動聚會[]" value=".1.不適用">不適用&nbsp; &nbsp;
 <input type=checkbox id="AG喜歡福音活動聚會1" name="AG喜歡福音活動聚會[]" value=".2.中學生團契">中學生團契&nbsp; &nbsp;
 <input type=checkbox id="AG喜歡福音活動聚會2" name="AG喜歡福音活動聚會[]" value=".3.學生敬拜隊">學生敬拜隊   &nbsp; &nbsp; 
-<input type=checkbox id="AG喜歡福音活動聚會3" name="AG喜歡福音活動聚會[]" value=".4.學生信仰小組">學生信仰小組    &nbsp; &nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="AG喜歡福音活動聚會3" name="AG喜歡福音活動聚會[]" value=".4.學生信仰小組">學生信仰小組</span>    &nbsp; &nbsp;
 <input type=checkbox id="AG喜歡福音活動聚會4" name="AG喜歡福音活動聚會[]" value=".5.福音週">福音週 &nbsp; &nbsp;
 <input type=checkbox id="AG喜歡福音活動聚會5" name="AG喜歡福音活動聚會[]" value=".6.福音營">福音營   <br>
 <input type=checkbox id="AG喜歡福音活動聚會6" name="AG喜歡福音活動聚會[]" value=".7.領袖訓練營">領袖訓練營  &nbsp; &nbsp; 
 <input type=checkbox id="AG喜歡福音活動聚會7" name="AG喜歡福音活動聚會[]" value=".8.佈道會">佈道會   &nbsp; &nbsp;
-<input type=checkbox id="AG喜歡福音活動聚會8" name="AG喜歡福音活動聚會[]" value=".9.福音詩歌歌唱比賽">福音詩歌歌唱比賽   &nbsp; &nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="AG喜歡福音活動聚會8" name="AG喜歡福音活動聚會[]" value=".9.福音詩歌歌唱比賽">福音詩歌歌唱比賽</span>   &nbsp; &nbsp;
 <input type=checkbox id="AG喜歡福音活動聚會9" name="AG喜歡福音活動聚會[]" value=".10.福音創意繪畫比賽">福音創意繪畫比賽  <br>
 <input type=checkbox id="AG喜歡福音活動聚會10" name="AG喜歡福音活動聚會[]" value=".11.沒有任何喜歡的">沒有任何喜歡的 &nbsp; &nbsp;  
 <input type=checkbox id="AG喜歡福音活動聚會11" name="AG喜歡福音活動聚會[]" value=".12.其他 (請在此列明)">其他 (請在此列明)  &nbsp; &nbsp;
-<input id="AG其他" name="AG其他" size=64><br>
-<span>原因 / 建議：</span><input id="AG建議" name="AG建議" size=64>                                                               <br><br>             
+<input id="AG其他" name="AG其他" style="width:50%"><br>
+<span>原因 / 建議：</span><input id="AG建議" name="AG建議" style="width:50%">                                                               <br><br>             
 </div>
 <div id="PARTB" class=PARTB>
 <h3>B 部份 (其他信仰 或 沒有任何信仰的同學填寫)</h3>
@@ -238,89 +254,87 @@
   <input id="B1信仰印象1" name="B1信仰印象[]" value=".2.覺得教導不合時宜" type="checkbox">覺得教導不合時宜 &nbsp; &nbsp; &nbsp;
   <input id="B1信仰印象2" name="B1信仰印象[]" value=".3.增強人的信心" type="checkbox">增強人的信心 &nbsp; &nbsp; &nbsp;&nbsp; <br>
   <input id="B1信仰印象3" name="B1信仰印象[]" value=".4.覺得基督徒的同學很好人" type="checkbox">覺得基督徒的同學很好人 &nbsp; &nbsp;
-  <input id="B1信仰印象4" name="B1信仰印象[]" value=".5.覺得基督徒的老師很好人" type="checkbox">覺得基督徒的老師很好人 &nbsp; &nbsp; &nbsp;<br>
+  <span style="white-space:nowrap"><input id="B1信仰印象4" name="B1信仰印象[]" value=".5.覺得基督徒的老師很好人" type="checkbox">覺得基督徒的老師很好人</span> &nbsp; &nbsp; &nbsp;<br>
   <input id="B1信仰印象5" name="B1信仰印象[]" value=".6.覺得基督徒與非基督徒沒有太大差別" type="checkbox">覺得基督徒與非基督徒沒有太大差別 &nbsp; &nbsp;<br>
   <input id="B1信仰印象6" name="B1信仰印象[]" value=".7.覺得基督教比其他宗教較可信" type="checkbox">覺得基督教比其他宗教較可信   &nbsp; &nbsp;
-  <input id="B1信仰印象7" name="B1信仰印象[]" value=".8.對基督教半信半疑" type="checkbox">對基督教半信半疑 &nbsp; &nbsp;
+  <span style="white-space:nowrap"><input id="B1信仰印象7" name="B1信仰印象[]" value=".8.對基督教半信半疑" type="checkbox">對基督教半信半疑</span> &nbsp; &nbsp;
   <input id="B1信仰印象8" name="B1信仰印象[]" value=".9.覺得基督教不可信" type="checkbox">覺得基督教不可信 &nbsp; &nbsp;<br>
   <input id="B1信仰印象9" name="B1信仰印象[]" value=".10.覺得基督教與其他宗教沒有分別" type="checkbox">覺得基督教與其他宗教沒有分別 &nbsp; &nbsp;<br>
   <input id="B1信仰印象10" name="B1信仰印象[]" value=".11.其他印象" type="checkbox">其他印象(請在此列明）： <input id="B2其他印象" name="B2其他印象"><br>
   <br/>
 
 <div>B 2. 你未接受 / 未相信主<u>耶穌</u>的原因包括(可選多項)：</div>
-  <input id="B3未信原因0" name="B3未信原因[]" value=".1.不覺得需要信仰" type="checkbox">不覺得需要信仰 &nbsp; &nbsp; 
-  <input id="B3未信原因1" name="B3未信原因[]" value=".2.不想改變原來的宗教" type="checkbox">不想改變原來的宗教 &nbsp; &nbsp;
-  <input id="B3未信原因2" name="B3未信原因[]" value=".3.不信世界上有神" type="checkbox">不信世界上有神 &nbsp; &nbsp;
-  <input id="B3未信原因3" name="B3未信原因[]" value=".4.半信半疑" type="checkbox">半信半疑 &nbsp; &nbsp;<br>
-  <input id="B3未信原因4" name="B3未信原因[]" value=".5.家人不贊成" type="checkbox">家人不贊成 &nbsp; &nbsp; 
-  <input id="B3未信原因5" name="B3未信原因[]" value=".6.等待一種特別的感受或經歷" type="checkbox">等待一種特別的感受/經歷  &nbsp; &nbsp; 
-  <input id="B3未信原因6" name="B3未信原因[]" value=".7.怕自己不能做好" type="checkbox">怕自己不能做好 &nbsp; &nbsp; <br>
-  <input id="B3未信原因7" name="B3未信原因[]" value=".8.恐怕受到束縛" type="checkbox">恐怕受到束縛 &nbsp; &nbsp; 
-  <input id="B3未信原因8" name="B3未信原因[]" value=".9.希望明白多一點才信" type="checkbox">希望明白多一點才信 &nbsp; &nbsp; 
-  <input id="B3未信原因9" name="B3未信原因[]" value=".10.怕被人嘲笑" type="checkbox">怕被人嘲笑 &nbsp; &nbsp; &nbsp;
-  <input id="B3未信原因10" name="B3未信原因[]" value=".11.正在考慮中" type="checkbox">正在考慮中 <br>
-  <input id="B3未信原因11" name="B3未信原因[]" value=".12.其他原因" type="checkbox">其他原因 (請在此列明)： <input id="B4其他原因" name="B4其他原因" size="30"><br>
+  <span style="white-space:nowrap"><input id="B3未信原因0" name="B3未信原因[]" value=".1.不覺得需要信仰" type="checkbox">不覺得需要信仰</span> &nbsp; &nbsp; 
+  <span style="white-space:nowrap"><input id="B3未信原因1" name="B3未信原因[]" value=".2.不想改變原來的宗教" type="checkbox">不想改變原來的宗教</span> &nbsp; &nbsp;
+  <span style="white-space:nowrap"><input id="B3未信原因2" name="B3未信原因[]" value=".3.不信世界上有神" type="checkbox">不信世界上有神</span> &nbsp; &nbsp;
+  <span style="white-space:nowrap"><input id="B3未信原因3" name="B3未信原因[]" value=".4.半信半疑" type="checkbox">半信半疑</span> &nbsp; &nbsp;<br>
+  <span style="white-space:nowrap"><input id="B3未信原因4" name="B3未信原因[]" value=".5.家人不贊成" type="checkbox">家人不贊成</span> &nbsp; &nbsp; 
+  <span style="white-space:nowrap"><input id="B3未信原因5" name="B3未信原因[]" value=".6.等待一種特別的感受或經歷" type="checkbox">等待一種特別的感受/經歷</span>  &nbsp; &nbsp; 
+  <span style="white-space:nowrap"><input id="B3未信原因6" name="B3未信原因[]" value=".7.怕自己不能做好" type="checkbox">怕自己不能做好</span> &nbsp; &nbsp; <br>
+  <span style="white-space:nowrap"><input id="B3未信原因7" name="B3未信原因[]" value=".8.恐怕受到束縛" type="checkbox">恐怕受到束縛</span> &nbsp; &nbsp; 
+  <span style="white-space:nowrap"><input id="B3未信原因8" name="B3未信原因[]" value=".9.希望明白多一點才信" type="checkbox">希望明白多一點才信</span> &nbsp; &nbsp; 
+  <span style="white-space:nowrap"><input id="B3未信原因9" name="B3未信原因[]" value=".10.怕被人嘲笑" type="checkbox">怕被人嘲笑</span> &nbsp; &nbsp; &nbsp;
+  <span style="white-space:nowrap"><input id="B3未信原因10" name="B3未信原因[]" value=".11.正在考慮中" type="checkbox">正在考慮中</span> <br>
+  <span style="white-space:nowrap"><input id="B3未信原因11" name="B3未信原因[]" value=".12.其他原因" type="checkbox">其他原因 (請在此列明)： <input id="B4其他原因" name="B4其他原因" size="30"></span><br>
 <br>
 <div>B 3. 按你個人在信仰及成長的需要 / 興趣，你希望參加哪些相關的活動？(可選多項)</div>
-<table>
-<tr><td valign=top>
+<table style="width:100%">
+<tr>
+<td>
 <input id="B5JOIN活動0" name="B5JOIN活動" value="有興趣參加" type="radio">有興趣參加： 
 <td>
-<table>
-<tr>
-<td><input id="B6活動0" name="B6活動[]" value=".1.信仰探索小組" type="checkbox">信仰探索小組   
-<td><input id="B6活動1" name="B6活動[]" value=".2.初信成長小組" type="checkbox">初信成長小組 
-<tr>
-<td><input id="B6活動2" name="B6活動[]" value=".3.學校團契" type="checkbox">學校團契
-<td><input id="B6活動3" name="B6活動[]" value=".4.教會團契或活動" type="checkbox">教會團契/活動  
-<td><input id="B6活動4" name="B6活動[]" value=".5.學生敬拜隊" type="checkbox">學生敬拜隊
-<tr>
-<td><input id="B6活動5" name="B6活動[]" value=".6.福音營" type="checkbox">福音營
-<td><input id="B6活動6" name="B6活動[]" value=".7.領袖訓練營" type="checkbox">領袖訓練營  
-<td><input id="B6活動7" name="B6活動[]" value=".8.個人傾談或輔導" type="checkbox">個人傾談 /輔導  
-<tr><td colspan=3>
-<input id="B6活動8" name="B6活動[]" value=".9.其他活動" type="checkbox">其他活動(請在此列明)：<input id="B7其他活動" name="B7其他活動" size="30">
-</table>
+<span style="white-space:nowrap"><input id="B6活動0" name="B6活動[]" value=".1.信仰探索小組" type="checkbox">信仰探索小組</span>   &nbsp;  &nbsp; 
+<span style="white-space:nowrap"><input id="B6活動1" name="B6活動[]" value=".2.初信成長小組" type="checkbox">初信成長小組 </span> &nbsp; &nbsp; 
+<span style="white-space:nowrap"><input id="B6活動2" name="B6活動[]" value=".3.學校團契" type="checkbox">學校團契</span> &nbsp; &nbsp; 
+<span style="white-space:nowrap"><input id="B6活動3" name="B6活動[]" value=".4.教會團契或活動" type="checkbox">教會團契/活動</span> &nbsp; &nbsp; 
+<br>
+<span style="white-space:nowrap"><input id="B6活動4" name="B6活動[]" value=".5.學生敬拜隊" type="checkbox">學生敬拜隊</span> &nbsp; &nbsp; 
+<span style="white-space:nowrap"><input id="B6活動5" name="B6活動[]" value=".6.福音營" type="checkbox">福音營</span> &nbsp; &nbsp; 
+<span style="white-space:nowrap"><input id="B6活動6" name="B6活動[]" value=".7.領袖訓練營" type="checkbox">領袖訓練營 </span> &nbsp; &nbsp; 
+<span style="white-space:nowrap"><input id="B6活動7" name="B6活動[]" value=".8.個人傾談或輔導" type="checkbox">個人傾談 /輔導 </span>  &nbsp; &nbsp; 
+<br>
+<input id="B6活動8" name="B6活動[]" value=".9.其他活動" type="checkbox">其他活動(請在此列明)：<input id="B7其他活動" name="B7其他活動" style="width:50%"> &nbsp; &nbsp; 
+</td>
 <tr><td valign=top><input id="B5JOIN活動1" name="B5JOIN活動" value="暫時沒空參加" type="radio">暫時沒空參加<br>
 </table>
 <br>
 
 <div>B4. 如果學校開展上述的活動，你會選擇以下哪一個時段來參與？(可選多項)</div>
 
-  <input id="B8活動時段0" name="B8活動時段[]" value=".1.週一至五中午" type="checkbox">週一至五中午 
-  <input id="B8活動時段1" name="B8活動時段[]" value=".2.週一至五下午放學後" type="checkbox">週一至五下午放學後 &nbsp;&nbsp; 
-  <input id="B8活動時段2" name="B8活動時段[]" value=".3.週六上午" type="checkbox">週六上午 &nbsp; &nbsp; 
-  <input id="B8活動時段3" name="B8活動時段[]" value=".4.週六下午" type="checkbox">週六下午 <br>
-  <input id="B8活動時段4" name="B8活動時段[]" value=".5.其他時間" type="checkbox">其他時間 (請在此列明)： 
-  <input id="B9其他時段" name="B9其他時段"><br>
+  <span style="white-space:nowrap"><input id="B8活動時段0" name="B8活動時段[]" value=".1.週一至五中午" type="checkbox">週一至五中午 </span>
+  <span style="white-space:nowrap"><input id="B8活動時段1" name="B8活動時段[]" value=".2.週一至五下午放學後" type="checkbox">週一至五下午放學後 </span> &nbsp;&nbsp;
+  <span style="white-space:nowrap"><input id="B8活動時段2" name="B8活動時段[]" value=".3.週六上午" type="checkbox">週六上午 </span>&nbsp; &nbsp; 
+  <span style="white-space:nowrap"><input id="B8活動時段3" name="B8活動時段[]" value=".4.週六下午" type="checkbox">週六下午 </span><br>
+  <span style="white-space:nowrap"><input id="B8活動時段4" name="B8活動時段[]" value=".5.其他時間" type="checkbox">其他時間 (請在此列明)： </span>
+  <span style="white-space:nowrap"><input id="B9其他時段" name="B9其他時段"></span><br>
   <br>
 
 
 <div>B5. 你個人對<b>上學年</b>的<b>聖經課</b>有甚麼評價？(新同學請選 “不適用”)</div>
-<input type=radio id="BB聖經科0" name="BB聖經科" value="不適用">不適用 
-<input type=radio id="BB聖經科1" name="BB聖經科" value="非常滿意">非常滿意 
-<input type=radio id="BB聖經科2" name="BB聖經科" value="頗滿意">頗滿意    
-<input type=radio id="BB聖經科3" name="BB聖經科" value="一般">一般    
-<input type=radio id="BB聖經科4" name="BB聖經科" value="不太滿意">不太滿意   
-<input type=radio id="BB聖經科5" name="BB聖經科" value="非常不滿意">非常不滿意   <br>
-<span>原因 / 建議：</span><input id="BB建議" name="BB建議" size=64>                                                               <br><br>             
+<span style="white-space:nowrap"><input type=radio id="BB聖經科0" name="BB聖經科" value="不適用">不適用 </span>
+<span style="white-space:nowrap"><input type=radio id="BB聖經科1" name="BB聖經科" value="非常滿意">非常滿意 </span>
+<span style="white-space:nowrap"><input type=radio id="BB聖經科2" name="BB聖經科" value="頗滿意">頗滿意    </span>
+<span style="white-space:nowrap"><input type=radio id="BB聖經科3" name="BB聖經科" value="一般">一般    </span>
+<span style="white-space:nowrap"><input type=radio id="BB聖經科4" name="BB聖經科" value="不太滿意">不太滿意   </span>
+<span style="white-space:nowrap"><input type=radio id="BB聖經科5" name="BB聖經科" value="非常不滿意">非常不滿意   <br></span>
+<span>原因 / 建議：</span><input id="BB建議" name="BB建議" style="width:50%">                                                               <br><br>             
 <br>
 
 <div>B6. 對學校在過往所舉辦的福音活動/聚會中，你比較喜歡哪些？請具體描述。(可選多項，新同學請選 “不適用”) </div>
-<input type=checkbox id="BA喜歡福音活動聚會0" name="BA喜歡福音活動聚會[]" value=".1.不適用">不適用 &nbsp;&nbsp;
-<input type=checkbox id="BA喜歡福音活動聚會1" name="BA喜歡福音活動聚會[]" value=".2.中學生團契">中學生團契    &nbsp;&nbsp;
-<input type=checkbox id="BA喜歡福音活動聚會2" name="BA喜歡福音活動聚會[]" value=".3.學生敬拜隊">學生敬拜隊    &nbsp;&nbsp;
-<input type=checkbox id="BA喜歡福音活動聚會3" name="BA喜歡福音活動聚會[]" value=".4.學生信仰小組  ">學生信仰小組     &nbsp;&nbsp;
-<input type=checkbox id="BA喜歡福音活動聚會4" name="BA喜歡福音活動聚會[]" value=".5.福音週">福音週   &nbsp;&nbsp;
-<input type=checkbox id="BA喜歡福音活動聚會5" name="BA喜歡福音活動聚會[]" value=".6.福音營 ">福音營 <br>
-<input type=checkbox id="BA喜歡福音活動聚會6" name="BA喜歡福音活動聚會[]" value=".7.領袖訓練營"> 領袖訓練營 &nbsp;&nbsp;
-<input type=checkbox id="BA喜歡福音活動聚會7" name="BA喜歡福音活動聚會[]" value=".8.佈道會"> 佈道會  &nbsp;&nbsp;
-<input type=checkbox id="BA喜歡福音活動聚會8" name="BA喜歡福音活動聚會[]" value=".9.福音詩歌歌唱比賽"> 福音詩歌歌唱比賽 &nbsp;&nbsp;
-<input type=checkbox id="BA喜歡福音活動聚會9" name="BA喜歡福音活動聚會[]" value=".10.福音創意繪畫比賽"> 福音創意繪畫比賽 <br>
-<input type=checkbox id="BA喜歡福音活動聚會10" name="BA喜歡福音活動聚會[]" value=".11.沒有任何喜歡的"> 沒有任何喜歡的 &nbsp;&nbsp;
-<input type=checkbox id="BA喜歡福音活動聚會11" name="BA喜歡福音活動聚會[]" value=".12.其他"> 其他 (請在此列明)：
-<input id="BA其他" name="BA其他" size=32>    <br><br>
-<span>原因 / 建議：</span><input id="BA建議" name="BA建議" size=64>     
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會0" name="BA喜歡福音活動聚會[]" value=".1.不適用">不適用 </span>&nbsp;&nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會1" name="BA喜歡福音活動聚會[]" value=".2.中學生團契">中學生團契    </span>&nbsp;&nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會2" name="BA喜歡福音活動聚會[]" value=".3.學生敬拜隊">學生敬拜隊    </span>&nbsp;&nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會3" name="BA喜歡福音活動聚會[]" value=".4.學生信仰小組  ">學生信仰小組     </span>&nbsp;&nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會4" name="BA喜歡福音活動聚會[]" value=".5.福音週">福音週   </span>&nbsp;&nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會5" name="BA喜歡福音活動聚會[]" value=".6.福音營 ">福音營 </span><br>
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會6" name="BA喜歡福音活動聚會[]" value=".7.領袖訓練營"> 領袖訓練營 </span>&nbsp;&nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會7" name="BA喜歡福音活動聚會[]" value=".8.佈道會"> 佈道會  </span>&nbsp;&nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會8" name="BA喜歡福音活動聚會[]" value=".9.福音詩歌歌唱比賽"> 福音詩歌歌唱比賽 </span>&nbsp;&nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會9" name="BA喜歡福音活動聚會[]" value=".10.福音創意繪畫比賽"> 福音創意繪畫比賽 <br></span>
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會10" name="BA喜歡福音活動聚會[]" value=".11.沒有任何喜歡的"> 沒有任何喜歡的 </span>&nbsp;&nbsp;
+<span style="white-space:nowrap"><input type=checkbox id="BA喜歡福音活動聚會11" name="BA喜歡福音活動聚會[]" value=".12.其他"> 其他 (請在此列明)：
+<input id="BA其他" name="BA其他"  style="width:50%"></span>    <br><br>
+<span>原因 / 建議：</span><input id="BA建議" name="BA建議"  style="width:50%">     
 </div>
 <div class=submitbutton id=SubmitButton>
 <input type="submit" value="提交">

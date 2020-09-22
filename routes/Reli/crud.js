@@ -149,15 +149,13 @@ router.post('/reli2021_term_start_post.php',images.multer.single('image'),  (req
     let ERRMSG="";
     if(sData["宗教信仰"]=="基督教"||sData["宗教信仰"]=="天主教"){ 
         let reli=["A1信主原因","A3JOIN活動","A6活動時段","A8JOIN事奉","ABJOIN協助","AEJOIN培訓","AF聖經科","AG喜歡福音活動聚會"];
-        let reliN=["A1信主原因","A3JOIN活動","A6活動時段","A8JOIN事奉","AEJOIN培訓","AF聖經科","AG喜歡福音活動聚會","ABJOIN協助"];
         for(let i=0;i<reli.length;i++){
             if( !sData[reli[i]] || sData[reli[i]]==""){ ERRMSG+=`A .${(i+1)} <br>`;}
         }
     }else{
-        let none_reli=array("B1信仰印象","B3未信原因","B5JOIN活動","B8活動時段","BA喜歡福音活動聚會","BB聖經科");
-        let none_reliN=array("B1信仰印象","B3未信原因","B5JOIN活動","B8活動時段","BA喜歡福音活動聚會","BB聖經科");
-        for(let i=0;i<none_reli.length;$i++){
-            if( !sData[reli[i]] || sData[none_reli[i]]==""){ ERRMSG+=`B . ${$i+1} .<br>`;}
+        let none_reli=["B1信仰印象","B3未信原因","B5JOIN活動","B8活動時段","BA喜歡福音活動聚會","BB聖經科"];
+        for(let i=0;i<none_reli.length;i++){
+            if( !sData[none_reli[i]] || sData[none_reli[i]]==""){ ERRMSG+=`B . ${i+1} .<br>`;}
         }
     }
     if(ERRMSG==""){ res.end("OK! 資料更新, Updated Data.");}

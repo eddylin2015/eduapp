@@ -1,7 +1,7 @@
 div.declaration_note{
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 100%;
   color:blue;
   text-align: center;
 }
@@ -69,6 +69,7 @@ h3.head_title{text-align: center;}
 div.FormContent,div.PARTA,div.PARTB{
    margin-left: auto;
    margin-right: auto;
-   width: 80%;
+   width: 100%;
 }
-td{ min-width:80px;vertical-align: top; }
+table{width:100%;margin:0;}
+td{ min-width:100px;vertical-align: top; }
