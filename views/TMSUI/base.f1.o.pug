@@ -30,6 +30,53 @@ html(lang="zh")
     script(src='https://getbootstrap.com/docs/3.4/dist/js/bootstrap.min.js')
     //script(src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML')
     script(src='https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815')
+    script.
+      function GetQuestion(x) {  
+        let qno= ($('#CHKQT00'+x).text()=="Start") ? 1: Number($('#CHKQT00'+x).text().split("/")[0])+1;
+        $("#ANSQT00"+x).val("");       
+        $("#ANSQTM00"+x).val("");    
+        $("#ANSQT00"+x).prop('disabled', false);
+        $("#ANSQT00"+x).css("display", "block");      
+        $("#ANSQT00"+x).focus();     
+        $("#ANSQTM00"+x).css("display", "block");  
+        if( !App.IsFraction(x,qno) )  {
+           $("#ANSQTM00"+x).css("display", "none");  
+           $("#ANSQTM00"+x).val("1");      
+        }
+        $('#CHKQT00'+x).text(qno+ "/10确定");
+        $('#QT00'+x).html("\\("+App.GetQizStatement(x,qno)+"\\)");  
+        App.UpdateMathContent(x);
+        close_msgbox('AnsMsgbox');
+      }
+      function GetCheckAns(x) {  
+        if($('#CHKQT00'+x).text()=="Start"){ GetQuestion(x);
+        }else{
+          let qno=  Number($('#CHKQT00'+x).text().split("/")[0]);
+          let ansZ= $( "#ANSQT00"+x).val();
+          let ansM= $( "#ANSQTM00"+x).val();
+          if(ansZ=="" || ansM=="" ){}
+          else{
+            $("#ANSQT00"+x).prop('disabled', true);
+            show_AnsMsgbox(x,qno,ansZ,ansM);  
+          }
+        }
+      }
+      function GetHelpCheckAns(x) {  
+        let qhelpNum=Number($('#helpCHKQT00'+x).text().replace("?",""));
+        if(qhelpNum < 1 ) return;
+        if($('#CHKQT00'+x).text()=="Start"){ 
+        }else{
+          let qno=  Number($('#CHKQT00'+x).text().split("/")[0]);
+          let ansZ= $( "#ANSQT00"+x).val();
+          let ansM= $( "#ANSQTM00"+x).val();
+          if(ansZ=="" || ansM=="" ){}
+          else{
+            show_HelpAnsMsgbox(x,qno,ansZ,ansM);  
+            qhelpNum--;
+            $('#helpCHKQT00'+x).text("?"+qhelpNum);
+          }
+        }
+      }
   body
     if !profile        
       <table id=login_forom>

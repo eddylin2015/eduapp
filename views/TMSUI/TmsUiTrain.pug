@@ -99,6 +99,7 @@ block content
   style.
     .MathJax span{font-size:20px;}
   script.
+    /*
     class MathClassF1equ extends UIMathClass {
       InitQizData(){
         for (let i = 0; i < 4; i++) {
@@ -132,18 +133,18 @@ block content
       GetAns_Num(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
       GetAns_Den(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
       GetAnsSt(qti,qno) {return this.AQT[Number(qti) - 1][qno - 1];   }
-    }
-    let App=new MathClassF1equ();
+    }*/
+    let App={}; //new MathClassF1equ();
     //if(`!{formulajs}`=="f1"){  App=new F1_UIMathClass();  }
     var script = document.createElement('script');
     script.onload = function () {
        //do stuff with the script
        if(ft=="f201"){  App=new F201_UIMathClass();  }
        else if(ft=="f202"){  App=new F202_UIMathClass();  }
-       else if(ft=="f2"){  App=new F2_UIMathClass();  }
-       else if(ft=="f1"){  App=new MathClassF1equ();  }
-       else if(ft=="p2"){  App=new MathClassF1equ();  }
-       else if(ft=="p5"){  App=new MathClassF1equ();  }
+       else if(ft=="f2"){  App=new UIMathClassF2();  }
+       else if(ft=="f1"){  App=new UIMathClassF1();  }
+       else if(ft=="p2"){  App=new UIMathClassP2();  }
+       else if(ft=="p5"){  App=new UIMathClassP5();  }
        else{App=new MathClassF1equ(); }
        App.InitQizData();
     };

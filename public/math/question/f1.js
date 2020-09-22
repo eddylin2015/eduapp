@@ -2,7 +2,10 @@
 /*
 一次方程式
 */
-if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils'); }
+if (typeof module !== 'undefined' && module.exports) { 
+   var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils'); 
+   //var { UIMathClass } = require('../tmsUIMathClass'); 
+}
 
 const tmsU= new TmsUts();
 /*
@@ -89,6 +92,41 @@ function CreatAEq(Tx, Tk, Range) //As AExps
    TE.CalcVal=Number( AnsZ ) / Number(AnsM)
    return TE
 }
+class UIMathClassF1 extends UIMathClass {
+   InitQizData(){
+     for (let i = 0; i < 4; i++) {
+         for(let j=0;j<10;j++){
+           let TiXing = i+1;
+           let Range = {}
+           Range["D15"] = "*"
+           Range["E15"] = "%"
+           let s1 = CreatAEq(TiXing, 9, Range)
+           this.QT[i][j]=s1.St;
+           this.AQT[i][j]=s1.CalcVal;
+           console.log(Range)
+         }
+       }
+   }     
+   GetQizStatement(qti,qno)
+   {
+     super.GetQizStatement(qti,qno);
+     return this.QT[Number(qti)-1][qno-1] ;   
+   }
+   CheckAns(qti,qno, AnsZ,AnsM){
+     let ansx= App.AQT[Number(qti)-1][qno-1];
+     if(this.IsFraction(qti,qno)){
+       return Math.abs(ansx-(AnsZ/AnsM))<0.0001
+     }else{
+       if((typeof ansx)=="number") return ansx==AnsZ;
+       if((typeof ansx)=="string") return ansx==AnsZ;
+       if((typeof ansx)=="object") return ansx["F116"]==AnsZ && ansx["G116"]==AnsM;
+     }
+   }
+   GetAns_Num(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
+   GetAns_Den(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
+   GetAnsSt(qti,qno) {return this.AQT[Number(qti) - 1][qno - 1];   }
+ }
+
 //______MAIN________________________________
 //' ----- 將題目按常用格式佈放 -------------
 function FmtOut(equjson) {

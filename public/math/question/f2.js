@@ -250,7 +250,7 @@ function f2_main() {
     }
 }
 f2_main();
-class F2_UIMathClass extends UIMathClass {
+class UIMathClassF2 extends UIMathClass {
     InitQizData(){
       for (let i = 0; i < 4; i++) {
           for(let j=0;j<10;j++){

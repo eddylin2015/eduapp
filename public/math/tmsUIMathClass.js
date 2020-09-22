@@ -67,6 +67,7 @@ class UIMathClass {
     //昰答案整數或是分數
     IsFraction(qti,qno) { return App.AQT[Number(qti) - 1][qno - 1].toString().indexOf('.')>0;}
 }
+ 
 class MathClassG2 extends UIMathClass {
     InitQizData(i, r0, r1, r2) {
         for (let i = 1; i < 5; i++) {
