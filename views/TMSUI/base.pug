@@ -49,6 +49,9 @@ html(lang="en")
             li
               a(href="/internal/TMS/tmsMyReport") 
                 span 列表
+            li
+              a(href="/internal/TMS/QizEx") 
+                span 例題
 
             if(profile)    
               -let flag=profile.email=="sousoiteng@mail.mbc.edu.mo"||profile.email=="lammou@mail.mbc.edu.mo" ||profile.email=="laitakseng@mail.mbc.edu.mo"    
@@ -59,7 +62,6 @@ html(lang="en")
                 li
                   a(href="/internal/maths/tmsReportQuery") 
                     span mbc6thQuery
-
           ul.navbar-text.navbar-right
             // [START profile]
             if profile

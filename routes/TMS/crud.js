@@ -102,6 +102,11 @@ router.get('/v0trianing.jsp',(req, res, next) => {
     profile:req.user
 });
 });
+router.get('/QizEx',require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+  res.render('TMSUI/QizExIndex.pug', {});
+});
+
+
 router.get('/f1onedimeq',require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
   res.render('TMSUI/F1OneDimEqu.pug', {
     MathTitle:'一元一次程式'
