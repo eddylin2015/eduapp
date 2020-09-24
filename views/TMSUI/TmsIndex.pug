@@ -27,59 +27,58 @@ block content
   -f0data.push({id:'f2',name:'有理數運算'});
   -f0data.push({id:'f201',name:'十字相乘法'});
   -f0data.push({id:'f202',name:'一元二次方程'});
-  -f1data.push({id:'f1001',name:'有理數的運算(符)'});
-  -f1data.push({id:'f1002',name:'整數指數冪的運算(蘇)'});
-  -f1data.push({id:'f1003',name:'整式的加減法(符)'});
-  -f1data.push({id:'f1004',name:'一元一次方程(蘇)'});
-  -f1data.push({id:'f1005',name:'解二元一次方程組(泉）'});
-  -f1data.push({id:'f1006',name:'一元一次不等式(蘇)'});
-  -f1data.push({id:'f1007',name:'一元一次不等式組(蘇)'});
-  -f1data.push({id:'f1008',name:'整式的乘法(符)'});
-  -f2data.push({id:'f2001',name:'根式的運算(萍)'});
-  -f2data.push({id:'f2002',name:'整式的乘法公式(盈)'});
-  -f2data.push({id:'f2003',name:'因式分解(盈)'});
-  -f2data.push({id:'f2004',name:'分式的乘除(盈)'});
-  -f2data.push({id:'f2005',name:'分式的加減(萍)'});
-  -f2data.push({id:'f2006',name:'分式方程(萍)'});
-  -f2data.push({id:'f2007',name:'一次函數圖像的性質(健)'});
-  -f3data.push({id:'f3001',name:'一元二次方程式(泉）'});
-  -f3data.push({id:'f3002',name:'解可化為一元二次方程的分式方程（泉）'});
-  -f3data.push({id:'f3003',name:'解二元二次方程組(健)'});
-  -f3data.push({id:'f3004',name:'二次函數圖像的性質(健)'});
-  -f3data.push({id:'f3005',name:'解直角三角形(蘇)'}  );
+  -f1data.push({id:'f1001',name:'有理數的運算'});
+  -f1data.push({id:'f1002',name:'整數指數冪的運算'});
+  -f1data.push({id:'f1003',name:'整式的加減法'});
+  -f1data.push({id:'f1004',name:'一元一次方程'});
+  -f1data.push({id:'f1005',name:'解二元一次方程組'});
+  -f1data.push({id:'f1006',name:'一元一次不等式'});
+  -f1data.push({id:'f1007',name:'一元一次不等式組'});
+  -f1data.push({id:'f1008',name:'整式的乘法'});
+  -f2data.push({id:'f2001',name:'根式的運算'});
+  -f2data.push({id:'f2002',name:'整式的乘法公式'});
+  -f2data.push({id:'f2003',name:'因式分解'});
+  -f2data.push({id:'f2004',name:'分式的乘除'});
+  -f2data.push({id:'f2005',name:'分式的加減'});
+  -f2data.push({id:'f2006',name:'分式方程'});
+  -f2data.push({id:'f2007',name:'一次函數圖像的性質'});
+  -f3data.push({id:'f3001',name:'一元二次方程式'});
+  -f3data.push({id:'f3002',name:'解可化為一元二次方程的分式方程'});
+  -f3data.push({id:'f3003',name:'解二元二次方程組'});
+  -f3data.push({id:'f3004',name:'二次函數圖像的性質'});
+  -f3data.push({id:'f3005',name:'解直角三角形'}  );
   .row
     .col-lg-3
       div#accordion
         div
 
           h3
-            span 數學練習(韋教授)
+            span 數學練習
           table(width="100%")
             +accor_li("/internal/TMS/trianing.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
             +accor_li("/internal/TMS/trianing.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
             +accor_li("/internal/TMS/trianing.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
             +accor_li("/internal/TMS/trianing.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
-
           h3
             span 小學
           table(width="100%")
             +accor_li("/internal/TMS/trianing.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
             +accor_li("/internal/TMS/trianing.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
           h3
-            span 中一(建設中)
+            span 中一()
           table(width="100%")
             each sub in f1data
-              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+              +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
           h3
-            span 中二(建設中)
+            span 中二()
           table(width="100%")
             each sub in f2data
-              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+              +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
           h3(width="100%")
-            span 中三(建設中)
+            span 中三()
           table  
             each sub in f2data
-              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+              +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
     .col-lg-7
   div(title="Info Dialog",style="display:none")#ClassSelectorDialog
     form(action="#")#ClassSelectorDialogForm

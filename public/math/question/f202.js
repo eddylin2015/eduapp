@@ -90,7 +90,7 @@ function f202_main() {
     }
 }
 class F202_UIMathClass extends UIMathClass {
-    genEquData() {
+    InitQizData() {
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 10; j++) {
                 let TiXing = i + 1;
@@ -102,11 +102,11 @@ class F202_UIMathClass extends UIMathClass {
             }
         }
     }
-    showEqu(qti, qno) {
-        super.showEqu(qti, qno);
+    GetQizStatement(qti, qno) {
+        super.GetQizStatement(qti, qno);
         return this.QT[Number(qti) - 1][qno - 1];
     }
-    getStAns(qti,qno){
+    GetAnsSt(qti,qno){
         let ansx = this.AQTR[Number(qti) - 1][qno - 1];
         let x1="",x2="";
         if(ansx["L116"].indexOf(".")>0) {x1=ansx["N116"];}else{x1=ansx["L116"];}
@@ -132,7 +132,7 @@ class F202_UIMathClass extends UIMathClass {
           return Number(r2[0]) / Number(r2[1]);
         }
       }
-    equalAns(qti, qno, AnsZ, AnsM) {
+    CheckAns(qti, qno, AnsZ, AnsM) {
         let ansx = this.AQTR[Number(qti) - 1][qno - 1];
         let ansxx=[ansx["L116"],ansx["M116"]];
         let ccx=[0,0];
@@ -149,10 +149,10 @@ class F202_UIMathClass extends UIMathClass {
         }
         return flag[0] && flag[1] ;
     }
-    //getAnsNum(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["F116"]; }
-    //getAnsDen(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["G116"]; }
-    getAnsDen(qti, qno) { return 1.001; }
-    isfraction(qti,qno){return true;} 
+    //GetAns_Num(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["F116"]; }
+    //GetAns_Den(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["G116"]; }
+    GetAns_Den(qti, qno) { return 1.001; }
+    IsFraction(qti,qno){return true;} 
 }
 f202_main();
 let app=new F202_UIMathClass();

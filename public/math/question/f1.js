@@ -1,6 +1,17 @@
 'use strict';
-if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils'); }
+/*
+一次方程式
+*/
+if (typeof module !== 'undefined' && module.exports) { 
+   var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils'); 
+   //var { UIMathClass } = require('../tmsUIMathClass'); 
+}
+
 const tmsU= new TmsUts();
+/*
+' ------- 出題 -------------------------------------------
+' ------- 題型； Tx ， 係數的最大值: Tk ------
+' ------- CreatAEq 和 Qs 的類型 自定，這裡 Variant  是暫時的 --------*/
 function CreatAEq(Tx, Tk, Range) //As AExps
 {
    let TE=new AExps();
@@ -9,7 +20,7 @@ function CreatAEq(Tx, Tk, Range) //As AExps
    let St, s1, s2;                //string
    let Tf1, Tf2, Tf3, Tf4, AnsF;  //as AFrc
    switch (Tx) {
-      case 1:                                              //                ' ÕûÏµÊýÕûÊý½â  ax+c = g
+      case 1:                                              //' 整係數整數解  ax+c = g
          b = 1; d = 1; e = 0; f = 1; h = 1                //    '  a/b "x" + c/d = e/f "x" + g/h
          a = tmsU.TakeARnd(-Tk, Tk, 0, 1, 0, 0)
          c = tmsU.TakeARnd(-Tk, Tk, 0, 1, 0, 0)
@@ -19,7 +30,7 @@ function CreatAEq(Tx, Tk, Range) //As AExps
          g = a * AnsZ + c
          s2 = tmsU.Str(g);
          break;
-      case 2:                                                 //            ' ÕûÏµÊý·ÖÊý½â ax+b = c
+      case 2:                                                 //    ' 整係數分數解 ax+b = c
          b = 1; d = 1; e = 0; f = 1; h = 1                      //  '  a/b "x" + c/d = e/f "x" + g/h
          a = tmsU.TakeARnd(-Tk, Tk, 0, 1, 0, 0)
          c = tmsU.TakeARnd(-Tk, Tk, 0, 1, 0, 0)
@@ -31,7 +42,7 @@ function CreatAEq(Tx, Tk, Range) //As AExps
          p = tmsU.HCF(AnsZ, AnsM)
          AnsZ = tmsU.Sgn(a) * AnsZ / p; AnsM = tmsU.Sgn(a) * AnsM / p
          break;
-      case 3:                                                    //           ' ÕûÏµÊýÕûÊý½â  ax+b = cx+d
+      case 3:                                                    //           ' 整係數整數解  ax+b = cx+d
          b = 1; d = 1; f = 1; h = 1                              //     '  a/b "x" + c/d = e/f "x" + g/h
          a = tmsU.TakeARnd(-Tk, Tk, 0, 1, 0, 0)
          c = tmsU.TakeARnd(-Tk, Tk, 0, 1, 0, 0)
@@ -42,8 +53,8 @@ function CreatAEq(Tx, Tk, Range) //As AExps
          g = (a - e) * AnsZ + c
          s2 = tmsU.PlasticAEq(e, 1, g, 1)
          break;
-      case 4:                                                        //        '·ÖÏµÊý·ÖÊý½â  ax+b = cx+d
-         // ' ------  ·ÖÊýµÄSwIs £º0  ²»ÔÊÐíÕûÊý£¬1 ÔÊÐíÕûÊý£¬2 Õæ·ÖÊý£¬3 ¼Ù·ÖÊý
+      case 4:                                                        //        '分係數分數解  ax+b = cx+d
+         // ' - ------  分數的SwIs ：0  不允許整數，1 允許整數，2 真分數，3 假分數
          Tf1 = tmsU.TakeAFrc(Tk, 0)                                   //   ' a/b "x" + c/d = e/f "x" + g/h
          Tf2 = tmsU.TakeAFrc(Tk, 0)
          Tf3 = tmsU.TakeAFrc(Tk, 0)
@@ -81,7 +92,43 @@ function CreatAEq(Tx, Tk, Range) //As AExps
    TE.CalcVal=Number( AnsZ ) / Number(AnsM)
    return TE
 }
+class UIMathClassF1 extends UIMathClass {
+   InitQizData(){
+     for (let i = 0; i < 4; i++) {
+         for(let j=0;j<10;j++){
+           let TiXing = i+1;
+           let Range = {}
+           Range["D15"] = "*"
+           Range["E15"] = "%"
+           let s1 = CreatAEq(TiXing, 9, Range)
+           this.QT[i][j]=s1.St;
+           this.AQT[i][j]=s1.CalcVal;
+           console.log(Range)
+         }
+       }
+   }     
+   GetQizStatement(qti,qno)
+   {
+     super.GetQizStatement(qti,qno);
+     return this.QT[Number(qti)-1][qno-1] ;   
+   }
+   CheckAns(qti,qno, AnsZ,AnsM){
+     let ansx= App.AQT[Number(qti)-1][qno-1];
+     if(this.IsFraction(qti,qno)){
+       return Math.abs(ansx-(AnsZ/AnsM))<0.0001
+     }else{
+       if((typeof ansx)=="number") return ansx==AnsZ;
+       if((typeof ansx)=="string") return ansx==AnsZ;
+       if((typeof ansx)=="object") return ansx["F116"]==AnsZ && ansx["G116"]==AnsM;
+     }
+   }
+   GetAns_Num(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
+   GetAns_Den(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
+   GetAnsSt(qti,qno) {return this.AQT[Number(qti) - 1][qno - 1];   }
+ }
+
 //______MAIN________________________________
+//' ----- 將題目按常用格式佈放 -------------
 function FmtOut(equjson) {
    let arr = ["F", "G", "H", "I"];
    let xarr = ["x", "", "x", ""];

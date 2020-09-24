@@ -17,7 +17,7 @@ const express = require('express');
 //const images = require('./images');
 const model = require('./model-mysql');
 const images = require('./images');
-const oauth2=require('../../db/internalOauth2')
+var oauth2=require('../../db/internalOauth2.js')
 const router = express.Router();
 
 // Use the oauth middleware to automatically get the user's profile
@@ -35,7 +35,9 @@ router.use((req, res, next) => {
  *
  * Display a page of books (up to ten at a time).
  */
-router.get('/', oauth2.required, (req, res, next) => {
+router.get('/',
+oauth2.required,
+ (req, res, next) => {
     res.render('TMSUI/TmsIndex.pug', {
   });
 });
@@ -87,7 +89,7 @@ router.get('/trianing.jsp',(req, res, next) => {
     profile:req.user
 });
 });
-router.get('/v0trianing.jsp',(req, res, next) => {
+router.get('/trianing.o.jsp',(req, res, next) => {
   let ft=req.query.ft;
   let MathTitle=""
   if(ft=="p2"){MathTitle='加減';}
@@ -102,22 +104,6 @@ router.get('/v0trianing.jsp',(req, res, next) => {
     ft:ft,
     MathTitle:MathTitle,
     profile:req.user
-});
-});
-router.get('/f1onedimeq',oauth2.required, (req, res, next) => {
-  res.render('TMSUI/F1OneDimEqu.pug', {
-    MathTitle:'一元一次程式'
-});
-});
-
-router.get('/f1equ',oauth2.required, (req, res, next) => {
-  res.render('TMSUI/g2arithmeticf1.pug', {
-    MathTitle:'一元一次程式'
-});
-});
-router.get('/g2arithmetic',oauth2.required, (req, res, next) => {
-  res.render('TMSUI/g2arithmetic.pug', {
-    MathTitle:'一元一次程式'
 });
 });
 function fmt_now(intdays = 0) {
@@ -137,7 +123,8 @@ router.get('/tmsReportQuery', oauth2.required, (req, Response, next) => {
       dt: fmt_now()
  });
 });
-router.post('/tmsReportQuery', images.multer.array('upload',16),    oauth2.required, (req, Response, next) => {
+router.post('/tmsReportQuery', images.multer.array('upload',16),   
+oauth2.required, (req, Response, next) => {
 let sd=d2s(req.body.sd,"000000");
 let ed=d2s(req.body.ed,"999999");
 let fmt=req.body.fmt;
@@ -147,6 +134,10 @@ model.TMSQFlistbydate(sd,ed,(err,maths_data)=>{
       data:maths_data
  });
 });
+});
+
+router.get('/QizEx',(req, res, next) => {
+  res.render('TMSUI/QizExIndex.pug', {});
 });
 
 

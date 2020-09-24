@@ -99,8 +99,9 @@ block content
   style.
     .MathJax span{font-size:20px;}
   script.
+    /*
     class MathClassF1equ extends UIMathClass {
-      genEquData(){
+      InitQizData(){
         for (let i = 0; i < 4; i++) {
             for(let j=0;j<10;j++){
               let TiXing = i+1;
@@ -114,14 +115,14 @@ block content
             }
           }
       }     
-      showEqu(qti,qno)
+      GetQizStatement(qti,qno)
       {
-        super.showEqu(qti,qno);
+        super.GetQizStatement(qti,qno);
         return this.QT[Number(qti)-1][qno-1] ;   
       }
-      equalAns(qti,qno, AnsZ,AnsM){
+      CheckAns(qti,qno, AnsZ,AnsM){
         let ansx= App.AQT[Number(qti)-1][qno-1];
-        if(this.isfraction(qti,qno)){
+        if(this.IsFraction(qti,qno)){
           return Math.abs(ansx-(AnsZ/AnsM))<0.0001
         }else{
           if((typeof ansx)=="number") return ansx==AnsZ;
@@ -129,23 +130,23 @@ block content
           if((typeof ansx)=="object") return ansx["F116"]==AnsZ && ansx["G116"]==AnsM;
         }
       }
-      getAnsNum(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
-      getAnsDen(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
-      getStAns(qti,qno) {return this.AQT[Number(qti) - 1][qno - 1];   }
-    }
-    let App=new MathClassF1equ();
+      GetAns_Num(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
+      GetAns_Den(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
+      GetAnsSt(qti,qno) {return this.AQT[Number(qti) - 1][qno - 1];   }
+    }*/
+    let App={}; //new MathClassF1equ();
     //if(`!{formulajs}`=="f1"){  App=new F1_UIMathClass();  }
     var script = document.createElement('script');
     script.onload = function () {
        //do stuff with the script
        if(ft=="f201"){  App=new F201_UIMathClass();  }
        else if(ft=="f202"){  App=new F202_UIMathClass();  }
-       else if(ft=="f2"){  App=new F2_UIMathClass();  }
-       else if(ft=="f1"){  App=new MathClassF1equ();  }
-       else if(ft=="p2"){  App=new MathClassF1equ();  }
-       else if(ft=="p5"){  App=new MathClassF1equ();  }
+       else if(ft=="f2"){  App=new UIMathClassF2();  }
+       else if(ft=="f1"){  App=new UIMathClassF1();  }
+       else if(ft=="p2"){  App=new UIMathClassP2();  }
+       else if(ft=="p5"){  App=new UIMathClassP5();  }
        else{App=new MathClassF1equ(); }
-       App.genEquData();
+       App.InitQizData();
     };
     script.src = "/math/question/"+ft+".js";
     document.head.appendChild(script);
@@ -157,13 +158,13 @@ block content
       $("#ANSQT00"+x).css("display", "block");      
       $("#ANSQT00"+x).focus();     
       $("#ANSQTM00"+x).css("display", "block");  
-      if( !App.isfraction(x,qno) )  {
+      if( !App.IsFraction(x,qno) )  {
          $("#ANSQTM00"+x).css("display", "none");  
          $("#ANSQTM00"+x).val("1");      
       }
       $('#CHKQT00'+x).text(qno+ "/10确定");
-      $('#QT00'+x).html("\\("+App.showEqu(x,qno)+"\\)");  
-      App.updateMathContent(x);
+      $('#QT00'+x).html("\\("+App.GetQizStatement(x,qno)+"\\)");  
+      App.UpdateMathContent(x);
       close_msgbox('AnsMsgbox');
     }
     function GetCheckAns(x) {  

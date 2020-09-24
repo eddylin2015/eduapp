@@ -70,7 +70,7 @@ const router = express.Router();
 function authRequired(req, res, next) {
     if (!req.user)   {
         req.session.oauth2return = req.originalUrl;
-        return res.redirect('/auth/login');
+        return res.redirect('/login');
     }
     next();
 }
