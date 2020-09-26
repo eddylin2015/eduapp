@@ -15,7 +15,9 @@
 
 const express = require('express');
 //const images = require('./images');
-const model = require('./model-mysql');
+const dbis="redis";//mysql
+//const model = require('./model-mysql');
+const model = require('./model-redis');
 const images = require('./images');
 var oauth2=require('../../db/internalOauth2.js')
 const router = express.Router();
@@ -135,7 +137,32 @@ model.TMSQFlistbydate(sd,ed,(err,maths_data)=>{
  });
 });
 });
-
+let isArray = (data) => {
+  return (Object.prototype.toString.call(data) === "[object Array]");  
+}
+router.get('/tmsMyReport', oauth2.required, (req, Response, next) => {
+model.list(null,(err,maths_data)=>{
+  if(err) console.log(err);
+  console.log(Object.prototype.toString.call( maths_data));
+  if(dbis==="redis"){
+    let keys_=Object.keys(maths_data);
+    let mdata=[];
+    for(let i=0;i<keys_.length;i++)
+    {
+      mdata.push({fn:keys_[i],jsondata:maths_data[keys_[i]]})
+    }
+    Response.render('TMSUI/tmsReport.pug', {
+      profile:req.user,
+      data:mdata
+    });
+  }else{
+    Response.render('TMSUI/tmsReport.pug', {
+      profile:req.user,
+      data:maths_data
+ });
+ }
+});
+});
 router.get('/QizEx',(req, res, next) => {
   res.render('TMSUI/QizExIndex.pug', {});
 });
