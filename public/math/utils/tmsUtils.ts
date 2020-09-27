@@ -35,11 +35,16 @@ class TmsUts{
 * rang Ta - Tb    -10..10
 * Desm 10^Desm 取整的進位調整 default=0
 * [SwIs,Tc,Td] 0: ; 1: 非Tc..Td Range; other: not eq (Tc or  Td)
-*         a = tmsU.TakeARnd(-Tk, Tk, 0, 1, 0, 0)
-*         c = tmsU.TakeARnd(-Tk, Tk, 0, 1, 0, 0)
-*         e = tmsU.TakeARnd(-Tk, Tk, 0, 2, 0, a)
+*         createEqu(Tx,Tk)  Tk 取數範圍 -Tk 至 +Tk
+*         SwIs,Tc,Td
+*         case SwIs=0 ,不需要考慮 Tc,Td 參數
+*         a = tmsU.TakeARnd(-Tk, Tk, 0, 0, 0, 0)
+*         case SwIs=1 ,需要考慮 Tc,Td 參數,不包含Tc,Td 實點範圍內數值
+*         c = tmsU.TakeARnd(-Tk, Tk, 0, 1, 0, 0) //不包含零
+*         case SwIs=2 ,需要考慮 Tc,Td 參數,不等Tc,或Td 數值
+*         e = tmsU.TakeARnd(-Tk, Tk, 0, 2, 0, a) // 不包含零或a值
 */
-TakeARnd(Ta, Tb, Desm, SwIs, Tc, Td) //As Single
+TakeARnd(Ta, Tb, Desm=0, SwIs=1, Tc=0, Td=0) //As Single
 {
     if((Tb-Ta) == 0) return 0;
     let r;
@@ -58,12 +63,11 @@ TakeARnd(Ta, Tb, Desm, SwIs, Tc, Td) //As Single
 /*
  ' ------ 建構一個隨機分數,  ---------------
  ' -----  分子為(-k , k) 內的整數-------
- ' ------ 分數的SwIs ：0  不允許整數，1 允許整數，2 真分數，3 假分數
- '  ------註: 亂數的SwIs 是 限制 開關, 0 不限制, 1 限制區域， 2 限制2點
+ ' ------ 分數的SwIs ：0  不允許整數(分母不為1)，1 允許整數，2 真分數，3 假分數
  ' Public Function TakeAFrc(k As Single, SwIs As Integer) As AFrc
- ' k = TakeARnd SwIs 0,1,2
+ ' k = TakeARnd SwIs defaut = 2
 */
-TakeAFrc(k, SwIs)//As AFrc
+TakeAFrc(k, SwIs=2)//As AFrc
 {
     let a, b, c, r;
     let f = new AFrc, BL = true;

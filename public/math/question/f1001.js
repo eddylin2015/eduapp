@@ -41,22 +41,32 @@
 if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils');var calc = require("../utils/tmsCalcu").calc; }
 
 const tmsU=new TmsUts();
-//Left, Replace, tmsU.TakeAFrc, Int, Rnd, Str, Trim, AllTrim, Right, DcmToFrc, CDbl
+//tmsU 
+//TakeAFrc(k,Desm=2真分數)
+//TakeARnd(Ta,Tb,Desm=0,SwIs(0,1,2)=1,Tc=0,Td=0)  
+//Left, Replace, Int, Rnd, Str, Trim, AllTrim, Right, DcmToFrc, CDbl
+
+function GetAROpr(OprRang) //OprRang=["+","-","*","/']
+{
+   
+}
 //' ------ Tx Tixing  題型
 //' -------Tk Random_base -TK..TK ------
 function CreatAEq(Tx, Tk, Range) {
-    let TE = new AExps();
-    let r0 = 10, r1 = 10, r2 = 10;
+    let TE = {St:null, Val: 0, CalcVal: 0};
+    let a = 1, b = 1, c = 1, d=1; 
+    let expr=[]	;
+    let opr =[]	;
     switch (Tx) {
         case 1:  //题型1：a+b+c=d  |a|,|b|,|c|< 100 整数
-            r0 = 10;
-            r1 = 10;
-            r2 = 10;
+            a = tmsU.TakeARnd(-100,100);
+            b = tmsU.TakeARnd(-100,100);
+            c = tmsU.TakeARnd(-100,100);
             break;
         case 2: //题型2：b/a+c/a=d   |a|,|b|,|c|< 10整数，|a|≠0
-            r0 = 10;
-            r1 = 100;
-            r2 = 10;
+            a = tmsU.TakeARnd(-10,10);
+            b = tmsU.TakeARnd(-10,10);
+            c = tmsU.TakeARnd(-10,10);
             break;
         case 3:
             break;
