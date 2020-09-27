@@ -432,6 +432,11 @@ exprfrcCalc(expr){
     }
     return stuck.pop();
 }
+simplifyFrc(st)
+{
+    let f=this.D2Frc(st)
+    return f.FenM==1? f.Sgn*f.FenZ :st;
+}
 ///
 }
 

@@ -531,10 +531,6 @@ var TmsCalcu = /** @class */ (function () {
         }
         return stuck.pop();
     };
-    TmsCalcu.prototype.simplifyFrc = function (st) {
-        var f = this.D2Frc(st);
-        return f.FenM == 1 ? f.Sgn * f.FenZ : st;
-    };
     return TmsCalcu;
 }());
 /////////

@@ -3,7 +3,7 @@ class AFrc {
     //分數的結構 AFrc :   fraction , denominator
     constructor(){}
     St = "";  //' 分數的單行運算式，字串
-
+    St1=""; //' 分數的單行運算式，字串 ( -1 ) 加括號
     Val = 0;  //分數的值，單精型數 decimal Value or 可計算式子
  
     CalVal=0; //Val 式子運計算結果, 或tmsCalcu 運算結果
@@ -16,7 +16,7 @@ class AFrc {
 class AExps {      
    //'運算式(最多4項)的結構
    constructor() {        }   
-   Nf = [new AFrc(),new AFrc(),new AFrc(),new AFrc(),new AFrc()];  //  As AFrc '' 各項可以是分數或整數(fenz）     
+   Nf = [null,null,null,null,null];  //  As AFrc '' 各項可以是分數或整數(fenz）     
    OPr= ["","","","",""];   // As String   ' 操作符' 運運算元（括弧和指數)
    St  = "" ;               // As String    ' 代數表逹式子 ' 單行字串式
    Val = 0 ;                // As Single or Decimal  //分數的值，單精型數 decimal Value or 可計算式子
@@ -63,7 +63,7 @@ TakeARnd(Ta, Tb, Desm=0, SwIs=1, Tc=0, Td=0) //As Single
 /*
  ' ------ 建構一個隨機分數,  ---------------
  ' -----  分子為(-k , k) 內的整數-------
- ' ------ 分數的SwIs ：0  不允許整數(分母不為1)，1 允許整數，2 真分數，3 假分數
+ ' ------ 分數的SwIs ：0  不允許整數(分母不為1)，1 允許整數，2 真分數，3 假分數, 4 整數
  ' Public Function TakeAFrc(k As Single, SwIs As Integer) As AFrc
  ' k = TakeARnd SwIs defaut = 2
 */
@@ -83,6 +83,9 @@ TakeAFrc(k, SwIs=2)//As AFrc
                 BL = false; break;
             case 2:
                 BL = Math.abs(a) >= Math.abs(b) || b == 1; break;
+            case 4:
+                BL=false;b=1;break;
+                break;    
             default:
                 BL = Math.abs(a) <= Math.abs(b) || b == 1;
         }
@@ -92,7 +95,27 @@ TakeAFrc(k, SwIs=2)//As AFrc
     f.FenM = b
     f.Val = f.Sgn * (f.FenZ / f.FenM)
     f.St = (f.Sgn * f.FenZ) + "/" + (f.FenM)
+    if(f.FenM==1) f.St=(f.Sgn * f.FenZ).toString();
+    f.St1=f.St;
+    if(f.Sgn<0 || f.FenM>1) f.St1="("+f.St+")";
     return f
+}
+MJaxFmt(St)
+{
+   var patt1 = /[(][-]*\d+[/][-]*\d+[)]/g;
+   var result = St.match(patt1);
+   if (result == null) { }
+   else {
+       for (let i = 0; i < result.length; i++) {
+           let rstr = this.Replace(result[i], "(", " { ");
+           rstr = this.Replace(rstr, ")", " } ");
+           rstr = this.Replace(rstr, "/", " \\over ");
+           St = St.replace(result[i], rstr);
+       }
+   }
+   St = this.Replace(St,"*", " \\times ");
+   St = this.Replace(St,"/", " \\div ");
+   return St;
 }
 /*
 ' ------ 整理一次式 ，成字串運算式-----

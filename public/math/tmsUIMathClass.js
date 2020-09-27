@@ -3,6 +3,7 @@
 class UIMathClass {
     constructor() {
       //super();  
+      this.NTE =[[], [], [], []]; // TE
       this.QT = [[], [], [], []];//題目
       this.AQT = [[], [], [], []];//答案
       this.AQTR = [[], [], [], []];//答案儲存陣列RANGE[]
