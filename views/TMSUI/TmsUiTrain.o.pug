@@ -85,6 +85,7 @@ block content
        else if(ft=="f1001"){ App=new UIMathClassF1001();}
        else{App=new MathClassF1equ(); }
        App.InitQizData();
+       $("#infomsg").dialog("open"); 
     };
     script.src = "/math/question/"+ft+".js";
     document.head.appendChild(script);
@@ -102,7 +103,6 @@ block content
       $( "#txtuser" ).text(username);
       $( "#txtft" ).text(ft); 
       //End buttom pannel
-      
       //Dialog Define
       //Dialog 得分表
       $("#AnsMsgRes").dialog( { autoOpen: false, width:'80%'});      
@@ -110,9 +110,12 @@ block content
       $("#btnAnsMsgRes").click(function(){ $( "#AnsMsgRes" ).dialog("open"); });    
       //Dialog Message: 步驟 1. 選擇題型。2. 做题：3. 【確定】 --- 評判答案幷打分。 說明
       $("#infomsg").dialog( { autoOpen: false, width:'100%', height:500,
-        modal: true, buttons: { OK: function() { $( this ).dialog( "close" ); }   }
+        modal: true, buttons: { OK: function() { $( this ).dialog( "close" ); }   },
+        open:function(){
+          if(App.Note !== null) $("#infomsg_txt").html(App.Note); 
+        }
       });
-      $("#infomsg").dialog("open"); 
+      
       $('#ttl').click(function(){ $( "#infomsg" ).dialog("open"); });
       //End Dialog Define
 

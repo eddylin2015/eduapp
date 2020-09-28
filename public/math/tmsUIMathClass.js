@@ -4,10 +4,12 @@ class UIMathClass {
     constructor() {
       //super();  
       this.NTE =[[], [], [], []]; // TE
+      this.Note=null;
       this.QT = [[], [], [], []];//題目
       this.AQT = [[], [], [], []];//答案
       this.AQTR = [[], [], [], []];//答案儲存陣列RANGE[]
       this.QTTime = [[], [], [], []]; //時間
+
       /*
       Public TiHao             As Integer               ' 題號
       Public TiXing            As Integer                 ' 題型
