@@ -30,7 +30,7 @@ c,d,n,g,h,mА-99俱计
 'use strict';
 //玂痙
 if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils');var calc = require("../utils/tmsCalcu").calc; }
-//if (typeof module !== 'undefined' && module.exports) { var { UIMathClass } = require('../tmsUIMathClass'); }
+if (typeof module !== 'undefined' && module.exports) { var { UIMathClass } = require('../tmsUIMathClass'); }
 const tmsU=new TmsUts();
 function GetAROpr(OprRang) //OprRang=["+","-","*","/']
 {
@@ -41,7 +41,7 @@ function GetRndInt(max) {
 }
 
 //tmsU 
-//TakeAFrc(k,Desm=2痷だ计)
+//TakeAFrc(k,1 す砛俱计/2 痷だ计 )
 //TakeARnd(Ta,Tb,Desm=0,SwIs(0,1,2)=1,Tc=0,Td=0)  
 //Left, Replace, Int, Rnd, Str, Trim, AllTrim, Right, DcmToFrc, CDbl
 
@@ -53,12 +53,12 @@ function CreatAEq(Tx, Tk, Range) {
     switch (Tx) {
         case 1:  //?1 a^n=a*a*a... 1. 2^3 = 8 2. (1/4)^-2 = 16 a,А19计 n-99俱计
             Tk=100;
-            TE.Nf[0] = tmsU.TakeAFrc(Tk,  4);
-            TE.Nf[1] = tmsU.TakeAFrc(Tk,  4);
+            TE.Nf[0] = tmsU.TakeAFrc(9,  1);
+            TE.Nf[1] = tmsU.TakeAFrc(9,  4);
             for (let i = 0; i < 2; i++) {              
               TE.OPr[i] = TOp[tmsU.Int(100 * tmsU.Rnd()) % 2];
             }
-            TE.St=TE.Nf[0].St1 ^ TE.OPr[0]+TE.Nf[1].St1+TE.OPr[1]+TE.Nf[2].St1;
+            TE.St=TE.Nf[0].St1 + "^" +TE.Nf[1].St1;
             TE.Val=0;
             TE.CalcVal=0;
             break;
@@ -141,8 +141,8 @@ class UIMathClassF1002 extends UIMathClass {
   }
  
 function main(){     
-  for (let i = 0; i < 2; i++) {
-    for(let j=0;j<10;j++){
+  for (let i = 0; i < 1; i++) {
+    for(let j=0;j<5;j++){
       let TiXing = i+1;
       let s1 = CreatAEq(TiXing, 0, null)
       console.log(s1.St);
