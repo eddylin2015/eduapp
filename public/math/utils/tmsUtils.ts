@@ -20,15 +20,21 @@ class AFrc {
 
 class AExps {
     //'運算式(最多4項)的結構
-    constructor() { }
-    Nf = [null, null, null, null, null];  //  As AFrc '' 各項可以是分數或整數(fenz）     
-    OPr = ["", "", "", "", ""];   // As String   ' 操作符' 運運算元（括弧和指數)
-    St = "";               // As String    ' 代數表逹式子 ' 單行字串式
-    Val = 0;                // As Single or Decimal  //分數的值，單精型數 decimal Value or 可計算式子
-    CalcVal = 0; //As Decimal ; Val 式子運計算結果, 或tmsCalcu 運算結果
-    FrcVal = 0;
+    Nf:any;
+    OPr:any;
+    St:any;
+    Val:any;
+    CalcVal:any;
+    FrcVal:any;
+    constructor() { 
+        this.Nf = [null, null, null, null, null];  //  As AFrc '' 各項可以是分數或整數(fenz）     
+        this.OPr = ["", "", "", "", ""];   // As String   ' 操作符' 運運算元（括弧和指數)
+        this.St = "";               // As String    ' 代數表逹式子 ' 單行字串式
+        this.Val = 0;                // As Single or Decimal  //分數的值，單精型數 decimal Value or 可計算式子
+        this.CalcVal = 0; //As Decimal ; Val 式子運計算結果, 或tmsCalcu 運算結果
+        this.FrcVal = 0;
+    }
 }
-
 /*
 Module1.bas  Utils
 */
@@ -566,7 +572,6 @@ class TmsCalcu {
                     }
                     break;
                 default:
-                // cc_list[lcnt++]=c;                
             }
         }
         return cc_list;
@@ -607,11 +612,6 @@ class TmsCalcu {
                 break;
             }
         }
-        /*
-          if(l1[0] == '(' && l1[l1.length - 1] == ')') {
-              l1.splice(l1.length - 1, 1);
-              l1.splice(0, 1);
-          }*/
         if (l1.length <= 1) {
             prenode.push(l1[0]);
             return;
@@ -764,7 +764,7 @@ class TmsCalcu {
         return this.FxF(Tf1, F2)
     }
     FPowN(Tf1: AFrc, Tf2: AFrc) {
-        console.log("FPOWN 0", Tf1)
+        //Tf2.FenM = 1
         let f = new AFrc;
         let powN = Tf2.FenZ;
         if (Tf2.Sgn < 0) {
@@ -773,15 +773,12 @@ class TmsCalcu {
             Tf1.FenZ = temp;
             Tf2.Sgn = Tf2.Sgn * -1;
         }
-
-
         f.FenZ = Math.pow(Tf1.Sgn * Tf1.FenZ, powN)
         f.FenM = Math.pow(Tf1.FenM, powN)
         f.Sgn = this.Sgn(f.FenZ)
         f.FenZ = Math.abs(f.FenZ);
         f.Val = f.Sgn * (f.FenZ / f.FenM)
         f.St = "(" + (f.Sgn * f.FenZ) + "/" + f.FenM + ")"
-        console.log("FPOWN 1", f)
         return f;
     }
     exprfrcCalc(expr) {
@@ -803,7 +800,6 @@ class TmsCalcu {
                     case "/": r = this.FdivF(d1_, d2_).St; break;
                     case "^": r = this.FPowN(d1_, d2_).St; break;
                 }
-
                 stuck.push(r);
             }
         }
@@ -815,8 +811,6 @@ class TmsCalcu {
     }
     ///
 }
-
-
 /////////
 function VMCalc(ValSt) {
     if (typeof module !== 'undefined' && module.exports) {
