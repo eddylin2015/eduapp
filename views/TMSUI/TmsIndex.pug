@@ -55,21 +55,21 @@ block content
           h3
             span 數學練習
           table(width="100%")
-            +accor_li("/internal/TMS/trianing.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
+            +accor_li("/internal/TMS/trianing.o.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
+            +accor_li("/internal/TMS/trianing.o.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
+            +accor_li("/internal/TMS/trianing.o.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
+            +accor_li("/internal/TMS/trianing.o.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
 
           h3
             span 小學
           table(width="100%")
-            +accor_li("/internal/TMS/trianing.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
+            +accor_li("/internal/TMS/trianing.o.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
+            +accor_li("/internal/TMS/trianing.o.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
           h3
-            span 中一(建設中)
+            span 中一()
           table(width="100%")
             each sub in f1data
-              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+              +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
           h3
             span 中二(建設中)
           table(width="100%")

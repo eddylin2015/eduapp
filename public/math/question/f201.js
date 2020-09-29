@@ -73,12 +73,13 @@ function adjustExp(data)
     return s1;
 }
 class F201_UIMathClass extends UIMathClass {
-    genEquData() {
+    InitQizData() {
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 10; j++) {
                 let TiXing = i + 1;
                 let Range = {}
                 let s1 = CreatAEq(TiXing, 9, Range)
+                this.NTE[i][j]=s1;
                 this.QT[i][j] = s1.St;
                 this.AQT[i][j] = s1.CalcVal;
                 this.AQTR[i][j] = Range;
@@ -98,14 +99,14 @@ class F201_UIMathClass extends UIMathClass {
         }
     }
 
-    showEqu(qti, qno) {
-        super.showEqu(qti, qno);
+    GetQizStatement(qti, qno) {
+        super.GetQizStatement(qti, qno);
         return this.QT[Number(qti) - 1][qno - 1];
     }
-    getStAns(qti,qno){
+    GetAnsSt(qti,qno){
         return this.AQT[Number(qti) - 1][qno - 1];        
     }
-    equalAns(qti, qno, AnsZ, AnsM) {
+    CheckAns(qti, qno, AnsZ, AnsM) {
         let ansx = this.AQTR[Number(qti) - 1][qno - 1];
         let ansxx=[ansx["F116"],ansx["G116"],ansx["H116"],ansx["I116"]];
         let ccx=calc.Sytex_cclist_x(AnsZ);
@@ -121,7 +122,7 @@ class F201_UIMathClass extends UIMathClass {
         console.log(flag)
         return flag[0] && flag[1] || flag[2] && flag[3] ;
         /*
-        if (this.isfraction(qti, qno)) {
+        if (this.IsFraction(qti, qno)) {
             return Math.abs(ansx - (AnsZ / AnsM)) < 0.0001
         } else {
             if ((typeof ansx) == "number") return ansx == AnsZ;
@@ -129,8 +130,8 @@ class F201_UIMathClass extends UIMathClass {
             if ((typeof ansx) == "object") return ansx["F116"] == AnsZ && ansx["G116"] == AnsM;
         }*/
     }
-    //getAnsNum(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["F116"]; }
-    //getAnsDen(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["G116"]; }
+    //GetAns_Num(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["F116"]; }
+    //GetAns_Den(qti, qno) { return App.AQT[Number(qti) - 1][qno - 1]["G116"]; }
 }
 //______MAIN________________________________
 function f201_main() {
@@ -149,9 +150,9 @@ function f201_main() {
         /*
         let testapp=new F201_UIMathClass();
         testapp.genEquTestData();
-        console.log(testapp.showEqu(1,2))
-        console.log(testapp.getStAns(1,2))
-        console.log(testapp.equalAns(1,2,"（x-2)(x-1)","" ))
+        console.log(testapp.GetQizStatement(1,2))
+        console.log(testapp.GetAnsSt(1,2))
+        console.log(testapp.CheckAns(1,2,"（x-2)(x-1)","" ))
         */
     }
 }

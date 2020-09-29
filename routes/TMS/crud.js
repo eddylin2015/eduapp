@@ -85,7 +85,7 @@ router.get('/trianing.jsp',(req, res, next) => {
     profile:req.user
 });
 });
-router.get('/v0trianing.jsp',(req, res, next) => {
+router.get('/trianing.o.jsp',(req, res, next) => {
   let ft=req.query.ft;
   let MathTitle=""
   if(ft=="p2"){MathTitle='加減';}

@@ -486,19 +486,6 @@ var TmsCalcu = /** @class */ (function () {
     };
     TmsCalcu.prototype.FPowN = function (Tf1, Tf2) {
         var f = new AFrc_;
-        if(Tf2.Sgn<0) { 
-        /*
-            this.FenZ = 0;
-            this.FenM = 0;
-            this.Sgn = 0;
-            this.Val = 0;
-            this.St = "";
-        */
-            let temp=Tf1.FenM;
-            Tf1.FenM=Tf1.FneZ;
-            Tf1.FenZ=temp;
-            Tf2.Sgn=Tf2.Sgn*-1;
-        }
         var powN = Tf2.FenZ;
         f.FenZ = Math.pow(Tf1.Sgn * Tf1.FenZ, powN);
         f.FenM = Math.pow(Tf1.FenM, powN);
@@ -538,15 +525,11 @@ var TmsCalcu = /** @class */ (function () {
                         r = this.FPowN(d1_, d2_).St;
                         break;
                 }
-                console.log("epr",r);
+                console.log(r);
                 stuck.push(r);
             }
         }
         return stuck.pop();
-    };
-    TmsCalcu.prototype.simplifyFrc = function (st) {
-        var f = this.D2Frc(st);
-        return f.FenM == 1 ? f.Sgn * f.FenZ : st;
     };
     return TmsCalcu;
 }());

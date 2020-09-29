@@ -202,7 +202,7 @@ Sytex_cclist_x(data) {
     }
     return cc_list;
 }
- exprCalc(expr) {
+exprCalc(expr) {
     let stuck = [];
     for (let i = 0; i < expr.length; i++) {
         let s = expr[i]
@@ -398,6 +398,14 @@ FdivF(Tf1,Tf2){
 FPowN(Tf1,Tf2){
     let f = new AFrc_;
     let powN=Tf2.FenZ;
+    if(Tf2.Sgn<0) { 
+        let temp=Tf1.FenM;
+        Tf1.FenM=Tf1.FneZ;
+        Tf1.FenZ=temp;
+        Tf2.Sgn=Tf2.Sgn*-1;
+    }
+
+
     f.FenZ=Math.pow( Tf1.Sgn   * Tf1.FenZ, powN)
     f.FenM=Math.pow( Tf1.FenM, powN)
     f.Sgn = this.Sgn( f.FenZ )   
@@ -426,11 +434,16 @@ exprfrcCalc(expr){
                 case "/": r = this.FdivF(d1_,d2_).St; break;
                 case "^": r = this.FPowN(d1_,d2_).St; break;
             }
-            console.log(r)
+            
             stuck.push(r);
         }
     }
     return stuck.pop();
+}
+simplifyFrc(st)
+{
+    let f=this.D2Frc(st)
+    return f.FenM==1? f.Sgn*f.FenZ :st;
 }
 ///
 }
