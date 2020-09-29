@@ -1,11 +1,16 @@
+/*
 'use strict';
+
 class AFrc_ {
+    //分數的結構 AFrc :   fraction , denominator
     constructor(){}
-    FenZ = 0;    
-    FenM = 0;    
-    Sgn = 0;
-    Val = 0;
-    St = "";
+    FenZ = 0; //分子 fraction
+    FenM = 0; //分母 denominator ，正整型數
+    Sgn = 0;  //符號，+1 -1
+    Val = 0;  //分數的值，單精型數 decimal Value or 可計算式子
+    St = "";  //' 分數的單行運算式，字串
+    St1=""; //' 分數的單行運算式，字串 ( -1 ) 加括號
+    CalVal=0; //Val 式子運計算結果, 或tmsCalcu 運算結果 //以分式表示結果
 }
 var KeySigns = {}
 KeySigns['\t'] = 0;
@@ -30,11 +35,11 @@ class TmsCalcu{
         l1 = this.Sytex_cclist(l1[0].substring(1, l1[0].length - 1));
         cnt++; if (cnt > 10) break;
     }
-    /*
-      if(l1[0] == '(' && l1[l1.length - 1] == ')') {
-          l1.splice(l1.length - 1, 1);
-          l1.splice(0, 1);
-      }*/
+    
+      //if(l1[0] == '(' && l1[l1.length - 1] == ')') {
+      //    l1.splice(l1.length - 1, 1);
+      //    l1.splice(0, 1);
+      //}
     if (l1.length <= 1) {
         prenode.push(l1[0]);
         return;
@@ -202,7 +207,7 @@ Sytex_cclist_x(data) {
     }
     return cc_list;
 }
- exprCalc(expr) {
+exprCalc(expr) {
     let stuck = [];
     for (let i = 0; i < expr.length; i++) {
         let s = expr[i]
@@ -238,11 +243,11 @@ procfrc2opt(l1,prenode){
             break;
         }
     }
-    /*
-      if(l1[0] == '(' && l1[l1.length - 1] == ')') {
-          l1.splice(l1.length - 1, 1);
-          l1.splice(0, 1);
-      }*/
+    
+    //  if(l1[0] == '(' && l1[l1.length - 1] == ')') {
+    //      l1.splice(l1.length - 1, 1);
+    //      l1.splice(0, 1);
+     // }
     if (l1.length <= 1) {
         prenode.push(l1[0]);
         return;
@@ -335,6 +340,7 @@ D2Frc(expr){
   }else if(r1 == null && r2.length>0 ){
     return this.TakeAB2Frc_(Number(r2[0]),1);
   }else{
+      console.log(r2);
     return this.TakeAB2Frc_(Number(r2[0]),Number(r2[1]));
   }
 }
@@ -396,14 +402,24 @@ FdivF(Tf1,Tf2){
     return this.FxF(Tf1, F2)
 }
 FPowN(Tf1,Tf2){
+    console.log("FPOWN 0",Tf1)
     let f = new AFrc_;
     let powN=Tf2.FenZ;
+    if(Tf2.Sgn<0) { 
+        let temp=Tf1.FenM;
+        Tf1.FenM=Tf1.FneZ;
+        Tf1.FenZ=temp;
+        Tf2.Sgn=Tf2.Sgn*-1;
+    }
+
+
     f.FenZ=Math.pow( Tf1.Sgn   * Tf1.FenZ, powN)
     f.FenM=Math.pow( Tf1.FenM, powN)
     f.Sgn = this.Sgn( f.FenZ )   
     f.FenZ=Math.abs(f.FenZ);
     f.Val = f.Sgn * (f.FenZ / f.FenM)
     f.St = "("+(f.Sgn * f.FenZ) + "/" + f.FenM+")"
+    console.log("FPOWN 1",f)
     return f;
 }
 exprfrcCalc(expr){
@@ -417,6 +433,7 @@ exprfrcCalc(expr){
             let d1 = stuck.pop();
             console.log(d1,d2,opt)
             let d1_ = this.D2Frc(d1);
+            console.log("D2frc",d1_);
             let d2_ = this.D2Frc(d2);
             let r = "(0/1)";
             switch (opt) {
@@ -426,7 +443,7 @@ exprfrcCalc(expr){
                 case "/": r = this.FdivF(d1_,d2_).St; break;
                 case "^": r = this.FPowN(d1_,d2_).St; break;
             }
-            console.log(r)
+            
             stuck.push(r);
         }
     }
@@ -493,3 +510,4 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = { calc:calc, VMCalc: VMCalc }
 } else {
 }
+*/

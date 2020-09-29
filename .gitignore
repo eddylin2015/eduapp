@@ -1,5 +1,7 @@
 *.*~
 *.*.swp
+index0.pug
+index99.pug
 favicon.ico
 app.js
 mailrelaydata.js

@@ -78,12 +78,32 @@ block content
     script.onload = function () {
        if(ft=="f201"){  App=new F201_UIMathClass();  }
        else if(ft=="f202"){  App=new F202_UIMathClass();  }
-       else if(ft=="f2"){  App=new F2_UIMathClass();  }
-       else if(ft=="f1"){  App=new MathClassF1equ();  }
-       else if(ft=="p2"){  App=new MathClassF1equ();  }
-       else if(ft=="p5"){  App=new MathClassF1equ();  }
+       else if(ft=="f2"){  App=new UIMathClassF2();  }
+       else if(ft=="f1"){  App=new UIMathClassF1();  }
+       else if(ft=="p2"){  App=new UIMathClassP2();  }
+       else if(ft=="p5"){  App=new UIMathClassP5();  }
        else if(ft=="f1001"){ App=new UIMathClassF1001();}
        else if(ft=="f1002"){ App=new UIMathClassF1002();}
+       else if(ft=="f1003"){ App=new UIMathClassF1003();}
+       else if(ft=="f1004"){ App=new UIMathClassF1004();}
+       else if(ft=="f1005"){ App=new UIMathClassF1005();}
+       else if(ft=="f1006"){ App=new UIMathClassF1006();}
+       else if(ft=="f1007"){ App=new UIMathClassF1007();}
+       else if(ft=="f1008"){ App=new UIMathClassF1008();}
+       else if(ft=="f2001"){ App=new UIMathClassF2001();}
+       else if(ft=="f2002"){ App=new UIMathClassF2002();}
+       else if(ft=="f2003"){ App=new UIMathClassF2003();}
+       else if(ft=="f2004"){ App=new UIMathClassF2004();}
+       else if(ft=="f2005"){ App=new UIMathClassF2005();}
+       else if(ft=="f2006"){ App=new UIMathClassF2006();}
+       else if(ft=="f2007"){ App=new UIMathClassF2007();}
+       else if(ft=="f3001"){ App=new UIMathClassF3001();}
+       else if(ft=="f3002"){ App=new UIMathClassF3002();}
+       else if(ft=="f3003"){ App=new UIMathClassF3003();}
+       else if(ft=="f3004"){ App=new UIMathClassF3004();}
+       else if(ft=="f3005"){ App=new UIMathClassF3005();}
+       else if(ft=="f3006"){ App=new UIMathClassF3006();}
+       else if(ft=="f3007"){ App=new UIMathClassF3007();}
        else{App=new MathClassF1equ(); }
        App.InitQizData();
        $("#infomsg").dialog("open"); 
@@ -104,6 +124,7 @@ block content
       $( "#txtuser" ).text(username);
       $( "#txtft" ).text(ft); 
       //End buttom pannel
+      
       //Dialog Define
       //Dialog 得分表
       $("#AnsMsgRes").dialog( { autoOpen: false, width:'80%'});      
@@ -111,9 +132,9 @@ block content
       $("#btnAnsMsgRes").click(function(){ $( "#AnsMsgRes" ).dialog("open"); });    
       //Dialog Message: 步驟 1. 選擇題型。2. 做题：3. 【確定】 --- 評判答案幷打分。 說明
       $("#infomsg").dialog( { autoOpen: false, width:'100%', height:500,
-        modal: true, buttons: { OK: function() { $( this ).dialog( "close" ); }   },
+        modal: true, buttons: { OK: function() { $( this ).dialog( "close" ); }},
         open:function(){
-          if(App.Note !== null) $("#infomsg_txt").html(App.Note); 
+          if(App.Note) $("#infomsg_txt").html(App.Note);
         }
       });
       

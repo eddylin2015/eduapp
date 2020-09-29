@@ -1,36 +1,39 @@
-/*f1002,name:¾ã¼Æ«ü¼Æ¾­ªº¹Bºâ
-?«¬1¡G a^n=a*a*a... 
+/*f1002,name:æ•´æ•¸æŒ‡æ•¸å†ªçš„é‹ç®—
+?å‹1ï¼š a^n=a*a*a... 
 1. 2^3 = 8        
 2. (1/4)^-2 = 16 
-a,§¡¬°1¦Ü9ªº¼Æ
-n¬°-9¦Ü9ªº¾ã¼Æ
-­Y >4000®É;¸Óºâ¦¡¤£¯à¨ú¥ß
-
-?«¬2¡G 
+a,å‡ç‚º1è‡³9çš„æ•¸
+nç‚º-9è‡³9çš„æ•´æ•¸
+è‹¥ >4000æ™‚;è©²ç®—å¼ä¸èƒ½å–ç«‹
+?å‹2ï¼š 
 a^m*a^n=a^(m+n)
 a^m/a^n=a^(m-n)
 1. 2^3 x 2^-6 = 2^(3-6) = 1/8       
 2. (a^-1)^3 / a^6 = a^3  
-a¥i¥H¬O¦r¥À©ÎÍ1¦Ü9ªº¼Æ
-m,n¬°-9¦Ü9ªº¾ã¼Æ
-
-?«¬3¡G 
+aå¯ä»¥æ˜¯å­—æ¯æˆ–î¼1è‡³9çš„æ•¸
+m,nç‚º-9è‡³9çš„æ•´æ•¸
+?å‹3ï¼š 
 ( a^c * b^d )^n = a^cn * b^dn
 1. (2a)^3  = 8a^3
 2. (a^-1 * b)^3 = b^3 / a^3 
-a,b¤¤¦Ü¤Ö¦³¤@­Ó¬O¦r¥À¬°1¦Ü9ªº¼Æ
-c,d,n¬°-9¦Ü9ªº¾ã¼Æ
-
-?«¬4¡G (a^c*b^d)^n(e^g*f^h)^m=a^cn*b^dn*e^gm*f^hm
+a,bä¸­è‡³å°‘æœ‰ä¸€å€‹æ˜¯å­—æ¯ç‚º1è‡³9çš„æ•¸
+c,d,nç‚º-9è‡³9çš„æ•´æ•¸
+?å‹4ï¼š (a^c*b^d)^n(e^g*f^h)^m=a^cn*b^dn*e^gm*f^hm
 1. (c^2 * y^-6) / (c^2 * y^-3) = 1/ y^3
 2. (a^-3 * b^4)^-2 * (a b^-3)^4 = a^10 / b^20
-a,b,e,f¤¤¥i¥H¬°1¦Ü9ªº¼Æ¤Î¦r¥À
-c,d,n,g,h,m§¡¬°-9¦Ü9ªº¾ã¼Æ
+a,b,e,fä¸­å¯ä»¥ç‚º1è‡³9çš„æ•¸åŠå­—æ¯
+c,d,n,g,h,må‡ç‚º-9è‡³9çš„æ•´æ•¸
 */
 'use strict';
-//«O¯d
+//ä¿ç•™
+var de=false;
+function bug(){
+  if (typeof module !== 'undefined' && module.exports) { var { UIMathClass } = require('../tmsUIMathClass'); }
+}
+de&&bug();
+
 if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils');var calc = require("../utils/tmsCalcu").calc; }
-if (typeof module !== 'undefined' && module.exports) { var { UIMathClass } = require('../tmsUIMathClass'); }
+
 const tmsU=new TmsUts();
 function GetAROpr(OprRang) //OprRang=["+","-","*","/']
 {
@@ -41,30 +44,38 @@ function GetRndInt(max) {
 }
 
 //tmsU 
-//TakeAFrc(k,1 ¤¹³\¾ã¼Æ/2 ¯u¤À¼Æ )
+//TakeAFrc(k,1 å…è¨±æ•´æ•¸/2 çœŸåˆ†æ•¸ )
 //TakeARnd(Ta,Tb,Desm=0,SwIs(0,1,2)=1,Tc=0,Td=0)  
 //Left, Replace, Int, Rnd, Str, Trim, AllTrim, Right, DcmToFrc, CDbl
 
-//' ------ Tx Tixing  ÃD«¬
+//' ------ Tx Tixing  é¡Œå‹
 //' -------Tk Random_base -TK..TK ------
 function CreatAEq(Tx, Tk, Range) {
     let TE = new AExps();
     let TOp = ["+", "-"];
     switch (Tx) {
-        case 1:  //?«¬1¡G a^n=a*a*a... 1. 2^3 = 8 2. (1/4)^-2 = 16 a,§¡¬°1¦Ü9ªº¼Æ n¬°-9¦Ü9ªº¾ã¼Æ
+        case 1:  //?å‹1ï¼š a^n=a*a*a... 1. 2^3 = 8 2. (1/4)^-2 = 16 a,å‡ç‚º1è‡³9çš„æ•¸ nç‚º-9è‡³9çš„æ•´æ•¸
             Tk=100;
             TE.Nf[0] = tmsU.TakeAFrc(9,  1);
-            TE.Nf[1] = tmsU.TakeAFrc(9,  4);
-            for (let i = 0; i < 2; i++) {              
-              TE.OPr[i] = TOp[tmsU.Int(100 * tmsU.Rnd()) % 2];
-            }
-            TE.St=TE.Nf[0].St1 + "^" +TE.Nf[1].St1;
-            TE.Val=0;
-            TE.CalcVal=0;
+            TE.Nf[1] = tmsU.TakeARnd(-4, 4,0,2,0,0);
+            TE.St=TE.Nf[0].St1 + "^{" +TE.Nf[1]+"}";
+            let S1=TE.Nf[0].St1 + "^ (" +TE.Nf[1]+")";
+            let cc_list = calc.Sytex_cclist(S1);
+            let yy = [];
+            calc.proc2opt(cc_list, yy);
+            TE.CalcVal = calc.exprCalc(yy);
+            TE.Val = TE.CalcVal;
+            
+            let fcc_list = calc.Sytex_cclist(S1);
+            let frc_yy = [];
+            calc.procfrc2opt(fcc_list, frc_yy);
+            TE.FrcVal=calc.exprfrcCalc(frc_yy);
+            TE.FrcVal=calc.simplifyFrc(TE.FrcVal);
+            TE.St=tmsU.MJaxFmt(TE.St);
             break;
         case 2:
         case 3:
-        case 4: //?«¬2¡Gb/a+c/a=d   |a|,|b|,|c|< 10¾ã?¡A|a|¡Ú0
+        case 4: //?å‹2ï¼šb/a+c/a=d   |a|,|b|,|c|< 10æ•´?ï¼Œ|a|â‰ 0
             Tk=10
             for (let i = 0; i < 2; i++) {
               TE.Nf[i] = tmsU.TakeAFrc(Tk, 2);
@@ -75,45 +86,27 @@ function CreatAEq(Tx, Tk, Range) {
             TE.CalcVal=0;
             break;
     }
-    
-    let cc_list = calc.Sytex_cclist(TE.St);
-    let yy = [];
-    calc.proc2opt(cc_list, yy);
-    TE.CalcVal = calc.exprCalc(yy);
-    TE.Val = TE.CalcVal;
-
-    let fcc_list = calc.Sytex_cclist(TE.St);
-    let frc_yy = [];
-    calc.procfrc2opt(fcc_list, frc_yy);
-    TE.FrcVal=calc.exprfrcCalc(frc_yy);
-    TE.FrcVal=calc.simplifyFrc(TE.FrcVal);
-    TE.St=tmsU.MJaxFmt(TE.St);
     return TE;
 }
 class UIMathClassF1002 extends UIMathClass {
+    constructor(){
+        super();
+        this.Note=
+        `
+        <div>æ•´æ•¸æŒ‡æ•¸å†ªçš„é‹ç®—:</div>
+        <div>å‹1ï¼š a^n=a*a*a...</div> 
+        <div>1. 2^3 = 8 ; 2. (1/4)^-2 = 16 </div>
+        <div>å‹2ï¼ša^m * a^n = a^(m+n); a^m / a^n = a^(m-n)</div>
+        <div>1. 2^3 x 2^-6 = 2^(3-6) = 1/8 </div>
+        <div>2. (a^-1)^3 / a^6 = a^3  </div>
+        `;
+    }
     InitQizData(){
-      this.Note=`
-      <div>¦³²z¼Æªº¹Bºâ: ?«¬1¡Ga+b+c=d ?«¬2¡Gb/a+c/a=d </div>
-      <div>eg: -7/8 + -5/8 = -3/2 ;  «ö»¡©ú 2 ¤èªk¬ùÂ²¤À¼Æ§@µª. </div>
-      <div>¨BÆJ¡G</div>
-      <div>1. ¿ï¾ÜÃD«¬¡C</div>
-      <div>2. °µ?¡G</div>
-      <div>(1)¡i¤U¤@ÃD¡j¡A</div>
-      <div>(2) °µÃD¦}¶}©l­p®É¡A</div>
-      <div>(3) ¶ñ?µª®×¡C</div>
-      <div>3. ¡i½T©w¡j --- µû§Pµª®×?¥´¤À¡C</div>
-      <div>»¡©ú¡G</div>
-      <div>1. ¥i¥H¥Î¯Èµ§­pºâ¡A¤]¥i¥H¥Î­pºâ¾¹»²§U¡C</div>
-      <div>2. ?¦æ¤À¼Æ?ªk¦p¥k¡A¨Ò¦p¡G?/? ?¦¨ a / b --¤À??¥Î±×?¡C</div>
-      <div>3. ?¦æ«ü??ªk¦p¥k¡A¨Ò¦p¡G x2+1 ?¦¨ x^2+1 --¥Î«ü?²Å"^"¡C</div>
-      <div>4. ?¦æ®Ú¦¡?ªk¦p¥k¡A¨Ò¦p¡G¡Ô(?+1) ?¦¨ J(x+1) --¤j? J+ ¬A©·¡C</div>
-      <div>5. ¨CÃD10¤À¡C¤º³]°ò·Ç®É¶¡¡A´£«e§¹¦¨¥[¤À¡A¶W®É§¹¦¨¦©¤À¡C</div>
-      <div>6. ¤@¦¸??¥²?°µº¡10ÃD¡AµM«á‰m?¦Û°Ê¶ñ¼g³øªí¡C</div>
-      `;
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 1; i++) {
           for(let j=0;j<10;j++){
             let TiXing = i+1;
             let s1 = CreatAEq(TiXing, 0, null)
+            console.log(s1);
             this.NTE[i][j]=s1;
             this.QT[i][j]=s1.St;
             this.AQT[i][j]=s1.CalcVal;
@@ -151,7 +144,7 @@ function main(){
     }
   }
 }
-main();
-//«O¯d
+//main();
+//ä¿ç•™
 if (typeof module !== 'undefined' && module.exports) {     module.exports = {    example:main,    CreatAEq:CreatAEq}; }
 

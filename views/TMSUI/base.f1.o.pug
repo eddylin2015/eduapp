@@ -32,7 +32,7 @@ html(lang="zh")
     script(src='https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815')
     script.
       function GetQuestion(x) {  
-        if(App.NTE[x-1].length==0) {alert("不設此題型!");return};
+        if(App.NTE[x-1].length==0){alert("不設此題型");return;}
         let qno= ($('#CHKQT00'+x).text()=="Start") ? 1: Number($('#CHKQT00'+x).text().split("/")[0])+1;
         $("#ANSQT00"+x).val("");       
         $("#ANSQTM00"+x).val("");    

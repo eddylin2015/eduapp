@@ -101,6 +101,7 @@ class UIMathClassF1 extends UIMathClass {
            Range["D15"] = "*"
            Range["E15"] = "%"
            let s1 = CreatAEq(TiXing, 9, Range)
+           this.NTE[i][j]=s1;
            this.QT[i][j]=s1.St;
            this.AQT[i][j]=s1.CalcVal;
            console.log(Range)

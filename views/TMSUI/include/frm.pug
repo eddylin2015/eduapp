@@ -79,12 +79,12 @@ script.
     GetQuestion(qt);
   }
   function show_HelpAnsMsgbox(x,qno,ansZ,ansM) {
-    let equans=App.GetQizAns(x,qno);
+    let equans=App.getEquAns(x,qno);
     let ans_res=[];
     ans_res[0]=x;
     ans_res[1]=qno;
     let spanxv="";
-    if(App.CheckAns(x,qno,ansZ,ansM)){
+    if(App.equalAns(x,qno,ansZ,ansM)){
       ans_res[2]="1";
       spanxv="<span class='glyphicon glyphicon-ok'></span>"
     }else{
@@ -95,31 +95,31 @@ script.
     
   }
   function show_AnsMsgbox(x,qno,ansZ,ansM) {
-    let equans=App.GetQizAns(x,qno);
+    let equans=App.getEquAns(x,qno);
     document.getElementById("AnsMsgboxQT").innerHTML=x;
     document.getElementById("AnsMsgboxQNO").innerHTML=qno;
     if((typeof equans)=="object"){
       document.getElementById("AnsMsgboxRAns").innerHTML=equans["F116"]+"/"+equans["G116"];
     }else{
-  	  document.getElementById("AnsMsgboxRAns").innerHTML=App.GetAnsSt(x,qno);
+  	  document.getElementById("AnsMsgboxRAns").innerHTML=App.getStAns(x,qno);
     }
     document.getElementById("AnsMsgboxAns").innerHTML=ansZ;
     let ans_res=[];
     ans_res[0]=x;
     ans_res[1]=qno;
-    if(App.CheckAns(x,qno,ansZ,ansM)){
+    if(App.equalAns(x,qno,ansZ,ansM)){
       ans_res[2]="1";
       document.getElementById("AnsMsgboxCheckAns").innerHTML="<span class='glyphicon glyphicon-ok'></span>"
     }else{
       ans_res[2]="0";
       document.getElementById("AnsMsgboxCheckAns").innerHTML="<span class='glyphicon glyphicon-remove'></span>"
     }
-    ans_res[3]= App.GetUseTime(x,qno);
+    ans_res[3]= App.getEquTime(x,qno);
     ans_res[4]= ans_res[2];
-    ans_res[5]= App.GetQizSt(x, qno);
+    ans_res[5]= App.getSt(x, qno);
     ans_res[6]= ansZ;
-    if(App.IsFraction(x,qno)) ans_res[6] = ansZ+" / "+ ansM ;
-    ans_res[7] = App.GetAnsSt(x, qno);
+    if(App.isfraction(x,qno)) ans_res[6] = ansZ+" / "+ ansM ;
+    ans_res[7] = App.getStAns(x, qno);
     var table = document.getElementById("AnsMsgResTable");    
     table.deleteRow(table.rows.length-1);  
     var row = table.insertRow();//0 first row

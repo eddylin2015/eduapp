@@ -103,25 +103,18 @@ function CreatAEq(Tx, Tk, Range) {
     return TE;
 }
 class UIMathClassF1001 extends UIMathClass {
-    InitQizData(){
+    constructor() {
+      super();  
       this.Note=`
-      <div>有理數的運算: 题型1：a+b+c=d 题型2：b/a+c/a=d </div>
-      <div>eg: -7/8 + -5/8 = -3/2 ;  按說明 2 方法約簡分數作答. </div>
-      <div>步驟：</div>
-      <div>1. 選擇題型。</div>
-      <div>2. 做题：</div>
-      <div>(1)【下一題】，</div>
-      <div>(2) 做題并開始計時，</div>
-      <div>(3) 填写答案。</div>
-      <div>3. 【確定】 --- 評判答案幷打分。</div>
-      <div>說明：</div>
-      <div>1. 可以用紙筆計算，也可以用計算器輔助。</div>
-      <div>2. 单行分數写法如右，例如：𝑎/𝑏 写成 a / b --分数线用斜横。</div>
-      <div>3. 单行指数写法如右，例如： x2+1 写成 x^2+1 --用指数符"^"。</div>
-      <div>4. 单行根式写法如右，例如：√(𝑥+1) 写成 J(x+1) --大写 J+ 括弧。</div>
-      <div>5. 每題10分。內設基準時間，提前完成加分，超時完成扣分。</div>
-      <div>6. 一次测验必须做滿10題，然後电脑自動填寫報表。</div>
+      <div>有理數的運算: </div>
+      <div>题型1：a+b+c=d  |a|,|b|,|c|< 100 整数 </div>
+      <div> 1. 39+(-20)-10  2. 25-11-(-2) </div>
+      <div>答案式样	 1. = 9 ，  2. = 16 ，	</div>
+      <diV>题型2：b/a+c/a=d   |a|,|b|,|c|< 10整数，|a|≠0</div> 
+      <div>1. -7/8 - 5/8 = -3/2 ; 約簡分數作答.</div>           
       `;
+    }
+    InitQizData(){
       for (let i = 0; i < 2; i++) {
           for(let j=0;j<10;j++){
             let TiXing = i+1;
@@ -138,7 +131,7 @@ class UIMathClassF1001 extends UIMathClass {
       return  tmsU.Replace(this.QT[Number(qti)-1][qno-1], "/", " \\div "); ;   
     }
     CheckAns(qti,qno, AnsZ,AnsM){
-      let ansx= this.AQT[Number(qti)-1][qno-1];
+      let ansx= App.AQT[Number(qti)-1][qno-1];
       if(this.IsFraction(qti,qno)){
         return Math.abs(ansx-(AnsZ/AnsM))<0.0001
       }else{
@@ -147,8 +140,8 @@ class UIMathClassF1001 extends UIMathClass {
         if((typeof ansx)=="object") return ansx["F116"]==AnsZ && ansx["G116"]==AnsM;
       }
     }
-    GetAns_Num(qti,qno){return this.AQT[Number(qti)-1][qno-1]["F116"];}
-    GetAns_Den(qti,qno){return this.AQT[Number(qti)-1][qno-1]["G116"];}
+    GetAns_Num(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
+    GetAns_Den(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
     GetAnsSt(qti,qno) {return this.NTE[Number(qti) - 1][qno - 1].FrcVal;   }
   }
  
