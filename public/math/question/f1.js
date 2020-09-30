@@ -125,7 +125,14 @@ class UIMathClassF1 extends UIMathClass {
    }
    GetAns_Num(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
    GetAns_Den(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
-   GetAnsSt(qti,qno) {return this.AQT[Number(qti) - 1][qno - 1];   }
+   GetAnsSt(qti,qno) {
+      if(this.IsFraction(qti,qno)){
+         return this.NTE[Number(qti) - 1][qno - 1].Val;      
+      }
+      else{
+      return this.AQT[Number(qti) - 1][qno - 1];   
+      }
+   }
  }
 
 //______MAIN________________________________

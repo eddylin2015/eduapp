@@ -51,22 +51,23 @@ block content
   //end mix //
 
   div(class="tab-content")
-    -let instyle=[null,"AnsInput","AnsInput","AnsInput","AnsInput"];
-    -let inTxt  =[null,"number","number","number","number"];
+    -let instyle="AnsInput";
+    -let inTxt="number";
     -let tabpane=["","tab-pane fade in active","tab-pane fade","tab-pane fade","tab-pane fade"]
     if formulajs=="f202"
-      -let instyle=[null,"AnsInput","AnsInput","AnsExpInput","AnsExpInput"];
-      -let inTxt  =[null,"number","number","text","text"];
-    if formulajs=="f201"
-      -let instyle=[null,"AnsExpInput","AnsExpInput","AnsExpInput","AnsExpInput"];
-      -let inTxt  =[null,"text","text","text","text"];
-
-    each tabid in [1,2,3,4]
-      div(id=`menu${tabid}`, class=tabpane[tabid])      
-        if formulajs=="f202"
-          +MathTestPanel0(tabid,instyle[tabid],inTxt[tabid])
-        else  
-          +MathTestPanel(tabid,instyle[tabid],inTxt[tabid])
+      each tabid in [1,2,3,4]
+        if tabid==3 || tabid==4
+          - instyle="AnsExpInput"
+          - inTxt="text"          
+        div(id=`menu${tabid}` class=tabpane[tabid])
+          +MathTestPanel0(tabid,instyle,inTxt)
+    else
+      if formulajs=="f201"
+        - instyle="AnsExpInput"
+        - inTxt="text" 
+      each tabid in [1,2,3,4]
+        div(id=`menu${tabid}` class=tabpane[tabid])
+          +MathTestPanel(tabid,instyle,inTxt)
 
   include include/frm.o.pug
   style.
