@@ -12,7 +12,6 @@ var AFrc = /** @class */ (function () {
     return AFrc;
 }());
 var AExps = /** @class */ (function () {
-    //'運算式(最多4項)的結構
     function AExps() {
         this.Nf = [null, null, null, null, null]; //  As AFrc '' 各項可以是分數或整數(fenz）     
         this.OPr = ["", "", "", "", ""]; // As String   ' 操作符' 運運算元（括弧和指數)
@@ -658,7 +657,6 @@ var TmsCalcu = /** @class */ (function () {
                     }
                     break;
                 default:
-                // cc_list[lcnt++]=c;                
             }
         }
         return cc_list;
@@ -712,11 +710,6 @@ var TmsCalcu = /** @class */ (function () {
                 break;
             }
         }
-        /*
-          if(l1[0] == '(' && l1[l1.length - 1] == ')') {
-              l1.splice(l1.length - 1, 1);
-              l1.splice(0, 1);
-          }*/
         if (l1.length <= 1) {
             prenode.push(l1[0]);
             return;
@@ -909,7 +902,7 @@ var TmsCalcu = /** @class */ (function () {
         return this.FxF(Tf1, F2);
     };
     TmsCalcu.prototype.FPowN = function (Tf1, Tf2) {
-        console.log("FPOWN 0", Tf1);
+        //Tf2.FenM = 1
         var f = new AFrc;
         var powN = Tf2.FenZ;
         if (Tf2.Sgn < 0) {
@@ -924,7 +917,6 @@ var TmsCalcu = /** @class */ (function () {
         f.FenZ = Math.abs(f.FenZ);
         f.Val = f.Sgn * (f.FenZ / f.FenM);
         f.St = "(" + (f.Sgn * f.FenZ) + "/" + f.FenM + ")";
-        console.log("FPOWN 1", f);
         return f;
     };
     TmsCalcu.prototype.exprfrcCalc = function (expr) {

@@ -1,5 +1,7 @@
 ﻿# 學教應用網頁
 ## Maths TestMySelf
+
+get-content f1003n.js -encoding utf8 | select -skip 1 | set-content f1003.js -encoding utf8
 ```
   -var p0data=[],f0data=[],f1data=[ ],f2data=[ ],f3data=[ ];
   -p0data.push({id:'p2',name:'加減'});

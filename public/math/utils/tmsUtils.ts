@@ -4,8 +4,8 @@ class AFrc {
     Sgn: number;
     Val: any;
     St: any;
-    St1: any;
-    CalVal: any;
+    St1: any; 
+    CalVal: any; //tmsCalcu
     //分數的結構 AFrc :   fraction , denominator
     constructor() {
         this.FenZ = 0; //分子 fraction
@@ -113,7 +113,7 @@ class TmsUts {
         if (f.Sgn < 0 || f.FenM > 1) f.St1 = "(" + f.St + ")";
         return f
     }
-    MJaxFmt(St) {
+    MJaxFmt(St:string) {
         var patt1 = /[(][-]*\d+[/][-]*\d+[)]/g;
         var result = St.match(patt1);
         if (result == null) { }
@@ -164,9 +164,9 @@ class TmsUts {
     ' ------- Ts 是 ± 號
     //Public Function FPlusF(Tf1 As AFrc, Tf2 As AFrc, Ts As String) As AFrc
     */
-    FPlusF(Tf1, Tf2, Ts) {
-        let a1, b1, a2, b2;//Int
-        let u, v, n, f = new AFrc;  // u,v as single; n as int; f As AFrc
+    FPlusF(Tf1:AFrc, Tf2:AFrc, Ts:string) {
+        let a1:number, b1:number, a2:number, b2:number;//Int
+        let u:number, v:number, n:number, f = new AFrc;  // u,v as single; n as int; f As AFrc
         if (Tf1.Sgn == 0) Tf1.Sgn = 1
         if (Tf2.Sgn == 0) Tf2.Sgn = 1
         a1 = Tf1.Sgn * Tf1.FenZ                                         //     '   ' 將符號加到分子上

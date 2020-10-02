@@ -66,7 +66,13 @@ const router = express.Router();
 router.post('/login',
     passport.authenticate('local', { failureRedirect: '/login' }),
     function (req, res) {
-        res.redirect('/internal/');
+        if(req.session.oauth2return&&req.session.oauth2return!=null)
+        {
+            res.redirect(req.session.oauth2return); 
+            req.session.oauth2return=null;
+        }else{
+           res.redirect('/internal/');
+        }
     });
 router.post('/auth/login',
     passport.authenticate('local', { failureRedirect: '/login' }),

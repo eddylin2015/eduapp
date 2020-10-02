@@ -1,4 +1,5 @@
-﻿/*f1003,name:整式的加減法
+if (typeof module !== 'undefined' && module.exports) { var UIMathClass = require('../tmsUIMathClass').UIMathClass; }
+/*f1003,name:整式的加減法
 题型1：( mx+p)+(nx+q) = ax + b  |p|,|q| < 10 整数
 1. x+x+x        答案式样1. = 3x  ，
 2. (x +7)-(x-9) 答案式样2. = 16 ，
