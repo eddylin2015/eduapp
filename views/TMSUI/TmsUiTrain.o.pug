@@ -62,7 +62,9 @@ block content
         div(id=`menu${tabid}` class=tabpane[tabid])
           +MathTestPanel0(tabid,instyle,inTxt)
     else
-      if formulajs=="f201" || formulajs=="f1003" 
+      -let text_in_list=".f201.f1003.f2003."
+      -let inputtextflag= text_in_list.indexOf(`.${formulajs}.`)>-1 ;
+      if inputtextflag
         - instyle="AnsExpInput"
         - inTxt="text" 
       each tabid in [1,2,3,4]

@@ -52,7 +52,7 @@ s1 ,s2 ,s3,s4亂序.	1. 寫對兩組括弧得10分.
 	a,b,c,d≠0, 
 	x,y,z,w= a至z內隨機字母,
 	x≠y≠z≠w
-	s1 ,s2 ,s3,s4亂序.
+	s1 ,s2 , s3, s4亂序.
 十字相乘
 題型3：x2+bx+c=(x+p)(x+q)
 b=p+q, c=pq, (|p|,|q|,|k|) < 16 整數,
@@ -131,42 +131,43 @@ function CreatAEq(Tx, Tk, Range) {
   let TOp = ["+", "-"];
   switch (Tx) {
     case 1:
-      //题型1：( mx+p)+(nx+q) = ax + b  |p|,|q| < 10 整数
-      //1. x+x+x        答案式样1. = 3x  ，
-      //2. (x +7)-(x-9) 答案式样2. = 16 ，
-      //|m|,|n| < 10 整数 |p|,|q| < 10 整数
-      //命题方式参考	m=1, n=1;	p, q = 10以内随机±整数;  a=m+n，  b=p+q 
-      for (let i = 0; i < 5; i++) {
-        TE.Nf[i] = tmsU.TakeARnd(-9, 9, 0, 0, 0, 0);
-        TE.OPr[i] = TOp[tmsU.Int(100 * tmsU.Rnd()) % 2];
-      }
-      TE.St = AdjustExp(`(${TE.Nf[0]}x  + ${TE.Nf[1]} ) + ( ${TE.Nf[2]}x  + ${TE.Nf[3]} )`);
-      TE.Val =AdjustExp( `${TE.Nf[0]+TE.Nf[2]}x+${TE.Nf[1]+TE.Nf[3]}`);
+  /*題型1：s1=ab x^p y^q, s2=ac x^u y^v, s3= ad x^g y^h, 
+  s1’= bx^(p-m)y^(q-n), s2’= cx^(u-m)y^(v-n), s3’= dx^(g-m)y^(h-n), 
+  s1 +s2 +s3=axmyn(s1’+ s2’+ s3’) (s1≠s2≠s3), s1 ,s2 ,s3亂序,s和s’的順序相同
+	(|a|,|b|,|c|,|d|,|k|)<13 整數,  -1<(p,q,u,v,g,h)<11整數,   (a,b,c)≠0, x≠y,
+  m=min(p,u,g), n=min(q,v,h),  x,y=(a至z內隨機字母)或(a至z內隨機字母 ± a至z內隨機字母)或(a至z內隨機字母 ± k)*/
+      let a = tmsU.TakeARnd(-9, 9, 0, 2, 0, 0);
+      let b = tmsU.TakeARnd(-9, 9, 0, 2, 0, 0);
+      let c = tmsU.TakeARnd(-9, 9, 0, 2, 0, 0);
+      let d = tmsU.TakeARnd(-9, 9, 0, 0, 0, 0);
+      let k = tmsU.TakeARnd(-9, 9, 0, 0, 0, 0);
+      let p = tmsU.TakeARnd(-1, 9, 0, 0, 0, 0);
+      let q = tmsU.TakeARnd(-1, 9, 0, 0, 0, 0);
+      let u = tmsU.TakeARnd(-1, 9, 0, 0, 0, 0);
+      let v = tmsU.TakeARnd(-1, 9, 0, 0, 0, 0);
+      let g = tmsU.TakeARnd(-1, 9, 0, 0, 0, 0);
+      let h = tmsU.TakeARnd(-1, 9, 0, 0, 0, 0);
+      let m = p>u?u:p; m=m>g?g:m;
+      let n = q>v?v:q; n=n>h?h:n;
+      let s1=`${a}${b}x^${p}y^${q}`
+      let s2=`${a}${c}x^${u}y^${v}`
+      let s3=`${a}${d}x^${g}y^${h}` 
+      let s1_= `${b}x^(${p}-${m})y^(${q}-${n})`
+      let s2_= `${c}x^(${u}-${m})y^(${v}-${n})`
+      let s3_= `${d}x^(${g}-${m})y^(${h}-${n})` 
+      TE.St = AdjustExp(`${s1}+${s2}+${s3}`)
+      TE.Val =`${a}x${m}y${n}(${s1_}+ ${s2_}+ ${s3_})`
       TE.CalcVal = 0;
       TE.FrcVal = "";
       //TE.St=tmsU.MJaxFmt(TE.St);
       break;
     case 2:
-    //题型2：( mx2+px)+(nx2+qx) = ax2 + bx  |p|,|q| < 16 整数
-    //1. 2x2 -5x-x2+12x       答案式样1. = x2 + 7x  
-    //2. (x2 +11x)+(3x2+3x)	答案式样2. =4 x2 + 14x   	
-    //|p|,|q| < 16 整数
-    //命题方式参考	p, q = 16以内随机±整数	 a=m+n,    b=p∙q 
-    for (let i = 0; i < 5; i++) {
-      TE.Nf[i] = tmsU.TakeARnd(-9, 9, 0, 0, 0, 0);
-      TE.OPr[i] = TOp[tmsU.Int(100 * tmsU.Rnd()) % 2];
-    }
-    TE.St = AdjustExp(`(${TE.Nf[0]}x^2  + ${TE.Nf[1]}x ) + ( ${TE.Nf[2]}x^2  + ${TE.Nf[3]}x )`);
-    TE.Val =AdjustExp( `${TE.Nf[0]+TE.Nf[2]}x^2 +${TE.Nf[1]+TE.Nf[3]}x`);
-    TE.CalcVal = 0;
-    TE.FrcVal = "";
-
     case 3: break;
     case 4: break;
   }
   return TE;
 }
-class UIMathClassF1003 extends UIMathClass {
+class UIMathClassF2003 extends UIMathClass {
   constructor() {
     super();
     this.Note =
@@ -208,7 +209,7 @@ class UIMathClassF1003 extends UIMathClass {
 }
 
 function main() {
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 1; i++) {
     for (let j = 0; j < 5; j++) {
       let TiXing = i + 1;
       let s1 = CreatAEq(TiXing, 0, null)
