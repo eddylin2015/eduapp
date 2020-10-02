@@ -6,9 +6,8 @@ s1 +s2 +s3=axmyn(s1’+ s2’+ s3’) (s1≠s2≠s3), s1 ,s2 ,s3亂序,s和s’�
 (|a|,|b|,|c|,|d|,|k|)<13 整數, -1<(p,q,u,v,g,h)<11整數, (a,b,c)≠0, m=min(p,u,g), n=min(q,v,h), 
 (x,y)=(a至z內隨機字母) 或 (a至z內隨機字母 ± a至z內隨機字母) 或 (a至z內隨機字母 ± k), x≠y
 例題	答案式樣	數型及範圍	評分標準	時限
-1.30x6y2-27x3y7+6x5
-2.-72x2y3+30x3y2	1. = 3x3(10x3y2-9y7+2x2)
-2. = 6x2y2(-12y+5x)
+1.30x6y2-27x3y7+6x5 1. = 3x3(10x3y2-9y7+2x2)
+2.-72x2y3+30x3y2	2. = 6x2y2(-12y+5x)
 	(|a|,|b|,|c|,|d|,|k|)<13 整數,
 -1<(p,q,u,v,g,h)<11整數, 
 (a,b,c)≠0, x≠y,
@@ -28,8 +27,8 @@ s1 ,s2 ,s3亂序,s和s’的順序相同,
 題型2：s1=acxz ,s2=adxw ,s3=bcyz, s4=bdyw, s1 +s2 +s3+s4=(ax+by)(cz+dw)= (cz+dw)(ax+by)
 (|a|,|b|,|c|,|d|)<13 整數, (a,b,c,d)≠0, (x,y,z,w)= a至z內隨機字母, x≠y≠z≠w, s1 ,s2 ,s3,s4亂序.
 例題	答案式樣	數型及範圍	評分標準	時限
-1.-15xz+10xw-12yz+8yw
-2.30ac-24ad-20bc+16bd	1. = (5x+4y)(-3z+2w), (4y+5x)(2w-3z),
+1.-15xz+10xw-12yz+8yw 1. = (5x+4y)(-3z+2w), (4y+5x)(2w-3z),
+2.30ac-24ad-20bc+16bd	
 (5x+4y)(2w-3z),
 (4y+5x)(-3z+2w),
 (-3z+2w)(5x+4y),
@@ -96,8 +95,6 @@ x=(a至z內隨機字母) 或 (a至z內隨機字母 ± a至z內隨機字母) 或 
 	b=mq+np,
 	c=pq,
 	x=(a至z內隨機字母)或(a至z內隨機字母 ± a至z內隨機字母)或(a至z內隨機字母 ± k).
-
-
 */
 'use strict';
 if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps, TmsUts } = require('../utils/tmsUtils'); var calc = require("../utils/tmsUtils").calc; }
@@ -175,9 +172,9 @@ class UIMathClassF1003 extends UIMathClass {
     super();
     this.Note =
       `
-        <div>整式的加減法:</div>
-        <div>型1： ( mx+p)+(nx+q) = ax + b  |p|,|q| < 10</div> 
-        <div>型2：a^m * a^n = a^(m+n); a^m / a^n = a^(m-n)</div>
+        <div>因式分解:</div>
+        <div>提公因式：30x 6y^2 - 27x^3 y^7+6x^5  Ans:= 3x^3( 10x^3 y^2 - 9y^7 + 2x^2)</div> 
+        <div>併項法：-15xz+10xw-12yz+8yw Ans=(5x+4y)(-3z+2w)</div>
         `;
   }
   InitQizData() {

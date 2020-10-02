@@ -37,8 +37,7 @@ app.use(require('./db/internalOauth2').router);
 // or
 //app.use(require('./lib/oauth2').router);  //google-Oauth
 app.get('/', function (req, res) {
-    if
-    res.redirect('/internal/TMS');
+    res.redirect('/internal');
 });
 app.use('/users', users);
 app.use(routes);

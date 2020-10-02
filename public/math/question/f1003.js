@@ -96,6 +96,7 @@ class UIMathClassF1003 extends UIMathClass {
   }
   InitQizData() {
     for (let i = 0; i < 2; i++) {
+      this.AnsInput[i] = "text";
       for (let j = 0; j < 10; j++) {
         let TiXing = i + 1;
         let s1 = CreatAEq(TiXing, 0, null)

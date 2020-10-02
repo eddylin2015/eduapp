@@ -1,18 +1,99 @@
-if (typeof module !== 'undefined' && module.exports) { var UIMathClass = require('../tmsUIMathClass').UIMathClass; }
-/*f1003,name:整式的加減法
-题型1：( mx+p)+(nx+q) = ax + b  |p|,|q| < 10 整数
-1. x+x+x        答案式样1. = 3x  ，
-2. (x +7)-(x-9) 答案式样2. = 16 ，
-|m|,|n| < 10 整数 |p|,|q| < 10 整数
-命题方式参考	m=1, n=1;	p, q = 10以内随机±整数;  a=m+n，  b=p+q 
-题型2：( mx2+px)+(nx2+qx) = ax2 + bx  |p|,|q| < 16 整数
-1. 2x2 -5x-x2+12x       答案式样1. = x2 + 7x  
-2. (x2 +11x)+(3x2+3x)	答案式样2. =4 x2 + 14x   	
-|p|,|q| < 16 整数
-命题方式参考	p, q = 16以内随机±整数	 a=m+n,    b=p∙q 
-1. 双括号对得10分；
-2. 单括号对得5分；
-3. 其他得0分；	60秒
+﻿/*f2003,name:因式分解
+提公因式
+題型1：s1=abxpyq, s2=acxuyv, s3=adxgyh, s1’= bxp-myq-n, s2’= cxu-myv-n, s3’= dxg-myh-n, 
+s1 +s2 +s3=axmyn(s1’+ s2’+ s3’) (s1≠s2≠s3), s1 ,s2 ,s3亂序,s和s’的順序相同
+(|a|,|b|,|c|,|d|,|k|)<13 整數, -1<(p,q,u,v,g,h)<11整數, (a,b,c)≠0, m=min(p,u,g), n=min(q,v,h), 
+(x,y)=(a至z內隨機字母) 或 (a至z內隨機字母 ± a至z內隨機字母) 或 (a至z內隨機字母 ± k), x≠y
+例題	答案式樣	數型及範圍	評分標準	時限
+1.30x6y2-27x3y7+6x5 1. = 3x3(10x3y2-9y7+2x2)
+2.-72x2y3+30x3y2	2. = 6x2y2(-12y+5x)
+	(|a|,|b|,|c|,|d|,|k|)<13 整數,
+-1<(p,q,u,v,g,h)<11整數, 
+(a,b,c)≠0, x≠y,
+m=min(p,u,g), n=min(q,v,h),
+s1 ,s2 ,s3亂序,s和s’的順序相同,
+(x,y)=(a至z內隨機字母) 或 (a至z內隨機字母 ± a至z內隨機字母) 或 (a至z內隨機字母 ± k).	1. 寫對公因式及抽公因式後的項得10分.
+2. 寫對公因式得5分.
+3. 其他得0分.	40秒
+命題方式參考		a,b,c,d,k= 13以內隨機±整數,
+	p,q,u,v,g,h=-1至11內隨機整數,
+	a,b,c≠0, 
+	m=p,u,g中最小的數字, 
+	n=q,v,h中最小的數字,
+	s1 ,s2 ,s3亂序,s和s’的順序相同,
+	x,y=(a至z內隨機字母)或(a至z內隨機字母 ± a至z內隨機字母)或(a至z內隨機字母 ± k)
+併項法
+題型2：s1=acxz ,s2=adxw ,s3=bcyz, s4=bdyw, s1 +s2 +s3+s4=(ax+by)(cz+dw)= (cz+dw)(ax+by)
+(|a|,|b|,|c|,|d|)<13 整數, (a,b,c,d)≠0, (x,y,z,w)= a至z內隨機字母, x≠y≠z≠w, s1 ,s2 ,s3,s4亂序.
+例題	答案式樣	數型及範圍	評分標準	時限
+1.-15xz+10xw-12yz+8yw 1. = (5x+4y)(-3z+2w), (4y+5x)(2w-3z),
+2.30ac-24ad-20bc+16bd	
+(5x+4y)(2w-3z),
+(4y+5x)(-3z+2w),
+(-3z+2w)(5x+4y),
+(-3z+2w)(4y+5x),
+(2w-3z)(5x+4y),
+(2w-3z)(4y+5x).
+2. = (3a-2b)(10c-8d),
+(3a-2b)(-8d+10c),
+(-2b+3a)(10c-8d),
+(-2b+3a)(-8d+10c),
+(10c-8d)(3a-2b),
+(10c-8d)(-2b+3a),
+(-8d+10c)(3a-2b),
+(-8d+10c)(-2b+3a)	(|a|,|b|,|c|,|d|)<13 整數,
+(a,b,c,d)≠0, 
+(x,y,z,w)= a至z內隨機字母,
+x≠y≠z≠w,
+s1 ,s2 ,s3,s4亂序.	1. 寫對兩組括弧得10分.
+2. 寫對一組括弧得5分.
+3. 其他得0分.	60秒
+命題方式參考		a,b,c,d= 13以內隨機±整數,
+	a,b,c,d≠0, 
+	x,y,z,w= a至z內隨機字母,
+	x≠y≠z≠w
+	s1 ,s2 ,s3,s4亂序.
+十字相乘
+題型3：x2+bx+c=(x+p)(x+q)
+b=p+q, c=pq, (|p|,|q|,|k|) < 16 整數,
+x=(a至z內隨機字母) 或 (a至z內隨機字母 ± a至z內隨機字母) 或 (a至z內隨機字母 ± k)
+例題	答案式樣	數型及範圍	評分標準	時限
+1. x2+13x+22
+2. (x+y)2+5(x+y)-24	1. = (x+2)(x+11), (x+11)(x+2)
+2. = ((x+y)-3)((x+y)+8), 
+(x+y-3)(x+y+8), 
+(x+y+8)(x+y-3)
+	(|p|,|q|,|k|) < 16 整數,
+b=p+q, c=pq,
+x=(a至z內隨機字母) 或 (a至z內隨機字母 ± a至z內隨機字母) 或 (a至z內隨機字母 ± k).	1. 寫對兩組括弧得10分.
+2. 寫對一組括弧得5分.
+3. 其他得0分.	30秒
+命題方式參考		p,q,k=16以內隨機±整數,
+	b=p+q,
+	c=pq,
+	x=(a至z內隨機字母)或(a至z內隨機字母 ± a至z內隨機字母)或(a至z內隨機字母 ± k).
+
+題型4：ax2+bx+c=(mx+p)(nx+q)
+a=mn, b=mq+np, c=pq, (|p|,|q|,|k|) < 16 整數, (|m|,|n|) < 6 整數,
+x=(a至z內隨機字母) 或 (a至z內隨機字母 ± a至z內隨機字母) 或 (a至z內隨機字母 ± k).
+例題	答案式樣	數型及範圍	評分標準	時限
+1. 8x2+34x+21
+2. 5(x+y)2-64(x+y)-13	1. = (2x+7)(4x+3), (4x+3)(2x+7)
+2. = ((x+y)-13)(5(x+y)+1), 
+(x+y-13)(5x+5y+1),
+(5x+5y+1)(x+y-13)
+	(|p|,|q|,|k|) < 16 整數,
+(|m|,|n|) < 6 整數,
+a=mn, b=mq+np, c=pq,
+x=(a至z內隨機字母) 或 (a至z內隨機字母 ± a至z內隨機字母) 或 (a至z內隨機字母 ± k).	1. 寫對兩組括弧得10分.
+2. 寫對一組括弧得5分.
+3. 其他得0分.	60秒
+命題方式參考		p,q,k=16以內隨機±整數,
+	m,n=6以內隨機±整數,
+	a=mn
+	b=mq+np,
+	c=pq,
+	x=(a至z內隨機字母)或(a至z內隨機字母 ± a至z內隨機字母)或(a至z內隨機字母 ± k).
 */
 'use strict';
 if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps, TmsUts } = require('../utils/tmsUtils'); var calc = require("../utils/tmsUtils").calc; }
@@ -90,14 +171,13 @@ class UIMathClassF1003 extends UIMathClass {
     super();
     this.Note =
       `
-        <div>整式的加減法:</div>
-        <div>型1： ( mx+p)+(nx+q) = ax + b  |p|,|q| < 10</div> 
-        <div>型2：a^m * a^n = a^(m+n); a^m / a^n = a^(m-n)</div>
+        <div>因式分解:</div>
+        <div>提公因式：30x 6y^2 - 27x^3 y^7+6x^5  Ans:= 3x^3( 10x^3 y^2 - 9y^7 + 2x^2)</div> 
+        <div>併項法：-15xz+10xw-12yz+8yw Ans=(5x+4y)(-3z+2w)</div>
         `;
   }
   InitQizData() {
     for (let i = 0; i < 2; i++) {
-      this.AnsInput[i] = "text";
       for (let j = 0; j < 10; j++) {
         let TiXing = i + 1;
         let s1 = CreatAEq(TiXing, 0, null)
