@@ -1,4 +1,5 @@
-﻿/*
+if (typeof module !== 'undefined' && module.exports) { var UIMathClass = require('../tmsUIMathClass').UIMathClass; }
+/*
 【项目】ax2 + bx + c =0  即( mx+p)(nx+q)=0的解一元二次方程式
 
 题型1：a=1, |p|,|q| < 10 整数
