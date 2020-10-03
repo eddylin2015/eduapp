@@ -2,6 +2,14 @@
 ## Maths TestMySelf
 
 get-content f1003n.js -encoding utf8 | select -skip 1 | set-content f1003.js -encoding utf8
+
+https://www.npmjs.com/package/math-input
+
+https://f-alonso-vendrell.github.io/math-input/
+
+clone the repo, npm install, npm run watch, and open the index.html page
+
+https://zxing.appspot.com/generator
 ```
   -var p0data=[],f0data=[],f1data=[ ],f2data=[ ],f3data=[ ];
   -p0data.push({id:'p2',name:'加減'});

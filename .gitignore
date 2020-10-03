@@ -1,5 +1,6 @@
 *.*~
 *.*.swp
+public/math-input/*
 index0.pug
 index99.pug
 favicon.ico

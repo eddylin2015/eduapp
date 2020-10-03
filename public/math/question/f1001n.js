@@ -1,4 +1,5 @@
-﻿//f1001,name:有理數的運算(符)
+if (typeof module !== 'undefined' && module.exports) { var { UIMathClass } = require('../tmsUIMathClass'); }
+//f1001,name:有理數的運算(符)
 /*
 有理數的運算:
 题型1：a+b+c=d  |a|,|b|,|c|< 100 整数

@@ -62,7 +62,7 @@ block content
         div(id=`menu${tabid}` class=tabpane[tabid])
           +MathTestPanel0(tabid,instyle,inTxt)
     else
-      -let text_in_list=".f201.f1003.f2003."
+      -let text_in_list=".f201.f1003.f2003.f20031."
       -let inputtextflag= text_in_list.indexOf(`.${formulajs}.`)>-1 ;
       if inputtextflag
         - instyle="AnsExpInput"
@@ -96,6 +96,7 @@ block content
        else if(ft=="f2001"){ App=new UIMathClassF2001();}
        else if(ft=="f2002"){ App=new UIMathClassF2002();}
        else if(ft=="f2003"){ App=new UIMathClassF2003();}
+       else if(ft=="f20031"){ App=new UIMathClassF20031();}
        else if(ft=="f2004"){ App=new UIMathClassF2004();}
        else if(ft=="f2005"){ App=new UIMathClassF2005();}
        else if(ft=="f2006"){ App=new UIMathClassF2006();}
