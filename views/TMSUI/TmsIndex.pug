@@ -27,9 +27,9 @@ block content
   -f0data.push({id:'f2',name:'有理數運算'});
   -f0data.push({id:'f201',name:'十字相乘法'});
   -f0data.push({id:'f202',name:'一元二次方程'});
-  -f1data.push({id:'f1001',name:'有理數的運算'});
-  -f1data.push({id:'f1002',name:'整數指數冪的運算'});
-  -f1data.push({id:'f1003',name:'整式的加減法'});
+  -f1data.push({id:'f1001',name:'有理數的運算 tx={1,2}'});
+  -f1data.push({id:'f1002',name:'整數指數冪的運算 tx={1}'});
+  -f1data.push({id:'f1003',name:'整式的加減法 tx={1,2}'});
   -f1data.push({id:'f1004',name:'一元一次方程'});
   -f1data.push({id:'f1005',name:'解二元一次方程組'});
   -f1data.push({id:'f1006',name:'一元一次不等式'});
@@ -37,49 +37,45 @@ block content
   -f1data.push({id:'f1008',name:'整式的乘法'});
   -f2data.push({id:'f2001',name:'根式的運算'});
   -f2data.push({id:'f2002',name:'整式的乘法公式'});
-  -f2data.push({id:'f2003',name:'因式分解'});
+  -f2data.push({id:'f2003',name:'因式分解 tx={1,2,3,4}'});
+  -f2data.push({id:'f20031',name:'因式分解 tx={1,2,3}'});
   -f2data.push({id:'f2004',name:'分式的乘除'});
   -f2data.push({id:'f2005',name:'分式的加減'});
   -f2data.push({id:'f2006',name:'分式方程'});
   -f2data.push({id:'f2007',name:'一次函數圖像的性質'});
-  -f3data.push({id:'f3001',name:'一元二次方程式'});
+  -f3data.push({id:'f3001',name:'一元二次方程式 tx={1,2,3,4}'});
   -f3data.push({id:'f3002',name:'解可化為一元二次方程的分式方程'});
   -f3data.push({id:'f3003',name:'解二元二次方程組'});
   -f3data.push({id:'f3004',name:'二次函數圖像的性質'});
   -f3data.push({id:'f3005',name:'解直角三角形'}  );
-  .row
-    .col-lg-3
-      div#accordion
-        div
 
-          h3
-            span 數學練習
-          table(width="100%")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
-
-          h3
-            span 小學
-          table(width="100%")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
-          h3
-            span 中一()
-          table(width="100%")
-            each sub in f1data
-              +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
-          h3
-            span 中二(建設中)
-          table(width="100%")
-            each sub in f2data
-              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
-          h3(width="100%")
-            span 中三(建設中)
-          table  
-            each sub in f2data
-              +accor_li(`/internal/TMS/trianing.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+  h3
+    span 數學練習
+  table(width="100%")
+    +accor_li("/internal/TMS/trianing.o.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
+    +accor_li("/internal/TMS/trianing.o.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
+    +accor_li("/internal/TMS/trianing.o.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
+    +accor_li("/internal/TMS/trianing.o.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
+  h3
+    span 小學
+  table(width="100%")
+    +accor_li("/internal/TMS/trianing.o.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
+    +accor_li("/internal/TMS/trianing.o.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
+  h3
+    span 中一
+  table(width="100%")
+    each sub in f1data
+      +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+  h3
+    span 中二
+  table(width="100%")
+    each sub in f2data
+      +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+  h3
+    span 中三
+  table(width="100%")  
+    each sub in f3data
+      +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
     .col-lg-7
   div(title="Info Dialog",style="display:none")#ClassSelectorDialog
     form(action="#")#ClassSelectorDialogForm
@@ -92,29 +88,10 @@ block content
           td 結束日期
           td
             input(type="text", name="eDate", value=`${eDate}`)#eDate
-        //tr
-          td 學段
-          td
-            Select(name="term")
-              Option(value=1) 第1段
-              Option(value=2) 第2段
-              Option(value=3) 第3段
-              Option(value=4) 學年              
         tr
           td 班別
           td
             input(name="classno")
-            //Select(name="classno")          
-              if kstafpanel  
-                each classN in classli
-                  Option(value=classN)= classN
-
-              if pstafpanel  
-                each classN in classlp
-                  Option(value=classN)= classN
-              if sstafpanel
-                each classN in classls
-                  Option(value=classN)= classN
         tr
           td
           td

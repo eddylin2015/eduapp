@@ -26,14 +26,8 @@ c,d,n,g,h,m均為-9至9的整數
 */
 'use strict';
 //保留
-var de=false;
-function bug(){
-  if (typeof module !== 'undefined' && module.exports) { var { UIMathClass } = require('../tmsUIMathClass'); }
-}
-de&&bug();
-
-if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils');var calc = require("../utils/tmsCalcu").calc; }
-
+if (typeof module !== 'undefined' && module.exports) { var { AFrc, AExps,TmsUts } = require('../utils/tmsUtils');var calc = require("../utils/tmsUtils").calc; }
+//if (typeof module !== 'undefined' && module.exports) { var UIMathClass = require('../tmsUIMathClass').UIMathClass; }
 const tmsU=new TmsUts();
 function GetAROpr(OprRang) //OprRang=["+","-","*","/']
 {
@@ -42,12 +36,10 @@ function GetAROpr(OprRang) //OprRang=["+","-","*","/']
 function GetRndInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
-
 //tmsU 
 //TakeAFrc(k,1 允許整數/2 真分數 )
 //TakeARnd(Ta,Tb,Desm=0,SwIs(0,1,2)=1,Tc=0,Td=0)  
 //Left, Replace, Int, Rnd, Str, Trim, AllTrim, Right, DcmToFrc, CDbl
-
 //' ------ Tx Tixing  題型
 //' -------Tk Random_base -TK..TK ------
 function CreatAEq(Tx, Tk, Range) {
@@ -57,24 +49,19 @@ function CreatAEq(Tx, Tk, Range) {
         case 1:  //?型1： a^n=a*a*a... 1. 2^3 = 8 2. (1/4)^-2 = 16 a,均為1至9的數 n為-9至9的整數
             Tk=100;
             TE.Nf[0] = tmsU.TakeAFrc(9,  1);
-            TE.Nf[1] = tmsU.TakeARnd(-4, 4,0,2,0,0);
+            TE.Nf[1] = tmsU.TakeARnd(-4, 4,0,2,0,1);
             TE.St=TE.Nf[0].St1 + "^{" +TE.Nf[1]+"}";
-            let S1=TE.Nf[0].St1 + "^ (" +TE.Nf[1]+")";
-            let cc_list = calc.Sytex_cclist(S1);
+            TE.Val=TE.Nf[0].St1 + "^ (" +TE.Nf[1]+")";
+            let cc_list = calc.Sytex_cclist(TE.Val);
             let yy = [];
             calc.proc2opt(cc_list, yy);
             TE.CalcVal = calc.exprCalc(yy);
-            TE.Val = TE.CalcVal;
-            
-            let fcc_list = calc.Sytex_cclist(S1);
+            let fcc_list = calc.Sytex_cclist(TE.Val);
             let frc_yy = [];
             calc.procfrc2opt(fcc_list, frc_yy);
             TE.FrcVal=calc.exprfrcCalc(frc_yy);
             TE.FrcVal=calc.simplifyFrc(TE.FrcVal);
-
-            TE.St=tmsU.MJaxFmt(TE.St);
-            console.log(TE)
-        
+            //TE.St=tmsU.MJaxFmt(TE.St);
             break;
         case 2:
         case 3:
@@ -89,7 +76,6 @@ function CreatAEq(Tx, Tk, Range) {
             TE.CalcVal=0;
             break;
     }
-    
     return TE;
 }
 class UIMathClassF1002 extends UIMathClass {
@@ -110,6 +96,7 @@ class UIMathClassF1002 extends UIMathClass {
           for(let j=0;j<10;j++){
             let TiXing = i+1;
             let s1 = CreatAEq(TiXing, 0, null)
+            console.log(s1);
             this.NTE[i][j]=s1;
             this.QT[i][j]=s1.St;
             this.AQT[i][j]=s1.CalcVal;
@@ -119,7 +106,7 @@ class UIMathClassF1002 extends UIMathClass {
     GetQizStatement(qti,qno)
     {
       super.GetQizStatement(qti,qno);
-      return  tmsU.Replace(this.QT[Number(qti)-1][qno-1], "/", " \\div "); ;   
+      return  tmsU.Replace(tmsU.MJaxFmt(this.NTE[Number(qti)-1][qno-1].St), "/", " \\div "); ;   
     }
     CheckAns(qti,qno, AnsZ,AnsM){
       let ansx= this.AQT[Number(qti)-1][qno-1];
@@ -144,6 +131,7 @@ function main(){
       console.log(s1.St);
       console.log(s1.Val);
       console.log(s1.CalcVal);
+      console.log(s1.FrcVal);
     }
   }
 }

@@ -1,4 +1,5 @@
-﻿/*f2003,name:因式分解
+if (typeof module !== 'undefined' && module.exports) { var UIMathClass = require('../tmsUIMathClass').UIMathClass; }
+/*f2003,name:因式分解
 提公因式
 題型1：s1=abxpyq, s2=acxuyv, s3=adxgyh, s1’= bxp-myq-n, s2’= cxu-myv-n, s3’= dxg-myh-n, 
 s1 +s2 +s3=axmyn(s1’+ s2’+ s3’) (s1≠s2≠s3), s1 ,s2 ,s3亂序,s和s’的順序相同

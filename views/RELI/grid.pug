@@ -1,4 +1,23 @@
-table(border=1)
+
+link(href="https://getbootstrap.com/docs/3.4/dist/css/bootstrap.min.css",rel="stylesheet" )
+script(src='https://themes.getbootstrap.com/wp-content/themes/bootstrap-marketplace/assets/javascript/jquery.min.js')
+link(href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css", rel="stylesheet" )
+script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")    
+script(src='https://getbootstrap.com/docs/3.4/dist/js/bootstrap.min.js')
+
+script(src='/javascripts/cool/grid_export.js')
+-var fn= "reli_report";
+-var act_link="/internal/PublicAPI/ExpXls.php?charset=utf-8&filename="+fn+".xls"
+form(method="POST", enctype="multipart/form-data",action=`/internal/PublicAPI/ExpXls.php?charset=utf-8&filename=${fn}.xls`)#CSVFrmPOST
+  .form-group.hidden
+    input.form-control(type="text", name="CSVFrmPOSTNAME", id="CSVFrmPOSTVALUE")
+.btn-group
+  a(href='#', class='btn btn-primary btn-sm')#exportbtn
+    i.glyphicon.glyphicon-download-alt
+    span  匯出Xls  
+
+
+table#tableContent(border=1)
   tr
     th user
     th modified_date
@@ -108,3 +127,11 @@ table(border=1)
       td= ite.BA建議
       td= ite.BA其他
       td= ite.BB聖經科   
+script(type="text/javascript").
+  $(document).ready(function(){
+    $('#exportbtn').click(function(){
+      var txt= document.getElementById('tableContent').innerHTML;
+      document.getElementById('CSVFrmPOSTVALUE').value ="<table>"+ txt+"</table>";
+      document.getElementById('CSVFrmPOST').submit();
+    });
+  });
