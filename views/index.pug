@@ -13,27 +13,6 @@ block content
             each val in mnu0
               li
                 a(href= val.lnk)= val.n
-        //li(class="dropdown")
-          a(class="dropdown-toggle", data-toggle="dropdown", href="#") 學校共用資料
-            span( class="caret")
-          ul(class="dropdown-menu", id="xuexiao_mnu")
-            each val in mnu1
-              li
-                a(href= val.lnk)= val.n
-        //li(class="dropdown")
-          a(class="dropdown-toggle", data-toggle="dropdown", href="#") 校內須知/各種表格
-            span( class="caret")
-          ul(class="dropdown-menu", id="xuexiaoform_mnu")
-            each val in mnu2
-              li
-                a(href= val.lnk)= val.n
-        //li(class="dropdown")
-          a(class="dropdown-toggle", data-toggle="dropdown", href="#") 校內教務資料
-            span( class="caret")
-          ul(class="dropdown-menu", id="xuewu_mnu")
-            each val in mnu3
-              li
-                a(href= val.lnk)= val.n
         li(class="dropdown")
           a(class="dropdown-toggle", data-toggle="dropdown", href="#") 內部功能
             span( class="caret")
@@ -46,8 +25,6 @@ block content
           li(class="dropdown")
             a( href="/login") Sign Up                
     .col-lg-8
-      div(align="right")
-        //iframe(src="https://www.dsej.gov.mo/~webdsej/www/tvshow/ppt/weather-pic-dsej.php", height="30", width="400", frameborder=0, scrolling="no", marginheight="0", marginwidth="0", allowtransparency="true")
       div(class="card mt-4")
       div(id="myCarousel", class="carousel slide", data-ride="carousel")
         ol(class="carousel-indicators")
@@ -78,7 +55,7 @@ block content
             p Religion Qiz
 
           div(class="col-lg-2")
-            a(class="btn btn-secondary",href="/internal/ACTREG",role="button")
+            a(class="btn btn-secondary",href="/internal/ACTATTENDREG",role="button")
               img(class='rounded-circle',src='/images/report.jpg',alt="Activity Reg",width='120',height='120')
             h2 Activity
             p Reg Table
