@@ -151,7 +151,34 @@ block content
          }
       });
       //End def Check Ans Event
+      import('/mathlive/dist/mathlive.mjs')
+        .then(module => {
+          for (let i = 0; i < 8; i++) {
+              let mf__ = module.default.makeMathField(mf_li[i], {
+                  smartMode: true,
+                  virtualKeyboardMode: 'manual',
+                  onContentDidChange: (mf__) => {
+                      let latex = mf__.$text();
+                      let lx_name=(mf__.element.id.substring(2));
+                      document.getElementById(lx_name).value = escapeHtml(latex);
+                  },
+              });
+              ml[i]=mf__;
+          }
+          /* 
+          let mf__ = module.default.makeMathField("mlANSQT001", {
+            smartMode: true,
+            virtualKeyboardMode: 'manual',
+            onContentDidChange: (mf__) => {
+              let latex = mf__.$text();
+              document.getElementById("ANSQT001").value = escapeHtml(latex);
+            },
+           });  */
+        })
+        .catch(err => {
+          console.log( err.message);
+        });
     });
-  <script type="module" src="/math/ml0.js"></script>
+  //<script type="module" src="/math/ml0.js"></script>
   
   

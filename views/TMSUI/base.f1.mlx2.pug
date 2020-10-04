@@ -32,8 +32,8 @@ html(lang="zh")
     script(src='https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815')
     <script type="module" src="/mathlive/dist/mathlive.mjs"></script>
     script.
+      var mf=[null,null,null,null,null,null,null,null]
       const mf_li = ["mlANSQT001", "mlANSQT002", "mlANSQT003", "mlANSQT004", "mlANSQTM001", "mlANSQTM002", "mlANSQTM003", "mlANSQTM004"];
-      const lx_li = ["ANSQT001", "ANSQT002", "ANSQT003", "ANSQT004", "ANSQTM001", "ANSQTM002", "ANSQTM003", "ANSQTM004"];
       function escapeHtml(string) {
           return String(string).replace(/[&<>"'`=/\u200b]/g, function ( s ) {
               return (
@@ -73,6 +73,9 @@ html(lang="zh")
         }*/
         import('/mathlive/dist/mathlive.mjs')
         .then(module => {
+          for (let i = 0; i < 8; i++) {
+             console.log(mf[i])             ;
+          }
           /*for (let i = 0; i < 8; i++) {
               let mf__ = module.default.makeMathField(mf_li[i], {
                   smartMode: true,
