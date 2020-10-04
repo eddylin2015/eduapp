@@ -1,6 +1,7 @@
 *.*~
 *.*.swp
 public/math-input/*
+public/mathlive/*
 index0.pug
 index99.pug
 favicon.ico
