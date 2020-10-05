@@ -23,8 +23,8 @@ block content
               td    
                 div(class="mathfield",style='font-size:28px;width:200px;',id=`mlANSQTM00${tabid}`)  
               td  
-                input(name=`ANSQTM00${tabid}`, id=`ANSQTM00${tabid}`,value="")
-                //input(readonly=false,style="width:60px;min-width:1px;font-size:10px;border:0;outline:none;",name=`ANSQTM00${tabid}`, id=`ANSQTM00${tabid}`)
+                //input(name=`ANSQTM00${tabid}`, id=`ANSQTM00${tabid}`,value="")
+                input(readonly=false,style="width:60px;min-width:1px;font-size:10px;border:0;outline:none;",name=`ANSQTM00${tabid}`, id=`ANSQTM00${tabid}`)
             td(colspan=3) 分數用(-a/b)格式; 
 
       tr
@@ -156,14 +156,14 @@ block content
           for (let i = 0; i < 8; i++) {
               let mf__ = module.default.makeMathField(mf_li[i], {
                   smartMode: true,
-                  virtualKeyboardMode: 'manual',
+                  virtualKeyboardMode: 'onfocus',
                   onContentDidChange: (mf__) => {
                       let latex = mf__.$text();
                       let lx_name=(mf__.element.id.substring(2));
                       document.getElementById(lx_name).value = escapeHtml(latex);
                   },
               });
-              ml[i]=mf__;
+              mf.push(mf__);
           }
           /* 
           let mf__ = module.default.makeMathField("mlANSQT001", {

@@ -1,7 +1,6 @@
 import MathLive from '/mathlive/dist/mathlive.mjs';
 // import MathLive from 'https://unpkg.com/mathlive/dist/mathlive.min.mjs';
-var mf_arr=[ null,null,null,null,null,null,null,null];
-const mf_li = ["mlANSQT001","mlANSQTM001", "mlANSQT002",  "mlANSQTM002", "mlANSQT003", "mlANSQT004", "mlANSQTM003", "mlANSQTM004"];
+const mf_li = ["mlANSQT001","mlANSQTM001", "mlANSQT002",  "mlANSQTM002", "mlANSQT003","mlANSQTM003", "mlANSQT004",  "mlANSQTM004"];
 for (let i = 0; i < 8; i++) {
     let mf__ = MathLive.makeMathField(mf_li[i], {
         smartMode: true,

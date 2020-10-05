@@ -32,7 +32,7 @@ html(lang="zh")
     script(src='https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815')
     <script type="module" src="/mathlive/dist/mathlive.mjs"></script>
     script.
-      var mf=[null,null,null,null,null,null,null,null]
+      var mf=[];
       const mf_li = ["mlANSQT001", "mlANSQT002", "mlANSQT003", "mlANSQT004", "mlANSQTM001", "mlANSQTM002", "mlANSQTM003", "mlANSQTM004"];
       function escapeHtml(string) {
           return String(string).replace(/[&<>"'`=/\u200b]/g, function ( s ) {
@@ -66,27 +66,32 @@ html(lang="zh")
         $('#CHKQT00'+x).text(qno+ "/10确定");
         $('#QT00'+x).html("\\("+App.GetQizStatement(x,qno)+"\\)");  
         App.UpdateMathContent(x);
-        /*
-        for (let i = 1; i < 5; i++) {
-        $('#mlANSQT00'+i).html("");
-        $('#mlANSQTM00'+i).html("");
-        }*/
+        
         import('/mathlive/dist/mathlive.mjs')
         .then(module => {
           for (let i = 0; i < 8; i++) {
-             console.log(mf[i])             ;
-          }
-          /*for (let i = 0; i < 8; i++) {
+              let elen0="mlANSQT00"+x
+              let elen1="mlANSQTM00"+x
+              if(mf_li[i]==elen0 || mf_li[i]==elen1) {
+                let mf__=mf[i];
+                mf__.$perform('selectAll');
+                mf__.$clearSelection();
+                if(mf_li[i]==elen0) mf__.$focus()
+              }
+              /*
               let mf__ = module.default.makeMathField(mf_li[i], {
                   smartMode: true,
                   virtualKeyboardMode: 'manual',
                   onContentDidChange: (mf__) => {
                       let latex = mf__.$text();
-                      console.log(lx_li[i],latex);
-                      document.getElementById(lx_li[i]).value = escapeHtml(latex);
+                      let lx_name=(mf__.element.id.substring(2));
+                      document.getElementById(lx_name).value = escapeHtml(latex);
                   },
               });
-          }*/
+              mf__.$perform('selectAll');
+              mf__.$clearSelection();
+              */
+          }
           /* 
           let mf__ = module.default.makeMathField("mlANSQT001", {
             smartMode: true,
