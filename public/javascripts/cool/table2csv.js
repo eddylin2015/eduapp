@@ -11,7 +11,7 @@ function exportTableToCSV($table, filename) {
     csv = '"' + $rows.map(function(i, row) {
     var $row = $(row),  $cols = $row.find('td');
     return $cols.map(function(j, col) {
-      var $col = $(col), text = $col.text();
+      var $col = $(col), text = $col.html().indexOf("<script>")>-1?$col.html().replace(/<script>[\w\W]+<\/script>/,""):$col.text();
       return text.replace(/"/g, '""'); // escape double quotes
     }).get().join(tmpColDelim);
     }).get().join(tmpRowDelim)
