@@ -8,8 +8,46 @@ block content
           h4= id.toUpperCase()
           //img(src=`/images/${ico}`)
       td(width="90%")    
-        a(href=link,id=btnid) 
+        a(href=link) 
           h4= itemName.toUpperCase()
+    if id=="f3001"
+      tr
+        td
+        td(colspan=2,style="display:block;")#f3001info
+          a(href=link,id=btnid)
+            h4 ax^2+bx+c=0 即( mx+p)(nx+q)=0的解一元二次方程式
+          div 題型1：
+          div 1. x^2 –5 x – 6 =0	 作答: 6 ，-1
+          div 2. x^2 – 2x – 15=0	 作答: 5，-3  
+          div 題型2：
+          div 1. x^2 -6x – 55=0 	 = 11，-5 
+          div 2. x^2 + 23x+132=0 	 = -11，-12 
+          div 題型3：
+          div 1. 6x^2 + x – 12=0 	 = -3/2, 4/3 註: -a/b 表示分數
+          div 2. 2. 3x^2 -7x –6=0   = -2/3 , 3
+          div 題型4：
+          div 1. -6x^2 + 5x +6=0  = 3/2 , -2/3
+          div 2. -3x^2 –10x –8=0  = -4/3, -2
+    else if id=="f1003"
+      tr
+        td
+        td(colspan=2,style="display:block;")#f1003info
+          h4 整式的加減法練習
+          div 題型1：( mx+p)+(nx+q) = ax + b
+          div 題型2：( mx^2+px)+(nx^2+qx) = ax^2 + bx
+          h4 例題
+          div 1. x+x+x        作答: 3x
+          div 2. (x+7)-(x-9)	作答: 16 ，
+          div 3. 2x^2 -5x-x^2+12x 	作答: x^2 + 7x  ，註: x^2 表示x的2次方
+          div 4. (x^2 +11x)+(3x^2+3x)	作答: 4x^2 + 14x   ，            
+    else
+      tr
+        td
+        td(colspan=3,style="display:block;",id=`${id}info`)
+          //a(href=link,id=btnid)
+          //h4= itemName
+                   
+
   script(src='/javascripts/cool/webtoolkit.aim.js')
   style.
     div.container{ margin:0px; }
@@ -48,44 +86,40 @@ block content
   -f3data.push({id:'f3003',name:'解二元二次方程組'});
   -f3data.push({id:'f3004',name:'二次函數圖像的性質'});
   -f3data.push({id:'f3005',name:'解直角三角形'}  );
-  .row
-    .col-lg-3
-      div#accordion
-        div
+  div(width="100%")
+    h3
+      span 數學練習
+    table(width="100%")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
+    h3
+      span 小學
+    table(width="100%")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
+    h3
+      span 中一()
+    table(width="100%")
+      each sub in f1data
+        +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
 
-          h3
-            span 數學練習
-          table(width="100%")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
-
-          h3
-            span 小學
-          table(width="100%")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
-            +accor_li("/internal/TMS/trianing.o.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
-          h3
-            span 中一()
-          table(width="100%")
-            each sub in f1data
-              +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
-          h3
-            span 中二()
-          table(width="100%")
-            each sub in f2data
-              +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
-          h3(width="100%")
-            span 中三()
-          table  
-            each sub in f3data
-              +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
-          h3(width="100%")
-            span 中三(formula edit)
-          table  
-            each sub in f3data
-              +accor_li(`/internal/TMS/trianing.mlx2.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+    h3
+      span 中二()
+    table(width="100%")
+      each sub in f2data
+        +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+    h3(width="100%")
+      span 中三()
+    table(width="100%")  
+      each sub in f3data
+        +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+    h3(width="100%")
+      span 中三(formula edit)
+    table  
+      each sub in f3data
+        +accor_li(`/internal/TMS/trianing.mlx2.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
     .col-lg-7
   div(title="Info Dialog",style="display:none")#ClassSelectorDialog
     form(action="#")#ClassSelectorDialogForm

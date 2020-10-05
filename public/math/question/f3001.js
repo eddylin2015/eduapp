@@ -147,9 +147,19 @@ class UIMathClassF3001 extends UIMathClass {
     super();
     this.Note =
       `
-        <div>整式的加減法:</div>
-        <div>型1：(mx+p)+(nx+q) = ax +b  |p|,|q| < 10</div> 
-        <div>型2：(mx^2+px)+(nx^2+qx) = ax^2 +bx </div>
+      <h4>ax^2+bx+c=0 即( mx+p)(nx+q)=0的解一元二次方程式</h4>
+      <div> 題型1：</div>
+      <div> 1. x^2 –5 x – 6 =0	 作答: 6 ，-1</div>
+      <div> 2. x^2 – 2x – 15=0	 作答: 5，-3  </div>
+      <div> 題型2：</div>
+      <div> 1. x^2 -6x – 55=0 	 = 11，-5 </div>
+      <div> 2. x^2 + 23x+132=0 	 = -11，-12 </div>
+      <div> 題型3：</div>
+      <div> 1. 6x^2 + x – 12=0 	 = -3/2, 4/3 註: -a/b 表示分數</div>
+      <div> 2. 2. 3x2 -7x –6=0   = -2/3 , 3</div>
+      <div> 題型4：</div>
+      <div> 1. -6x2 + 5x +6=0  = 3/2 , -2/3</div>
+      <div> 2. -3x2 –10x –8=0  = -4/3, -2</div>
         `;
   }
   InitQizData() {

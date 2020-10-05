@@ -2,6 +2,7 @@ extends ./base.pug
   
 block content
   script(src='/javascripts/cool/grid_export.js')
+  script(src='/javascripts/cool/table2csv.js')
   -var fn= "math_report";
   -var act_link="/internal/PublicAPI/ExpXls.php?charset=utf-8&filename="+fn+".xls"
   form(method="POST", enctype="multipart/form-data",action=`/internal/PublicAPI/ExpXls.php?charset=utf-8&filename=${fn}.xls`)#CSVFrmPOST
@@ -12,7 +13,11 @@ block content
   .btn-group
     a(href='#', class='btn btn-primary btn-sm')#exportbtn
       i.glyphicon.glyphicon-download-alt
-      span  匯出Xls  
+      span  匯出XLS  
+  .btn-group
+    a(href='#', class='btn btn-primary btn-sm')#exportCSV
+      i.glyphicon.glyphicon-download-alt
+      span  匯出CSV        
   script.  
     function fn21(x){
         x= x.split(" ");
@@ -86,5 +91,9 @@ block content
         var txt= document.getElementById('tableContent').innerHTML;
         document.getElementById('CSVFrmPOSTVALUE').value ="<table>"+ txt+"</table>";
         document.getElementById('CSVFrmPOST').submit();
+      });
+      $("#exportCSV").on('click', function(event) {
+        var args = [$('#tableContent>table'), 'export0.csv'];
+        exportTableToCSV.apply(this, args);
       });
     });
