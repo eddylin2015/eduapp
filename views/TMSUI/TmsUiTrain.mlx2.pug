@@ -1,0 +1,184 @@
+extends ./base.f1.mlx2.pug
+block content
+  mixin MathTestPanelMathlive(tabid,pstyle,pintype)
+    table(style="margin:10px auto;")
+      tr
+        td
+          span(id=`QNO00${tabid}`) 命題:&nbsp;&nbsp;
+        td
+          div(id=`QT00${tabid}`)
+      tr
+        td 解題:   
+        td  
+          table
+            tr
+              td x1=
+              td
+                span(class="mathfield",style='font-size:28px;width:200px;',id=`mlANSQT00${tabid}`) 
+              td                
+                input(readonly=true,style="width:60px;min-width:1px;font-size:10px;border:0;outline:none;",name=`ANSQT00${tabid}`, id=`ANSQT00${tabid}`)
+                
+            tr(style="border-top:0px solid black;")
+              td x2=            
+              td    
+                div(class="mathfield",style='font-size:28px;width:200px;',id=`mlANSQTM00${tabid}`)  
+              td  
+                //input(name=`ANSQTM00${tabid}`, id=`ANSQTM00${tabid}`,value="")
+                input(readonly=false,style="width:60px;min-width:1px;font-size:10px;border:0;outline:none;",name=`ANSQTM00${tabid}`, id=`ANSQTM00${tabid}`)
+            td(colspan=3) 分數用(-a/b)格式; 
+
+      tr
+        td
+        td
+          span(class="dot",id=`helpCHKQT00${tabid}`) ?9
+          button(class="btn btn-info btn-sm",id=`CHKQT00${tabid}`) Start
+
+  
+  //end mix //
+
+
+  div(class="tab-content")
+    -let instyle="AnsInput";
+    -let inTxt="number";
+    -let tabpane=["","tab-pane fade in active","tab-pane fade","tab-pane fade","tab-pane fade"]
+    each tabid in [1,2,3,4]
+      - instyle="AnsExpInput"
+      - inTxt="text"          
+      div(id=`menu${tabid}` class=tabpane[tabid])
+        +MathTestPanelMathlive(tabid,instyle,inTxt)
+
+  include include/frm.mlx2.pug
+  style.
+    .MathJax span{font-size:20px;}
+  script.
+    let App={};//new UIMathClass();
+    ////////////Init App(UIMathClass interface) Load fX.js and Init Equation Data 4 x 10
+    var script = document.createElement('script');
+    script.onload = function () {
+       if(ft=="f201"){  App=new F201_UIMathClass();  }
+       else if(ft=="f202"){  App=new F202_UIMathClass();  }
+       else if(ft=="f2"){  App=new UIMathClassF2();  }
+       else if(ft=="f1"){  App=new UIMathClassF1();  }
+       else if(ft=="p2"){  App=new UIMathClassP2();  }
+       else if(ft=="p5"){  App=new UIMathClassP5();  }
+       else if(ft=="f1001"){ App=new UIMathClassF1001();}
+       else if(ft=="f1002"){ App=new UIMathClassF1002();}
+       else if(ft=="f1003"){ App=new UIMathClassF1003();}
+       else if(ft=="f1004"){ App=new UIMathClassF1004();}
+       else if(ft=="f1005"){ App=new UIMathClassF1005();}
+       else if(ft=="f1006"){ App=new UIMathClassF1006();}
+       else if(ft=="f1007"){ App=new UIMathClassF1007();}
+       else if(ft=="f1008"){ App=new UIMathClassF1008();}
+       else if(ft=="f2001"){ App=new UIMathClassF2001();}
+       else if(ft=="f2002"){ App=new UIMathClassF2002();}
+       else if(ft=="f2003"){ App=new UIMathClassF2003();}
+       else if(ft=="f20031"){ App=new UIMathClassF20031();}
+       else if(ft=="f2004"){ App=new UIMathClassF2004();}
+       else if(ft=="f2005"){ App=new UIMathClassF2005();}
+       else if(ft=="f2006"){ App=new UIMathClassF2006();}
+       else if(ft=="f2007"){ App=new UIMathClassF2007();}
+       else if(ft=="f3001"){ App=new UIMathClassF3001();}
+       else if(ft=="f3002"){ App=new UIMathClassF3002();}
+       else if(ft=="f3003"){ App=new UIMathClassF3003();}
+       else if(ft=="f3004"){ App=new UIMathClassF3004();}
+       else if(ft=="f3005"){ App=new UIMathClassF3005();}
+       else if(ft=="f3006"){ App=new UIMathClassF3006();}
+       else if(ft=="f3007"){ App=new UIMathClassF3007();}
+       else{App=new MathClassF1equ(); }
+       App.InitQizData();
+       $("#infomsg").dialog("open"); 
+    };
+    script.src = "/math/question/"+ft+".js";
+    document.head.appendChild(script);
+    ////////////End Init app
+   
+    $(document).ready(function(){
+      let mathtitle={"f1":"一元一次方程","f2":"有理數運算","f201":"十字相乘法因式分","f202":"一元二次方程式","p2":"加減","p5":"方程式","f1001":"有理數的運算"};
+      //Buttom Pannel > help#ttl| score#btnAnsMsgRes | username | txtdate | txtft | MathTitle | username
+      var d = (new Date()).toISOString().substring(0, 10).replace(/-/g,"");
+      var t = (new Date()).toISOString().substring(11, 19).split(':');
+      let h=Number(t[0])+8;  h=h>9?""+h:"0"+h;
+      var ti=h+""+t[1]+""+t[2];   //Number(t[0])+8 +""+t[1]+""+t[2];
+      $( "#txtdate" ).text(d+ti); 
+      $( "#MathTitle" ).text(mathtitle[ft]); 
+      $( "#txtuser" ).text(username);
+      $( "#txtft" ).text(ft); 
+      //End buttom pannel
+      
+      //Dialog Define
+      //Dialog 得分表
+      $("#AnsMsgRes").dialog( { autoOpen: false, width:'80%'});      
+      //Button 得分 
+      $("#btnAnsMsgRes").click(function(){ $( "#AnsMsgRes" ).dialog("open"); });    
+      //Dialog Message: 步驟 1. 選擇題型。2. 做题：3. 【確定】 --- 評判答案幷打分。 說明
+      $("#infomsg").dialog( { autoOpen: false, width:'100%', height:500,
+        modal: true, buttons: { OK: function() { $( this ).dialog( "close" ); }},
+        open:function(){
+          if(App.Note) $("#infomsg_txt").html(App.Note);
+        }
+      });
+      
+      $('#ttl').click(function(){ $( "#infomsg" ).dialog("open"); });
+      //End Dialog Define
+
+      //Check Ans Event
+      $('#CHKQT001').click(function(){  GetCheckAns(1);  });
+      $('#CHKQT002').click(function(){  GetCheckAns(2);  });
+      $('#CHKQT003').click(function(){  GetCheckAns(3);  });
+      $('#CHKQT004').click(function(){  GetCheckAns(4);  });
+      $('#helpCHKQT001').click(function(){  GetHelpCheckAns(1);  });
+      $('#helpCHKQT002').click(function(){  GetHelpCheckAns(2);  });
+      $('#helpCHKQT003').click(function(){  GetHelpCheckAns(3);  });
+      $('#helpCHKQT004').click(function(){  GetHelpCheckAns(4);  });
+      $('input').keyup(function(e){
+         if(e.keyCode == 13)
+         {
+          let id= $(this).attr("id");
+          id=id.substring(id.length-1);
+          let ansZ= $( "#ANSQT00"+id).val();
+          let ansM= $( "#ANSQTM00"+id).val();
+          if(ansZ=="" || ansM=="" ){
+            if(ansZ=="")  $( "#ANSQT00"+id).focus();
+            else if(ansM=="")  $( "#ANSQTM00"+id).focus();
+          }else{            
+            switch(Number(id)){
+            case 1:GetCheckAns(1);break;
+            case 2:GetCheckAns(2);break;
+            case 3:GetCheckAns(3);break;
+            case 4:GetCheckAns(4);break;
+            }     
+           }
+         }
+      });
+      //End def Check Ans Event
+      import('/mathlive/dist/mathlive.mjs')
+        .then(module => {
+          for (let i = 0; i < 8; i++) {
+              let mf__ = module.default.makeMathField(mf_li[i], {
+                  smartMode: true,
+                  virtualKeyboardMode: 'onfocus',
+                  onContentDidChange: (mf__) => {
+                      let latex = mf__.$text();
+                      let lx_name=(mf__.element.id.substring(2));
+                      document.getElementById(lx_name).value = escapeHtml(latex);
+                  },
+              });
+              mf.push(mf__);
+          }
+          /* 
+          let mf__ = module.default.makeMathField("mlANSQT001", {
+            smartMode: true,
+            virtualKeyboardMode: 'manual',
+            onContentDidChange: (mf__) => {
+              let latex = mf__.$text();
+              document.getElementById("ANSQT001").value = escapeHtml(latex);
+            },
+           });  */
+        })
+        .catch(err => {
+          console.log( err.message);
+        });
+    });
+  //<script type="module" src="/math/ml0.js"></script>
+  
+  

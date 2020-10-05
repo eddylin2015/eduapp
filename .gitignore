@@ -1,5 +1,6 @@
 *.*~
 *.*.swp
+public/mathlive/*
 db/internal_users_records.js
 favicon.ico
 app.js

@@ -58,7 +58,7 @@ a {
     }
     div.msgcenter {
         position: fixed;
-        bottom: 0;
+        bottom: 10;
         left: 0;
         width: 90%;
         height: 10%;

@@ -102,6 +102,24 @@ router.get('/trianing.o.jsp',(req, res, next) => {
     profile:req.user
 });
 });
+router.get('/trianing.mlx2.jsp',(req, res, next) => {
+  let ft=req.query.ft;
+  let MathTitle=""
+  if(ft=="p2"){MathTitle='加減';}
+  if(ft=="p5"){MathTitle='方程式';}
+  if(ft=="f1"){MathTitle='一元一次方程式';}
+  if(ft=="f2"){MathTitle='有理數運算';}
+  if(ft=="f201"){MathTitle='十字相乘法 Criss-Cross';}
+  if(ft=="f202"){MathTitle='一元二次方程式';}
+  console.log(ft,MathTitle)
+  res.render('TMSUI/TmsUiTrain.mlx2.pug', {
+    formulajs:ft,
+    ft:ft,
+    MathTitle:MathTitle,
+    profile:req.user
+});
+});
+
 router.get('/QizEx',require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
   res.render('TMSUI/QizExIndex.pug', {});
 });
