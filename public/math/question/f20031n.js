@@ -90,10 +90,16 @@ class UIMathClassF20031 extends UIMathClass {
     super();
     this.Note =
       `
-        <div>整式的加減法:</div>
-        <div>型1： ( mx+p)+(nx+q) = ax + b  |p|,|q| < 10</div> 
-        <div>型2：a^m * a^n = a^(m+n); a^m / a^n = a^(m-n)</div>
-        `;
+      <div> 題型5</div>
+      <div> 1. \(12x^2-21xy+9y^2\)  作答:3(4x-3y)(x-y)</div>
+      <div> 2. \(-2(x+y)^2-8a(x+y)+10a^2\) 作答:2((x+y)+5a)(-(x+y)+a),2(x+y+5a)(-x-y+a),2(-x-y+a)(x+y+5a)</div>
+      <div> 題型6：運用乘法公式</div>
+      <div> 1. \(36x^2-9y^2\) 作答:9(2x-y)(2x+y),9(2x+y)(2x-y)</div>
+      <div> 2. \((x+y)^2-49\) 作答:(x+y+7)(x+y-7),(x+y-7)(x+y+7),(x+y+7)(x+y-7)</div>
+      <div> 題型7：</div>
+      <div> 1. \(64x^2+48xy+9y^2\) 作答:(8x+3y)^2</div>
+      <div> 2. \((x+y)^4-2(x+y)^2z^2+z^4\) 作答:((x+y)^2-z^2)^2, (x+y+z)^2(x+y-z)^2</div>
+      `;
   }
   InitQizData() {
     for (let i = 0; i < 2; i++) {

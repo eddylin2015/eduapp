@@ -62,7 +62,7 @@ block content
         div(id=`menu${tabid}` class=tabpane[tabid])
           +MathTestPanel0(tabid,instyle,inTxt)
     else
-      -let text_in_list=".f201.f1003.f2003.f20031."
+      -let text_in_list=".f201.f1003.f2003.f20031.f3001."
       -let inputtextflag= text_in_list.indexOf(`.${formulajs}.`)>-1 ;
       if inputtextflag
         - instyle="AnsExpInput"
@@ -139,6 +139,8 @@ block content
         modal: true, buttons: { OK: function() { $( this ).dialog( "close" ); }},
         open:function(){
           if(App.Note) $("#infomsg_txt").html(App.Note);
+          MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] } });
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub, "infomsg_txt"]);
         }
       });
       
