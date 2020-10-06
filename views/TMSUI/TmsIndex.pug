@@ -73,15 +73,10 @@ block content
   script(src='/javascripts/cool/grid_export.js')
   script(src='/javascripts/cool/webtoolkit.aim.js')
   <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
-  <script type="text/javascript" async src="/MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>  
+  <script type="text/javascript"  async src="/MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>  
   style.
     div.container{ margin:0px; }
-  script.
-    $( function() {
-      //$("#accordion").accordion();
-      //$("#accordion").accordion({ header: "h3" });
-    });
   p .
   P .
   -var p0data=[],f0data=[],f1data=[ ],f2data=[ ],f3data=[ ];
@@ -142,7 +137,7 @@ block content
       each sub in f3data
         +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
     h3(width="100%")
-      span 中三(實驗版方程式編輯噐)
+      span 中三(實驗版方程式編輯)
     table  
       each sub in f3data
         +accor_li(`/internal/TMS/trianing.mlx2.jsp?ft=${sub.id}`,`X${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
