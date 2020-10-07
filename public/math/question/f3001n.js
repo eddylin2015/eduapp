@@ -104,16 +104,16 @@ function CreatAEq(Tx, Tk, Range) {
           b = p + q; c = p * q;
           break;
       case 2:
-          p = tmsU.TakeARnd(-16, 16, 0, 1, 0, 0);
-          q = tmsU.TakeARnd(-16, 16, 0, 2, 0, -1*p);
+          p = tmsU.TakeARnd(-15, 15, 0, 1, 0, 0);
+          q = tmsU.TakeARnd(-15, 15, 0, 2, 0, -1*p);
           b = p + q; c = p * q;
           break;
       case 3:
           m = tmsU.TakeARnd(0, 5, 0, 1, 0, 0);
           n = tmsU.TakeARnd(0, 5, 0, 1, 0, 0);
           a = m * n;
-          p = tmsU.TakeARnd(-16, 16, 0, 1, 0, 0);
-          q = tmsU.TakeARnd(-16, 16, 0, 2, 0, Math.floor(p*n/m));
+          p = tmsU.TakeARnd(-10, 10, 0, 1, 0, 0);
+          q = tmsU.TakeARnd(-10, 10, 0, 2, 0, Math.floor(p*n/m));
           b = p * n + q * m; c = p * q;
           break;
       case 4:
@@ -121,8 +121,8 @@ function CreatAEq(Tx, Tk, Range) {
           n = tmsU.TakeARnd(0, 5, 0, 1, 0, 0);
           if(m*n>0){n=-1*n;}
           a = m * n;
-          p = tmsU.TakeARnd(-16, 16, 0, 1, 0, 0);
-          q = tmsU.TakeARnd(-16, 16, 0, 2, 0, Math.floor(p*n/m));
+          p = tmsU.TakeARnd(-10, 10, 0, 1, 0, 0);
+          q = tmsU.TakeARnd(-10, 10, 0, 2, 0, Math.floor(p*n/m));
           b = p * n + q * m; c = p * q;
           break;
   }
@@ -148,13 +148,23 @@ class UIMathClassF3001 extends UIMathClass {
     super();
     this.Note =
       `
-        <div>整式的加減法:</div>
-        <div>型1：(mx+p)+(nx+q) = ax +b  |p|,|q| < 10</div> 
-        <div>型2：(mx^2+px)+(nx^2+qx) = ax^2 +bx </div>
-        `;
+      <h4>ax^2+bx+c=0 即( mx+p)(nx+q)=0的解一元二次方程式</h4>
+      <div> 題型1：</div>
+      <div> 1. $x^2–5x–6=0$ 作答: 6 ， -1 </div>
+      <div> 2. $x^2–2x–15=0$	 作答: 5 ， -3 </div>
+      <div> 題型2：</div>
+      <div> 1. $x^2-6x–55=0$ 	作答: 11，-5 </div>
+      <div> 2. $x^2+23x+132=0$ 	作答: -11，-12 </div>
+      <div> 題型3：</div>
+      <div> 1. $6x^2+x–12=0$ 作答: -3/2, 4/3 註: -a/b 表示分數</div>
+      <div> 2. $3x^2-7x–6=0$ 作答: -2/3 , 3</div>
+      <div> 題型4：</div>
+      <div> 1. $-6x^2+5x+6=0$ 作答: 3/2 , -2/3</div>
+      <div> 2. $-3x^2–10x–8=0$ 作答: -4/3, -2</div>
+      `;
   }
   InitQizData() {
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 10; j++) {
         let TiXing = i + 1;
         let Range={}

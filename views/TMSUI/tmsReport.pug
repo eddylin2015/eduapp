@@ -2,18 +2,22 @@ extends ./base.pug
   
 block content
   script(src='/javascripts/cool/grid_export.js')
+  script(src='/javascripts/cool/table2csv.js')
   -var fn= "math_report";
   -var act_link="/internal/PublicAPI/ExpXls.php?charset=utf-8&filename="+fn+".xls"
   form(method="POST", enctype="multipart/form-data",action=`/internal/PublicAPI/ExpXls.php?charset=utf-8&filename=${fn}.xls`)#CSVFrmPOST
     .form-group.hidden
       input.form-control(type="text", name="CSVFrmPOSTNAME", id="CSVFrmPOSTVALUE")
   p .
-  p .      
+  p .
   .btn-group
     a(href='#', class='btn btn-primary btn-sm')#exportbtn
       i.glyphicon.glyphicon-download-alt
-      span  匯出Xls  
-
+      span  匯出XLS  
+  .btn-group
+    a(href='#', class='btn btn-primary btn-sm')#exportCSV
+      i.glyphicon.glyphicon-download-alt
+      span  匯出CSV        
   script.  
     function fn21(x){
         x= x.split(" ");
@@ -23,8 +27,8 @@ block content
           document.write('---');
         }
     }    
-  div#tableContent  
-    div= `total ${data.length} rec.`
+  div= `total ${data.length} rec.`
+  div#tableContent
     -let cnt=0
     each r in data
       -let fn_=r.fn.split('_'  ) 
@@ -66,13 +70,8 @@ block content
                   - txtime+=Number(arr1[3])
                 td= cnt
                 td= r.username
-                -let arr2index=0    
                 each arr2 in arr1
-                  -arr2index++
-                  td
-                    if arr2index==7 || arr2index==6 
-                      span '  
-                    span= arr2
+                  td= arr2
                 -totalflag = arr1.length
           if totalflag >2    
             tr
@@ -92,5 +91,9 @@ block content
         var txt= document.getElementById('tableContent').innerHTML;
         document.getElementById('CSVFrmPOSTVALUE').value ="<table>"+ txt+"</table>";
         document.getElementById('CSVFrmPOST').submit();
+      });
+      $("#exportCSV").on('click', function(event) {
+        var args = [$('#tableContent>table'), 'export0.csv'];
+        exportTableToCSV.apply(this, args);
       });
     });
