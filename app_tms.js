@@ -43,6 +43,8 @@ app.use('/users', users);
 app.use(routes);
 app.use('/internal/TMS', require('./routes/TMS/crud'));
 app.use('/internal/api/TMS', require('./routes/TMS/api'));
+app.use('/internal/ActStdAttend', require('./activityStdAttend/crud'));
+app.use('/internal/sportday', require('./sportDay/crud'));
 app.use('/internal/PublicAPI', require('./db/ExportXLS'));
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
