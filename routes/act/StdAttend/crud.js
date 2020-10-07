@@ -15,6 +15,7 @@
 
 const express = require('express');
 const images = require('./images');
+var oauth2 = require('../../../db/internalOauth2.js')
 
 function getModel () {
     return require(`./model-mysql-pool`);
@@ -71,7 +72,7 @@ router.get('/', (req, res, next) => {
 });
 // Use the oauth2.required middleware to ensure that only logged-in users
 // can access this handler.
-router.get('/mine', require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/mine', oauth2.required, (req, res, next) => {
   if(!checkuser(req)){ res.end("no right");return;}
   getModel().listBy(
     req.user.id,
@@ -110,7 +111,7 @@ router.get('/searchform', (req, res) => {
         action: 'Post'
     });
 });
-router.post('/searchform', require('connect-ensure-login').ensureLoggedIn(),
+router.post('/searchform', oauth2.required,
     images.multer.single('image'),
     (req, res) => {
 		if(!checkuser(req)){ res.end("no right");return;}
@@ -252,7 +253,7 @@ router.get('/:book/edit', (req, res, next) => {
  */
 router.post(
     '/:book/edit',
-    images.multer.single('image'), require('connect-ensure-login').ensureLoggedIn(),
+    images.multer.single('image'), oauth2.required,
     (req, res, next) => {
 		if(!checkuser(req)){ res.end("no right");return;}
     const data = req.body;

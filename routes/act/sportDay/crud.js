@@ -15,7 +15,7 @@
 
 const express = require('express');
 const images = require('./images');
-
+var oauth2 = require('../../../db/internalOauth2.js')
 function getModel () {
     return require(`./model-mysql-pool`);
 }
@@ -53,25 +53,30 @@ router.use((req, res, next) => {
  * Display a page of books (up to ten at a time).
  */
 router.get('/', (req, res, next) => {
-  res.end("constructing");
-  return;
-	if(!checkuser(req)){ res.end("no right");return;}
-  getModel().list(req.user.id, 10, req.query.pageToken, (err, entities, cursor) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    //res.render('activityStdAttend/list.pug', {
-    res.render('activityStdAttend/list.pug', {
-      profile: req.user ,
-      books: entities,
-      nextPageToken: cursor
-    });
+  res.render('act/sportday/index.pug');
+});
+
+router.get('/spreg.jsp', (req, res, next) => {
+if(req.user){
+  let username=req.user.email.split('@')[0].toUpperCase()
+  getModel().read(username, (err, entities) => {
+      if (err) {
+          next(err);
+          return;
+      }
+      res.render('act/sportday/spreg.pug', {
+          profile: req.user,
+          JRES: entities
+      });
   });
+}else{
+  res.redirect("/internal/login?subpath=sportday");
+}
 });
 // Use the oauth2.required middleware to ensure that only logged-in users
 // can access this handler.
-router.get('/mine', require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+
+router.get('/mine', oauth2.required, (req, res, next) => {
   if(!checkuser(req)){ res.end("no right");return;}
   getModel().listBy(
     req.user.id,
@@ -82,7 +87,7 @@ router.get('/mine', require('connect-ensure-login').ensureLoggedIn(), (req, res,
         next(err);
         return;
       }
-      res.render('activityStdAttend/list.pug', {
+      res.render('act/sportday/list.pug', {
         profile: req.user,
         books: entities,
         nextPageToken: cursor
@@ -100,7 +105,7 @@ router.post('/:book/imageUploader', images.multer.any(),   function(req, res) {
 })
 router.get('/searchform', (req, res) => {
 	if(!checkuser(req)){ res.end("no right");return;}
-    res.render('activityStdAttend/searchform.pug', {
+    res.render('act/sportday/searchform.pug', {
         profile: req.user,
         book: {
             author: req.user.username,
@@ -110,7 +115,7 @@ router.get('/searchform', (req, res) => {
         action: 'Post'
     });
 });
-router.post('/searchform', require('connect-ensure-login').ensureLoggedIn(),
+router.post('/searchform', oauth2.required,
     images.multer.single('image'),
     (req, res) => {
 		if(!checkuser(req)){ res.end("no right");return;}
@@ -128,7 +133,7 @@ router.post('/searchform', require('connect-ensure-login').ensureLoggedIn(),
                 next(err);
                 return;
             }
-            res.render('activityStdAttend/table.pug', {
+            res.render('act/sportday/table.pug', {
                 profile: req.user,
                 books: entities,
                 nextPageToken: cursor
@@ -143,8 +148,8 @@ router.post('/searchform', require('connect-ensure-login').ensureLoggedIn(),
  */
 router.get('/add', (req, res) => {
     if(!checkuser(req)){ res.end("no right");return;}
-    let formpug='activityStdAttend/form.pug';
-    if(req.query.ckedit) formpug='activityStdAttend/form.1.pug';
+    let formpug='act/sportday/form.pug';
+    if(req.query.ckedit) formpug='act/sportday/form.1.pug';
     res.render(formpug, {
         profile: req.user,
         book: {
@@ -235,8 +240,8 @@ router.get('/:book/edit', (req, res, next) => {
       next(err);
       return;
       }    
-      let formpug='activityStdAttend/form.pug';
-      if(req.query.ckedit) formpug='activityStdAttend/form.1.pug';
+      let formpug='act/sportday/form.pug';
+      if(req.query.ckedit) formpug='act/sportday/form.1.pug';
     res.render(formpug, {
       profile: req.user,
       book: entity,
@@ -252,7 +257,7 @@ router.get('/:book/edit', (req, res, next) => {
  */
 router.post(
     '/:book/edit',
-    images.multer.single('image'), require('connect-ensure-login').ensureLoggedIn(),
+    images.multer.single('image'), oauth2.required,
     (req, res, next) => {
 		if(!checkuser(req)){ res.end("no right");return;}
     const data = req.body;
@@ -287,7 +292,7 @@ if(!checkuser(req)){ res.end("no right");return;}
       next(err);
       return;
     }
-    res.render('activityStdAttend/view.pug', {
+    res.render('act/sportday/view.pug', {
       profile: req.user,
       book: entity
     });

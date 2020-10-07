@@ -14,7 +14,7 @@
 'use strict';
 
 const mysql = require('mysql');
-const config = require('../../config');
+const config = require('../../../config');
 const options = {
     host: config.get('ACTMYSQL_HOST'),
     user: config.get('ACTMYSQL_USER'),
@@ -29,7 +29,7 @@ function list(userId, limit, token, cb) {
     pool.getConnection(function (err, connection) {
         // Use the connection
         connection.query(
-            'SELECT * FROM `ActStdSport` order by id DESC LIMIT ? OFFSET ?', [limit, token],
+            'SELECT * FROM `StdSportItem` order by id DESC LIMIT ? OFFSET ?', [limit, token],
             (err, results) => {
                 if (err) {
                     cb(err);
@@ -47,7 +47,7 @@ function listBy(userId, limit, token, cb) {
     token = token ? parseInt(token, 10) : 0;
     pool.getConnection(function (err, connection) {
         connection.query(
-            'SELECT * FROM `ActStdSport` WHERE `createdById` = ? LIMIT ? OFFSET ?',
+            'SELECT * FROM `StdSportItem` WHERE `createdById` = ? LIMIT ? OFFSET ?',
             [userId, limit, token],
             (err, results) => {
                 if (err) {
@@ -67,7 +67,7 @@ function listTimestampBy(userId, activity, sdate,edate, limit, token, cb) {
 
     pool.getConnection(function (err, connection) {
         connection.query(
-            'SELECT * FROM `ActStdSport` WHERE `activity` = ?  and (`logDate` between ? and ? ) order by  id  LIMIT ? OFFSET ?',
+            'SELECT * FROM `StdSportItem` WHERE `activity` = ?  and (`logDate` between ? and ? ) order by  id  LIMIT ? OFFSET ?',
             [activity,sdate,edate,limit, token],
             (err, results) => {
                 if (err) {
@@ -84,7 +84,7 @@ function listTimestampBy(userId, activity, sdate,edate, limit, token, cb) {
 function create(userId, data, cb) {
     console.log(data);
     pool.getConnection(function (err, connection) {
-        connection.query('INSERT INTO `ActStdSport` SET ?', data, (err, res) => {
+        connection.query('INSERT INTO `StdSportItem` SET ?', data, (err, res) => {
             if (err) {
                 cb(err);
                 return;
@@ -100,7 +100,7 @@ function read(userId, id, cb) {
     console.log(id);
     pool.getConnection(function (err, connection) {
         connection.query(
-            'SELECT * FROM `ActStdSport` WHERE `id` = ? ', id, (err, results) => {
+            'SELECT * FROM `StdSportItem` WHERE `id` = ? ', id, (err, results) => {
                 if (!err && !results.length) {
                     err = {
                         code: 404,
@@ -120,7 +120,7 @@ function read(userId, id, cb) {
 function update(userId, id, data, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
-            'UPDATE `ActStdSport` SET ? WHERE `id` = ?  and `createdById` = ?', [data, id, userId], (err) => {
+            'UPDATE `StdSportItem` SET ? WHERE `id` = ?  and `createdById` = ?', [data, id, userId], (err) => {
                 if (err) {
                     cb(err);
                     return;
@@ -132,7 +132,7 @@ function update(userId, id, data, cb) {
 }
 function _delete(userId,id, cb) {
     pool.getConnection(function (err, connection) {
-        connection.query('DELETE FROM `ActStdSport` WHERE `id` = ?  and  `createdById` = ?',[ id, userId ],  cb);
+        connection.query('DELETE FROM `StdSportItem` WHERE `id` = ?  and  `createdById` = ?',[ id, userId ],  cb);
         connection.release();
     });
 }
@@ -174,7 +174,7 @@ function createSchema(config) {
       DEFAULT CHARACTER SET = 'utf8mb4'
       DEFAULT COLLATE 'utf8mb4_unicode_ci';
     USE \`bookshelf\`;
-    CREATE TABLE IF NOT EXISTS \`act\`.\`ActStdSport\` (
+    CREATE TABLE IF NOT EXISTS \`act\`.\`StdSportItem\` (
       \`id\` INT UNSIGNED NOT NULL AUTO_INCREMENT,
       \`username\` VARCHAR(255) NULL,
       \`displayName\` VARCHAR(255) NULL,
