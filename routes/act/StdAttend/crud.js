@@ -54,8 +54,6 @@ router.use((req, res, next) => {
  * Display a page of books (up to ten at a time).
  */
 router.get('/', (req, res, next) => {
-  res.end("constructing");
-  return;
 	if(!checkuser(req)){ res.end("no right");return;}
   getModel().list(req.user.id, 10, req.query.pageToken, (err, entities, cursor) => {
     if (err) {

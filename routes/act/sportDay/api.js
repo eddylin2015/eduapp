@@ -29,7 +29,7 @@ router.use(bodyParser.json());
  */
 function checkuser(req){
 	console.error("email",req.user.email);
-	if(req.user.email=="1lammou@mail.mbc.edu.mo") return true;
+	if(req.user.email=="lammou@mail.mbc.edu.mo") return true;
 	return false;
 }
 router.get('/', (req, res, next) => {
