@@ -100,6 +100,11 @@ router.post('/read', oauth2.required, (req, res, next) => {
     //});
   });
 });
+function ShowGroupName(x)
+{
+  var GROUP_Name=["男A","男B","男C","男D",,"女A","女B","女C","女D","男E","女E"];
+  return GROUP_Name[x];
+}
 function ShowItemName(rec)
 {
   console.log(rec)
@@ -112,7 +117,7 @@ function ShowItemName(rec)
     let itemli=lastdata_li.match(/[0-9]+/g);
     console.log(itemli)
     for(let i=0;i<itemli.length;i++ ){
-      res+=ITEM_Name[Number(itemli[i])]+"<br>";
+      res+=ITEM_Name[Number(itemli[i])]+"\n";
     }
     return res;
 }
@@ -124,14 +129,21 @@ router.post('/update',oauth2.required, images.multer.any(),  (req, res, next) =>
     console.log(data)
     getModel().updateByUserName(userName, data.fchk.join(","), (err, savedData) => {
       if (err) {
-        console.log(err);
-        next(err);
+        res.end("沒法更改,超出登記次數!");
+        //console.log(err);
+        //next(err);
         return;
       }
-      res.write(`學生:${savedData[0].stdname}<br>組別:${savedData[0].groupid} | ${savedData[0].groupname}`);
-      res.write("<br>項目如下:");
-      res.write(ShowItemName(savedData[0].rec));
-      res.end("<button onclick='windows.history.back()'>返回</button>");
+      res.render('act/sportday/view.pug', {
+          profile: req.user,
+          books: savedData,
+          rec:ShowItemName(savedData[0].rec),
+          groupName:ShowGroupName(savedData[0].groupid)
+      });
+      //res.write(`學生:${savedData[0].stdname}<br>組別:${savedData[0].groupid} | ${savedData[0].groupname}`);
+      //res.write("<br>項目如下:");
+      //res.write(ShowItemName(savedData[0].rec));
+      //res.end("<button onclick='window.history.back()'>返回</button>");
       //res.end(JSON.stringify(savedData));
       //res.redirect(`${req.baseUrl}/${savedData.id}`);
     });

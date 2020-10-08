@@ -131,11 +131,11 @@ function btn_submit() {
 	for (i = 0; i < ans.length; i++) {
 		temp += ans[i];
 	}
-	if (temp > 0 && temp <= max_ans) {
+	if (temp > 1 && temp <= max_ans) {
 		document.getElementById('GROUP_Name').disabled = false;
 		document.getElementById("formid").submit();
 	} else {
-		alertmsg("請選" + max_ans + "項!(" + temp + ")");
+		alertmsg("請選最多" + max_ans + "項,最少2項 !(" + temp + ")");
 	}
 }
 function close_msgbox(x) {
@@ -196,6 +196,7 @@ function login() {
 				} else if (ans_arr[0] == "URL") {
 					window.location.assign(ans_arr[1]);
 				}
+				alertmsg("請填寫..")
 			}
 		} else {
 			alertmsg("waiting....!(" + xhttp.readyState + ") (" + xhttp.status + ")" + xhttp.responseText);

@@ -1,0 +1,39 @@
+extends ./base.pug
+block content
+
+  script.
+    function ShowItemName(rec)
+    {
+      console.log(rec)
+      let res="";
+      var ITEM_Name = [
+        "---", "50M", "60M", "100M", "200M", "400M", "800M", "1000M", "1500M", "3000M", "5000M", "60米欄", "80米欄", "100米欄", "110米欄", "4x50M", "4x100M", "4x400M", "跳高", "跳遠", "三級跳遠", "壘球", "鉛球"];
+        let lastdata_=rec.split(';');
+        let lastdata_li=lastdata_[lastdata_.length-1];
+        console.log(lastdata_li);
+        let itemli=lastdata_li.match(/[0-9]+/g);
+        console.log(itemli)
+        for(let i=0;i<itemli.length;i++ ){
+          res+=ITEM_Name[Number(itemli[i])]+"<br>";
+        }
+        return res;
+    }
+  p .  
+  p .  
+  Table
+    tr
+      td 學生:
+      td= books[0].stdname
+    tr  
+      td 組別
+      td
+        span= groupName
+        span (
+        span= books[0].groupid
+        span )
+        span= books[0].groupname
+        
+    tr  
+      td 項目
+      td= rec
+  button(onclick="window.history.back();")  back 
