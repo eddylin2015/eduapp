@@ -1,0 +1,44 @@
+doctype html
+html(lang="zh")
+  head
+    title One-Dimensional Equation
+    meta(charset='utf-8')
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    //link(rel='stylesheet', href='/stylesheets/main.css')
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/bootstrap.min.js') 
+    script(src='/jquery-ui-dist/jquery-ui.min.js')    
+    link( href='/jquery-ui-dist/jquery-ui.min.css',rel='stylesheet' )   
+    link(href="/stylesheets/cool/act/sp.css", rel="stylesheet")
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          .navbar-brand
+            span SportDay
+            spna :
+            if(profile)
+              span= profile.username
+        .navbar-collapse.collapse                         
+          ul.nav.navbar-nav
+            li
+              a(href="/internal") 
+                span 返回主頁
+          ul.navbar-text.navbar-right
+            // [START profile]
+            if profile
+              if profile.image
+                img.img-circle(src=profile.image, width=24)
+              span #{profile.displayName} &nbsp;
+                a(href=logout) (logout)
+            else
+              a(href=login) Login
+            // [END profile]
+
+    .container
+      block content

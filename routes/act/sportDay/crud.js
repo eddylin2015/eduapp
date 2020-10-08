@@ -58,24 +58,47 @@ router.get('/', (req, res, next) => {
 
 router.get('/spreg.jsp', (req, res, next) => {
 if(req.user){
-  let username=req.user.email.split('@')[0].toUpperCase()
-  getModel().read(username, (err, entities) => {
-      if (err) {
-          next(err);
-          return;
-      }
-      res.render('act/sportday/spreg.pug', {
-          profile: req.user,
-          JRES: entities
-      });
-  });
+  let userName=req.user.email.split('@')[0].toUpperCase();
+  res.render('act/sportday/spreg.pug', {
+            profile: req.user,
+            userName:userName
+        });
+  //let username=req.user.email.split('@')[0].toUpperCase()
+  // getModel().read(username, (err, entities) => {
+  //    if (err) {next(err); return; }
+  //    res.render('act/sportday/spreg.pug', {
+  //        profile: req.user,
+  //        JRES: entities
+  //    });
+  //});
 }else{
   res.redirect("/internal/login?subpath=sportday");
 }
 });
 // Use the oauth2.required middleware to ensure that only logged-in users
 // can access this handler.
-
+router.post('/read', oauth2.required, (req, res, next) => {
+  let userName=req.user.email.split('@')[0].toUpperCase();
+  if(userName=='LAMMOU')
+  {
+    res.write("studinfo\n") //.innerHTML=res[0];
+    res.write("classinfo\n");//.innerHTML=res[1];
+    res.write("\n");
+    res.write("\n");
+    res.write("0");//("GROUP_Name\n");//.value=res[4];
+    res.end("\n");
+  }else{
+     res.end("nothing");
+  }
+});
+router.post('/update', images.multer.any(),   function(req, res) {
+  //req.file/req.files
+  if(req.body){
+    res.end(JSON.stringify(req.body));
+  }else{
+    res.send( "uploaded");
+  }
+})
 router.get('/mine', oauth2.required, (req, res, next) => {
   if(!checkuser(req)){ res.end("no right");return;}
   getModel().listBy(

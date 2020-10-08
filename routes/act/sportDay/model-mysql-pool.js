@@ -29,7 +29,7 @@ function list(userId, limit, token, cb) {
     pool.getConnection(function (err, connection) {
         // Use the connection
         connection.query(
-            'SELECT * FROM `StdSportItem` order by id DESC LIMIT ? OFFSET ?', [limit, token],
+            'SELECT * FROM `stdsportitem` order by id DESC LIMIT ? OFFSET ?', [limit, token],
             (err, results) => {
                 if (err) {
                     cb(err);
@@ -47,7 +47,7 @@ function listBy(userId, limit, token, cb) {
     token = token ? parseInt(token, 10) : 0;
     pool.getConnection(function (err, connection) {
         connection.query(
-            'SELECT * FROM `StdSportItem` WHERE `createdById` = ? LIMIT ? OFFSET ?',
+            'SELECT * FROM `stdsportitem` WHERE `createdById` = ? LIMIT ? OFFSET ?',
             [userId, limit, token],
             (err, results) => {
                 if (err) {
@@ -67,7 +67,7 @@ function listTimestampBy(userId, activity, sdate,edate, limit, token, cb) {
 
     pool.getConnection(function (err, connection) {
         connection.query(
-            'SELECT * FROM `StdSportItem` WHERE `activity` = ?  and (`logDate` between ? and ? ) order by  id  LIMIT ? OFFSET ?',
+            'SELECT * FROM `stdsportitem` WHERE `activity` = ?  and (`logDate` between ? and ? ) order by  id  LIMIT ? OFFSET ?',
             [activity,sdate,edate,limit, token],
             (err, results) => {
                 if (err) {
@@ -84,7 +84,7 @@ function listTimestampBy(userId, activity, sdate,edate, limit, token, cb) {
 function create(userId, data, cb) {
     console.log(data);
     pool.getConnection(function (err, connection) {
-        connection.query('INSERT INTO `StdSportItem` SET ?', data, (err, res) => {
+        connection.query('INSERT INTO `stdsportitem` SET ?', data, (err, res) => {
             if (err) {
                 cb(err);
                 return;
@@ -100,7 +100,7 @@ function read(userId, id, cb) {
     console.log(id);
     pool.getConnection(function (err, connection) {
         connection.query(
-            'SELECT * FROM `StdSportItem` WHERE `id` = ? ', id, (err, results) => {
+            'SELECT * FROM `stdsportitem` WHERE `id` = ? ', id, (err, results) => {
                 if (!err && !results.length) {
                     err = {
                         code: 404,
@@ -120,7 +120,7 @@ function read(userId, id, cb) {
 function update(userId, id, data, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
-            'UPDATE `StdSportItem` SET ? WHERE `id` = ?  and `createdById` = ?', [data, id, userId], (err) => {
+            'UPDATE `stdsportitem` SET ? WHERE `id` = ?  and `createdById` = ?', [data, id, userId], (err) => {
                 if (err) {
                     cb(err);
                     return;
@@ -132,7 +132,7 @@ function update(userId, id, data, cb) {
 }
 function _delete(userId,id, cb) {
     pool.getConnection(function (err, connection) {
-        connection.query('DELETE FROM `StdSportItem` WHERE `id` = ?  and  `createdById` = ?',[ id, userId ],  cb);
+        connection.query('DELETE FROM `stdsportitem` WHERE `id` = ?  and  `createdById` = ?',[ id, userId ],  cb);
         connection.release();
     });
 }
@@ -173,21 +173,24 @@ function createSchema(config) {
     `CREATE DATABASE IF NOT EXISTS \`act\`
       DEFAULT CHARACTER SET = 'utf8mb4'
       DEFAULT COLLATE 'utf8mb4_unicode_ci';
-    USE \`bookshelf\`;
-    CREATE TABLE IF NOT EXISTS \`act\`.\`StdSportItem\` (
-      \`id\` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-      \`username\` VARCHAR(255) NULL,
-      \`displayName\` VARCHAR(255) NULL,
-      \`logDate\` VARCHAR(255) NULL,
-      \`logTime\` VARCHAR(255) NULL,
-      \`activity\` VARCHAR(255) NULL,
-      \`description\` TEXT NULL,
-      \`geoLatitude\` VARCHAR(255) NULL,
-      \`geoLongitude\` VARCHAR(255) NULL,
-      \`createdTime\` DATETIME NULL,      
-      \`createdBy\` VARCHAR(255) NULL,
-      \`createdById\` VARCHAR(255) NULL,
-    PRIMARY KEY (\`id\`));`,
+    USE \`act\`;
+    CREATE TABLE IF NOT EXISTS \`act\`.\`stdsportitem\` (
+        \`id\` int(10) unsigned NOT NULL AUTO_INCREMENT,
+        \`username\` varchar(255) NOT NULL,
+        \`displayName\` varchar(255) DEFAULT NULL,
+        \`logTime\` datetime DEFAULT NULL,
+        \`rec\` varchar(255) NOT NULL,
+        \`cno\` varchar(4) NOT NULL,
+        \`seat\` int(11) NOT NULL,
+        \`stdName\` varchar(125) NOT NULL,
+        \`description\` text,
+        \`createdTime\` datetime DEFAULT NULL,
+        \`createdBy\` varchar(255) DEFAULT NULL,
+        \`createdById\` varchar(255) DEFAULT NULL,
+        PRIMARY KEY (\`id\`),
+        UNIQUE KEY \`username_UNIQUE\` (\`username\`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+    `,
         (err) => {
             if (err) {
                 throw err;
