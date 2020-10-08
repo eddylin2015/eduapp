@@ -79,26 +79,67 @@ if(req.user){
 // can access this handler.
 router.post('/read', oauth2.required, (req, res, next) => {
   let userName=req.user.email.split('@')[0].toUpperCase();
-  if(userName=='LAMMOU')
-  {
-    res.write("studinfo\n") //.innerHTML=res[0];
-    res.write("classinfo\n");//.innerHTML=res[1];
-    res.write("\n");
-    res.write("\n");
-    res.write("0");//("GROUP_Name\n");//.value=res[4];
-    res.end("\n");
+  getModel().readbyUserName(userName, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    if(entity && entity.length>0){
+      let row=entity[0];
+      res.write(`${row.stdname}\n${row.classno}_${row.seat}\n\n\n${row.groupid}\n`);
+      let rec=row.rec.split(';');
+      for(let i=0;i<rec.length;i++)
+        res.write(`\nREC,${row.groupid},${rec[i]}`);
+      res.end();
+    }else{
+      res.end(`nothing\n不在登記名單內!`)
+    }
+    //res.render('act/sportday/view.pug', {
+    //  profile: req.user,
+    //  book: entity
+    //});
+  });
+});
+function ShowItemName(rec)
+{
+  console.log(rec)
+  let res="";
+  var ITEM_Name = [
+    "---", "50M", "60M", "100M", "200M", "400M", "800M", "1000M", "1500M", "3000M", "5000M", "60米欄", "80米欄", "100米欄", "110米欄", "4x50M", "4x100M", "4x400M", "跳高", "跳遠", "三級跳遠", "壘球", "鉛球"];
+    let lastdata_=rec.split(';');
+    let lastdata_li=lastdata_[lastdata_.length-1];
+    console.log(lastdata_li);
+    let itemli=lastdata_li.match(/[0-9]+/g);
+    console.log(itemli)
+    for(let i=0;i<itemli.length;i++ ){
+      res+=ITEM_Name[Number(itemli[i])]+"<br>";
+    }
+    return res;
+}
+router.post('/update',oauth2.required, images.multer.any(),  (req, res, next) => {
+  //req.file/req.files
+  let userName=req.user.email.split('@')[0].toUpperCase();
+  if(userName==req.body.cname){
+    let data=req.body;
+    console.log(data)
+    getModel().updateByUserName(userName, data.fchk.join(","), (err, savedData) => {
+      if (err) {
+        console.log(err);
+        next(err);
+        return;
+      }
+      res.write(`學生:${savedData[0].stdname}<br>組別:${savedData[0].groupid} | ${savedData[0].groupname}`);
+      res.write("<br>項目如下:");
+      res.write(ShowItemName(savedData[0].rec));
+      res.end("<button onclick='windows.history.back()'>返回</button>");
+      //res.end(JSON.stringify(savedData));
+      //res.redirect(`${req.baseUrl}/${savedData.id}`);
+    });
+      
   }else{
-     res.end("nothing");
+    res.end("Error!")
   }
 });
-router.post('/update', images.multer.any(),   function(req, res) {
-  //req.file/req.files
-  if(req.body){
-    res.end(JSON.stringify(req.body));
-  }else{
-    res.send( "uploaded");
-  }
-})
 router.get('/mine', oauth2.required, (req, res, next) => {
   if(!checkuser(req)){ res.end("no right");return;}
   getModel().listBy(

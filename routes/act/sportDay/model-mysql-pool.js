@@ -24,6 +24,38 @@ const options = {
 //const connection = mysql.createConnection(options);
 const pool = mysql.createPool(options);
 
+function readbyUserName(UserName,  cb) {
+    pool.getConnection(function (err, connection) {
+        connection.query(
+            'SELECT * FROM `stdsportitem` WHERE `username` = ? ', UserName, (err, results) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                cb(null, results);
+                connection.release();
+            });
+    });
+}
+function updateByUserName(username, rec_data, cb) {
+    pool.getConnection(function (err, connection) {
+        connection.query(
+            "UPDATE `stdsportitem` SET rec= concat(rec,';',?) WHERE `username` = ? ", [ rec_data, username], (err) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                readbyUserName(username, cb);
+                connection.release();
+            });
+    });
+}
+
+
+
+
+
+
 function list(userId, limit, token, cb) {
     token = token ? parseInt(token, 10) : 0;
     pool.getConnection(function (err, connection) {
@@ -95,9 +127,7 @@ function create(userId, data, cb) {
     });
 }
 
-function read(userId, id, cb) {
-    console.log(userId);
-    console.log(id);
+function read(id,  cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
             'SELECT * FROM `stdsportitem` WHERE `id` = ? ', id, (err, results) => {
@@ -139,6 +169,8 @@ function _delete(userId,id, cb) {
 
 module.exports = {
     createSchema: createSchema,
+    readbyUserName:readbyUserName,
+    updateByUserName:updateByUserName,    
     list: list,
     listBy: listBy,
     listTimestampBy: listTimestampBy,
@@ -194,25 +226,7 @@ function createSchema(config) {
         UNIQUE KEY \`username_UNIQUE\` (\`username\`)
       ) ENGINE=InnoDB DEFAULT DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
 
-      CREATE TABLE `stdsportitem` (
-        `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        `username` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-        `displayname` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-        `logtime` datetime DEFAULT NULL,
-        `rec` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT 'REC,',
-        `classno` varchar(4) CHARACTER SET utf8mb4 NOT NULL,
-        `seat` int(11) NOT NULL,
-        `stdname` varchar(125) CHARACTER SET utf8mb4 NOT NULL,
-        `sex` varchar(45) CHARACTER SET utf8mb4 DEFAULT NULL,
-        `birthyear` int(11) DEFAULT NULL,
-        `groupname` int(11) DEFAULT NULL,
-        `description` text CHARACTER SET utf8mb4,
-        `createdTime` datetime DEFAULT NULL,
-        `createdBy` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-        `createdById` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-        PRIMARY KEY (`id`),
-        UNIQUE KEY `username_UNIQUE` (`username`)
-      ) ENGINE=InnoDB AUTO_INCREMENT=1460 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+      
         (err) => {
             if (err) {
                 throw err;
