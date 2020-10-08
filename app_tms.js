@@ -43,6 +43,7 @@ app.use('/users', users);
 app.use(routes);
 app.use('/internal/TMS', require('./routes/TMS/crud'));
 app.use('/internal/api/TMS', require('./routes/TMS/api'));
+app.use('/internal/RELI', require('./routes/Reli/crud'));
 app.use('/internal/ActStdAttend', require('./routes/act/stdAttend/crud'));
 app.use('/internal/sportday', require('./routes/act/sportDay/crud'));
 app.use('/internal/PublicAPI', require('./db/ExportXLS'));
