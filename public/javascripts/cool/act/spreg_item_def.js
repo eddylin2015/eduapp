@@ -36,6 +36,23 @@ ITEM_GROUP[6] = [0, 0, 0, 3, 4, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 19, 0
 ITEM_GROUP[7] = [0, 0, 2, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 19, 0, 21, 0];
 ITEM_GROUP[8] = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 19, 0, 21, 0];
 ITEM_GROUP[9] = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 19, 0, 21, 0];
+////////test code///////
+var Image = class { }
+group_order = [0, 1, 2, 3, 8, 4, 5, 6, 7, 9]
+
+for (let j = 0; j < ITEM_Name.length; j++) {
+	let lineSt = j+":";
+	for (let i = 0; i < 10; i++) {
+		if (ITEM_GROUP[group_order[i]]) {
+			let itemidx = ITEM_GROUP[group_order[i]][j];
+			//console.log(itemidx);
+			lineSt += ITEM_Name[itemidx] + '\t';
+		}
+	}
+	console.log(lineSt);
+}
+///////end test code//
+
 //new group id
 //////////////////////////////////////////////////////////////
 var ans = [
@@ -46,6 +63,7 @@ var ans = [
 	0, 0, 0];
 var pvans = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
 var max_ans = 3;
+
 var imageObj = new Image();
 /////////////////////////////////////////////////////////////
 var validation = {
