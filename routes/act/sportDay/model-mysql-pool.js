@@ -56,19 +56,17 @@ function updateByUserName(username, rec_data, cb) {
 
 
 
-function list(userId, limit, token, cb) {
-    token = token ? parseInt(token, 10) : 0;
+function list(userId, cb) {
     pool.getConnection(function (err, connection) {
         // Use the connection
         connection.query(
-            'SELECT * FROM `stdsportitem` order by id DESC LIMIT ? OFFSET ?', [limit, token],
+            'SELECT * FROM `stdsportitem` order by id;', [],
             (err, results) => {
                 if (err) {
                     cb(err);
                     return;
                 }
-                const hasMore = results.length === limit ? token + results.length : false;
-                cb(null, results, hasMore);
+                cb(null, results);
                 connection.release();
             }
         );

@@ -25,6 +25,7 @@ function checkuser(req) {
   if (req.user.email == "joe853.hong@mail.mbc.edu.mo") return true;
   if (req.user.email == "cheongiekchao@mail.mbc.edu.mo") return true;
   if (req.user.email == "fongsioman@mail.mbc.edu.mo") return true;
+  if (req.user.email == "leitinman@mail.mbc.edu.mo") return true;
   return false;
 }
 const router = express.Router();
@@ -112,7 +113,20 @@ router.post('/update', oauth2.required, images.multer.any(), (req, res, next) =>
     res.end("Error!")
   }
 });
-
+//checkuser
+router.get('/datagrid', (req, res) => {
+  if(!checkuser(req)){ res.end("no right");return;}
+    getModel().list(req.user.id, (err, entities) => {
+        if (err) {
+            next(err);
+            return;
+        }
+        res.render('act/sportday/grid.pug', {
+            profile: req.user,
+            books: entities
+        });
+    });
+});
 /**
  * Errors on "/sportday/*" routes.
  */
