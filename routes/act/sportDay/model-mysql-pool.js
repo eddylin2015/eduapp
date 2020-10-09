@@ -40,7 +40,7 @@ function readbyUserName(UserName,  cb) {
 function updateByUserName(username, rec_data, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
-            "UPDATE `stdsportitem` SET rec= concat(rec,';',?) WHERE `username` = ? ", [ rec_data, username], (err) => {
+            "UPDATE `stdsportitem` SET logtime=now(),rec= concat(rec,';',?) WHERE `username` = ? ", [ rec_data, username], (err) => {
                 if (err) {
                     cb(err);
                     return;

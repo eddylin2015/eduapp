@@ -1,4 +1,4 @@
-﻿doctype html
+doctype html
 html
   head
     title= title
@@ -84,10 +84,9 @@ html
               if profile.image
                 img.img-circle(src=profile.image, width=24)
               li
-                a(href='/internal/profile' id='profileUserName')  #{profile.displayName} &nbsp;
+                 a(href='/internal/profile' id='profileUserName')  #{profile.displayName} &nbsp;
               li
-                a(href='/internal/logout')
-                  span(class="glyphicon glyphicon-log-in") (logout)
+                <a href='/internal/logout'><span class="glyphicon glyphicon-log-in")</span>(logout)</a>
             else
               li
                 <a href="/login"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
