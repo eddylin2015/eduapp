@@ -38,7 +38,7 @@ html(lang="zh")
               if profile.image
                 img.img-circle(src=profile.image, width=24)
               span #{profile.displayName} &nbsp;
-                a(href="/logout") (logout)
+                a(href="/internal/logout") (logout)
             else
               a(href=login) Login
             // [END profile]
