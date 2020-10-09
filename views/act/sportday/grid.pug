@@ -71,7 +71,8 @@ script(type="text/javascript").
       document.getElementById('CSVFrmPOST').submit();
     });
   　$("#exportCSV").on('click', function(event) {
-  　  var args = [$('#tableContent>table'), 'export0.csv'];
+  　  //var args = [$('#tableContent>table'), 'export0.csv'];
+  　  var args = [$('#tableContent'), 'export0.csv'];
   　  exportTableToCSV.apply(this, args);
   　});
 

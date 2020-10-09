@@ -29,13 +29,12 @@ function checkuser(req) {
   return false;
 }
 const router = express.Router();
-// Use the oauth middleware to automatically get the user's profile
-// information and expose login/logout URLs to templates.
-// Set Content-Type for all responses for these routes
+
 router.use((req, res, next) => {
   res.set('Content-Type', 'text/html');
   next();
 });
+
 router.get('/', (req, res, next) => {
   res.render('act/sportday/index.pug');
 });
@@ -51,8 +50,7 @@ router.get('/spreg.jsp', (req, res, next) => {
     res.redirect("/internal/login?subpath=sportday");
   }
 });
-// Use the oauth2.required middleware to ensure that only logged-in users
-// can access this handler.
+
 router.post('/read', oauth2.required, (req, res, next) => {
   let userName = req.user.email.split('@')[0].toUpperCase();
   getModel().readbyUserName(userName, (err, entity) => {
@@ -72,6 +70,7 @@ router.post('/read', oauth2.required, (req, res, next) => {
     }
   });
 });
+
 function ShowGroupName(x) {
   var GROUP_Name = ["男A", "男B", "男C", "男D", , "女A", "女B", "女C", "女D", "男E", "女E"];
   return GROUP_Name[x];
@@ -91,6 +90,7 @@ function ShowItemName(rec) {
   }
   return res;
 }
+
 router.post('/update', oauth2.required, images.multer.any(), (req, res, next) => {
   let userName = req.user.email.split('@')[0].toUpperCase();
   if (userName == req.body.cname) {
@@ -113,7 +113,7 @@ router.post('/update', oauth2.required, images.multer.any(), (req, res, next) =>
     res.end("Error!")
   }
 });
-//checkuser
+
 router.get('/datagrid', (req, res) => {
   if(!checkuser(req)){ res.end("no right");return;}
     getModel().list(req.user.id, (err, entities) => {

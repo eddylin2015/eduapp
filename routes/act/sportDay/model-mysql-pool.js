@@ -51,11 +51,6 @@ function updateByUserName(username, rec_data, cb) {
     });
 }
 
-
-
-
-
-
 function list(userId, cb) {
     pool.getConnection(function (err, connection) {
         // Use the connection
@@ -177,15 +172,12 @@ module.exports = {
     update: update,
     delete: _delete
 };
-
 if (module === require.main) {
     const prompt = require('prompt');
     prompt.start();
-
     console.log(
         `Running this script directly will allow you to initialize your mysql
     database.\n This script will not modify any existing tables.\n`);
-
     prompt.get(['user', 'password'], (err, result) => {
         if (err) {
             return;
@@ -193,19 +185,16 @@ if (module === require.main) {
         createSchema(result);
     });
 }
-
 function createSchema(config) {
     const connection = mysql.createConnection(extend({
         multipleStatements: true
     }, config));
-
     connection.query(
     `CREATE DATABASE IF NOT EXISTS \`act\`
       DEFAULT CHARACTER SET = 'utf8mb4'
       DEFAULT COLLATE 'utf8mb4_unicode_ci';
     USE \`act\`;
     CREATE TABLE IF NOT EXISTS \`act\`.\`stdsportitem\` (
-
         \`id\` int(10) unsigned NOT NULL AUTO_INCREMENT,
         \`username\` varchar(255) NOT NULL,
         \`displayname\` varchar(255) DEFAULT NULL,
@@ -223,8 +212,6 @@ function createSchema(config) {
         PRIMARY KEY (\`id\`),
         UNIQUE KEY \`username_UNIQUE\` (\`username\`)
       ) ENGINE=InnoDB DEFAULT DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
-
-      
         (err) => {
             if (err) {
                 throw err;

@@ -44,10 +44,11 @@ app.use(routes);
 app.use('/internal/me', require('./routes/me/crud'));
 app.use('/internal/sportday', require('./routes/act/sportDay/crud'));
 app.use('/internal/TMS', require('./routes/TMS/crud'));
-app.use('/internal/api/TMS', require('./routes/TMS/api'));
 app.use('/internal/RELI', require('./routes/Reli/crud'));
 app.use('/internal/ActStdAttend', require('./routes/act/stdAttend/crud'));
 app.use('/internal/PublicAPI', require('./db/ExportXLS'));
+
+//app.use('/internal/api/TMS', require('./routes/TMS/api'));
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
