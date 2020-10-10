@@ -1,16 +1,3 @@
-// Copyright 2017, Google, Inc.
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 'use strict';
 
 const express = require('express');
@@ -24,7 +11,6 @@ const router = express.Router();
 
 // Use the oauth middleware to automatically get the user's profile
 // information and expose login/logout URLs to templates.
-
 
 // Set Content-Type for all responses for these routes
 router.use((req, res, next) => {
@@ -40,16 +26,38 @@ router.use((req, res, next) => {
 router.get('/',
   oauth2.required,
   (req, res, next) => {
-    res.render('TMSUI/TmsIndex.pug', {
+    res.render('equed/index.pug', {
     });
   });
-router.get('/math.html', (req, res, next) => {
-  res.render('TMSUI/TmsIndex.pug', {
+router.get('/add', (req, res, next) => {
+  res.render('equed/form.pug', {
     profile: req.user,
   });
 });
+router.post('/saveequ', (req, res, next) => {
+  console.log(req.body.data);
+  model.SaveEqu("f1003", req.body.data, (err, ins_id) => {
+    if (err) { console.log(err); return res.end("error"); }
+    res.end(`${ins_id}`);
+  });
+});
+
+router.get('/trianing.mlx2.jsp', (req, res, next) => {
+  let ft = req.query.ft;
+  let MathTitle = ""
+  model.ReadEqu(ft,(err, data) => {
+    res.render('equed/TmsUiTrain.mlx3.pug', {
+      formulajs: ft,
+      ft: ft,
+      MathTitle: MathTitle,
+      data:data,
+      profile: req.user
+    });
+  })
+});
+
 router.get('/mathindex.jsp', (req, res, next) => {
-  res.render('TMSUI/TmsIndex.pug', {
+  res.render('equed/TmsIndex.pug', {
     profile: req.user,
   });
 });
@@ -69,63 +77,7 @@ router.post('/AddTMSQF', (req, res, next) => {
       if (err) { console.log(err); return res.end("error"); }
       res.end(`存儲成功. 記錄編號: ${ins_id} .`);
     });
-
-    //console.log(fnn,md,jsondata);
-
-    //res.end(JSON.stringify(req.body));
   }
-});
-
-router.get('/trianing.jsp', (req, res, next) => {
-  let ft = req.query.ft;
-  let MathTitle = ""
-  if (ft == "p2") { MathTitle = '加減'; }
-  if (ft == "p5") { MathTitle = '方程式'; }
-  if (ft == "f1") { MathTitle = '一元一次方程式'; }
-  if (ft == "f2") { MathTitle = '有理數運算'; }
-  if (ft == "f201") { MathTitle = '十字相乘法 Criss-Cross'; }
-  if (ft == "f202") { MathTitle = '一元二次方程式'; }
-  console.log(ft, MathTitle)
-  res.render('TMSUI/TmsUiTrain.pug', {
-    formulajs: ft,
-    ft: ft,
-    MathTitle: MathTitle,
-    profile: req.user
-  });
-});
-router.get('/trianing.o.jsp', (req, res, next) => {
-  let ft = req.query.ft;
-  let MathTitle = ""
-  if (ft == "p2") { MathTitle = '加減'; }
-  if (ft == "p5") { MathTitle = '方程式'; }
-  if (ft == "f1") { MathTitle = '一元一次方程式'; }
-  if (ft == "f2") { MathTitle = '有理數運算'; }
-  if (ft == "f201") { MathTitle = '十字相乘法 Criss-Cross'; }
-  if (ft == "f202") { MathTitle = '一元二次方程式'; }
-  console.log(ft, MathTitle)
-  res.render('TMSUI/TmsUiTrain.o.pug', {
-    formulajs: ft,
-    ft: ft,
-    MathTitle: MathTitle,
-    profile: req.user
-  });
-});
-router.get('/trianing.mlx2.jsp', (req, res, next) => {
-  let ft = req.query.ft;
-  let MathTitle = ""
-  if (ft == "p2") { MathTitle = '加減'; }
-  if (ft == "p5") { MathTitle = '方程式'; }
-  if (ft == "f1") { MathTitle = '一元一次方程式'; }
-  if (ft == "f2") { MathTitle = '有理數運算'; }
-  if (ft == "f201") { MathTitle = '十字相乘法 Criss-Cross'; }
-  if (ft == "f202") { MathTitle = '一元二次方程式'; }
-  console.log(ft, MathTitle)
-  res.render('TMSUI/TmsUiTrain.mlx2.pug', {
-    formulajs: ft,
-    ft: ft,
-    MathTitle: MathTitle,
-    profile: req.user
-  });
 });
 function fmt_now(intdays = 0) {
   var d = new Date();
@@ -139,7 +91,7 @@ function d2s(x, fix) {
   return y + (m < 10 ? "0" : "") + m + (d_ < 10 ? "0" : "") + d_ + fix;
 }
 router.get('/tmsReportQuery', oauth2.required, (req, Response, next) => {
-  Response.render('TMSUI/tmsReportQuery.pug', {
+  Response.render('equed/tmsReportQuery.pug', {
     profile: req.user,
     dt: fmt_now()
   });
@@ -153,7 +105,7 @@ router.post('/tmsReportQuery', images.multer.array('upload', 16),
       Response.redirect('/internal/TMS/tmsMyReport');
     }else{
     model.TMSQFlistbydate(sd, ed, (err, maths_data) => {
-      Response.render('TMSUI/tmsReport.pug', {
+      Response.render('equed/tmsReport.pug', {
         profile: req.user,
         data: maths_data
       });
@@ -173,13 +125,13 @@ router.get('/tmsMyReport', oauth2.required, (req, Response, next) => {
       for (let i = 0; i < keys_.length; i++)
         mdata.push({ fn: keys_[i], jsondata: maths_data[keys_[i]] })
       console.log(mdata)  ;
-      Response.render('TMSUI/tmsReport.pug', {
+      Response.render('equed/tmsReport.pug', {
         profile: req.user,
         data: mdata
       });
     } else {
       console.log(maths_data);
-      Response.render('TMSUI/tmsReport.pug', {
+      Response.render('equed/tmsReport.pug', {
         profile: req.user,
         data: maths_data
       });
@@ -187,7 +139,7 @@ router.get('/tmsMyReport', oauth2.required, (req, Response, next) => {
   });
 });
 router.get('/QizEx', (req, res, next) => {
-  res.render('TMSUI/QizExIndex.pug', {});
+  res.render('equed/QizExIndex.pug', {});
 });
 
 

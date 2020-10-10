@@ -1,0 +1,162 @@
+//<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+//<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+//<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+doctype html
+html(lang="zh")
+  script(src="/math/utils/tmsUtils.js") 
+  script(src="/math/utils/tmsCalcu.js") 
+  script(src="/math/tmsUIMathClass.js")   
+  script.
+    var ft='<c:out value="${param.ft }" default="" />'; if(ft.length>6) {ft='!{ft}';} ; 
+    var username='<c:out value="${fn:escapeXml(userName)}" default="" />'; if(username.length>30){username="";} 
+  if profile
+    script.
+      if(username=="") {username='!{profile.displayName}'; }
+  head
+    title One-Dimensional Equation
+    meta(charset='utf-8')
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel='stylesheet', href='/math/css/tmsUITrain.css')
+    link(href="https://getbootstrap.com/docs/3.4/dist/css/bootstrap.min.css",rel="stylesheet" )
+    script(src='https://themes.getbootstrap.com/wp-content/themes/bootstrap-marketplace/assets/javascript/jquery.min.js')
+    link(href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css", rel="stylesheet" )
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")    
+    script(src='https://getbootstrap.com/docs/3.4/dist/js/bootstrap.min.js')
+    script(src='https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815')
+    <script type="module" src="/mathlive/dist/mathlive.mjs"></script>
+    script.
+      var mf=[];
+      //const mf_li = ["mlANSQT001", "mlANSQT002", "mlANSQT003", "mlANSQT004", "mlANSQTM001", "mlANSQTM002", "mlANSQTM003", "mlANSQTM004"];
+      const mf_li = ["mlANSQT001", "mlANSQT002", "mlANSQT003", "mlANSQT004"];//, "mlANSQTM001", "mlANSQTM002", "mlANSQTM003", "mlANSQTM004"];
+      function escapeHtml(string) {
+          return String(string).replace(/[&<>"'`=/\u200b]/g, function ( s ) {
+              return (
+                  {
+                      '&': '&amp;',
+                      '<': '&lt;',
+                      '>': '&gt;',
+                      '"': '&quot;',
+                      "'": '&#39;',
+                      '/': '&#x2F;',
+                      '`': '&#x60;',
+                      '=': '&#x3D;',
+                      '\u200b': '&amp;#zws;',
+                  }[s] || s );
+          });
+      }    
+      function GetQuestion(x) {  
+        if(App.NTE[x-1].length==0){alert("不設此題型");return;}
+        let qno= ($('#CHKQT00'+x).text()=="Start") ? 1: Number($('#CHKQT00'+x).text().split("/")[0])+1;
+        $("#ANSQT00"+x).val("");       
+        $("#ANSQTM00"+x).val("");    
+        $("#ANSQT00"+x).prop('disabled', false);
+        $("#ANSQT00"+x).css("display", "block");      
+        $("#ANSQT00"+x).focus();     
+        $("#ANSQTM00"+x).css("display", "block");  
+        if( !App.IsFraction(x,qno) )  {
+           //$("#ANSQTM00"+x).css("display", "none");  
+           $("#ANSQTM00"+x).val("1");      
+        }
+        $('#CHKQT00'+x).text(qno+ "/10确定");
+        $('#QT00'+x).html("\\("+App.GetQizStatement(x,qno)+"\\)");  
+        App.UpdateMathContent(x);
+        
+        import('/mathlive/dist/mathlive.mjs')
+        .then(module => {
+          for (let i = 0; i < 8; i++) {
+              let elen0="mlANSQT00"+x
+              let elen1="mlANSQTM00"+x
+              if(mf_li[i]==elen0 || mf_li[i]==elen1) {
+                let mf__=mf[i];
+                mf__.$perform('selectAll');
+                mf__.$clearSelection();
+                if(mf_li[i]==elen0) mf__.$focus()
+              }
+              /*
+              let mf__ = module.default.makeMathField(mf_li[i], {
+                  smartMode: true,
+                  virtualKeyboardMode: 'manual',
+                  onContentDidChange: (mf__) => {
+                      let latex = mf__.$text();
+                      let lx_name=(mf__.element.id.substring(2));
+                      document.getElementById(lx_name).value = escapeHtml(latex);
+                  },
+              });
+              mf__.$perform('selectAll');
+              mf__.$clearSelection();
+              */
+          }
+          /* 
+          let mf__ = module.default.makeMathField("mlANSQT001", {
+            smartMode: true,
+            virtualKeyboardMode: 'manual',
+            onContentDidChange: (mf__) => {
+              let latex = mf__.$text();
+              document.getElementById("ANSQT001").value = escapeHtml(latex);
+            },
+           });  */
+        })
+        .catch(err => {
+          console.log( err.message);
+        });
+        close_msgbox('AnsMsgbox');
+      }
+      function GetCheckAns(x) {  
+        if($('#CHKQT00'+x).text()=="Start"){ GetQuestion(x);
+        }else{
+          let qno=  Number($('#CHKQT00'+x).text().split("/")[0]);
+          let ansZ= $( "#ANSQT00"+x).val();
+          let ansM= $( "#ANSQTM00"+x).val();
+          if(ansZ=="" || ansM=="" ){}
+          else{
+            $("#ANSQT00"+x).prop('disabled', true);
+            show_AnsMsgbox(x,qno,ansZ,ansM);  
+          }
+        }
+      }
+      function GetHelpCheckAns(x) {  
+        let qhelpNum=Number($('#helpCHKQT00'+x).text().replace("?",""));
+        if(qhelpNum < 1 ) return;
+        if($('#CHKQT00'+x).text()=="Start"){ 
+        }else{
+          let qno=  Number($('#CHKQT00'+x).text().split("/")[0]);
+          let ansZ= $( "#ANSQT00"+x).val();
+          let ansM= $( "#ANSQTM00"+x).val();
+          if(ansZ=="" || ansM=="" ){}
+          else{
+            show_HelpAnsMsgbox(x,qno,ansZ,ansM);  
+            qhelpNum--;
+            $('#helpCHKQT00'+x).text("?"+qhelpNum);
+          }
+        }
+      }
+  body
+    if !profile        
+      <table id=login_forom>
+        <c:choose>
+        <c:when test="${empty userEmail}">
+        <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;<td>請<a href="/login">登入</a>!
+        </c:when>
+        <c:otherwise>           
+        </c:otherwise>
+        </c:choose>      
+      </table>          
+    ul(class="nav nav-tabs")
+      li(class="nav-item")
+        a(href="/internal/TMS/mathindex.jsp") 
+          span(class="glyphicon glyphicon-arrow-left")
+          span(style="display:none")= MathTitle     
+          if profile
+             span(style="display:none") #{profile.displayName} &nbsp;
+      li(class="active")
+        a(data-toggle="tab" href="#menu1") 題型1
+      li
+        a(data-toggle="tab" href="#menu2") 題型2
+      li
+        a(data-toggle="tab" href="#menu3") 題型3
+      li
+        a(data-toggle="tab" href="#menu4") 題型4
+    
+    .container
+    block content  
