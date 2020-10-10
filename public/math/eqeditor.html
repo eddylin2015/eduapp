@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link
+			rel="stylesheet"
+			data-name="vs/editor/editor.main"
+			href="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.css"
+		/>
+	</head>
+	<body>
+		<script>
+			function foo(){
+				console.log(editor);
+				console.log(editor.getValue());
+				var myElement = document.getElementById("container");
+				alert(editor.getValue());
+				var x = document.getElementById("myframe");
+				x.src="eqeditor.r.html"
+			}
+		</script> 
+		<h2>TMS Equ Editor</h2>
+		<button onclick='foo();'>Run</button>
+		<table>
+			<tr>
+				<td>
+					<div id="container" style="width: 600px; height: 600px; border: 1px solid grey"></div>
+				</td>
+				<td>
+					<iframe id="myframe" style="width: 600px; height: 600px;"></iframe>
+				</td>
+		</table>
+		<script>
+			var require = { paths: { vs: 'https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs' } };
+		</script>
+		<script src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js"></script>
+		<script src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+		<script src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+
+		<script>
+			var editor = monaco.editor.create(document.getElementById('container'), {
+				value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+				language: 'javascript'
+			});
+		</script>
+	</body>
+</html>
