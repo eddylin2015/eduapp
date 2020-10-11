@@ -35,8 +35,8 @@ router.get('/add', (req, res, next) => {
   });
 });
 router.post('/saveequ', (req, res, next) => {
-  console.log(req.body.data);
-  model.SaveEqu("f1003", req.body.data, (err, ins_id) => {
+  let data={"EQ":req.body.CreatAEqCode,"AN":req.body.CheckAnsCode};
+  model.SaveEqu("f1003", JSON.stringify(data), (err, ins_id) => {
     if (err) { console.log(err); return res.end("error"); }
     res.end(`${ins_id}`);
   });
@@ -46,11 +46,14 @@ router.get('/trianing.mlx2.jsp', (req, res, next) => {
   let ft = req.query.ft;
   let MathTitle = ""
   model.ReadEqu(ft,(err, data) => {
+    let obj=JSON.parse(data);
+    //let data={"EQ":req.body.CreatAEqCode,"AN":req.body.CheckAnsCode};
     res.render('equed/TmsUiTrain.mlx3.pug', {
       formulajs: ft,
       ft: ft,
       MathTitle: MathTitle,
-      data:data,
+      CreatAEqCode:obj.EQ,
+      CheckAnsCode:obj.AN,
       profile: req.user
     });
   })

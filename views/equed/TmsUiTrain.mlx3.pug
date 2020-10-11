@@ -54,13 +54,17 @@ block content
     
     ////////////Init App(UIMathClass interface) Load fX.js and Init Equation Data 4 x 10
     function CreatAEq(Tx, Tk, Range) {
-      !{data}
+      !{CreatAEqCode}
       TE.CalcVal=0;
       return TE;
     }
+    function CheckAns(IAns1,IAns2,TE){
+      !{CheckAnsCode}
+      return null;
+    }
     class UIMathClassEquEd extends UIMathClass {
       InitQizData(){
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < 4; i++) {
             for(let j=0;j<10;j++){
               let TiXing = i+1;
               let s1 = CreatAEq(TiXing, 9, null)
@@ -76,6 +80,9 @@ block content
         return this.QT[Number(qti)-1][qno-1] ;   
       }
       CheckAns(qti,qno, AnsZ,AnsM){
+        let AnsTE=App.NTE[Number(qti)-1][qno-1];
+        return CheckAns(AnsZ,AnsM,AnsTE);
+        /*
         let ansx= App.AQT[Number(qti)-1][qno-1];
         if(this.IsFraction(qti,qno)){
           return Math.abs(ansx-(AnsZ/AnsM))<0.0001
@@ -83,7 +90,7 @@ block content
           if((typeof ansx)=="number") return ansx==AnsZ;
           if((typeof ansx)=="string") return ansx==AnsZ;
           if((typeof ansx)=="object") return ansx["F116"]==AnsZ && ansx["G116"]==AnsM;
-        }
+        }*/
       }
       GetAns_Num(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
       GetAns_Den(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}

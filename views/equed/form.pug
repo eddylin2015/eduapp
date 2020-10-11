@@ -35,7 +35,8 @@ block content
 
     function SaveRun(){
       var myElement = document.getElementById("container");
-      $.post( "saveequ",{data:editor.getValue()}, function( data ) {
+      $.post( "saveequ",{CreatAEqCode:editor.getValue(),CheckAnsCode:editor_ans.getValue()}, 
+      function( data ) {
         alert(data);
         var x = document.getElementById("myframe");
         x.src="trianing.mlx2.jsp?ft=f1003"
@@ -51,12 +52,12 @@ block content
     tr
       td
         div#CODEIDE(style="display:block;")
-          div#container(style="width: 500px; height: 600px; border: 1px solid grey")
+          div#container(style="width: 600px; height: 600px; border: 1px solid grey")
       td    
         div#ANSIDE(style="display:block;")
-          div#container_ans(style="width: 500px; height: 600px; border: 1px solid grey")
+          div#container_ans(style="width: 600px; height: 600px; border: 1px solid grey")
       td#FRMIDE
-        iframe#myframe(style="width: 500px; height: 600px;")
+        iframe#myframe(style="width: 400px; height: 600px;")
   script.
       var require = { paths: { vs: 'https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs' } };
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js")
@@ -64,17 +65,17 @@ block content
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.js")
   script.
       var editor = monaco.editor.create(document.getElementById('container'), {
-          value: ["let TE={St:'',Val:''};", 
+          value: ["let TE={St:'',Val:'',ACnt:1, ATyp:'num'};//num,txt,mathinput",    
           'let a=Math.floor(Math.random()*10);', 
           'let b=Math.floor(Math.random()*10);', 
-          'let c=Math.floor(Math.random()*10);', 
+          'TE.St=`${a} \\\\times ${b}`;',
+          'TE.Val=a*b;',
           ''].join('\n'),
           language: 'javascript'
       });
       var editor_ans = monaco.editor.create(document.getElementById('container_ans'), {
-          value: ["function CheckAns(Ans){",
-          "\treturn 0;", 
-          '}', 
+          value:[ "//IAns1,IAns,TE",//"function CheckAns(IAns1,IAns2,TE){",
+          "if(TE.ACnt==1 && TE.ATyp=='num') return IAns1==TE.Val;",
           ''].join('\n'),
           language: 'javascript'
       });
