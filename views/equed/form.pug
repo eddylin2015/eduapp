@@ -18,9 +18,19 @@ block content
       */
     }  
       function showTab(x){
-        if(  x==1 ) document.getElementById("CODEIDE").style.display=document.getElementById("CODEIDE").style.display=="block"?"none":"block";
-        if(  x==2 ) document.getElementById("ANSTAB").style.display=document.getElementById("ANSIDE").style.display=="block"?"none":"block";
-        if(  x==3 ) document.getElementById("FRMIDE").style.display=document.getElementById("FRMIDE").style.display=="block"?"none":"block";        
+        switch(x){
+          case 1:
+            document.getElementById("CODEIDE").style.display="block";
+            document.getElementById("ANSIDE").style.display="none";
+            break;            
+          case 2:
+            document.getElementById("CODEIDE").style.display="none";
+            document.getElementById("ANSIDE").style.display="block";
+            break;
+          case 3:
+            document.getElementById("CODEIDE").style.display="block";
+            document.getElementById("ANSIDE").style.display="block";
+        }
       }
 
     function SaveRun(){
@@ -32,17 +42,19 @@ block content
       });
     }
   <h2>TMS Equ Editor</h2>
-  <input type=checkbox name=code_name1 value=EQUTAB onclick="showTab(1);">
-  <input type=checkbox name=code_name2 value=ANSTAB onclick="showTab(2);">
-  <input type=checkbox name=code_name3 value=UITAB onclick="showTab(3);">
+  <input type=radio name=code_name value=EQUTAB onclick="showTab(1);">
+  <input type=radio name=code_name value=ANSTAB onclick="showTab(2);">
+  <input type=radio name=code_name value=ANSTAB onclick="showTab(3);">
   <button onclick='Load();'>Load</button>
   <button onclick='SaveRun();'>SaveRun</button>
   table
     tr
-      td#CODEIDE
-        div#container(style="width: 500px; height: 600px; border: 1px solid grey")
-      td#ANSIDE
-        div#container_ans(style="width: 500px; height: 600px; border: 1px solid grey")
+      td
+        div#CODEIDE(style="display:block;")
+          div#container(style="width: 500px; height: 600px; border: 1px solid grey")
+      td    
+        div#ANSIDE(style="display:block;")
+          div#container_ans(style="width: 500px; height: 600px; border: 1px solid grey")
       td#FRMIDE
         iframe#myframe(style="width: 500px; height: 600px;")
   script.
