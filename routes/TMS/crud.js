@@ -41,6 +41,7 @@ router.get('/',
   oauth2.required,
   (req, res, next) => {
     res.render('TMSUI/TmsIndex.pug', {
+      profile: req.user,
     });
   });
 router.get('/math.html', (req, res, next) => {
