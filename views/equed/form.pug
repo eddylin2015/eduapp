@@ -1,5 +1,7 @@
 extends ./base.pug
 block content
+  style.
+    div.container{margin:0px;}
   script.
     function Load(){
       let codetxt=   ["let TE={St:'',Val:''};", 
@@ -42,7 +44,8 @@ block content
         x.src="trianing.mlx2.jsp?ft=f1003"
       });
     }
-  <h2>TMS Equ Editor</h2>
+  p .
+  p .  
   <input type=radio name=code_name value=EQUTAB onclick="showTab(1);">
   <input type=radio name=code_name value=ANSTAB onclick="showTab(2);">
   <input type=radio name=code_name value=ANSTAB onclick="showTab(3);">
@@ -53,12 +56,13 @@ block content
     tr
       td
         div#CODEIDE(style="display:block;")
-          div#container(style="width: 600px; height: 600px; border: 1px solid grey")
+          div#container(style="width: 700px; height: 600px; border: 1px solid grey")
       td    
         div#ANSIDE(style="display:block;")
-          div#container_ans(style="width: 600px; height: 600px; border: 1px solid grey")
-      td#FRMIDE
-        iframe#myframe(style="width: 400px; height: 600px;")
+          div#container_ans(style="width: 700px; height: 600px; border: 1px solid grey")
+      td  
+        div#FRMIDE
+          iframe#myframe(style=" width: 400px; height: 600px;")
   script.
       var require = { paths: { vs: 'https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs' } };
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js")
