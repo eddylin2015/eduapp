@@ -1,7 +1,6 @@
 *.*~
 *.*.swp
 routes/act/stdAttend/*
-routes/me/*
 public/math-input/*
 public/mathlive/*
 index0.pug

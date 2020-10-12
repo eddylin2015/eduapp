@@ -2,8 +2,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://excolo.github.io/Excolo-Slider/javascripts/jquery.excoloSlider.min.js"></script>
-<link href="https://excolo.github.io/Excolo-Slider/stylesheets/jquery.excoloSlider.css" rel="stylesheet">
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+
 style. 
   body
   {
@@ -258,9 +259,12 @@ script.
   	screenheight=screenwidth*10 /23;
   	for (var i = 0; i < jsondata.length; i++) {
   		if(jsondata[i].type=='slideimg'){
-  			$('#sliderA').append('<img src='+jsondata[i].item+'>');
+  			//$('#carousel_inner').append('<div class="item"><img src='+jsondata[i].item+' alt="" style="width:100%;>');
+        ///div( class="item")
+        ///img(src="/images/teacherday.jpg", alt="TeacherDay", style="width:100%;")
   		}
   	}
+    /*
   	try{					
   		$("#sliderA").excoloSlider({
   		width: screenwidth,
@@ -268,13 +272,14 @@ script.
   		mouseNav: false,
   		interval: 5000, // = 5 seconds
   		playReverse: false});
-  	}catch (e){	}
+  	}catch (e){	}*/
   	$('#main_loading').hide();
   }
   
   var jsondata=[];
   //PHP READ JSONDATA
-  jsondata=[{"id":569,"type":"act","item":"主題︰看暖心愛國話劇，體會苦盡甘來"},{"id":570,"type":"act","item":"主題︰初一成長的天空迎新營"},{"id":566,"type":"moral6","item":"主題︰慎防網購陷阱"},{"id":567,"type":"moral8","item":"男外僱涉誘騙性侵男童法辦"},{"id":568,"type":"moral6","item":"教兒自保免侵犯    遇事報警除後患"},{"id":562,"type":"moral8","item":"主題︰中學生亂掃二維碼父失逾六萬"},{"id":563,"type":"moral7","item":"主題︰ 迷幻“郵票”可致命"},{"id":564,"type":"moral6","item":"主題︰司警籲愼防網上投資陷阱"},{"id":565,"type":"morala","item":"主題︰認識廚餘回收"},{"id":58,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F2.jpg"},{"id":7,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F1.jpg"},{"id":59,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F3.jpg"},{"id":61,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F4.jpg"},{"id":62,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F5.jpg"},{"id":63,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F6.jpg"}]
+  jsondata=!{itemsData}
+  //[{"id":569,"type":"act","item":"主題︰看暖心愛國話劇，體會苦盡甘來"},{"id":570,"type":"act","item":"主題︰初一成長的天空迎新營"},{"id":566,"type":"moral6","item":"主題︰慎防網購陷阱"},{"id":567,"type":"moral8","item":"男外僱涉誘騙性侵男童法辦"},{"id":568,"type":"moral6","item":"教兒自保免侵犯    遇事報警除後患"},{"id":562,"type":"moral8","item":"主題︰中學生亂掃二維碼父失逾六萬"},{"id":563,"type":"moral7","item":"主題︰ 迷幻“郵票”可致命"},{"id":564,"type":"moral6","item":"主題︰司警籲愼防網上投資陷阱"},{"id":565,"type":"morala","item":"主題︰認識廚餘回收"},{"id":58,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F2.jpg"},{"id":7,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F1.jpg"},{"id":59,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F3.jpg"},{"id":61,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F4.jpg"},{"id":62,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F5.jpg"},{"id":63,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F6.jpg"}]
   /*
   <?
   $dmText="";
@@ -310,20 +315,20 @@ script.
   		showContent(5,0,"輔導員專區","sw_more");
       }if(x=="news"){
   		$('#logoicon').attr( "src","/app_static_file/me/img/logo_act.gif");
-  		showItemList(x,"最新資訊","img/li_act.jpg","img/logo_news.gif",2)
+  		showItemList(x,"最新資訊","/app_static_file/me/img/li_act.jpg","/app_static_file/me/img/logo_news.gif",2)
   	}if(x=="act"){
   		$('#logoicon').attr( "src","/app_static_file/me/img/logo_act.gif");
-  		showItemList(x,"活動資訊","img/li_act.jpg","img/logo_act.gif",2)
+  		showItemList(x,"活動資訊","/app_static_file/me/img/li_act.jpg","/app_static_file/me/img/logo_act.gif",2)
       }if(x=="sw_more"){
   		$('#logoicon').attr( "src","/app_static_file/me/img/logo_moralgarden.gif");
-  		showItemList("sw","輔導員專區","img/li_sw.jpg","img/logo_sw.gif",2)
+  		showItemList("sw","輔導員專區","/app_static_file/me/img/li_sw.jpg","/app_static_file/me/img/logo_sw.gif",2)
       }if(x.length==5 && x=="moral"){
   		$('#logoicon').attr( "src","/app_static_file/me/img/logo_moralgarden.gif");
-  		showItemList("slideimg","德育園地","img/li_moral.jpg","img/logo_moralgarden.gif",2,"mor");
+  		showItemList("slideimg","德育園地","/app_static_file/me/img/li_moral.jpg","/app_static_file/me/img/logo_moralgarden.gif",2,"mor");
   	}if(x.length==6 && x.substring(0,3)=="mor"){	
   		$('#logoicon').attr( "src","/app_static_file/me/img/logo_moralgarden.gif");
   		title__="<a class=retALink href=# onclick='showPage(1);'>返回</a>"+title;
-  		showItemList(x,title__,"img/li_moral.jpg","img/logo_moralgarden.gif",2);
+  		showItemList(x,title__,"/app_static_file/me/img/li_moral.jpg","/app_static_file/me/img/logo_moralgarden.gif",2);
       }if(x=="comm"){
   		$('#logoicon').attr( "src","/app_static_file/me/img/logo_comm.gif");
   			txt="<table width=590><tr class=titlebg_r><td  class=titlebg_r valign=top colspan=2>&nbsp;&nbsp;家長通訊"+
@@ -420,9 +425,32 @@ script.
 <tr>
 <td>
 
-<div id="sliderA" class="slider">
-<img src="http://202.175.185.186/mbcapp/static/app_04.jpg">
-</div>
+//<div id="sliderA" class="slider">
+//<img src="http://202.175.185.186/mbcapp/static/app_04.jpg">
+//</div>
+-let slideimg_cnt=0;
+div(id="myCarousel", class="carousel slide", data-ride="carousel")
+  ol(class="carousel-indicators")
+    li(data-target="#myCarousel", data-slide-to="0", class="active")
+    each ite_ in itemsObj
+      if ite_.type=='slideimg'
+        li(data-target="#myCarousel", data-slide-to=(slideimg_cnt++))
+
+  div( class="carousel-inner")#carousel_inner
+    div(class="item active")
+      img(src="/images/frontpage.jpg", alt="Front Page", style="width:100%;")
+    each ite_ in itemsObj
+      if ite_.type=='slideimg'
+        div( class="item")
+          img(src=ite_.item, alt="TeacherDay", style="width:100%;")
+    
+    a(class="left carousel-control", href="#myCarousel", data-slide="prev")
+      span( class="glyphicon glyphicon-chevron-left")
+      span( class="sr-only") Previous
+    a(class="right carousel-control", href="#myCarousel", data-slide="next")
+      span( class="glyphicon glyphicon-chevron-right")
+      span( class="sr-only") Next
+
 
 <tr  class=titlebg_r>
 <td  class=titlebg_r valign=top>&nbsp;&nbsp;德育園地
