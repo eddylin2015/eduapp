@@ -92,6 +92,9 @@ router.get('/main.php', (req, res, next) => {
   });
 
 });
+router.get('/index.html', (req, res, next) => {
+  res.render('me/index_static.pug');
+});
 router.post('/getitemdata.php', (req, res, next) => {
   getModel().listByType(req.body.t, 100, 0, (err, entities, cursor) => {
     if (err) {
