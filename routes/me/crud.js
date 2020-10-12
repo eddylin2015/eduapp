@@ -88,7 +88,6 @@ router.get('/main.php', (req, res, next) => {
       profile: req.user,
       itemsData: JSON.stringify(res_),
       itemsObj:res_
-
     });
   });
 
@@ -119,7 +118,6 @@ router.post('/getcontentdata.php', (req, res, next) => {
       return;
     }
     entities.detail=entities.detail.replace(/[\r\n]/g,"<br>");
-    //entities.detail=entities.detail.replace(/[ ]/g,"&nbsp;&nbsp;");
     res.end("<p><p>"+entities.item+"<p>"+entities.detail+"<p>"+entities.item_date);
   });
 });
@@ -131,10 +129,13 @@ router.get('/getcontentdata.php', (req, res, next) => {
       return;
     }
     entities.detail=entities.detail.replace(/[\r\n]/g,"<br>");
-    //entities.detail=entities.detail.replace(/[ ]/g,"&nbsp;&nbsp;");
     res.end("<p><p>"+entities.item+"<p>"+entities.detail+"<p>"+entities.item_date);
   });
 });
+
+
+
+
 
 /**
  * Errors on "/books/*" routes.
