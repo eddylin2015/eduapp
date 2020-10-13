@@ -183,6 +183,7 @@ html
       	    $( "#home_content" ).hide();
       		  $( "#main_content" ).hide();
       		  $( "#main_detail" ).html(data);
+            $( "#main_detail" ).focus();
       		  $( "#main_detail" ).show();
       		  $( "#main_loading" ).hide();
       		});
@@ -313,31 +314,30 @@ html
     .container(style="width:920px;margin-top:-10px;padding-top:-20px;")
       .row(style="margin:0;padding:0px;")
         .col-lg-4(style="margin:0;padding:0px;")
-          table#news_tab(style="width:100%;max-width:500px")
+          table#news_tab
             tr.titlebg_r
               td.titlebg_r(valign="top", colspan=2) 
                 span &nbsp;&nbsp;最新消息
                 span(style="width:50%;min-width:50%; display: inline-block;") &nbsp;
                 img(src="/app_static_file/me/img/more.png", id="btn_news_more", onclick="mu_link('news')")
-          table#act_tab(style="width:100%;max-width:500px")
+          table#act_tab
             tr.titlebg_r
               td.titlebg_r(valign="top",colspan=2)
                 span &nbsp;&nbsp;活動消息
                 span(style="width:50%;min-width:50%; display: inline-block;") &nbsp;
                 img(src="/app_static_file/me/img/more.png", id="btn_act_more", onclick="mu_link('act');")
-          table#comm_tab(style="width:100%;max-width:500px")
-            tr.titlebg_r
-              td.titlebg_r(valign="top" , colspan=2)
+          table#comm_tab(width="320px")
+            tr
+              td(style="height:30px;color:white;background-image:url('/app_static_file/me/img/btn05_bg.gif');background-repeat: no-repeat;", colspan=2)
                 span &nbsp;&nbsp;家庭通訊
-                span(style="width:50%;min-width:50%; display: inline-block;") &nbsp;
-                img(src="/app_static_file/me/img/more.png", id="btn_comm_more", onclick="mu_link('comm');")
           table#link_tab(width="320px")
             tr
               td(style="height:30px;color:white;background-image:url('/app_static_file/me/img/btn05_bg.gif');background-repeat: no-repeat;", colspan=2)
                 span &nbsp;&nbsp;連結
+
         .col-lg-7(style="margin:0;padding:0px;")
           div(id="home_content" style="padding-top:-40px;")
-            table(width="600px")
+            table
               tr
                 td(style="height:30px;color:white;background-image:url('/app_static_file/me/img/btn04_bg.gif');background-repeat: no-repeat;") &nbsp;&nbsp;活動花絮
               tr
@@ -362,7 +362,7 @@ html
                     a(class="right carousel-control", href="#myCarousel", data-slide="next")
                       span( class="glyphicon glyphicon-chevron-right")
                       span( class="sr-only") Next
-            table(width="600px")
+            table(width="450px")
               tr.titlebg_r
                 td.titlebg_r(valign="top") &nbsp;&nbsp;德育園地
               tr
@@ -373,17 +373,18 @@ html
                   <td><img src="/app_static_file/me/img/moral1.gif " alt="親子"onclick="mu_link('moral1',': 親子');">
                   <td><img src="/app_static_file/me/img/moral2.gif " alt="性教育" onclick="mu_link('moral2',': 性教育');">
                   <td><img src="/app_static_file/me/img/moral3.gif " alt="品德" onclick="mu_link('moral3',': 品德');">
-                  <td><img src="/app_static_file/me/img/moral4.gif " alt="勵志"  onclick="mu_link('moral4',': 勵志');">
                   <tr>
+                  <td><img src="/app_static_file/me/img/moral4.gif " alt="勵志"  onclick="mu_link('moral4',': 勵志');">
                   <td><img src="/app_static_file/me/img/moral5.gif " alt="情緒"  onclick="mu_link('moral5',': 情緒');">
                   <td><img src="/app_static_file/me/img/moral6.gif " alt="網絡"  onclick="mu_link('moral6',': 網絡');">
                   <td><img src="/app_static_file/me/img/moral7.gif " alt="濫藥" onclick="mu_link('moral7',': 濫藥');">
+                  <tr>
                   <td><img src="/app_static_file/me/img/moral8.gif " alt="社會新聞" onclick="mu_link('moral8',': 社會新聞');">
                   <td><img src="/app_static_file/me/img/moral0.gif " alt="環保節能" onclick="mu_link('morala',': 環保節能');">
                   </table>
-          table#moral_tab(width="600px")
-            tr.titlebg_r
-              td.titlebg_r(valign="top",colspan=2) &nbsp;&nbsp;德育園地              
+            table#moral_tab(width="450px")
+              tr.titlebg_r
+                td.titlebg_r(valign="top",colspan=2) &nbsp;&nbsp;德育園地              
           div#main_content
           div#main_detail
           div#main_loading
