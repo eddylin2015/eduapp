@@ -167,7 +167,7 @@ html
       	$('#main_loading').show();
       	$.post( "/internal/me/getcontentdata.php", { t: x,keycode:'125678985432',f:'json',r:0 })
       		.done(function( data_ ) {
-      		data="<table width=420><tr class=titlebg_r><td class=titlebg_r valign=top>&nbsp;&nbsp;";
+      		data="<table width=400><tr class=titlebg_r><td class=titlebg_r valign=top>&nbsp;&nbsp;";
       		if(return_page_no>0)
       		{
       			data=data+"<a class=retALink href=# onclick='showPage("+return_page_no+")'>返回</a>";
@@ -388,8 +388,8 @@ html
               tr.titlebg_r
                 td.titlebg_r(valign="top",colspan=2) &nbsp;&nbsp;德育園地              
           a(name="link_main_content") 
-          div#main_content
-          div#main_detail
+          div#main_content(style="font-size:18px;")
+          div#main_detail(style="font-size:18px;")
           div#main_loading
             img(src="/app_static_file/me/img/loading.gif")
 
