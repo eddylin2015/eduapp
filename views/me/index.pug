@@ -109,13 +109,14 @@ style.
   border-bottom:1px dotted;
   border-collapse: collapse;
   }
+  .ui-page-theme-a a:visited{
+  color:black;
+  }  
   a:link {
   	color:black;
       text-decoration: none;
   }
-  .ui-page-theme-a a:visited{
-  color:black;
-  }
+
   a:visited {
   	color:black;
       text-decoration: none;
@@ -206,9 +207,8 @@ script.
   function showContent(x,return_page_no,title_txt,more_link)
   {
   	$('#main_loading').show();
-  	
   	$.post( "/internal/me/getcontentdata.php", { t: x,keycode:'125678985432',f:'json',r:0 })
-  			  .done(function( data_ ) {
+  		.done(function( data_ ) {
   		data="<table width=590><tr class=titlebg_r><td class=titlebg_r valign=top>&nbsp;&nbsp;";
   		if(return_page_no>0)
   		{
@@ -224,10 +224,10 @@ script.
   		}
   		data=data+"<tr><td>	"+data_+"</table>";
   	    $( "#home_content" ).hide();
-  		$( "#main_content" ).hide();
-  		$( "#main_detail" ).html(data);
-  		$( "#main_detail" ).show();
-  		$( "#main_loading" ).hide();
+  		  $( "#main_content" ).hide();
+  		  $( "#main_detail" ).html(data);
+  		  $( "#main_detail" ).show();
+  		  $( "#main_loading" ).hide();
   		});
   }
   
@@ -241,9 +241,9 @@ script.
   		$('#link_tab').append(li_mudtd_url("mutd",link_data[i].item,link_data[i].url));
   	}			
   	for (var i = 0; i < jsondata.length; i++) {
-  		 if(jsondata[i].type.substring(0,3)=="act"){
-              $('#act_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
-  			$('#news_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
+  		if(jsondata[i].type.substring(0,3)=="act"){
+        $('#act_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
+  		  $('#news_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
   		}
   		if(jsondata[i].type.substring(0,3)=="new"){
   			$('#news_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
@@ -259,42 +259,14 @@ script.
   	screenheight=screenwidth*10 /23;
   	for (var i = 0; i < jsondata.length; i++) {
   		if(jsondata[i].type=='slideimg'){
-  			//$('#carousel_inner').append('<div class="item"><img src='+jsondata[i].item+' alt="" style="width:100%;>');
-        ///div( class="item")
-        ///img(src="/images/teacherday.jpg", alt="TeacherDay", style="width:100%;")
   		}
   	}
-    /*
-  	try{					
-  		$("#sliderA").excoloSlider({
-  		width: screenwidth,
-  		height:screenheight ,
-  		mouseNav: false,
-  		interval: 5000, // = 5 seconds
-  		playReverse: false});
-  	}catch (e){	}*/
   	$('#main_loading').hide();
   }
-  
   var jsondata=[];
   //PHP READ JSONDATA
   jsondata=!{itemsData}
   //[{"id":569,"type":"act","item":"主題︰看暖心愛國話劇，體會苦盡甘來"},{"id":570,"type":"act","item":"主題︰初一成長的天空迎新營"},{"id":566,"type":"moral6","item":"主題︰慎防網購陷阱"},{"id":567,"type":"moral8","item":"男外僱涉誘騙性侵男童法辦"},{"id":568,"type":"moral6","item":"教兒自保免侵犯    遇事報警除後患"},{"id":562,"type":"moral8","item":"主題︰中學生亂掃二維碼父失逾六萬"},{"id":563,"type":"moral7","item":"主題︰ 迷幻“郵票”可致命"},{"id":564,"type":"moral6","item":"主題︰司警籲愼防網上投資陷阱"},{"id":565,"type":"morala","item":"主題︰認識廚餘回收"},{"id":58,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F2.jpg"},{"id":7,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F1.jpg"},{"id":59,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F3.jpg"},{"id":61,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F4.jpg"},{"id":62,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F5.jpg"},{"id":63,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F6.jpg"}]
-  /*
-  <?
-  $dmText="";
-  $mc = new Memcache;
-  $mc->increment("hint");
-  $dmText=$mc->get("slideimg");
-  if($dmText == false) {
-  	include_once('gapc_config.php');
-  	$slideimg_id=$type_fileid['slideimg'];
-  	$dmText=readtxt($slideimg_id,$client);
-  	$mc->set("slideimg",$dmText,300);
-  }
-  echo "jsondata=".$dmText.";";
-  ?>;*/
-  //
   $( document ).ready(function() {
   	if(jsondata.length>0){showItem(jsondata);}
       $('#main_loading').hide();

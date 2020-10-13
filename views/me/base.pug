@@ -3,161 +3,13 @@ html
   head
     title= title
     link(rel="icon" href="/favicon.ico")
-    meta(charset="utf-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
-    //link(rel='stylesheet', href='/stylesheets/main.css')
-    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-    style. 
-      body
-      {
-      margin-top:0;
-      background-repeat: repeat-x;
-      background-image: url('/app_static_file/me/img/body_bg.gif');
-      }
-      div.footer{
-      margin-top:0;
-      background-repeat: repeat-x;
-      background-image: url('/app_static_file/me/img/footer_bg.gif');
-      font-size:10px;
-      }
-      table{
-      border: 0px solid black;
-      }
-      div.horizontal
-      {
-      width:1024;
-      height:100px;
-      }
-      div.horizontal ul
-      {
-      list-style-type:none;
-      margin:0;
-      padding:0;
-      }
-      div.horizontal li
-      {
-      float:left;
-      padding-left:10px;
-      padding-right:10px;
-      }
-      div.horizontal a
-      {
-      display:block;
-      font-size:14px;
-      font-weight: bold;
-      }
-      div.horizontal a:link,div.horizontal a:visited
-      {
-      color:#585858;
-      text-align:center;
-      padding:4px;
-      text-decoration:none;
-      text-transform:uppercase;
-      }
-      div.horizontal a:hover,div.horizontal a:active
-      {
-      color:white;
-      background-repeat: repeat-x;
-      background-image: url('/app_static_file/me/img/nav_bg_hover.gif');
-      }
-      ul.es-pager {
-          width: 100%;
-          margin: 0px 0;
-      }
-      span.pos_fixed {
-       cursor: pointer; cursor: hand;    position: fixed;
-          bottom: 50px;
-          right: 30px;
-          color: red;
-      }
-      button.mbcbtn0,button.mbcbtn1,button.mbcbtn2{ 
-      background-repeat: no-repeat;
-      font-weight: bold;
-      text-align:right;
-      color:white;
-      font-size:10px;
-      width:95px;height:30px; 
-      border:0px solid #000; 
-      display:block 
-      } 
-      button.mbcbtn0{
-      background-image: url('/app_static_file/me/img/btn01_bg.gif');
-      }
-      button.mbcbtn1{
-      background-image: url('/app_static_file/me/img/btn02_bg.gif');
-      }
-      button.mbcbtn2{
-      background-image: url('/app_static_file/me/img/btn03_bg.gif');
-      }
-      tr.mutd{border-collapse: collapse;}
-      td.mutd{
-      font-size:12px;
-      height:30px;
-      border-bottom:1px dotted;
-      border-collapse: collapse;
-      }
-      td.mutd_link
-      {
-      font-size:12px;
-      height:30px;
-      border:1px dotted;
-      border-collapse: collapse;
-      }
-      td.mudtd
-      {
-      background-color: #EDEDED;
-      font-size:12px;
-      height:30px;
-      border-bottom:1px dotted;
-      border-collapse: collapse;
-      }
-      a:link {
-      	color:black;
-          text-decoration: none;
-      }
-      .ui-page-theme-a a:visited{
-      color:black;
-      }
-      a:visited {
-      	color:black;
-          text-decoration: none;
-      }
-      a:hover {
-          text-decoration: none;
-      }
-      a:active {
-          text-decoration: none;    
-      }
-      a:visited {
-          text-decoration: none;
-      }
-      a.retALink:link {
-      	color:white;
-          text-decoration: none;
-      }
-      a.retALink:visited {
-      	color:white;
-      }
-      tr.titlebg_r
-      {
-       background-repeat:repeat-x;
-       background-image: url('/app_static_file/me/img/titlebg.gif');
-      }
-      td.titlebg_r
-      {
-      	height:30px;
-      	font-size:16px;
-      	color:white;
-      	margin:0;
-       }
-       span.titlebg_r
-       {
-      	 width:70%;
-      	 min-width:70%; 
-      	 display: inline-block;
-       }
+    meta(charset='utf-8')
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/bootstrap.min.js') 
+    script(src='/jquery-ui-dist/jquery-ui.min.js')    
+    link( href='/jquery-ui-dist/jquery-ui.min.css',rel='stylesheet' )           
     script.
       var comm_data=[{"item":"中學通告",url:"http://202.175.185.186/it-school/mbc/mbc_notice/secondary_notice.php"},{"item":"小學通告",url:"http://202.175.185.186/it-school/mbc/mbc_notice/primary_notice.php"},{"item":"幼稚園通告",url:"http://202.175.185.186/it-school/mbc/mbc_notice/kids_notice.php"},{"item":"境外活動保險資料",url:"http://202.175.185.186/it-school/mbc/mbc_notice/insurance_outofmacau.php"}];  
       var link_data	=[{item_:"mbc",item:"澳門浸信中學",url:"http://www.mbc.edu.mo/"},{item_:"myit",item:"MyIT-School",url:"http://202.175.185.186/it-school/"},{item_:"facebook",item:"Facebook",url:"https://www.facebook.com/%E6%BE%B3%E9%96%80%E6%B5%B8%E4%BF%A1%E4%B8%AD%E5%AD%B8-%E6%A0%A1%E8%A8%8A%E5%B0%88%E9%A0%81Macau-Baptist-College-Offical-Page-343998092367264/"}]	;
@@ -326,34 +178,36 @@ html
       	}		
       }	
   body
-    .navbar.navbar-inverse.navbar-fixed-top(style="background-image: url('/app_static_file/me/img/body_bg.gif")
-      .container(style="background-image: url('/app_static_file/me/img/body_bg.gif")
-        table(style="width:100%;padding-bottom:20px;background-repeat: no-repeat;background-image: url('/app_static_file/me/img/header.jpg');", align="center")
+    .navbar.navbar-inverse.navbar-top(style="background-image: url('/app_static_file/me/img/body_bg.gif');")
+      .container
+        .navbar-collapse.collapse(style="background-image: url('/app_static_file/me/img/header.jpg');")
+          ul.nav.navbar-nav
+            li
+              a(href="#", onclick="mu_link('home');") &nbsp;<br>&nbsp;<br>首頁
+            li
+              a(href="#", onclick="mu_link('sw');") &nbsp;<br>&nbsp;<br>輔導員專區
+            li
+              a(href="#" ,onclick="mu_link('act');") &nbsp;<br>&nbsp;<br>活動資訊
+            li
+              a(href="#", onclick="mu_link('moral');") &nbsp;<br>&nbsp;<br>德育園地
+            li
+              a(href="#", onclick="mu_link('comm');") &nbsp;<br>&nbsp;<br>家長通訊
+
+        table()
           tr
             td(colspan=2)
               div.horizontal
-                ul
-                  li
-                    a#mu1(href="#", onclick="mu_link('home');") &nbsp;<br>&nbsp;<br>首頁
-                  li
-                    a#mu2(href="#", onclick="mu_link('sw');") &nbsp;<br>&nbsp;<br>輔導員專區
-                  li
-                    a#mu3(href="#" ,onclick="mu_link('act');") &nbsp;<br>&nbsp;<br>活動資訊
-                  li
-                    a#mu4(href="#", onclick="mu_link('moral');") &nbsp;<br>&nbsp;<br>德育園地
-                  li
-                    a#mu5(href="#", onclick="mu_link('comm');") &nbsp;<br>&nbsp;<br>家長通訊
           tr
             td(colspan=2)
               img(src="/app_static_file/me/img/logo_moral.gif")#logoicon
               table
                 tr
                   td
-                    button.mbcbtn0(align="right", onclick="mbc_link('mbc');")  &nbsp;&nbsp;MBC WEB
+                    button.mbcbtn0(align="right", onclick="mbc_link('mbc');")  &nbsp;MBC&nbsp;&nbsp;&nbsp;   
                   td
-                    button.mbcbtn1(align="right", onclick="mbc_link('facebook');") &nbsp;&nbsp;FACEBOOK
+                    button.mbcbtn1(align="right", onclick="mbc_link('facebook');") FACEBOOK
                   td
-                    button.mbcbtn2(align="right",onclick="mbc_link('myit');") &nbsp;&nbsp;eClass
-  .container
-    block content
-    block scripts
+                    button.mbcbtn2(align="right",onclick="mbc_link('myit');") eClass&nbsp;&nbsp;
+    .container
+      block content
+      block scripts
