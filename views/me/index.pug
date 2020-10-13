@@ -132,7 +132,7 @@ html
       {
       	$('#main_loading').show();
       	$.post( "/internal/me/getitemdata.php", { t: x, f:"json",r:"0" }, function( data ) {
-      	txt="<table width=590><tr class=titlebg_r>"+
+      	txt="<table width=420><tr class=titlebg_r>"+
       	"<td class=titlebg_r valign=top colspan=2>&nbsp;&nbsp;"+title+
       	"<span class=titlebg_r>&nbsp;</span>"+
       	"<tr><td colspan=2><table><tr><td><img src="+pic1+"><td><img src="+pic2+"></table>";
@@ -153,10 +153,10 @@ html
       },"json");
       }
       function li_mutd(id,item,pageno){
-      	return "<tr class=mutd><td class=mutd width=12><img src=/app_static_file/me/img/star_icon.gif><td class=mutd onclick='showContent("+id+","+pageno+")'><a href=#>"+item+"</a>";
+      	return "<tr class=mutd><td class=mutd width=12><img src=/app_static_file/me/img/star_icon.gif><td class=mutd onclick='showContent("+id+","+pageno+")'><a href=#link_main_content>"+item+"</a>";
       }
       function li_mudtd(id,item,pageno){
-      	return "<tr class=mutd><td class=mudtd width=12><img src=/app_static_file/me/img/star_icon.gif><td class=mudtd onclick='showContent("+id+","+pageno+")'><a href=#>"+item+"</a>";
+      	return "<tr class=mutd><td class=mudtd width=12><img src=/app_static_file/me/img/star_icon.gif><td class=mudtd onclick='showContent("+id+","+pageno+")'><a href=#link_main_content>"+item+"</a>";
       }
       function li_mudtd_url(classstyle,item,url){
       	return "<tr class=mutd><td class="+classstyle+" width=12><img src=/app_static_file/me/img/star_icon.gif><td class="+classstyle+"><a href='"+url+"'>"+item+"</a>";
@@ -314,16 +314,16 @@ html
           tr
             td(colspan=3)
               img(src="/app_static_file/me/img/logo_moral.gif",align="left")
-    .container(style="width:920px;margin-top:-10px;padding-top:-20px;")
+    .container(style="margin-top:-10px;padding-top:-20px;")
       .row(style="margin:0;padding:0px;")
-        .col-lg-4(style="margin:0;padding:0px;")
-          table#news_tab
+        .col-lg-5(style="margin:0;padding:0px;")
+          table#news_tab(style="width:100%")
             tr.titlebg_r
               td.titlebg_r(valign="top", colspan=2) 
                 span &nbsp;&nbsp;最新消息
                 span(style="width:50%;min-width:50%; display: inline-block;") &nbsp;
                 img(src="/app_static_file/me/img/more.png", id="btn_news_more", onclick="mu_link('news')")
-          table#act_tab
+          table#act_tab(style="width:100%")
             tr.titlebg_r
               td.titlebg_r(valign="top",colspan=2)
                 span &nbsp;&nbsp;活動消息
@@ -338,7 +338,7 @@ html
               td(style="height:30px;color:white;background-image:url('/app_static_file/me/img/btn05_bg.gif');background-repeat: no-repeat;", colspan=2)
                 span &nbsp;&nbsp;連結
 
-        .col-lg-7(style="margin:0;padding:0px;")
+        .col-lg-5(style="margin:0;padding:0px;")
           div(id="home_content" style="padding-top:-40px;width:420px;")
             table
               tr
@@ -363,12 +363,12 @@ html
                 a(class="right carousel-control", href="#myCarousel", data-slide="next")
                   span( class="glyphicon glyphicon-chevron-right")
                   span( class="sr-only") Next
-            table(width="420px")
+            table(style="width:100%")
               tr.titlebg_r
                 td.titlebg_r(valign="top") &nbsp;&nbsp;德育園地
               tr
                 td
-                  <table align="center">
+                  <table>
                   <tr>
                   <td><img src="/app_static_file/me/img/moral9.gif " alt="生命教育"  onclick="mu_link('moral9',': 生命教育');">
                   <td><img src="/app_static_file/me/img/moral1.gif " alt="親子"onclick="mu_link('moral1',': 親子');">
@@ -384,10 +384,12 @@ html
                   <tr>
                   <td><img src="/app_static_file/me/img/moral0.gif " alt="環保節能" onclick="mu_link('morala',': 環保節能');">
                   </table>
-            table#moral_tab(width="420px")
+            table#moral_tab(style="width:100%")
               tr.titlebg_r
                 td.titlebg_r(valign="top",colspan=2) &nbsp;&nbsp;德育園地              
+          
           div#main_content
+          a(name="link_main_content") 
           div#main_detail
           div#main_loading
             img(src="/app_static_file/me/img/loading.gif")
