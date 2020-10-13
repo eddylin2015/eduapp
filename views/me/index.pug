@@ -167,7 +167,7 @@ html
       	$('#main_loading').show();
       	$.post( "/internal/me/getcontentdata.php", { t: x,keycode:'125678985432',f:'json',r:0 })
       		.done(function( data_ ) {
-      		data="<table width=400><tr class=titlebg_r><td class=titlebg_r valign=top>&nbsp;&nbsp;";
+      		data="<table width=380><tr class=titlebg_r><td class=titlebg_r valign=top>&nbsp;&nbsp;";
       		if(return_page_no>0)
       		{
       			data=data+"<a class=retALink href=# onclick='showPage("+return_page_no+")'>返回</a>";
