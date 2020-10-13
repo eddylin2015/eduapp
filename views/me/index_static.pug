@@ -89,6 +89,196 @@ html
       	 min-width:70%; 
       	 display: inline-block;
        }  
+       tr.mutd{border-collapse: collapse;}
+       td.mutd{
+       font-size:16px;
+       height:30px;
+       border-bottom:1px dotted;
+       border-collapse: collapse;
+       }
+       td.mutd_link
+       {
+       font-size:16px;
+       height:30px;
+       border:1px dotted;
+       border-collapse: collapse;
+       }
+       td.mudtd
+       {
+       background-color: #EDEDED;
+       font-size:16px;
+       height:30px;
+       border-bottom:1px dotted;
+       border-collapse: collapse;
+       }
+
+    script.
+      var comm_data=[{"item":"中學通告",url:"http://202.175.185.186/it-school/mbc/mbc_notice/secondary_notice.php"},{"item":"小學通告",url:"http://202.175.185.186/it-school/mbc/mbc_notice/primary_notice.php"},{"item":"幼稚園通告",url:"http://202.175.185.186/it-school/mbc/mbc_notice/kids_notice.php"},{"item":"境外活動保險資料",url:"http://202.175.185.186/it-school/mbc/mbc_notice/insurance_outofmacau.php"}];  
+      var link_data	=[{item_:"mbc",item:"澳門浸信中學",url:"http://www.mbc.edu.mo/"}]//,{item_:"myit",item:"MyIT-School",url:"http://202.175.185.186/it-school/"},{item_:"facebook",item:"Facebook",url:"https://www.facebook.com/%E6%BE%B3%E9%96%80%E6%B5%B8%E4%BF%A1%E4%B8%AD%E5%AD%B8-%E6%A0%A1%E8%A8%8A%E5%B0%88%E9%A0%81Macau-Baptist-College-Offical-Page-343998092367264/"}]	;
+      function showPage(return_page_no){
+      	$('#main_loading').hide();
+      	$( "#home_content" ).hide();
+      	$( "#main_content" ).hide();
+      	$( "#main_detail" ).hide();
+      	if(return_page_no==1){
+      		$( "#home_content" ).show();
+      	}else if(return_page_no==2){
+      		$( "#main_content" ).show();
+      	}else if(return_page_no==3){
+      		$( "#main_detail" ).show();
+      	}
+      }
+      function showItemList(x,title,pic1,pic2,return_page_no,filterx)
+      {
+      	$('#main_loading').show();
+      	$.post( "/internal/me/getitemdata.php", { t: x, f:"json",r:"0" }, function( data ) {
+      	txt="<table width=590><tr class=titlebg_r>"+
+      	"<td class=titlebg_r valign=top colspan=2>&nbsp;&nbsp;"+title+
+      	"<span class=titlebg_r>&nbsp;</span>"+
+      	"<tr><td colspan=2><table><tr><td><img src="+pic1+"><td><img src="+pic2+"></table>";
+      	for(i=0;i<data.length;i++){
+      	if(filterx !=undefined &&  data[i].type.substring(0,3)==filterx){
+      	txt=txt+li_mudtd(data[i].id,data[i].item,return_page_no);
+      	}else if(filterx ==undefined){
+      		txt=txt+li_mudtd(data[i].id,data[i].item,return_page_no);
+      	}
+      	}
+      	txt=txt+"</table>";
+      	$( "#home_content" ).hide();
+      	$( "#main_detail" ).hide();
+      	$('#main_loading').hide();
+      	$( "#main_content" ).html(txt);
+      	$( "#main_content" ).show();
+      },"json");
+      }
+      function li_mutd(id,item,pageno){
+      	return "<tr class=mutd><td class=mutd width=12><img src=/app_static_file/me/img/star_icon.gif><td class=mutd onclick='showContent("+id+","+pageno+")'><a href=#>"+item+"</a>";
+      }
+      function li_mudtd(id,item,pageno){
+      	return "<tr class=mutd><td class=mudtd width=12><img src=/app_static_file/me/img/star_icon.gif><td class=mudtd onclick='showContent("+id+","+pageno+")'><a href=#>"+item+"</a>";
+      }
+      function li_mudtd_url(classstyle,item,url){
+      	return "<tr class=mutd><td class="+classstyle+" width=12><img src=/app_static_file/me/img/star_icon.gif><td class="+classstyle+"><a href='"+url+"'>"+item+"</a>";
+      }
+      
+      function showContent(x,return_page_no,title_txt,more_link)
+      {
+      	$('#main_loading').show();
+      	$.post( "/internal/me/getcontentdata.php", { t: x,keycode:'125678985432',f:'json',r:0 })
+      		.done(function( data_ ) {
+      		data="<table width=590><tr class=titlebg_r><td class=titlebg_r valign=top>&nbsp;&nbsp;";
+      		if(return_page_no>0)
+      		{
+      			data=data+"<a class=retALink href=# onclick='showPage("+return_page_no+")'>返回</a>";
+      		}
+      		if(title_txt!=undefined)
+      		{
+      			data=data+title_txt;
+      		}
+      		if(more_link!=undefined)
+      		{
+      			data=data+"<span class=titlebg_r>&nbsp;</span><img src='/app_static_file/me/img/more.png' onclick=\"mu_link('"+more_link+"')\"><tr><td>	";
+      		}
+      		data=data+"<tr><td>	"+data_+"</table>";
+      	    $( "#home_content" ).hide();
+      		  $( "#main_content" ).hide();
+      		  $( "#main_detail" ).html(data);
+      		  $( "#main_detail" ).show();
+      		  $( "#main_loading" ).hide();
+      		});
+      }
+      
+      function showItem(jsondata)
+      {
+      	$('#main_loading').show();
+      	for(i=0;i<comm_data.length;i++){
+      		$('#comm_tab').append(li_mudtd_url("mutd",comm_data[i].item,comm_data[i].url));
+      	}
+      	for(i=0;i<link_data.length;i++){
+      		$('#link_tab').append(li_mudtd_url("mutd",link_data[i].item,link_data[i].url));
+      	}			
+      	for (var i = 0; i < jsondata.length; i++) {
+      		if(jsondata[i].type.substring(0,3)=="act"){
+            $('#act_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
+      		  $('#news_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
+      		}
+      		if(jsondata[i].type.substring(0,3)=="new"){
+      			$('#news_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
+      		}
+      		if(jsondata[i].type.substring(0,3)=="mor"){
+      			$('#moral_tab').append(li_mudtd(jsondata[i].id,jsondata[i].item,1));
+      		}						
+      	}
+      	$('#act_tab').append("<tr><td class=mutd>&nbsp;<td class=mutd>&nbsp;");
+      	$('#news_tab').append("<tr><td class=mutd>&nbsp;<td class=mutd>&nbsp;");
+      	$('#moral_tab').append("<tr><td class=mudtd>&nbsp;<td class=mudtd>&nbsp;");
+      	screenwidth=550;
+      	screenheight=screenwidth*10 /23;
+      	for (var i = 0; i < jsondata.length; i++) {
+      		if(jsondata[i].type=='slideimg'){
+      		}
+      	}
+      	$('#main_loading').hide();
+      }
+      var jsondata=[];
+      //PHP READ JSONDATA
+      //jsondata=!{itemsData}
+      jsondata=[{"id":569,"type":"act","item":"主題︰看暖心愛國話劇，體會苦盡甘來"},{"id":570,"type":"act","item":"主題︰初一成長的天空迎新營"},{"id":566,"type":"moral6","item":"主題︰慎防網購陷阱"},{"id":567,"type":"moral8","item":"男外僱涉誘騙性侵男童法辦"},{"id":568,"type":"moral6","item":"教兒自保免侵犯    遇事報警除後患"},{"id":562,"type":"moral8","item":"主題︰中學生亂掃二維碼父失逾六萬"},{"id":563,"type":"moral7","item":"主題︰ 迷幻“郵票”可致命"},{"id":564,"type":"moral6","item":"主題︰司警籲愼防網上投資陷阱"},{"id":565,"type":"morala","item":"主題︰認識廚餘回收"},{"id":58,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F2.jpg"},{"id":7,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F1.jpg"},{"id":59,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F3.jpg"},{"id":61,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F4.jpg"},{"id":62,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F5.jpg"},{"id":63,"type":"slideimg","item":"http://202.175.185.186/mbcapp/img191026/F6.jpg"}]
+      $( document ).ready(function() {
+      	if(jsondata.length>0){showItem(jsondata);}
+          $('#main_loading').hide();
+      });
+      //
+      function mu_link(x,title){
+      	$( "#home_content" ).hide();
+      	$( "#main_detail" ).hide();
+      	$( "#main_content" ).hide();
+      	$('#main_loading').show();
+      	if(x=="home"){
+      		$('#logoicon').attr( "src","/app_static_file/me/img/logo_moral.gif");
+      		$( "#home_content" ).show();
+      		$( "#main_content" ).hide();
+      		$('#main_loading').hide();
+          }if(x=="sw"){
+      		$('#logoicon').attr( "src","/app_static_file/me/img/logo_sw.gif");
+      		showContent(5,0,"輔導員專區","sw_more");
+          }if(x=="news"){
+      		$('#logoicon').attr( "src","/app_static_file/me/img/logo_act.gif");
+      		showItemList(x,"最新資訊","/app_static_file/me/img/li_act.jpg","/app_static_file/me/img/logo_news.gif",2)
+      	}if(x=="act"){
+      		$('#logoicon').attr( "src","/app_static_file/me/img/logo_act.gif");
+      		showItemList(x,"活動資訊","/app_static_file/me/img/li_act.jpg","/app_static_file/me/img/logo_act.gif",2)
+          }if(x=="sw_more"){
+      		$('#logoicon').attr( "src","/app_static_file/me/img/logo_moralgarden.gif");
+      		showItemList("sw","輔導員專區","/app_static_file/me/img/li_sw.jpg","/app_static_file/me/img/logo_sw.gif",2)
+          }if(x.length==5 && x=="moral"){
+      		$('#logoicon').attr( "src","/app_static_file/me/img/logo_moralgarden.gif");
+      		showItemList("slideimg","德育園地","/app_static_file/me/img/li_moral.jpg","/app_static_file/me/img/logo_moralgarden.gif",2,"mor");
+      	}if(x.length==6 && x.substring(0,3)=="mor"){	
+      		$('#logoicon').attr( "src","/app_static_file/me/img/logo_moralgarden.gif");
+      		title__="<a class=retALink href=# onclick='showPage(1);'>返回</a>"+title;
+      		showItemList(x,title__,"/app_static_file/me/img/li_moral.jpg","/app_static_file/me/img/logo_moralgarden.gif",2);
+          }if(x=="comm"){
+      		$('#logoicon').attr( "src","/app_static_file/me/img/logo_comm.gif");
+      			txt="<table width=590><tr class=titlebg_r><td  class=titlebg_r valign=top colspan=2>&nbsp;&nbsp;家長通訊"+
+      					"<tr><td  colspan=2><table><tr><td ><img src=/app_static_file/me/img/li_comm.jpg><td><img src=/app_static_file/me/img/logo_comm.gif></table>";
+      			for(i=0;i<comm_data.length;i++){
+      					txt=txt+li_mudtd_url("mudtd",comm_data[i].item,comm_data[i].url);
+      			}
+      			txt=txt+"</table>";
+      			$( "#home_content" ).hide();
+      			$( "#main_detail" ).hide();
+      			$('#main_loading').hide();
+      			$( "#main_content" ).html(txt);
+      			$( "#main_content" ).show();
+          }
+      }
+      //
+      function mbc_link(x){
+      	for(i=0;i<link_data.length;i++){
+      		if(link_data[i].item_==x) {window.location.href =link_data[i].url;break;}
+      	}		
+      }       
   body
     .navbar.navbar-inverse.navbar-top(style="border:0;background-image: url('/app_static_file/me/img/body_bg.gif');")
       .container(style="max-width:920px;background-repeat: no-repeat;background-image: url('/app_static_file/me/img/header.jpg');")
@@ -191,9 +381,9 @@ html
                   <td><img src="/app_static_file/me/img/moral8.gif " alt="社會新聞" onclick="mu_link('moral8',': 社會新聞');">
                   <td><img src="/app_static_file/me/img/moral0.gif " alt="環保節能" onclick="mu_link('morala',': 環保節能');">
                   </table>
-            table#moral_tab(width="600px")
-              tr.titlebg_r
-                td.titlebg_r(valign="top") &nbsp;&nbsp;德育園地              
+          table#moral_tab(width="600px")
+            tr.titlebg_r
+              td.titlebg_r(valign="top",colspan=2) &nbsp;&nbsp;德育園地              
           div#main_content
           div#main_detail
           div#main_loading
