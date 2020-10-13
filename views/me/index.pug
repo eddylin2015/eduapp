@@ -149,6 +149,7 @@ html
       	$('#main_loading').hide();
       	$( "#main_content" ).html(txt);
       	$( "#main_content" ).show();
+        $( "#main_content" ).focus();
       },"json");
       }
       function li_mutd(id,item,pageno){
@@ -166,7 +167,7 @@ html
       	$('#main_loading').show();
       	$.post( "/internal/me/getcontentdata.php", { t: x,keycode:'125678985432',f:'json',r:0 })
       		.done(function( data_ ) {
-      		data="<table width=590><tr class=titlebg_r><td class=titlebg_r valign=top>&nbsp;&nbsp;";
+      		data="<table width=420><tr class=titlebg_r><td class=titlebg_r valign=top>&nbsp;&nbsp;";
       		if(return_page_no>0)
       		{
       			data=data+"<a class=retALink href=# onclick='showPage("+return_page_no+")'>返回</a>";
@@ -184,8 +185,9 @@ html
       		  $( "#main_content" ).hide();
       		  $( "#main_detail" ).html(data);
       		  $( "#main_detail" ).show();
+            $( "#main_loading" ).hide();
             $( "#main_detail" ).focus();
-      		  $( "#main_loading" ).hide();
+      		  
       		});
       }
       
@@ -272,6 +274,7 @@ html
       			$('#main_loading').hide();
       			$( "#main_content" ).html(txt);
       			$( "#main_content" ).show();
+            $( "#main_content" ).focus();
           }
       }
       //
@@ -336,7 +339,7 @@ html
                 span &nbsp;&nbsp;連結
 
         .col-lg-7(style="margin:0;padding:0px;")
-          div(id="home_content" style="padding-top:-40px;width:450px;")
+          div(id="home_content" style="padding-top:-40px;width:420px;")
             table
               tr
                 td(style="height:30px;color:white;background-image:url('/app_static_file/me/img/btn04_bg.gif');background-repeat: no-repeat;") &nbsp;&nbsp;活動花絮
@@ -360,7 +363,7 @@ html
                 a(class="right carousel-control", href="#myCarousel", data-slide="next")
                   span( class="glyphicon glyphicon-chevron-right")
                   span( class="sr-only") Next
-            table(width="450px")
+            table(width="420px")
               tr.titlebg_r
                 td.titlebg_r(valign="top") &nbsp;&nbsp;德育園地
               tr
@@ -370,17 +373,18 @@ html
                   <td><img src="/app_static_file/me/img/moral9.gif " alt="生命教育"  onclick="mu_link('moral9',': 生命教育');">
                   <td><img src="/app_static_file/me/img/moral1.gif " alt="親子"onclick="mu_link('moral1',': 親子');">
                   <td><img src="/app_static_file/me/img/moral2.gif " alt="性教育" onclick="mu_link('moral2',': 性教育');">
-                  <td><img src="/app_static_file/me/img/moral3.gif " alt="品德" onclick="mu_link('moral3',': 品德');">
                   <tr>
+                  <td><img src="/app_static_file/me/img/moral3.gif " alt="品德" onclick="mu_link('moral3',': 品德');">
                   <td><img src="/app_static_file/me/img/moral4.gif " alt="勵志"  onclick="mu_link('moral4',': 勵志');">
                   <td><img src="/app_static_file/me/img/moral5.gif " alt="情緒"  onclick="mu_link('moral5',': 情緒');">
+                  <tr>
                   <td><img src="/app_static_file/me/img/moral6.gif " alt="網絡"  onclick="mu_link('moral6',': 網絡');">
                   <td><img src="/app_static_file/me/img/moral7.gif " alt="濫藥" onclick="mu_link('moral7',': 濫藥');">
-                  <tr>
                   <td><img src="/app_static_file/me/img/moral8.gif " alt="社會新聞" onclick="mu_link('moral8',': 社會新聞');">
+                  <tr>
                   <td><img src="/app_static_file/me/img/moral0.gif " alt="環保節能" onclick="mu_link('morala',': 環保節能');">
                   </table>
-            table#moral_tab(width="450px")
+            table#moral_tab(width="420px")
               tr.titlebg_r
                 td.titlebg_r(valign="top",colspan=2) &nbsp;&nbsp;德育園地              
           div#main_content
