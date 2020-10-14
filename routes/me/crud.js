@@ -48,7 +48,23 @@ router.use((req, res, next) => {
   res.set('Content-Type', 'text/html');
   next();
 });
+function isMobile(x){
+  const toMatch = [
+    /Android/i,
+    /webOS/i,
+    /iPhone/i,
+    /iPad/i,
+    /iPod/i,
+    /BlackBerry/i,
+    /Windows Phone/i];
+    return toMatch.some((toMatchItem) => {
+      return x.match(toMatchItem);
+  }); 
+}
 router.get('/', (req, res, next) => {
+  var source = req.headers['user-agent'];
+  let pugtmplt="index.pug";
+  if(isMobile(source)) pugtmplt="index_mobile.pug";
   let pdate='2020-09-01';
   getModel().listForFont(pdate, 100, 0, (err, entities, cursor) => {
     if (err) {
@@ -61,7 +77,7 @@ router.get('/', (req, res, next) => {
       let row=entities[i];
       res_.push({id:row.id,type:row.type,item:row.item})
     }
-    res.render('me/index.pug',
+    res.render(`me/${pugtmplt}`,
     {
       profile: req.user,
       itemsData: JSON.stringify(res_),
