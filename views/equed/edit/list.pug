@@ -1,0 +1,28 @@
+
+extends ./base.pug
+block content
+  each book in books
+    div= book.id
+    div= book.type
+    div !{book.item}
+    //div !{book.detail}
+    div= book.item_date
+
+  if !books.length
+    p No work log found.
+  -var prePageToken = nextPageToken - 100 > 0 ? nextPageToken - 100 : 0
+  if nextPageToken 
+    nav
+      ul.pager
+        li
+          a(href=`?pageToken=${encodeURIComponent(prePageToken)}`) Prev
+        li
+          a(href=`?pageToken=${encodeURIComponent(nextPageToken)}`) Next
+  else 
+    nav
+      ul.pager
+        li
+          a(href=`?pageToken=${encodeURIComponent(prePageToken)}`) Prev
+  if cflag            
+    li
+      a(href="/internal/workgrid/add") Add Rec

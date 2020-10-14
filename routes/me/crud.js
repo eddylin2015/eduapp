@@ -48,7 +48,7 @@ router.use((req, res, next) => {
   res.set('Content-Type', 'text/html');
   next();
 });
-function isMobile(x){
+function isMobile(x) {
   const toMatch = [
     /Android/i,
     /webOS/i,
@@ -57,78 +57,75 @@ function isMobile(x){
     /iPod/i,
     /BlackBerry/i,
     /Windows Phone/i];
-    return toMatch.some((toMatchItem) => {
-      return x.match(toMatchItem);
-  }); 
+  return toMatch.some((toMatchItem) => {
+    return x.match(toMatchItem);
+  });
 }
 router.get('/', (req, res, next) => {
   var source = req.headers['user-agent'];
-  let pugtmplt="index.pug";
-  if(isMobile(source)) pugtmplt="index_mobile.pug";
-  let pdate='2020-09-01';
+  let pugtmplt = "index.pug";
+  if (isMobile(source)) pugtmplt = "index_mobile.pug";
+  let pdate = '2020-09-01';
   getModel().listForFont(pdate, 100, 0, (err, entities, cursor) => {
     if (err) {
       next(err);
       return;
     }
-    let res_=[];
-    for(let i=0;i<entities.length;i++)
-    {
-      let row=entities[i];
-      res_.push({id:row.id,type:row.type,item:row.item})
+    let res_ = [];
+    for (let i = 0; i < entities.length; i++) {
+      let row = entities[i];
+      res_.push({ id: row.id, type: row.type, item: row.item })
     }
     res.render(`me/${pugtmplt}`,
-    {
-      profile: req.user,
-      itemsData: JSON.stringify(res_),
-      itemsObj:res_
-    });
+      {
+        profile: req.user,
+        itemsData: JSON.stringify(res_),
+        itemsObj: res_
+      });
   });
 
 });
 router.get('/mobile', (req, res, next) => {
-  let pugtmplt="index_mobile.pug";
-  let pdate='2020-09-01';
+  let pugtmplt = "index_mobile.pug";
+  let pdate = '2020-09-01';
   getModel().listForFont(pdate, 100, 0, (err, entities, cursor) => {
     if (err) {
       next(err);
       return;
     }
-    let res_=[];
-    for(let i=0;i<entities.length;i++)
-    {
-      let row=entities[i];
-      res_.push({id:row.id,type:row.type,item:row.item})
+    let res_ = [];
+    for (let i = 0; i < entities.length; i++) {
+      let row = entities[i];
+      res_.push({ id: row.id, type: row.type, item: row.item })
     }
     res.render(`me/${pugtmplt}`,
-    {
-      profile: req.user,
-      itemsData: JSON.stringify(res_),
-      itemsObj:res_
-    });
+      {
+        profile: req.user,
+        itemsData: JSON.stringify(res_),
+        itemsObj: res_
+      });
   });
 
 });
 
 router.get('/main.php', (req, res, next) => {
-  let pdate='2020-06-01';
+  let pdate = '2020-06-01';
   getModel().listForFont(pdate, 100, 0, (err, entities, cursor) => {
     if (err) {
       next(err);
       return;
     }
-    let res_=[];
-    for(let i=0;i<entities.length;i++)
-    {
-      let row=entities[i];
-      res_.push({id:row.id,type:row.type,item:row.item})
+    let res_ = [];
+    for (let i = 0; i < entities.length; i++) {
+      let row = entities[i];
+      res_.push({ id: row.id, type: row.type, item: row.item })
     }
     res.render('me/index.pug',
-    {
-      profile: req.user,
-      itemsData: JSON.stringify(res_),
-      itemsObj:res_
-    });
+      {
+        profile: req.user,
+        itemsData: JSON.stringify(res_),
+        itemsObj: res_
+      });
   });
 
 });
@@ -136,9 +133,9 @@ router.get('/index.html', (req, res, next) => {
   res.render('me/index_static.pug');
 });
 router.post('/getitemdata.php', (req, res, next) => {
-  let typeSet_=[req.body.t];
-  if(req.body.t=="slideimg"){
-    typeSet_=["slideimg","moral1","moral2","moral3","moral4","moral5","moral6","moral7","moral8","moral9","morala"];
+  let typeSet_ = [req.body.t];
+  if (req.body.t == "slideimg") {
+    typeSet_ = ["slideimg", "moral1", "moral2", "moral3", "moral4", "moral5", "moral6", "moral7", "moral8", "moral9", "morala"];
   }
   getModel().listByType(typeSet_, 100, 0, (err, entities, cursor) => {
     if (err) {
@@ -164,21 +161,19 @@ router.post('/getcontentdata.php', (req, res, next) => {
       next(err);
       return;
     }
-    let _li=entities.detail.split('\n');
-    let _ctxt="";
-    let flag=true;
-    for(let i=0;i<_li.length;i++)
-    {
-      if(flag)
-      {
-        _ctxt+=_li[i].replace(/[\r\n]/g,"<br>");
-        flag=_li[i].indexOf("<")>-1;
-      }else{
-        _ctxt+=_li[i]; 
+    let _li = entities.detail.split('\n');
+    let _ctxt = "";
+    let flag = true;
+    for (let i = 0; i < _li.length; i++) {
+      if (flag) {
+        _ctxt += _li[i].replace(/[\r\n]/g, "<br>");
+        flag = _li[i].indexOf("<") > -1;
+      } else {
+        _ctxt += _li[i];
       }
     }
-    entities.detail=_ctxt;
-    res.end("<p><p>"+entities.item+"<p>"+entities.detail+"<p>"+entities.item_date);
+    entities.detail = _ctxt;
+    res.end("<p><p>" + entities.item + "<p>" + entities.detail + "<p>" + entities.item_date);
   });
 });
 
@@ -188,20 +183,20 @@ router.get('/getcontentdata.php', (req, res, next) => {
       next(err);
       return;
     }
-    entities.detail=entities.detail.replace(/[\r\n]/g,"<br>");
-    res.end("<p><p>"+entities.item+"<p>"+entities.detail+"<p>"+entities.item_date);
+    entities.detail = entities.detail.replace(/[\r\n]/g, "<br>");
+    res.end("<p><p>" + entities.item + "<p>" + entities.detail + "<p>" + entities.item_date);
   });
 });
 
 router.get('/editdatali.php', (req, res, next) => {
   console.log();
-  getModel().list( 100, req.query.pageToken, (err, entities, cursor) => {
+  getModel().list(100, req.query.pageToken, (err, entities, cursor) => {
     if (err) {
       next(err);
       return;
     }
     res.render('me/edit/list.pug', {
-      profile: req.user ,
+      profile: req.user,
       books: entities,
       nextPageToken: cursor
     });
@@ -213,16 +208,16 @@ router.get('/readdata.php/:book', (req, res, next) => {
       next(err);
       return;
     }
-    entities.detail=entities.detail.replace(/[\r\n]/g,"<br>");
-    res.end("<p><p>"+entities.item+"<p>"+entities.detail+"<p>"+entities.item_date);
+    entities.detail = entities.detail.replace(/[\r\n]/g, "<br>");
+    res.end("<p><p>" + entities.item + "<p>" + entities.detail + "<p>" + entities.item_date);
   });
 });
-router.get('/viewdata/:book', oauth2.required,(req, res, next) => {
+router.get('/viewdata/:book', oauth2.required, (req, res, next) => {
   getModel().read(req.params.book, (err, entity) => {
     if (err) {
       next(err);
       return;
-      }
+    }
     res.render('me/edit/view.pug', {
       profile: req.user,
       book: entity,
@@ -231,12 +226,29 @@ router.get('/viewdata/:book', oauth2.required,(req, res, next) => {
   });
 });
 
-router.get('/editdata/:book', oauth2.required,(req, res, next) => {
+router.get('/editdata/add', oauth2.required, (req, res, next) => {
+  let entity = { id: 0 };
+  res.render('me/edit/form.pug', {
+    profile: req.user,
+    book: entity,
+    action: 'Edit'
+  });
+});
+
+router.post('/editdata/add', images.multer.single('image'), oauth2.required, (req, res, next) => {
+  const data = req.body;
+  getModel().create(data, (err, savedData) => {
+    if (err) { next(err); return; }
+    res.redirect(`${req.baseUrl}/viewdata/${savedData.id}`);
+  });
+});
+
+router.get('/editdata/:book', oauth2.required, (req, res, next) => {
   getModel().read(req.params.book, (err, entity) => {
     if (err) {
       next(err);
       return;
-      }
+    }
     res.render('me/edit/form.pug', {
       profile: req.user,
       book: entity,
@@ -245,18 +257,18 @@ router.get('/editdata/:book', oauth2.required,(req, res, next) => {
   });
 });
 
-router.post('/editdata/:book',  images.multer.single('image'),   oauth2.required,  (req, res, next) => {
+router.post('/editdata/:book', images.multer.single('image'), oauth2.required, (req, res, next) => {
   const data = req.body;
   getModel().update(req.params.book, data, (err, savedData) => {
-    if (err) {  next(err);  return; }
+    if (err) { next(err); return; }
     res.redirect(`${req.baseUrl}/viewdata/${savedData.id}`);
   });
 });
 
-router.post('/editdatapost.php',  images.multer.single('image'),   oauth2.required,  (req, res, next) => {
+router.post('/editdatapost.php', images.multer.single('image'), oauth2.required, (req, res, next) => {
   const data = req.body;
   getModel().update(req.params.book, data, (err, savedData) => {
-    if (err) {  next(err);  return; }
+    if (err) { next(err); return; }
     res.redirect(`${req.baseUrl}/${savedData.id}`);
   });
 });

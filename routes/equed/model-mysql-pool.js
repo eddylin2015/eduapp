@@ -3,10 +3,10 @@
 const mysql = require('mysql');
 const config = require('../../config');
 const options = {
-    host: config.get('MoralEduMYSQL_HOST'),
-    user: config.get('MoralEduMYSQL_USER'),
-    password: config.get('MoralEduMYSQL_PASSWORD'),
-    database: config.get('MoralEduMYSQL_DATABASE')
+    host: config.get(    'MATHSMYSQL_HOST'),
+    user: config.get(    'MATHSMYSQL_USER'),
+    password: config.get('MATHSMYSQL_PASSWORD'),
+    database: config.get('MATHSMYSQL_DATABASE')
 };
 //const connection = mysql.createConnection(options);
 const pool = mysql.createPool(options);
