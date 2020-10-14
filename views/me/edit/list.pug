@@ -2,7 +2,8 @@
 extends ./base.pug
 block content
   each book in books
-    div= book.id
+    div
+      a(href=`/internal/me/editdata/${book.id}`)= book.id
     div= book.type
     div !{book.item}
     //div !{book.detail}
@@ -10,12 +11,13 @@ block content
 
   if !books.length
     p No work log found.
-  -var prePageToken = nextPageToken - 100 > 0 ? nextPageToken - 100 : 0
+  -var prePageToken = nextPageToken - 200 > 0 ? nextPageToken - 200 : 0
   if nextPageToken 
     nav
       ul.pager
-        li
-          a(href=`?pageToken=${encodeURIComponent(prePageToken)}`) Prev
+        if nextPageToken>100
+          li
+            a(href=`?pageToken=${encodeURIComponent(prePageToken)}`) Prev
         li
           a(href=`?pageToken=${encodeURIComponent(nextPageToken)}`) Next
   else 
