@@ -164,7 +164,20 @@ router.post('/getcontentdata.php', (req, res, next) => {
       next(err);
       return;
     }
-    entities.detail=entities.detail.replace(/[\r\n]/g,"<br>");
+    let _li=entities.detail.split('\n');
+    let _ctxt="";
+    let flag=true;
+    for(let i=0;i<_li.length;i++)
+    {
+      if(flag)
+      {
+        _ctxt+=_li[i].replace(/[\r\n]/g,"<br>");
+        flag=_li[i].indexOf("<")>-1;
+      }else{
+        _ctxt+=_li[i]; 
+      }
+    }
+    entities.detail=_ctxt;
     res.end("<p><p>"+entities.item+"<p>"+entities.detail+"<p>"+entities.item_date);
   });
 });
