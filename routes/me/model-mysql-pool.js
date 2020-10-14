@@ -76,6 +76,7 @@ function listByType(metype, limit, token, cb) {
 
 function list( limit, token, cb) {
     token = token ? parseInt(token, 100) : 0;
+    console.log(limit,token);
     pool.getConnection(function (err, connection) {
         if(err){cb(err);return;}
         // Use the connection

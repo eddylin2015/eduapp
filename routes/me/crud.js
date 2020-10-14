@@ -194,12 +194,13 @@ router.get('/getcontentdata.php', (req, res, next) => {
 });
 
 router.get('/editdatali.php', (req, res, next) => {
+  console.log();
   getModel().list( 100, req.query.pageToken, (err, entities, cursor) => {
     if (err) {
       next(err);
       return;
     }
-    res.render('me/list.pug', {
+    res.render('me/edit/list.pug', {
       profile: req.user ,
       books: entities,
       nextPageToken: cursor

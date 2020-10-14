@@ -305,7 +305,23 @@ html
             li
               div.horizontal 
                 a#mu5(href="#",onclick="mu_link('comm');") &nbsp;<br>家長通訊
-          ul.nav.navbar-nav.navbar-right      
+          ul.nav.navbar-nav.navbar-right  
+            // [START profile]
+            if profile && profile.email=="lammou@mail.mbc.edu.mo"
+              if profile.image
+                img.img-circle(src=profile.image, width=24)
+              li
+                div.horizontal 
+                  a(href='/internal/me/editdatali.php' id='profileUserName') &nbsp;<br><small>管理員:#{profile.displayName} </small>
+              //li
+                a(href='/internal/logout')
+                  span(class="glyphicon glyphicon-log-in") (logout)
+            //else
+              li
+                <a href="/login"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                //a(href='/login') Login
+            // [END profile]
+
         table(width="100%")
           tr
             td(style="padding-top:18px;") &nbsp;
