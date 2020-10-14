@@ -59,7 +59,7 @@ function listByType(metype, limit, token, cb) {
     pool.getConnection(function (err, connection) {
         console.log(err);
         connection.query(
-            'SELECT * FROM `item` WHERE `type` = ?  order by id desc LIMIT ? OFFSET ?',
+            'SELECT * FROM `item` WHERE `type` in (?)  order by id desc LIMIT ? OFFSET ?',
             [metype, limit, token],
             (err, results) => {
                 if (err) {
@@ -74,11 +74,62 @@ function listByType(metype, limit, token, cb) {
     });
 }
 
+function list( limit, token, cb) {
+    token = token ? parseInt(token, 100) : 0;
+    pool.getConnection(function (err, connection) {
+        if(err){cb(err);return;}
+        // Use the connection
+        connection.query(
+            'SELECT * FROM `item` order by id DESC LIMIT ? OFFSET ?', [limit, token],
+            (err, results) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                const hasMore = results.length === limit ? token + results.length : false;
+                cb(null, results, hasMore);
+                connection.release();
+            }
+        );
+    });
+}
+
+function update( id, data, cb) {
+    pool.getConnection(function (err, connection) {
+        if(err){cb(err);return;}
+        connection.query(
+            'UPDATE `item` SET ? WHERE `id` = ?  ', [data, id], (err) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                read( id, cb);
+                connection.release();
+            });
+    });
+}
+function create( data, cb) {
+    pool.getConnection(function (err, connection) {
+        if(err){cb(err);return;}
+        connection.query('INSERT INTO `item` SET ?', data, (err, res) => {
+            if (err) {
+                cb(err);
+                return;
+            }
+            read(res.insertId, cb);
+            connection.release();
+        });
+    });
+}
+
 module.exports = {
     createSchema: createSchema,
     listByType:listByType,
     listForFont:listForFont,
     read: read,
+    list:list,
+    update:update,
+    create:create,
 };
 
 if (module === require.main) {

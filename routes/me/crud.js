@@ -86,6 +86,30 @@ router.get('/', (req, res, next) => {
   });
 
 });
+router.get('/mobile', (req, res, next) => {
+  let pugtmplt="index_mobile.pug";
+  let pdate='2020-09-01';
+  getModel().listForFont(pdate, 100, 0, (err, entities, cursor) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    let res_=[];
+    for(let i=0;i<entities.length;i++)
+    {
+      let row=entities[i];
+      res_.push({id:row.id,type:row.type,item:row.item})
+    }
+    res.render(`me/${pugtmplt}`,
+    {
+      profile: req.user,
+      itemsData: JSON.stringify(res_),
+      itemsObj:res_
+    });
+  });
+
+});
+
 router.get('/main.php', (req, res, next) => {
   let pdate='2020-06-01';
   getModel().listForFont(pdate, 100, 0, (err, entities, cursor) => {
@@ -112,7 +136,11 @@ router.get('/index.html', (req, res, next) => {
   res.render('me/index_static.pug');
 });
 router.post('/getitemdata.php', (req, res, next) => {
-  getModel().listByType(req.body.t, 100, 0, (err, entities, cursor) => {
+  let typeSet_=[req.body.t];
+  if(req.body.t=="slideimg"){
+    typeSet_=["slideimg","moral1","moral2","moral3","moral4","moral5","moral6","moral7","moral8","moral9","morala"];
+  }
+  getModel().listByType(typeSet_, 100, 0, (err, entities, cursor) => {
     if (err) {
       next(err);
       return;
@@ -152,6 +180,72 @@ router.get('/getcontentdata.php', (req, res, next) => {
   });
 });
 
+router.get('/editdatali.php', (req, res, next) => {
+  getModel().list( 100, req.query.pageToken, (err, entities, cursor) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('me/list.pug', {
+      profile: req.user ,
+      books: entities,
+      nextPageToken: cursor
+    });
+  });
+});
+router.get('/readdata.php/:book', (req, res, next) => {
+  getModel().read(req.query.t, (err, entities, cursor) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    entities.detail=entities.detail.replace(/[\r\n]/g,"<br>");
+    res.end("<p><p>"+entities.item+"<p>"+entities.detail+"<p>"+entities.item_date);
+  });
+});
+router.get('/viewdata/:book', oauth2.required,(req, res, next) => {
+  getModel().read(req.params.book, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+      }
+    res.render('me/edit/view.pug', {
+      profile: req.user,
+      book: entity,
+      action: 'Edit'
+    });
+  });
+});
+
+router.get('/editdata/:book', oauth2.required,(req, res, next) => {
+  getModel().read(req.params.book, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+      }
+    res.render('me/edit/form.pug', {
+      profile: req.user,
+      book: entity,
+      action: 'Edit'
+    });
+  });
+});
+
+router.post('/editdata/:book',  images.multer.single('image'),   oauth2.required,  (req, res, next) => {
+  const data = req.body;
+  getModel().update(req.params.book, data, (err, savedData) => {
+    if (err) {  next(err);  return; }
+    res.redirect(`${req.baseUrl}/viewdata/${savedData.id}`);
+  });
+});
+
+router.post('/editdatapost.php',  images.multer.single('image'),   oauth2.required,  (req, res, next) => {
+  const data = req.body;
+  getModel().update(req.params.book, data, (err, savedData) => {
+    if (err) {  next(err);  return; }
+    res.redirect(`${req.baseUrl}/${savedData.id}`);
+  });
+});
 
 
 
