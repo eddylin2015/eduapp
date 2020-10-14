@@ -1,0 +1,20 @@
+
+extends ./base.pug
+block content
+  form(method="POST", enctype="multipart/form-data")
+    .form-group
+      label(for="id") id
+      input.form-control(type="text", name="id", id="id", value=book.id, readonly=true) 
+    .form-group
+      label(for="type") type
+      input.form-control(type="text", name="type", id="type", value=book.type)
+    .form-group
+      label(for="item") item
+      input.form-control(type="text", name="item", id="item", value=book.item)
+    .form-group
+      label(for="detail") detail
+      textarea.form-control(type="detail", name="detail", id="detail")= book.detail
+    .form-group
+      label(for="item_date") item_date
+      input.form-control(type="text", name="item_date", id="item_date", value=book.item_date)
+    input(type="submit",value='edit')
