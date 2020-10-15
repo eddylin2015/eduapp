@@ -12,7 +12,7 @@
 // limitations under the License.
 
 'use strict';
-//const mrs_docx_dir = "C:/AppServ/WWW/ckeditorimages";
+//const MoralEdu_ImgDir = "C:/AppServ/WWW/ckeditorimages";
 const config = require('../../config');
 function sendUploadToGCS(req, res, next) {
         return next();

@@ -1,7 +1,9 @@
 
 extends ./base.pug
+
 block content
-    div= book.id
+    div
+      a(href=`/internal/me/editdata/${book.id}`)= book.id
     div= book.type
     div !{book.item}
     div !{book.detail}

@@ -16,6 +16,7 @@
 const express = require('express');
 const images = require('./images');
 var oauth2 = require('../../db/internalOauth2.js')
+var adoauth2 = require('../../db/usersAdGROUP.js')
 function getModel() {
   return require(`./model-mysql-pool`);
 }
@@ -176,7 +177,6 @@ router.get('/getcontentdata.php', (req, res, next) => {
 });
 
 router.get('/editdatali.php', (req, res, next) => {
-  console.log();
   getModel().list(100, req.query.pageToken, (err, entities, cursor) => {
     if (err) {
       next(err);
@@ -212,7 +212,15 @@ router.get('/viewdata/:book', oauth2.required, (req, res, next) => {
     });
   });
 });
-
+router.get('/deleteitem/:book', adoauth2.required, (req, res, next) => {
+  getModel().delete(req.params.book, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.end('delete item.'+JSON.stringify(entity));
+  });
+});
 function fmt_now() {
   var d = new Date();
   var dstr = d.getFullYear() + "-";
@@ -223,7 +231,6 @@ function fmt_now() {
   return dstr;
 }
 router.get('/editdata/add', oauth2.required, (req, res, next) => {
-
   let entity = { id: 0 ,item_date:fmt_now() };
   res.render('me/edit/form.pug', {
     profile: req.user,

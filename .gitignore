@@ -3,6 +3,7 @@
 routes/act/stdAttend/*
 public/math-input/*
 public/mathlive/*
+public/mathlive/*
 index0.pug
 index99.pug
 favicon.ico
@@ -20,6 +21,7 @@ sendmail.cs
 sendmail.exe
 smtp.js
 config.js
+db/usersAdminRight.js
 childproc/
 deptworklog/
 ecosystem.config.js
