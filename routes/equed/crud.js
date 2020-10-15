@@ -56,7 +56,6 @@ router.get('/ed/:book', (req, res, next) => {
     res.end(`${ins_id}`);
   });
 });
-
 router.get('/ed/:book/edit', (req, res, next) => {
   let data={"EQ":req.body.CreatAEqCode,"AN":req.body.CheckAnsCode};
   model.SaveEqu("f1003", JSON.stringify(data), (err, ins_id) => {
@@ -71,7 +70,6 @@ router.post('/ed/:book/edit', (req, res, next) => {
     res.end(`${ins_id}`);
   });
 });
-
 ///////////////////////
 router.get('/editdatali.php', (req, res, next) => {
   console.log();

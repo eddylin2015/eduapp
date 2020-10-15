@@ -8,7 +8,6 @@ const options = {
     password: config.get('MATHSMYSQL_PASSWORD'),
     database: config.get('MATHSMYSQL_DATABASE')
 };
-//const connection = mysql.createConnection(options);
 const pool = mysql.createPool(options);
 
 function read(id, cb) {
@@ -122,7 +121,13 @@ function create(data, cb) {
         });
     });
 }
-
+function _delete(id, cb) {
+    pool.getConnection(function (err, connection) {
+        if(err){cb(err);return;}
+        connection.query('DELETE FROM `item` WHERE `id` = ?  ',[ id],  cb);
+        connection.release();
+    });
+}
 module.exports = {
     createSchema: createSchema,
     listByType: listByType,
@@ -131,6 +136,7 @@ module.exports = {
     list: list,
     update: update,
     create: create,
+    delete:_delete,
 };
 
 if (module === require.main) {
