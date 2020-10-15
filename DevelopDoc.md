@@ -533,3 +533,221 @@ Range("A2").Select
 End Sub
 ```
 
+### 請使用 PowerShell 執行 Python 套件。
+```
+尋找已安裝的 PowerShell。
+以滑鼠右鍵按一下 PowerShell 的捷徑，然後以系統管理員的身分啟動 PowerShell。
+在專案外部的目錄中建立獨立的 Python 環境，並啟動該環境：
+virtualenv env
+env\Scripts\activate
+前往專案目錄並安裝依附元件：
+cd YOUR_PROJECT
+pip install -r requirements.txt
+執行應用程式：
+python main.py
+在網路瀏覽器中，輸入下列網址：
+http://localhost:8080
+
+httpd -t
+syntax ok
+httpd -k install -n apache
+net start apache
+net stop apache
+
+mysqld --initialize --console 
+  bin\mysqld --defaults-file=my.ini --initialize --console
+
+my.ini
+
+[mysqld]
+basedir=c:/appserv/mysql
+datadir=c:/appserv/mysql/data
+[mysqld-8.0]
+sql_mode=TRADITIONAL
+
+run.bat
+cd c:\code\mysql\
+start bin\mysqld --defaults-file=my.ini
+
+註意安裝細節
+mysql-8.0.11 不再有 my.ini 設定檔了. 通過mysqld --initialize --console 自動生成MYSQL的初始化配置(data檔目錄等).
+用戶名密碼: 這一步才是關鍵!!! 記得加上 --console 參數!
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqld --initialize --console
+2018-05-24T18:31:49.968235Z 0 [System] [MY-013169] [Server] 
+C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.11) 
+initializing of server in progress as process 34224
+2018-05-24T18:31:56.947634Z 5 [Note] [MY-010454] [Server] 
+A temporary password is generated for root@localhost: qk-nm1!hE/4r
+2018-05-24T18:32:00.694848Z 0 [System] [MY-013170] [Server] 
+C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.11) 
+initializing of server has completed
+使用日誌中列印的密碼: qk-nm1!hE/4r
+命令列登陸 mysql 終端:
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -uroot -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.11
+mysql>
+在執行SQL腳本之前,會讓你先改密碼:
+mysql>
+mysql> show databases;
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.
+登陸後執行下麵SQL .
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密碼';
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+Query OK, 0 rows affected (0.03 sec)
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.02 sec)
+
+mysql> use mysql;
+
+mysql> show tables;
++---------------------------+
+| Tables_in_mysql           |
++---------------------------+
+| columns_priv              |
+| component                 |
+| db                        |
+| default_roles             |
+| engine_cost               |
+| func                      |
+| general_log               |
+| global_grants             |
+| gtid_executed             |
+| help_category             |
+| help_keyword              |
+| help_relation             |
+| help_topic                |
+| innodb_index_stats        |
+| innodb_table_stats        |
+| password_history          |
+| plugin                    |
+| procs_priv                |
+| proxies_priv              |
+| role_edges                |
+| server_cost               |
+| servers                   |
+| slave_master_info         |
+| slave_relay_log_info      |
+| slave_worker_info         |
+| slow_log                  |
+| tables_priv               |
+| time_zone                 |
+| time_zone_leap_second     |
+| time_zone_name            |
+| time_zone_transition      |
+| time_zone_transition_type |
+| user                      |
++---------------------------+
+33 rows in set (0.00 sec)
+
+mysql> desc user;
++------------------------+-----------------------------------+------+-----+-----------------------+-------+
+| Field                  | Type                              | Null | Key | Default               | Extra |
++------------------------+-----------------------------------+------+-----+-----------------------+-------+
+| Host                   | char(60)                          | NO   | PRI |                       |       |
+| User                   | char(32)                          | NO   | PRI |                       |       |
+| Select_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Insert_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Update_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Delete_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Drop_priv              | enum('N','Y')                     | NO   |     | N                     |       |
+| Reload_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Shutdown_priv          | enum('N','Y')                     | NO   |     | N                     |       |
+| Process_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| File_priv              | enum('N','Y')                     | NO   |     | N                     |       |
+| Grant_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| References_priv        | enum('N','Y')                     | NO   |     | N                     |       |
+| Index_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Alter_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Show_db_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| Super_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_tmp_table_priv  | enum('N','Y')                     | NO   |     | N                     |       |
+| Lock_tables_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Execute_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| Repl_slave_priv        | enum('N','Y')                     | NO   |     | N                     |       |
+| Repl_client_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_view_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Show_view_priv         | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_routine_priv    | enum('N','Y')                     | NO   |     | N                     |       |
+| Alter_routine_priv     | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_user_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Event_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Trigger_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_tablespace_priv | enum('N','Y')                     | NO   |     | N                     |       |
+| ssl_type               | enum('','ANY','X509','SPECIFIED') | NO   |     |                       |       |
+| ssl_cipher             | blob                              | NO   |     | NULL                  |       |
+| x509_issuer            | blob                              | NO   |     | NULL                  |       |
+| x509_subject           | blob                              | NO   |     | NULL                  |       |
+| max_questions          | int(11) unsigned                  | NO   |     | 0                     |       |
+| max_updates            | int(11) unsigned                  | NO   |     | 0                     |       |
+| max_connections        | int(11) unsigned                  | NO   |     | 0                     |       |
+| max_user_connections   | int(11) unsigned                  | NO   |     | 0                     |       |
+| plugin                 | char(64)                          | NO   |     | caching_sha2_password |       |
+| authentication_string  | text                              | YES  |     | NULL                  |       |
+| password_expired       | enum('N','Y')                     | NO   |     | N                     |       |
+| password_last_changed  | timestamp                         | YES  |     | NULL                  |       |
+| password_lifetime      | smallint(5) unsigned              | YES  |     | NULL                  |       |
+| account_locked         | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_role_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Drop_role_priv         | enum('N','Y')                     | NO   |     | N                     |       |
+| Password_reuse_history | smallint(5) unsigned              | YES  |     | NULL                  |       |
+| Password_reuse_time    | smallint(5) unsigned              | YES  |     | NULL                  |       |
++------------------------+-----------------------------------+------+-----+-----------------------+-------+
+49 rows in set (0.00 sec)
+
+[mysqld]
+# 設置3306埠
+port=3306 # 設置mysql的安裝目錄
+basedir=F:\software\eclipse J2EE\mysql-8.0.11-winx64\
+# 設置mysql資料庫的資料的存放目錄
+datadir=F:\software\eclipse J2EE\mysql-8.0.11-winx64\data
+# 允許最大連接數
+max_connections=200 # 允許連接失敗的次數。這是為了防止有人從該主機試圖攻擊資料庫系統
+max_connect_errors=10 # 服務端使用的字元集預設為UTF8
+character-set-server=utf8
+# 創建新表時將使用的預設存儲引擎 default-storage-engine=INNODB
+# 默認使用“mysql_native_password”外掛程式認證
+default_authentication_plugin=mysql_native_password
+[mysql]
+# 設置mysql用戶端默認字元集 default-character-set=utf8
+[client]
+# 設置mysql用戶端連接服務端時預設使用的埠
+port=3306
+default-character-set=utf8
+注意，裡面的 basedir 是我本地的安裝目錄，datadir 是我資料庫資料檔案要存放的位置，各項配置需要根據自己的環境進行配置。
+
+3、初始化資料庫
+在MySQL安裝目錄的 bin 目錄下執行命令：
+mysqld --initialize --console
+執行完成後，會列印 root 使用者的初始預設密碼，在執行輸出結果裡面有一段：
+[Note] [MY-010454] [Server] A temporary password is generated for root@localhost: rI5rvf5x5G,E 其中root@localhost:
+後面的“rI5rvf5x5G,E”就是初始密碼（不含首位空格）。在沒有更改密碼前，需要記住這個密碼，後續登錄需要用到。
+要是你手賤，關快了，或者沒記住，那也沒事，刪掉初始化的 datadir 目錄，再執行一遍初始化命令，又會重新生成的。
+
+4、安裝服務
+在MySQL安裝目錄的bin目錄下按shift+右鍵執行“在此處打開命令列視窗”
+執行mysqld --install和net start mysql安裝並啟動mysql，如果關閉執行net stop mysql
+C:\Program Files\MySQL\bin>mysqld --install
+Service successfully installed
+C:\Program Files\MySQL\bin>net start mysql
+
+5、登錄
+在MySQL安裝目錄的bin目錄下按shift+右鍵執行“在此處打開命令列視窗”
+執行mysql -u root -p，輸入密碼。
+
+6、修改密碼
+登陸後執行下麵命令。
+ALTER USER ``'root'``@``'localhost' IDENTIFIED WITH mysql_native_password BY ``'新密碼'``;
+```
+

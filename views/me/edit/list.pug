@@ -1,6 +1,10 @@
 
 extends ./base.pug
 block content
+  a(href="/internal/me/editdata/add", class='btn btn-success btn-sm')
+    i.glyphicon.glyphicon-plus
+    span  Add stud
+
   each book in books
     div
       a(href=`/internal/me/editdata/${book.id}`)= book.id

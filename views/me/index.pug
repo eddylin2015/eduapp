@@ -290,12 +290,18 @@ html
             span.icon-bar
             span.icon-bar
           div.horizontal 
-            a.navbar-brand(href="/internal/") <br>首頁
+            a.navbar-brand(href="/internal/") 
+              span <br>首頁
+              //span(class="glyphicon") &#xe021
+              
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li
               div.horizontal 
-                a(href="#" ,onclick="mu_link('sw');") <br>輔導員專區
+                a(href="/internal/me") <br>專區
+            li
+              div.horizontal 
+                a(href="#" ,onclick="mu_link('sw');") <br>輔導員
             li
               div.horizontal 
                 a(href="#", onclick="mu_link('act');") <br>活動資訊

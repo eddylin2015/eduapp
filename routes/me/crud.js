@@ -161,19 +161,7 @@ router.post('/getcontentdata.php', (req, res, next) => {
       next(err);
       return;
     }
-    let _li = entities.detail.split('\n');
-    let _ctxt = "";
-    let flag = true;
-    for (let i = 0; i < _li.length; i++) {
-      if (flag) {
-        _ctxt += _li[i].replace(/[\r\n]/g, "<br>");
-        flag = _li[i].indexOf("<") > -1;
-      } else {
-        _ctxt += _li[i];
-      }
-    }
-    entities.detail = _ctxt;
-    res.end("<p><p>" + entities.item + "<p>" + entities.detail + "<p>" + entities.item_date);
+    res.end("<p><p>" + entities.item + "</p><p>" + entities.detail + "</p><small>" + entities.item_date+"</small>");
   });
 });
 
@@ -183,8 +171,7 @@ router.get('/getcontentdata.php', (req, res, next) => {
       next(err);
       return;
     }
-    entities.detail = entities.detail.replace(/[\r\n]/g, "<br>");
-    res.end("<p><p>" + entities.item + "<p>" + entities.detail + "<p>" + entities.item_date);
+    res.end("<p><p>" + entities.item + "</p><p>" + entities.detail + "</p><small>" + entities.item_date+"</small>");
   });
 });
 
@@ -226,8 +213,18 @@ router.get('/viewdata/:book', oauth2.required, (req, res, next) => {
   });
 });
 
+function fmt_now() {
+  var d = new Date();
+  var dstr = d.getFullYear() + "-";
+  if (d.getMonth() < 9) dstr += "0";
+  dstr += d.getMonth() + 1 + "-";
+  if (d.getDate() < 10) dstr += "0";
+  dstr += d.getDate();
+  return dstr;
+}
 router.get('/editdata/add', oauth2.required, (req, res, next) => {
-  let entity = { id: 0 };
+
+  let entity = { id: 0 ,item_date:fmt_now() };
   res.render('me/edit/form.pug', {
     profile: req.user,
     book: entity,
