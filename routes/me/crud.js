@@ -35,9 +35,11 @@ function fmt_now() {
   return dstr;
 }
 function checkuser(req) {
+  if(!req.user) return false;
   if (req.user.email == "lammou@mail.mbc.edu.mo") return true;
   if (req.user.email == "joe853.hong@mail.mbc.edu.mo") return true;
-  if (req.user.email == "cheongiekchao@mail.mbc.edu.mo") return true;
+  if (req.user.email == "leichoison@mail.mbc.edu.mo") return true;
+  if (req.user.email == "aoieongonnei@mail.mbc.edu.mo") return true;
   if (req.user.email == "fongsioman@mail.mbc.edu.mo") return true;
   return false;
 }
@@ -81,7 +83,8 @@ router.get('/', (req, res, next) => {
       {
         profile: req.user,
         itemsData: JSON.stringify(res_),
-        itemsObj: res_
+        itemsObj: res_,
+        mng:checkuser(req)
       });
   });
 
@@ -177,6 +180,7 @@ router.get('/getcontentdata.php', (req, res, next) => {
 });
 
 router.get('/editdatali.php', (req, res, next) => {
+  if(!checkuser(req)){res.end("no right!");return;}
   getModel().list(100, req.query.pageToken, (err, entities, cursor) => {
     if (err) {
       next(err);
@@ -213,6 +217,7 @@ router.get('/viewdata/:book', oauth2.required, (req, res, next) => {
   });
 });
 router.get('/deleteitem/:book', adoauth2.required, (req, res, next) => {
+  if(!checkuser(req)){res.end("no right!");return;}
   getModel().delete(req.params.book, (err, entity) => {
     if (err) {
       next(err);
@@ -240,6 +245,7 @@ router.get('/editdata/add', oauth2.required, (req, res, next) => {
 });
 
 router.post('/editdata/add', images.multer.single('image'), oauth2.required, (req, res, next) => {
+  if(!checkuser(req)){res.end("no right!");return;}
   const data = req.body;
   getModel().create(data, (err, savedData) => {
     if (err) { next(err); return; }
@@ -260,7 +266,7 @@ router.get('/editdata/:book', oauth2.required, (req, res, next) => {
     });
   });
 });
-router.post('/:book/imageUploader', images.multer.any(),   function(req, res) {
+router.post('/:book/imageUploader',  oauth2.required, images.multer.any(),   function(req, res) {
   //req.file/req.files
 res.send({
   "uploaded": 1,
@@ -269,6 +275,7 @@ res.send({
 })
 })
 router.post('/editdata/:book', images.multer.single('image'), oauth2.required, (req, res, next) => {
+  if(!checkuser(req)){res.end("no right!");return;}
   const data = req.body;
   getModel().update(req.params.book, data, (err, savedData) => {
     if (err) { next(err); return; }
