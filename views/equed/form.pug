@@ -1,69 +1,18 @@
-extends ./base.pug
+extends ./formbase.pug
 block content
   style.
-    div.container{margin:0px;}
-  script.
-    function Load(){
-      let codetxt=   ["let TE={St:'',Val:''};", 
-          'let a=Math.floor(Math.random()*10);', 
-          'let b=Math.floor(Math.random()*10);', 
-          'let c=Math.floor(Math.random()*10);', 
-          "TE.St=`${a}+${b}+${c}`;", 
-          "TE.Val=a+b+c;", 
-          ''].join('\n')
-      data:editor.setValue(codetxt);
-      /*data:editor.getValue()
-      $.post( "api/readequ",{data:editor.getValue()}, function( data ) {
-        var x = document.getElementById("myframe");
-        x.src="trianing.mlx2.jsp?ft=f1003"
-      });
-      */
-    }  
-      function showTab(x){
-        switch(x){
-          case 1:
-            document.getElementById("CODEIDE").style.display="block";
-            document.getElementById("ANSIDE").style.display="none";
-            break;            
-          case 2:
-            document.getElementById("CODEIDE").style.display="none";
-            document.getElementById("ANSIDE").style.display="block";
-            break;
-          case 3:
-            document.getElementById("CODEIDE").style.display="block";
-            document.getElementById("ANSIDE").style.display="block";
-        }
-      }
-
-    function SaveRun(){
-      var myElement = document.getElementById("container");
-      $.post("!{posturl}",
-         {CreatAEqCode:editor.getValue(),CheckAnsCode:editor_ans.getValue()}, 
-      function( data ) {
-        alert(data);
-        var x = document.getElementById("myframe");
-        x.src="edUI/!{book.id}"
-      });
-    }
-  p .
-  p .  
-  input(type="radio",name="code_name",value="EQUTAB",onclick="showTab(1);")
-  input(type="radio",name="code_name",value="ANSTAB",onclick="showTab(2);")
-  input(type="radio",name="code_name",value="ANSTAB",onclick="showTab(3);")
-  //button(onclick='Load();') Load
-  button(onclick='SaveRun();') SaveRun
-  a(href=`/internal/equed/edUI/${book.id}`, target="_blank") view
-  table
+    div.container{margin:0px;padding:0px;}
+  table(style="margin:0px;padding:0px;")
     tr
       td
-        div#CODEIDE(style="display:block;")
-          div#container(style="width: 700px; height: 600px; border: 1px solid grey")
+        div#CODEIDE(style="display:block;margin:0px;padding:0px;")
+          div#container(style="width: 700px; height: 410px; border: 1px solid grey")
       td    
-        div#ANSIDE(style="display:block;")
-          div#container_ans(style="width: 700px; height: 600px; border: 1px solid grey")
-      td  
-        div#FRMIDE
-          iframe#myframe(style=" width: 400px; height: 600px;")
+        div#ANSIDE(style="display:block;margin:0px;padding:0px;")
+          div#container_ans(style="width: 700px; height: 410px; border: 1px solid grey")
+      td    
+        div#FRMIDE(style="margin:0px;padding:0px;")
+          iframe#myframe(style=" width: 350px; height: 410px;")
   script.
       var require = { paths: { vs: 'https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs' } };
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js")
@@ -72,11 +21,13 @@ block content
   script.
       var editor = monaco.editor.create(document.getElementById('container'), {
           value: !{qiz_code}.join("\n"),
-          language: 'javascript'
+          language: 'javascript',
+          theme: "vs-dark",
       });
       var editor_ans = monaco.editor.create(document.getElementById('container_ans'), {
           value:!{ans_code}.join("\n"),
-          language: 'javascript'
+          language: 'javascript',
+          theme: "vs-dark",
       });
 
 
