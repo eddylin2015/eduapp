@@ -148,7 +148,7 @@ router.get('/editdata/:book', oauth2.required, (req, res, next) => {
     });
   });
 });
-router.post('/:book/imageUploader', images.multer.any(),   function(req, res) {
+router.post('/:book/imageUploader', oauth2.required, images.multer.any(),   function(req, res) {
   //req.file/req.files
 res.send({
   "uploaded": 1,
