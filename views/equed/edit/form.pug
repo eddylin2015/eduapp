@@ -1,20 +1,71 @@
 
 extends ./base.pug
 block content
+  script(src='/ckeditor/ckeditor.js')
   form(method="POST", enctype="multipart/form-data")
     .form-group
       label(for="id") id
       input.form-control(type="text", name="id", id="id", value=book.id, readonly=true) 
     .form-group
-      label(for="type") type
-      input.form-control(type="text", name="type", id="type", value=book.type)
+      label(for="gid") gid
+      input.form-control(type="text", name="gid", id="gid", value=book.gid)
     .form-group
-      label(for="item") item
-      input.form-control(type="text", name="item", id="item", value=book.item)
+      label(for="qtitle") qtitle
+      input.form-control(type="text", name="qtitle", id="qtitle", value=book.qtitle)
     .form-group
-      label(for="detail") detail
-      textarea.form-control(type="detail", name="detail", id="detail")= book.detail
+      label(for="qgrade") qgrade
+      input.form-control(type="text", name="qgrade", id="qgrade", value=book.qtitle)
     .form-group
-      label(for="item_date") item_date
-      input.form-control(type="text", name="item_date", id="item_date", value=book.item_date)
-    input(type="submit",value='edit')
+      label(for="qfield") qfield
+      input.form-control(type="text", name="qfield", id="qfield", value=book.qfield)
+    .form-group
+      label(for="tx") tx
+      input.form-control(type="text", name="tx", id="tx", value=book.tx)
+    .form-group
+      label(for="qtitle") atype
+      input.form-control(type="text", name="atype", id="atype", value=book.atype)
+    .form-group
+      label(for="qizcode") qizcode
+      textarea.form-control(name="qizcode", id="qizcode")= book.qizcode
+    .form-group
+      label(for="anscode") anscode
+      textarea.form-control(name="anscode", id="anscode")= book.anscode
+    .form-group
+      label(for="qnote") qnote
+      textarea.form-control(name="qnote", id="qnote")= book.qnote
+    .form-group
+      label(for="snote") snote
+      textarea.form-control(name="snote", id="snote")= book.snote            
+    .form-group
+      label(for="pflag") pflag
+      input.form-control(type="text", name="pflag", id="pflag", value=book.pflag)
+    .form-group
+      label(for="pdate") pdate
+      input.form-control(type="text", name="pdate", id="pdate", value=book.pdate)
+
+    .form-group
+      label(for="createbyid") createbyid
+      input.form-control(type="text", name="createbyid", id="createbyid", value=book.createbyid)
+    .form-group
+      label(for="createbyname") createbyname
+      input.form-control(type="text", name="createbyname", id="createbyname", value=book.createbyname)
+    .form-group
+      label(for="createdate") createdate
+      input.form-control(type="text", name="createdate", id="createdate", value=book.createdate)
+    .form-group
+      label(for="modifybyid") modifybyid
+      input.form-control(type="text", name="modifybyid", id="modifybyid", value=book.modifybyid)
+    .form-group
+      label(for="modifybyname") modifybyname
+      input.form-control(type="text", name="modifybyname", id="modifybyname", value=book.modifybyname)
+    .form-group
+      label(for="modifydate") modifydate
+      input.form-control(type="text", name="modifydate", id="modifydate", value=book.modifydate)
+
+
+    input(type="submit",value='submit')
+
+
+  script.
+    CKEDITOR.replace( 'qnote',{    filebrowserUploadUrl: "imageUploader" }  );      
+    CKEDITOR.replace( 'snote',{    filebrowserUploadUrl: "imageUploader" }  );      

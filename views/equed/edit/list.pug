@@ -1,12 +1,12 @@
 
 extends ./base.pug
 block content
+  a(href="/internal/equed/ed/add", class='btn btn-success btn-sm')
+    i.glyphicon.glyphicon-plus
+    span  Add stud
   each book in books
-    div= book.id
-    div= book.type
-    div !{book.item}
-    //div !{book.detail}
-    div= book.item_date
+    div
+      a(href=`/internal/equed/ed/${book.id}`)= book.id
 
   if !books.length
     p No work log found.

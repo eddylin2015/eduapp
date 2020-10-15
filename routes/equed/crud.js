@@ -3,12 +3,11 @@
 const express = require('express');
 //const images = require('./images');
 const dbis = "redis";//mysql
-const model = require('./model-mysql');
+const model = require('./model-mysql-pool');
 //const model = require('./model-redis');
 const images = require('./images');
 var oauth2 = require('../../db/internalOauth2.js')
 const router = express.Router();
-
 // Use the oauth middleware to automatically get the user's profile
 // information and expose login/logout URLs to templates.
 
@@ -31,45 +30,101 @@ router.get('/',
     res.render('equed/index.pug', {
     });
   });
-router.get('/ed/',
+  router.get('/ed/',
   oauth2.required,
   (req, res, next) => {
     res.render('equed/index.pug', {
     });
 });
+
+router.get('/list',
+  oauth2.required,
+  (req, res, next) => {
+    console.log();
+    model.list(100, req.query.pageToken, (err, entities, cursor) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('equed/edit/list.pug', {
+      profile: req.user,
+      books: entities,
+      nextPageToken: cursor
+    });
+  });
+});  
 router.get('/ed/add', (req, res, next) => {
+  res.render('equed/edit/form.pug', {
+    profile: req.user,
+    book:{id:0,tx:1,pflag:0}
+  });
+});
+router.post('/ed/add', oauth2.required, images.multer.single('image'),  (req, res, next) => {
+    const data = req.body;
+    model.create(data, (err, savedData) => {
+      if (err) { next(err); return; }
+      res.redirect(`${req.baseUrl}/ed/${savedData.id}`);
+    });
+});
+ 
+router.get('/ed/:book', (req, res, next) => {
+  model.read(req.params.book, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('equed/edit/view.pug', {
+      profile: req.user,
+      book: entity,
+      action: 'Edit'
+    });
+  });
+});
+router.get('/ed/:book/edit', (req, res, next) => {
+  model.read(req.params.book, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('equed/edit/form.pug', {
+      profile: req.user,
+      book: entity,
+      action: 'Edit'
+    });
+  });
+});
+router.post('/ed/:book/edit', (req, res, next) => {
+  const data = req.body;
+  model.update(req.params.book, data, (err, savedData) => {
+    if (err) { next(err); return; }
+    res.redirect(`${req.baseUrl}/ed/${savedData.id}`);
+  });
+});
+
+router.post('/ed/:book/imageUploader', oauth2.required, images.multer.any(),   function(req, res) {
+  //req.file/req.files
+res.send({
+  "uploaded": 1,
+    "fileName": "IMAGE.PNG",
+    "url": "/ckeditorimages/"+req.files[0].filename
+})
+});
+
+router.get('/edCode/:book', (req, res, next) => {
   res.render('equed/form.pug', {
     profile: req.user,
   });
 });
-router.post('/ed/add', (req, res, next) => {
+
+router.post('/edCode/:book', (req, res, next) => {
   let data={"EQ":req.body.CreatAEqCode,"AN":req.body.CheckAnsCode};
-  model.create("f1003", JSON.stringify(data), (err, ins_id) => {
+    model.create("f1003", JSON.stringify(data), (err, ins_id) => {
     if (err) { console.log(err); return res.end("error"); }
     res.end(`${ins_id}`);
   });
 });
-router.get('/ed/:book', (req, res, next) => {
-  let data={"EQ":req.body.CreatAEqCode,"AN":req.body.CheckAnsCode};
-  model.SaveEqu("f1003", JSON.stringify(data), (err, ins_id) => {
-    if (err) { console.log(err); return res.end("error"); }
-    res.end(`${ins_id}`);
-  });
-});
-router.get('/ed/:book/edit', (req, res, next) => {
-  let data={"EQ":req.body.CreatAEqCode,"AN":req.body.CheckAnsCode};
-  model.SaveEqu("f1003", JSON.stringify(data), (err, ins_id) => {
-    if (err) { console.log(err); return res.end("error"); }
-    res.end(`${ins_id}`);
-  });
-});
-router.post('/ed/:book/edit', (req, res, next) => {
-  let data={"EQ":req.body.CreatAEqCode,"AN":req.body.CheckAnsCode};
-  model.SaveEqu("f1003", JSON.stringify(data), (err, ins_id) => {
-    if (err) { console.log(err); return res.end("error"); }
-    res.end(`${ins_id}`);
-  });
-});
+
+
 ///////////////////////
 router.get('/editdatali.php', (req, res, next) => {
   console.log();
@@ -148,21 +203,7 @@ router.get('/editdata/:book', oauth2.required, (req, res, next) => {
     });
   });
 });
-router.post('/:book/imageUploader', oauth2.required, images.multer.any(),   function(req, res) {
-  //req.file/req.files
-res.send({
-  "uploaded": 1,
-    "fileName": "IMAGE.PNG",
-    "url": "/ckeditorimages/"+req.files[0].filename
-})
-})
-router.post('/editdata/:book', images.multer.single('image'), oauth2.required, (req, res, next) => {
-  const data = req.body;
-  getModel().update(req.params.book, data, (err, savedData) => {
-    if (err) { next(err); return; }
-    res.redirect(`${req.baseUrl}/viewdata/${savedData.id}`);
-  });
-});
+
 //////////////////////////
 ////////////////////////
 router.get('/trianing.mlx2.jsp', (req, res, next) => {

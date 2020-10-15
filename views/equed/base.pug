@@ -46,24 +46,9 @@ html(lang="zh")
               a(href="/internal") 
                 span 返回主頁
             li
-              a(href="/internal/TMS") 
-                span 數學
-            li
-              a(href="/internal/TMS/tmsMyReport") 
-                span 我的解題
-            li
-              a(href="/internal/TMS/QizEx") 
-                span 例題
+              a(href="/internal/equed/list") 
+                span list
 
-            if(profile)    
-              -let flag=profile.email=="sousoiteng@mail.mbc.edu.mo"||profile.email=="lammou@mail.mbc.edu.mo" ||profile.email=="laitakseng@mail.mbc.edu.mo"    
-              if(flag)
-                li
-                  a(href="/internal/TMS/tmsReportQuery") 
-                    span Query
-                li
-                  a(href="/internal/maths/tmsReportQuery") 
-                    span mbc6thQuery
           ul.navbar-text.navbar-right
             // [START profile]
             if profile

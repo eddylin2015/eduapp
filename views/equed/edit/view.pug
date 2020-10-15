@@ -1,8 +1,26 @@
 
 extends ./base.pug
 block content
+    div
+      a(href=`/internal/equed/ed/${book.id}/edit`)= book.id
+
     div= book.id
-    div= book.type
-    div !{book.item}
-    div !{book.detail}
-    div= book.item_date
+    div= book.gid
+    div= book.qtitle
+    div= book.qgrade
+    div= book.qfield
+    div= book.tx
+    div= book.acnt
+    div= book.atype
+    div= book.qizcode
+    div= book.anscode
+    div !{book.qnote}
+    div !{book.snote}
+    div= book.pflag
+    div= book.pdate
+    div= book.createbyid
+    div= book.createbyname
+    div= book.createdate
+    div= book.modifybyid
+    div= book.modifybyname
+    div= book.modifydate

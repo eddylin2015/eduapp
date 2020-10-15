@@ -10,10 +10,32 @@ const options = {
 };
 const pool = mysql.createPool(options);
 
+//////////////////////////
+function list(limit, token, cb) {
+    token = token ? parseInt(token, 10) : 0;
+    console.log(limit, token);
+    pool.getConnection(function (err, connection) {
+        if (err) { cb(err); return; }
+        // Use the connection
+        connection.query(
+            'SELECT * FROM `qiztx` order by id DESC LIMIT ? OFFSET ?', [limit, token],
+            (err, results) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                const hasMore = results.length === limit ? token + results.length : false;
+                cb(null, results, hasMore);
+                connection.release();
+            }
+        );
+    });
+}
+
 function read(id, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
-            'SELECT * FROM `item` WHERE `id` = ? ', id, (err, results) => {
+            'SELECT * FROM `qiztx` WHERE `id` = ? ', id, (err, results) => {
                 if (!err && !results.length) {
                     err = {
                         code: 404,
@@ -29,76 +51,12 @@ function read(id, cb) {
             });
     });
 }
-
-function listForFont(pdate, limit, token, cb) {
-    //token = token ? parseInt(token, 100) : 0;
-    limit = 100;
-    token = 0;
-    pool.getConnection(function (err, connection) {
-        connection.query(
-            "SELECT id,type,item FROM `item` WHERE `item_date` >= ? or `type`='slideimg'  order by id desc LIMIT ? OFFSET ?;",
-            [pdate, limit, token],
-            (err, results) => {
-                if (err) {
-                    cb(err);
-                    return;
-                }
-                //const hasMore = results.length === limit ? token + results.length : false;
-                const hasMore = true;
-                cb(null, results, hasMore);
-                connection.release();
-            });
-    });
-}
-
-function listByType(metype, limit, token, cb) {
-    //token = token ? parseInt(token, 10) : 0;
-    limit = 100;
-    token = 0;
-    pool.getConnection(function (err, connection) {
-        console.log(err);
-        connection.query(
-            'SELECT * FROM `item` WHERE `type` in (?)  order by id desc LIMIT ? OFFSET ?',
-            [metype, limit, token],
-            (err, results) => {
-                if (err) {
-                    cb(err);
-                    return;
-                }
-                //const hasMore = results.length === limit ? token + results.length : false;
-                const hasMore = false;
-                cb(null, results, hasMore);
-                connection.release();
-            });
-    });
-}
-
-function list(limit, token, cb) {
-    token = token ? parseInt(token, 10) : 0;
-    console.log(limit, token);
-    pool.getConnection(function (err, connection) {
-        if (err) { cb(err); return; }
-        // Use the connection
-        connection.query(
-            'SELECT * FROM `item` order by id DESC LIMIT ? OFFSET ?', [limit, token],
-            (err, results) => {
-                if (err) {
-                    cb(err);
-                    return;
-                }
-                const hasMore = results.length === limit ? token + results.length : false;
-                cb(null, results, hasMore);
-                connection.release();
-            }
-        );
-    });
-}
-
 function update(id, data, cb) {
+    console.log(id,data)
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
         connection.query(
-            'UPDATE `item` SET ? WHERE `id` = ?  ', [data, id], (err) => {
+            'UPDATE `qiztx` SET ? WHERE `id` = ?  ', [data, id], (err) => {
                 if (err) {
                     cb(err);
                     return;
@@ -111,7 +69,7 @@ function update(id, data, cb) {
 function create(data, cb) {
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
-        connection.query('INSERT INTO `item` SET ?', data, (err, res) => {
+        connection.query('INSERT INTO `qiztx` SET ?', data, (err, res) => {
             if (err) {
                 cb(err);
                 return;
@@ -124,11 +82,11 @@ function create(data, cb) {
 function _delete(id, cb) {
     pool.getConnection(function (err, connection) {
         if(err){cb(err);return;}
-        connection.query('DELETE FROM `item` WHERE `id` = ?  ',[ id],  cb);
+        connection.query('DELETE FROM `qiztx` WHERE `id` = ?  ',[ id],  cb);
         connection.release();
     });
 }
-
+////////////////////////
 function AddTMSQF(fn, md, jsondata, username, cb) {
     let data = { id: 0, fn: fn, md: md, jsondata: jsondata, username: username };
     console.log(data);
@@ -160,8 +118,6 @@ function TMSQFlistbydate(sd, ed, cb) {
 }
 module.exports = {
     createSchema: createSchema,
-    listByType: listByType,
-    listForFont: listForFont,
     read: read,
     list: list,
     update: update,
@@ -169,7 +125,6 @@ module.exports = {
     delete:_delete,
     AddTMSQF:AddTMSQF,
     TMSQFlistbydate:TMSQFlistbydate,
-
 };
 
 if (module === require.main) {
