@@ -9,6 +9,8 @@ CREATE TABLE qiz
 `anscode` text CHARACTER SET utf8mb4,
 `qnote` text CHARACTER SET utf8mb4,
 `snote` text CHARACTER SET utf8mb4,
+`pflag` int(1) CHARACTER SET utf8mb4 NOT NULL,
+`pdate` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
 `createbyid`  varchar(255) CHARACTER SET utf8mb4 NOT NULL,
 `createbyname`  varchar(255) CHARACTER SET utf8mb4 NOT NULL,
 `createdate`  varchar(255) CHARACTER SET utf8mb4 NOT NULL,
