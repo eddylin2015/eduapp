@@ -7,6 +7,7 @@ const model = require('./model-mysql-pool');
 //const model = require('./model-redis');
 const images = require('./images');
 var oauth2 = require('../../db/internalOauth2.js')
+var oauthAG = require('../../db/usersAdGROUP.js')
 const router = express.Router();
 // Use the oauth middleware to automatically get the user's profile
 // information and expose login/logout URLs to templates.
@@ -53,13 +54,39 @@ router.get('/list',
     });
   });
 });  
-router.get('/ed/add', (req, res, next) => {
+function fmt_now() {
+  var d = new Date();
+  var dstr = d.getFullYear() + "-";
+  if (d.getMonth() < 9) dstr += "0";
+  dstr += d.getMonth() + 1 + "-";
+  if (d.getDate() < 10) dstr += "0";
+  dstr += d.getDate();
+  return dstr;
+}
+
+router.get('/ed/add',oauthAG.MahtsRequired, (req, res, next) => {
+  let qizcode= ["let TE={St:'',Val:'',ACnt:1, ATyp:'num'};//num,txt,mathinput",    
+  'let a=Math.floor(Math.random()*10);', 
+  'let b=Math.floor(Math.random()*10);', 
+  'TE.St=`${a} \\\\times ${b}`;',
+  'TE.Val=a*b;',
+  ''].join('\n');
+  let anscode=[ "//IAns1,IAns,TE", "if(TE.ACnt==1 && TE.ATyp=='num') return IAns1==TE.Val;"].join('\n')
   res.render('equed/edit/form.pug', {
     profile: req.user,
-    book:{id:0,tx:1,pflag:0}
-  });
+    book:{
+      id:0,tx:1,
+      atype:"['txt','txt','txt','txt']",
+      qizcode:qizcode,
+      anscode:anscode,
+      pflag:0,
+      createbyid:req.user.username,
+      createbyname:req.user.displayName,
+      createdate:fmt_now()
+    }
+ });
 });
-router.post('/ed/add', oauth2.required, images.multer.single('image'),  (req, res, next) => {
+router.post('/ed/add', oauthAG.MahtsRequired, images.multer.single('image'),  (req, res, next) => {
     const data = req.body;
     model.create(data, (err, savedData) => {
       if (err) { next(err); return; }
@@ -67,7 +94,7 @@ router.post('/ed/add', oauth2.required, images.multer.single('image'),  (req, re
     });
 });
  
-router.get('/ed/:book', (req, res, next) => {
+router.get('/ed/:book', oauthAG.MahtsRequired,(req, res, next) => {
   model.read(req.params.book, (err, entity) => {
     if (err) {
       next(err);
@@ -80,12 +107,15 @@ router.get('/ed/:book', (req, res, next) => {
     });
   });
 });
-router.get('/ed/:book/edit', (req, res, next) => {
+router.get('/ed/:book/edit',oauthAG.MahtsRequired, (req, res, next) => {
   model.read(req.params.book, (err, entity) => {
     if (err) {
       next(err);
       return;
     }
+    entity.modifybyid=req.user.username;
+    entity.modifybyname=req.user.displayName;
+    entity.modifydate=fmt_now();
     res.render('equed/edit/form.pug', {
       profile: req.user,
       book: entity,
@@ -93,7 +123,7 @@ router.get('/ed/:book/edit', (req, res, next) => {
     });
   });
 });
-router.post('/ed/:book/edit', (req, res, next) => {
+router.post('/ed/:book/edit',oauthAG.MahtsRequired, images.multer.any(),  (req, res, next) => {
   const data = req.body;
   model.update(req.params.book, data, (err, savedData) => {
     if (err) { next(err); return; }
@@ -101,7 +131,7 @@ router.post('/ed/:book/edit', (req, res, next) => {
   });
 });
 
-router.post('/ed/:book/imageUploader', oauth2.required, images.multer.any(),   function(req, res) {
+router.post('/ed/:book/imageUploader', oauthAG.MahtsRequired, images.multer.any(),   function(req, res) {
   //req.file/req.files
 res.send({
   "uploaded": 1,
@@ -110,101 +140,71 @@ res.send({
 })
 });
 
-router.get('/edCode/:book', (req, res, next) => {
-  res.render('equed/form.pug', {
-    profile: req.user,
+router.get('/edCode/:book', oauthAG.MahtsRequired,(req, res, next) => {
+  model.read(req.params.book, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    entity.modifybyid=req.user.username;
+    entity.modifybyname=req.user.displayName;
+    entity.modifydate=fmt_now();    
+    
+    res.render('equed/form.pug', {
+      profile: req.user,
+      book: entity,
+      qiz_code:JSON.stringify(entity.qizcode.split('\n')),
+      ans_code:JSON.stringify(entity.anscode.split('\n')),
+      action: 'Edit',
+      posturl:req.baseUrl+req.url,
+    });
   });
+
 });
 
-router.post('/edCode/:book', (req, res, next) => {
-  let data={"EQ":req.body.CreatAEqCode,"AN":req.body.CheckAnsCode};
+router.post('/edCode/:book',oauthAG.MahtsRequired, (req, res, next) => {
+  let data={
+    qizcode:req.body.CreatAEqCode,
+    anscode:req.body.CheckAnsCode,
+    modifybyid:req.user.username,
+    modifybyname:req.user.displayName,
+    modifydate:fmt_now()
+   };
+   model.update(req.params.book, data, (err, savedData) => {
+    if (err) { next(err); return; }
+    res.end(`${savedData.id}`);
+  });
+  /*
     model.create("f1003", JSON.stringify(data), (err, ins_id) => {
     if (err) { console.log(err); return res.end("error"); }
     res.end(`${ins_id}`);
   });
+  */
 });
-
+router.get('/edUI/:book', (req, res, next) => {
+  let ft = req.params.book;
+  let MathTitle = ""
+  model.read(req.params.book, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('equed/TmsUiTrain.mlx3.pug', {
+      profile: req.user,
+      formulajs: entity.qid,
+      ft: entity.qid,
+      MathTitle: entity.qtitle,
+      CreatAEqCode:entity.qizcode,
+      CheckAnsCode:entity.anscode,
+      profile: req.user,
+      posturl:req.baseUrl+req.url,
+      book: entity,
+    });
+  });
+ 
+});
 
 ///////////////////////
-router.get('/editdatali.php', (req, res, next) => {
-  console.log();
-  getModel().list(100, req.query.pageToken, (err, entities, cursor) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    res.render('me/edit/list.pug', {
-      profile: req.user,
-      books: entities,
-      nextPageToken: cursor
-    });
-  });
-});
-router.get('/readdata.php/:book', (req, res, next) => {
-  getModel().read(req.query.t, (err, entities, cursor) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    entities.detail = entities.detail.replace(/[\r\n]/g, "<br>");
-    res.end("<p><p>" + entities.item + "<p>" + entities.detail + "<p>" + entities.item_date);
-  });
-});
-router.get('/viewdata/:book', oauth2.required, (req, res, next) => {
-  getModel().read(req.params.book, (err, entity) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    res.render('me/edit/view.pug', {
-      profile: req.user,
-      book: entity,
-      action: 'Edit'
-    });
-  });
-});
-
-function fmt_now() {
-  var d = new Date();
-  var dstr = d.getFullYear() + "-";
-  if (d.getMonth() < 9) dstr += "0";
-  dstr += d.getMonth() + 1 + "-";
-  if (d.getDate() < 10) dstr += "0";
-  dstr += d.getDate();
-  return dstr;
-}
-router.get('/editdata/add', oauth2.required, (req, res, next) => {
-  let entity = { id: 0 ,item_date:fmt_now() };
-  res.render('me/edit/form.pug', {
-    profile: req.user,
-    book: entity,
-    action: 'Edit'
-  });
-});
-
-router.post('/editdata/add', images.multer.single('image'), oauth2.required, (req, res, next) => {
-  const data = req.body;
-  getModel().create(data, (err, savedData) => {
-    if (err) { next(err); return; }
-    res.redirect(`${req.baseUrl}/viewdata/${savedData.id}`);
-  });
-});
-
-router.get('/editdata/:book', oauth2.required, (req, res, next) => {
-  getModel().read(req.params.book, (err, entity) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    res.render('me/edit/form.pug', {
-      profile: req.user,
-      book: entity,
-      action: 'Edit'
-    });
-  });
-});
-
-//////////////////////////
 ////////////////////////
 router.get('/trianing.mlx2.jsp', (req, res, next) => {
   let ft = req.query.ft;

@@ -37,21 +37,22 @@ block content
 
     function SaveRun(){
       var myElement = document.getElementById("container");
-      $.post( "saveequ",{CreatAEqCode:editor.getValue(),CheckAnsCode:editor_ans.getValue()}, 
+      $.post("!{posturl}",
+         {CreatAEqCode:editor.getValue(),CheckAnsCode:editor_ans.getValue()}, 
       function( data ) {
         alert(data);
         var x = document.getElementById("myframe");
-        x.src="trianing.mlx2.jsp?ft=f1003"
+        x.src="edUI/!{book.id}"
       });
     }
   p .
   p .  
-  <input type=radio name=code_name value=EQUTAB onclick="showTab(1);">
-  <input type=radio name=code_name value=ANSTAB onclick="showTab(2);">
-  <input type=radio name=code_name value=ANSTAB onclick="showTab(3);">
-  <button onclick='Load();'>Load</button>
-  <button onclick='SaveRun();'>SaveRun</button>
-  <a href="/internal/equed/trianing.mlx2.jsp?ft=f1003" target="_blank">view</a>
+  input(type="radio",name="code_name",value="EQUTAB",onclick="showTab(1);")
+  input(type="radio",name="code_name",value="ANSTAB",onclick="showTab(2);")
+  input(type="radio",name="code_name",value="ANSTAB",onclick="showTab(3);")
+  //button(onclick='Load();') Load
+  button(onclick='SaveRun();') SaveRun
+  a(href=`/internal/equed/edUI/${book.id}`, target="_blank") view
   table
     tr
       td
@@ -70,18 +71,11 @@ block content
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.js")
   script.
       var editor = monaco.editor.create(document.getElementById('container'), {
-          value: ["let TE={St:'',Val:'',ACnt:1, ATyp:'num'};//num,txt,mathinput",    
-          'let a=Math.floor(Math.random()*10);', 
-          'let b=Math.floor(Math.random()*10);', 
-          'TE.St=`${a} \\\\times ${b}`;',
-          'TE.Val=a*b;',
-          ''].join('\n'),
+          value: !{qiz_code}.join("\n"),
           language: 'javascript'
       });
       var editor_ans = monaco.editor.create(document.getElementById('container_ans'), {
-          value:[ "//IAns1,IAns,TE",//"function CheckAns(IAns1,IAns2,TE){",
-          "if(TE.ACnt==1 && TE.ATyp=='num') return IAns1==TE.Val;",
-          ''].join('\n'),
+          value:!{ans_code}.join("\n"),
           language: 'javascript'
       });
 

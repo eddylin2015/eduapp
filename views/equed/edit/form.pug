@@ -3,27 +3,46 @@ extends ./base.pug
 block content
   script(src='/ckeditor/ckeditor.js')
   form(method="POST", enctype="multipart/form-data")
-    .form-group
-      label(for="id") id
-      input.form-control(type="text", name="id", id="id", value=book.id, readonly=true) 
-    .form-group
-      label(for="gid") gid
-      input.form-control(type="text", name="gid", id="gid", value=book.gid)
+    table
+      tr
+        td
+          .form-group
+            label(for="id") id
+            input.form-control(type="text", name="id", id="id", value=book.id, readonly=true) 
+        td    
+          .form-group
+            label(for="gid") gid
+            input.form-control(type="text", name="gid", id="gid", value=book.gid)
     .form-group
       label(for="qtitle") qtitle
       input.form-control(type="text", name="qtitle", id="qtitle", value=book.qtitle)
-    .form-group
-      label(for="qgrade") qgrade
-      input.form-control(type="text", name="qgrade", id="qgrade", value=book.qtitle)
-    .form-group
-      label(for="qfield") qfield
-      input.form-control(type="text", name="qfield", id="qfield", value=book.qfield)
-    .form-group
-      label(for="tx") tx
-      input.form-control(type="text", name="tx", id="tx", value=book.tx)
-    .form-group
-      label(for="qtitle") atype
-      input.form-control(type="text", name="atype", id="atype", value=book.atype)
+
+    table  
+      tr
+        td
+          .form-group
+            label(for="qgrade") qgrade
+            -let typeGrade=["空","小三","小四","小五","小六","中一","中二","中三","高一","高二","高三"]
+            select.form-control(type="text", name="qgrade", id="qgrade", value=book.qgrade)
+              each t_index in [0,1,2,3,4,5,6,7,8,9,10]
+                option(value=t_index,selected= typeGrade[t_index]==book.qgrade?true:false)= typeGrade[t_index]
+
+        td
+          .form-group
+            label(for="qfield") qfield
+            -let typeField=["空","數學"]
+            select.form-control(type="text", name="qfield", id="qfield", value=book.qfield)
+              each t_index in [0,1]
+                option(value=t_index,selected= typeField[t_index]==book.qfield?true:false)= typeField[t_index]
+
+        td    
+          .form-group
+            label(for="tx") tx
+            input.form-control(type="text", name="tx", id="tx", value=book.tx)
+        td    
+          .form-group
+            label(for="atype") atype
+            input.form-control(type="text", name="atype", id="atype", value=book.atype)
     .form-group
       label(for="qizcode") qizcode
       textarea.form-control(name="qizcode", id="qizcode")= book.qizcode
@@ -36,29 +55,37 @@ block content
     .form-group
       label(for="snote") snote
       textarea.form-control(name="snote", id="snote")= book.snote            
-    .form-group
-      label(for="pflag") pflag
-      input.form-control(type="text", name="pflag", id="pflag", value=book.pflag)
-    .form-group
-      label(for="pdate") pdate
-      input.form-control(type="text", name="pdate", id="pdate", value=book.pdate)
+    table
+      tr
+        td  
+          .form-group
+            label(for="pflag") pflag
+            -let typeN=["準備中..","已發佈"]
+            select.form-control(type="text", name="pflag", id="pflag", value=book.pflag)
+              each t_index in [0,1]
+                option(value=t_index,selected= t_index==book.pflag?true:false)= typeN[t_index]
 
-    .form-group
+        td
+          .form-group
+            label(for="pdate") pdate
+            input.form-control(type="text", name="pdate", id="pdate", value=book.pdate)
+
+    .form-group.hidden
       label(for="createbyid") createbyid
       input.form-control(type="text", name="createbyid", id="createbyid", value=book.createbyid)
-    .form-group
+    .form-group.hidden
       label(for="createbyname") createbyname
       input.form-control(type="text", name="createbyname", id="createbyname", value=book.createbyname)
-    .form-group
+    .form-group.hidden
       label(for="createdate") createdate
       input.form-control(type="text", name="createdate", id="createdate", value=book.createdate)
-    .form-group
+    .form-group.hidden
       label(for="modifybyid") modifybyid
       input.form-control(type="text", name="modifybyid", id="modifybyid", value=book.modifybyid)
-    .form-group
+    .form-group.hidden
       label(for="modifybyname") modifybyname
       input.form-control(type="text", name="modifybyname", id="modifybyname", value=book.modifybyname)
-    .form-group
+    .form-group.hidden
       label(for="modifydate") modifydate
       input.form-control(type="text", name="modifydate", id="modifydate", value=book.modifydate)
 

@@ -23,3 +23,16 @@ CREATE TABLE qiztx
  PRIMARY KEY (`id`),
  UNIQUE KEY `gid_UNIQUE` (`gid`)
 )DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `maths`.`reltbl` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `fn` VARCHAR(128) NULL,
+    `md` VARCHAR(14) NULL,
+    `jsondata` text collate utf8mb4_unicode_ci default NULL,
+    `username` VARCHAR(128) NULL,
+    `studref` VARCHAR(8) NULL,
+    `classno` VARCHAR(4) NULL,
+    `seat` VARCHAR(2) NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `fn` (`fn`)
+    );

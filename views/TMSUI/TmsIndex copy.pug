@@ -1,0 +1,191 @@
+
+extends ./base.pug
+block content
+  mixin accor_li(link,id,itemName,ico,btnid)
+    tr
+      td
+        a(href=link,id=btnid) 
+          h4= id.toUpperCase()
+      td
+        button(style="border:0;border-radius:50%",onclick=`showClassTag('${id}info',null,'id');`) ?
+      td(width="90%")    
+        a(href=link) 
+          h4= itemName.toUpperCase()
+    tr          
+      td(colspan=3)
+        case id
+          when "f3001"
+            div#f3001info(style="display:none;")
+              h4 \(ax^2+bx+c=0\) 即( mx+p)(nx+q)=0的解一元二次方程式
+              div 題型1：
+              div 1. \(x^2 –5 x – 6 =0\)	 作答: 6 ，-1
+              div 2. \(x^2 – 2x – 15=0\)	 作答: 5，-3  
+              div 題型2：
+              div 1. \(x^2 -6x – 55=0 \)	 作答: 11，-5 
+              div 2. \(x^2 + 23x+132=0 \)	 作答: -11，-12 
+              div 題型3：
+              div 1. \(6x^2 + x – 12=0 \)	 作答: -3/2, 4/3 註: -a/b 表示分數
+              div 2. \(3x^2 -7x –6=0 \)  作答: -2/3 , 3
+              div 題型4：
+              div 1. \(-6x^2 + 5x +6=0 \) 作答: 3/2 , -2/3
+              div 2. \(-3x^2 –10x –8=0 \) 作答: -4/3, -2
+          when "f1003"
+            div(style="display:none;")#f1003info
+              h4 整式的加減法練習
+              div 題型1：\(( mx+p)+(nx+q)\) 作答: ax + b
+              div 題型2：\(( mx^2+px)+(nx^2+qx)\) 作答: ax^2 + bx 註: x^2 表示x的2次方,即 \(x^2\)
+              h4 例題
+              div 1. \(x+x+x \)       作答: 3x
+              div 2. \((x+7)-(x-9)\)	作答: 16 ，
+              div 3. \(2x^2 -5x-x^2+12x\) 	作答: x^2 + 7x  
+              div 4. \((x^2 +11x)+(3x^2+3x)\)	作答: 4x^2 + 14x   ，       
+          when "f2003"
+            div(style="display:none;")#f2003info 
+              div 題型1：提公因式      　　
+              div 1.\(30x^6y^2-27x^3y^7+6x^5\) 作答: 3x^(10x^3y^2-9y^7+2x^2)
+              div 2.\(-72x^2y^3+30x^3y^2\) 作答: 6x^2y^2(-12y+5x)
+              div 題型2：併項法
+              div 1.\(-15xz+10xw-12yz+8yw\) 作答: (5x+4y)(-3z+2w) 或 (4y+5x)(2w-3z) ,...
+              div 2.\(30ac-24ad-20bc+16bd\) 作答: (3a-2b)(10c-8d) 或 (3a-2b)(-8d+10c),...
+              div 題型3：十字相乘 
+              div 1.\( x^2+13x+22\) 作答: (x+2)(x+11)
+              div 2. \((x+y)2+5(x+y)-24\) 作答:(x+y-3)(x+y+8)
+              div 題型4
+              div 1. \(8x^2+34x+21\) 作答: (2x+7)(4x+3),(2x+7)(4x+3) 
+              div 2. \(5(x+y)^2-64(x+y)-13\) 作答: ((x+y)-13)(5(x+y)+1),(x+y-13)(5x+5y+1),(2x+7)(4x+3),(5x+5y+1)(x+y-13)
+
+          when "f20031"         　　
+            div(style="display:none;")#f20031info 
+              div 題型5
+              div 1. \(12x^2-21xy+9y^2\)  作答:3(4x-3y)(x-y)
+              div 2. \(-2(x+y)^2-8a(x+y)+10a^2\) 作答:2((x+y)+5a)(-(x+y)+a),2(x+y+5a)(-x-y+a),2(-x-y+a)(x+y+5a)
+              div 題型6：運用乘法公式
+              div 1. \(36x^2-9y^2\) 作答:9(2x-y)(2x+y),9(2x+y)(2x-y)
+              div 2. \((x+y)^2-49\) 作答:(x+y+7)(x+y-7),(x+y-7)(x+y+7),(x+y+7)(x+y-7)
+              div 題型7：
+              div 1. \(64x^2+48xy+9y^2\) 作答:(8x+3y)^2
+              div 2. \((x+y)^4-2(x+y)^2z^2+z^4\) 作答:((x+y)^2-z^2)^2, (x+y+z)^2(x+y-z)^2
+
+          default
+            div(id=`${id}info`,style="display:none;")    　　    
+              h4= itemName
+                   
+  script(src='/javascripts/cool/grid_export.js')
+  script(src='/javascripts/cool/webtoolkit.aim.js')
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript"  async src="/MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>  
+  style.
+    div.container{ margin:0px; }
+  p .
+  P .
+  -var p0data=[],f0data=[],f1data=[ ],f2data=[ ],f3data=[ ];
+  -p0data.push({id:'p2',name:'加減'});
+  -p0data.push({id:'p5',name:'方程式'});
+  -f0data.push({id:'f1',name:'一元一次方程'});
+  -f0data.push({id:'f2',name:'有理數運算'});
+  -f0data.push({id:'f201',name:'十字相乘法'});
+  -f0data.push({id:'f202',name:'一元二次方程'});
+  -f1data.push({id:'f1001',name:'有理數的運算 tx={1,2}'});
+  -f1data.push({id:'f1002',name:'整數指數冪的運算 tx={1}'});
+  -f1data.push({id:'f1003',name:'整式的加減法 tx={1,2}'});
+  -f1data.push({id:'f1004',name:'一元一次方程'});
+  -f1data.push({id:'f1005',name:'解二元一次方程組'});
+  -f1data.push({id:'f1006',name:'一元一次不等式'});
+  -f1data.push({id:'f1007',name:'一元一次不等式組'});
+  -f1data.push({id:'f1008',name:'整式的乘法'});
+  -f2data.push({id:'f2001',name:'根式的運算'});
+  -f2data.push({id:'f2002',name:'整式的乘法公式'});
+  -f2data.push({id:'f2003',name:'因式分解 tx={1,2,3,4}'});
+  -f2data.push({id:'f20031',name:'因式分解 tx={1,2,3}'});
+  -f2data.push({id:'f2004',name:'分式的乘除'});
+  -f2data.push({id:'f2005',name:'分式的加減'});
+  -f2data.push({id:'f2006',name:'分式方程'});
+  -f2data.push({id:'f2007',name:'一次函數圖像的性質'});
+  -f3data.push({id:'f3001',name:'一元二次方程式 tx={1,2,3,4}'});
+  -f3data.push({id:'f3002',name:'解可化為一元二次方程的分式方程'});
+  -f3data.push({id:'f3003',name:'解二元二次方程組'});
+  -f3data.push({id:'f3004',name:'二次函數圖像的性質'});
+  -f3data.push({id:'f3005',name:'解直角三角形'}  );
+  div(width="100%")
+    h3
+      span 數學練習
+    table(width="100%")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
+    h3
+      span 小學
+    table(width="100%")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=p2",'p2',"加減","math-formula.png","btnSTUDFORM")
+      +accor_li("/internal/TMS/trianing.o.jsp?ft=p5",'p5',"方程式","math-formula.png","btnSTUDFORM")
+    h3
+      span 中一
+    table(width="100%")
+      each sub in f1data
+        +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+
+    h3
+      span 中二
+    table(width="100%")
+      each sub in f2data
+        +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+    h3(width="100%")
+      span 中三
+    table(width="100%")  
+      each sub in f3data
+        +accor_li(`/internal/TMS/trianing.o.jsp?ft=${sub.id}`,`${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+    h3(width="100%")
+      span 中三(實驗版方程式編輯)
+    table  
+      each sub in f3data
+        +accor_li(`/internal/TMS/trianing.mlx2.jsp?ft=${sub.id}`,`X${sub.id}`,`${sub.name}`,"math-formula.png","btnSTUDFORM")
+    .col-lg-7
+  div(title="Info Dialog",style="display:none")#ClassSelectorDialog
+    form(action="#")#ClassSelectorDialogForm
+      table
+        tr
+          td 起始日期
+          td
+            input(type="text", name="sDate", value=`${sDate}`)#sDate
+        tr
+          td 結束日期
+          td
+            input(type="text", name="eDate", value=`${eDate}`)#eDate
+        //tr
+          td 學段
+          td
+            Select(name="term")
+              Option(value=1) 第1段
+              Option(value=2) 第2段
+              Option(value=3) 第3段
+              Option(value=4) 學年              
+        tr
+          td 班別
+          td
+            input(name="classno")
+            //Select(name="classno")          
+              if kstafpanel  
+                each classN in classli
+                  Option(value=classN)= classN
+
+              if pstafpanel  
+                each classN in classlp
+                  Option(value=classN)= classN
+              if sstafpanel
+                each classN in classls
+                  Option(value=classN)= classN
+        tr
+          td
+          td
+            input(type="submit",value="submit")
+  footer
+    p( class="float-right")
+      a( href="#") Back to top
+    p 澳門浸信中學 &nbsp;版權所有&nbsp;Copyright&nbsp;&#169; 1999 Macau Baptist College.All Rights Reserved
+  
+  script.
+    $(document).ready(function(){
+      var d = (new Date()).getFullYear();
+    });

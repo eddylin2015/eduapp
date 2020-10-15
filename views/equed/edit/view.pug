@@ -3,8 +3,11 @@ extends ./base.pug
 block content
     div
       a(href=`/internal/equed/ed/${book.id}/edit`)= book.id
-
-    div= book.id
+    div
+      a(href=`/internal/equed/ed/${book.id}`, class='btn btn-success btn-sm')
+        span 編輯設定
+      a(href=`/internal/equed/edCode/${book.id}`, class='btn btn-success btn-sm')
+        span JS編程
     div= book.gid
     div= book.qtitle
     div= book.qgrade

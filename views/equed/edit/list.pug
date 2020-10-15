@@ -4,9 +4,14 @@ block content
   a(href="/internal/equed/ed/add", class='btn btn-success btn-sm')
     i.glyphicon.glyphicon-plus
     span  Add stud
+  hr  
   each book in books
+    div= `${book.id} ${book.qtitle}`
     div
-      a(href=`/internal/equed/ed/${book.id}`)= book.id
+      a(href=`/internal/equed/ed/${book.id}`, class='btn btn-success btn-sm')
+        span 編輯設定
+      a(href=`/internal/equed/edCode/${book.id}`, class='btn btn-success btn-sm')
+        span JS編程
 
   if !books.length
     p No work log found.
