@@ -253,7 +253,14 @@ router.get('/editdata/:book', oauth2.required, (req, res, next) => {
     });
   });
 });
-
+router.post('/:book/imageUploader', images.multer.any(),   function(req, res) {
+  //req.file/req.files
+res.send({
+  "uploaded": 1,
+    "fileName": "IMAGE.PNG",
+    "url": "/ckeditorimages/"+req.files[0].filename
+})
+})
 router.post('/editdata/:book', images.multer.single('image'), oauth2.required, (req, res, next) => {
   const data = req.body;
   getModel().update(req.params.book, data, (err, savedData) => {
