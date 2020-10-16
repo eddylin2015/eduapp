@@ -76,7 +76,8 @@ router.get('/ed/add',oauthAG.MahtsRequired, (req, res, next) => {
     profile: req.user,
     book:{
       id:0,tx:1,
-      atype:"['txt','txt','txt','txt']",
+      acnt:"[1,1,1,1,1,1,1,1,1,1,1]",
+      atype:"['txt','txt','txt','txt','txt','txt','txt','txt','txt','txt']",
       qizcode:qizcode,
       anscode:anscode,
       pflag:0,

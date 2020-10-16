@@ -12,7 +12,7 @@ block content
         td  
           table
             tr
-              td x1=
+              td 
               td
                 span(class="mathfield",style='font-size:28px;width:200px;',id=`mlANSQT00${tabid}`) 
               td                
@@ -30,7 +30,7 @@ block content
       tr
         td
         td
-          span(class="dot",id=`helpCHKQT00${tabid}`) ?9
+          //span(class="dot",id=`helpCHKQT00${tabid}`) ?9
           button(class="btn btn-info btn-sm",id=`CHKQT00${tabid}`) Start
 
   
@@ -41,11 +41,15 @@ block content
     -let instyle="AnsInput";
     -let inTxt="number";
     -let tabpane=["","tab-pane fade in active","tab-pane fade","tab-pane fade","tab-pane fade"]
-    each tabid in [1,2,3,4]
+    each tabid in [1,2,3,4,5,6,7,8,9]
       - instyle="AnsExpInput"
-      - inTxt="text"          
-      div(id=`menu${tabid}` class=tabpane[tabid])
-        +MathTestPanelMathlive(tabid,instyle,inTxt)
+      - inTxt="text"   
+      - tabidflag=       tabid<=book.tx
+      if tabidflag
+        div(id=`menu${tabid}` class=tabpane[tabid])
+          +MathTestPanelMathlive(tabid,instyle,inTxt)
+      else
+        div(id=`menu${tabid}` class=tabpane[tabid])    
 
   include include/frm.mlx3.pug
   style.

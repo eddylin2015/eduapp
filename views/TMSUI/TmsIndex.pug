@@ -88,7 +88,7 @@ block content
   -f0data.push({id:'f202',name:'一元二次方程'});
   -f1data.push({id:'f1001',name:'有理數的運算 tx={1,2}'});
   -f1data.push({id:'f1002',name:'整數指數冪的運算 tx={1}'});
-  -f1data.push({id:'f1003',name:'整式的加減法 tx={1,2}'});
+  //-f1data.push({id:'f1003',name:'整式的加減法 tx={1,2}'});
   -f1data.push({id:'f1004',name:'一元一次方程'});
   -f1data.push({id:'f1005',name:'解二元一次方程組'});
   -f1data.push({id:'f1006',name:'一元一次不等式'});
@@ -109,12 +109,17 @@ block content
   -f3data.push({id:'f3005',name:'解直角三角形'}  );
   div(width="100%")
     h3
-      span 數學練習
+      span 數學練習 1
     table(width="100%")
       +accor_li("/internal/TMS/trianing.o.jsp?ft=f1",'f1',"一元一次方程","math-formula.png","btnSTUDFORM")
       +accor_li("/internal/TMS/trianing.o.jsp?ft=f2",'f2',"有理數運算","math-formula.png","btnSTUDFORM")
       +accor_li("/internal/TMS/trianing.o.jsp?ft=f201",'f201',"十字相乘法","math-formula.png","btnSTUDFORM")
       +accor_li("/internal/TMS/trianing.o.jsp?ft=f202",'f202',"一元二次方程","math-formula.png","btnSTUDFORM")
+    h3  數學練習 2
+    table(width="100%")
+      each qiztx in books
+        +accor_li(`/internal/equed/edUI/${qiztx.id}`,`${qiztx.gid}`,`${qiztx.qtitle}`,"math-formula.png","btnSTUDFORM")
+
     h3
       span 小學
     table(width="100%")

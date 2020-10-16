@@ -151,12 +151,10 @@ html(lang="zh")
              span(style="display:none") #{profile.displayName} &nbsp;
       li(class="active")
         a(data-toggle="tab" href="#menu1") 題型1
-      li
-        a(data-toggle="tab" href="#menu2") 題型2
-      li
-        a(data-toggle="tab" href="#menu3") 題型3
-      li
-        a(data-toggle="tab" href="#menu4") 題型4
+      each tabm_idx  in [2,3,4,5,6,7,8,9]
+        if tabm_idx <= book.tx
+          li
+            a(data-toggle="tab" href=`#menu${tabm_idx}`)= `題型${tabm_idx}`
     
     .container
     block content  

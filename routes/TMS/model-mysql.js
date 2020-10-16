@@ -9,16 +9,17 @@ const options = {
     database: config.get('MATHSMYSQL_DATABASE')
 };
 const pool = mysql.createPool(options);
-function listQiz(userId, cb) {
+function listQizTx(cb) {
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
         connection.query(
-            'SELECT id,qid,qgrade,qtitle,snote FROM `qiztx` where pflag=1 order qid ', [],
+            'SELECT id,gid,qgrade,qtitle,snote FROM `qiztx` where pflag=1 order by gid ', [],
             (err, results) => {
                 if (err) {
                     cb(err);
                     return;
                 }
+                console.log(results)
                 cb(null, results);
                 connection.release();
             }
@@ -76,7 +77,7 @@ module.exports = {
     AddTMSQF: AddTMSQF,
     TMSQFlistbydate: TMSQFlistbydate,
     list: list,
-    listQiz:listQiz,
+    listQizTx:listQizTx,
 };
 /*
 CREATE TABLE IF NOT EXISTS `maths`.`reltbl` (

@@ -15,9 +15,11 @@
 
 const express = require('express');
 //const images = require('./images');
-const dbis = "redis";//mysql
-//const model = require('./model-mysql');
-const model = require('./model-redis');
+
+const config = require('../../config');
+const dbis = config.get('DataBaseEngine'); //"redis","mysql"
+const model = require('./model-mysql');
+//const model = require('./model-redis');
 const images = require('./images');
 var oauth2 = require('../../db/internalOauth2.js')
 const router = express.Router();
@@ -40,19 +42,25 @@ router.use((req, res, next) => {
 router.get('/',
   oauth2.required,
   (req, res, next) => {
-    res.render('TMSUI/TmsIndex.pug', {
-      profile: req.user,
+    model.listQizTx((err, entities, cursor) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      console.log(entities)
+      res.render('TMSUI/TmsIndex.pug', {
+        profile: req.user,
+        books: entities,
+        nextPageToken: cursor
+      });
     });
+
   });
 router.get('/math.html', (req, res, next) => {
-  res.render('TMSUI/TmsIndex.pug', {
-    profile: req.user,
-  });
+  res.redirect("/internal/TMS");
 });
 router.get('/mathindex.jsp', (req, res, next) => {
-  res.render('TMSUI/TmsIndex.pug', {
-    profile: req.user,
-  });
+  res.redirect("/internal/TMS");
 });
 router.post('/AddTMSQF', (req, res, next) => {
   if (!req.user) { res.end("Error: no login user!"); }
