@@ -24,8 +24,7 @@ html(lang="zh")
     script(src='/jquery-ui-dist/jquery-ui.min.js')    
     link( href='/jquery-ui-dist/jquery-ui.min.css',rel='stylesheet' )        
     link(href="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.css",rel="stylesheet",data-name="vs/editor/editor.main")
-    style.
-      div.container{margin:0px;padding:0px;}
+
     script.
       function Load(){
         let codetxt=   ["let TE={St:'',Val:''};", 
@@ -56,11 +55,12 @@ html(lang="zh")
             case 3:
               document.getElementById("CODEIDE").style.display="block";
               document.getElementById("ANSIDE").style.display="block";
+            case 4:
+              document.getElementById("FRMIDE").style.display=document.getElementById("FRMIDE").style.display=="block"?"none":"block";
           }
         }
 
       function SaveRun(){
-        var myElement = document.getElementById("container");
         $.post("!{posturl}",
            {CreatAEqCode:editor.getValue(),CheckAnsCode:editor_ans.getValue()}, 
         function( data ) {
@@ -107,6 +107,11 @@ html(lang="zh")
               a(href="#")
                 input(type="radio",name="code_name",value="ANSTAB",onclick="showTab(3);")
                 span Mode3
+            li  
+              a(href="#")
+                input(type="checkbox",name="code_namex",value="ANSTABx",onclick="showTab(4);")
+                span 用戶介面
+
               //button(onclick='Load();') Load
             li  
               a(href="#",onclick='SaveRun();') SaveRun

@@ -1,33 +1,43 @@
 extends ./formbase.pug
 block content
   style.
+    
     div.container{margin:0px;padding:0px;}
-  table(style="margin:0px;padding:0px;")
-    tr
-      td
-        div#CODEIDE(style="display:block;margin:0px;padding:0px;")
-          div#container(style="width: 700px; height: 410px; border: 1px solid grey")
-      td    
-        div#ANSIDE(style="display:block;margin:0px;padding:0px;")
-          div#container_ans(style="width: 700px; height: 410px; border: 1px solid grey")
-      td    
-        div#FRMIDE(style="margin:0px;padding:0px;")
-          iframe#myframe(style=" width: 350px; height: 410px;")
+    #container_qiz{width:100%;height:600px}
+    #container_ans{width:100%;height:600px}
+    #myframe{width: 380px; height: 480px;}
+    #FRMIDE{ width: 380px; height: 480px;
+      position: fixed;
+      top: 0;
+      right: 0;
+    }
+  //width: 700px; height: 410px;  
+  div#CODEIDE(style="display:block;margin:0px;padding:0px;")
+    div#container_qiz(style=" border: 1px solid grey")
+  div#ANSIDE(style="display:block;margin:0px;padding:0px;")
+    div#container_ans(style=" border: 1px solid grey")
+  div#FRMIDE(style="display:none;")
+    iframe#myframe
+
   script.
-      var require = { paths: { vs: 'https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs' } };
+    var require = { paths: { vs: 'https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs' } };
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js")
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.nls.js")
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.js")
   script.
-      var editor = monaco.editor.create(document.getElementById('container'), {
-          value: !{qiz_code}.join("\n"),
-          language: 'javascript',
-          theme: "vs-dark",
-      });
-      var editor_ans = monaco.editor.create(document.getElementById('container_ans'), {
-          value:!{ans_code}.join("\n"),
-          language: 'javascript',
-          theme: "vs-dark",
-      });
+    var editor = monaco.editor.create(document.getElementById('container_qiz'), {
+        value: !{qiz_code}.join("\n"),
+        language: 'javascript',
+        theme: "vs-dark",
+    });
+    var editor_ans = monaco.editor.create(document.getElementById('container_ans'), {
+        value:!{ans_code}.join("\n"),
+        language: 'javascript',
+        theme: "vs-dark",
+    });
+    monaco.languages.typescript.javascriptDefaults
+        .addExtraLib(`var tmsU={TakeARnd:"",TakeAFra:"",TakeAOpr:"",AdjExpFmt:""}`
+        )
+
 
 

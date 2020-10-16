@@ -39,6 +39,10 @@ class AExps {
 Module1.bas  Utils
 */
 class TmsUts {
+    TakeAOpr(TOprRang)
+    {
+        return TOprRang[this.Int(100 * this.Rnd()) % TOprRang.length];
+    }
     /*
     '------ 建構一個亂數
     '------ 取得[Ta, Tb] 間亂數, 小數位 Desm --------
@@ -112,6 +116,21 @@ class TmsUts {
         f.St1 = f.St;
         if (f.Sgn < 0 || f.FenM > 1) f.St1 = "(" + f.St + ")";
         return f
+    }
+    //調整式子格式: +x/+1x -> x ; -1x-> -x
+    AdjExpFmt(St:string){
+        let calc_ = new TmsCalcu();
+        let cc_x=calc_.Sytex_cclist_x(St);
+        let s1="";
+        for(let i=0;i<cc_x.length;i++){
+            if(cc_x[i]=='1x') {s1+="x";}
+            else if(cc_x[i]=='+x') {s1+="x";}
+            else if(cc_x[i]=='+1x') {s1+="x";}
+            else if(cc_x[i]=='-1x') {s1+="-x";}
+            else if(cc_x[i]=="+" && cc_x[i+1]=="-") {}
+            else s1+=cc_x[i];
+        }
+        return s1;        
     }
     MJaxFmt(St:string) {
         var patt1 = /[(][-]*\d+[/][-]*\d+[)]/g;

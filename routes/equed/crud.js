@@ -65,7 +65,7 @@ function fmt_now() {
 }
 
 router.get('/ed/add',oauthAG.MahtsRequired, (req, res, next) => {
-  let qizcode= ["let TE={St:'',Val:'',ACnt:1, ATyp:'num'};//num,txt,mathinput",    
+  let qizcode= ["// 工具箱 Utils","let TE={St:'',Val:'',ACnt:1, ATyp:'num'};//num,txt,mathinput", 
   'let a=Math.floor(Math.random()*10);', 
   'let b=Math.floor(Math.random()*10);', 
   'TE.St=`${a} \\\\times ${b}`;',
@@ -103,6 +103,9 @@ router.get('/ed/:book', oauthAG.MahtsRequired,(req, res, next) => {
     res.render('equed/edit/view.pug', {
       profile: req.user,
       book: entity,
+      qiz_code:JSON.stringify(entity.qizcode.split('\n')),
+      ans_code:JSON.stringify(entity.anscode.split('\n')),
+
       action: 'Edit'
     });
   });

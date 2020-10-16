@@ -54,8 +54,9 @@ block content
     
     ////////////Init App(UIMathClass interface) Load fX.js and Init Equation Data 4 x 10
     function CreatAEq(Tx, Tk, Range) {
+      let tmsU = new TmsUts();// 工具箱 Utils
       !{CreatAEqCode}
-      TE.CalcVal=0;
+      if(!TE.CalcVal) TE.CalcVal=0;
       return TE;
     }
     function CheckAns(IAns1,IAns2,TE){

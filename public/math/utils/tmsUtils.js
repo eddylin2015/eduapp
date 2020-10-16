@@ -28,6 +28,9 @@ Module1.bas  Utils
 var TmsUts = /** @class */ (function () {
     function TmsUts() {
     }
+    TmsUts.prototype.TakeAOpr = function (TOprRang) {
+        return TOprRang[this.Int(100 * this.Rnd()) % TOprRang.length];
+    };
     /*
     '------ 建構一個亂數
     '------ 取得[Ta, Tb] 間亂數, 小數位 Desm --------
@@ -117,6 +120,30 @@ var TmsUts = /** @class */ (function () {
         if (f.Sgn < 0 || f.FenM > 1)
             f.St1 = "(" + f.St + ")";
         return f;
+    };
+    //調整式子格式: +x/+1x -> x ; -1x-> -x
+    TmsUts.prototype.AdjExpFmt = function (St) {
+        var calc_ = new TmsCalcu();
+        var cc_x = calc_.Sytex_cclist_x(St);
+        var s1 = "";
+        for (var i = 0; i < cc_x.length; i++) {
+            if (cc_x[i] == '1x') {
+                s1 += "x";
+            }
+            else if (cc_x[i] == '+x') {
+                s1 += "x";
+            }
+            else if (cc_x[i] == '+1x') {
+                s1 += "x";
+            }
+            else if (cc_x[i] == '-1x') {
+                s1 += "-x";
+            }
+            else if (cc_x[i] == "+" && cc_x[i + 1] == "-") { }
+            else
+                s1 += cc_x[i];
+        }
+        return s1;
     };
     TmsUts.prototype.MJaxFmt = function (St) {
         var patt1 = /[(][-]*\d+[/][-]*\d+[)]/g;
