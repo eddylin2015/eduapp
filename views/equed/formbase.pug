@@ -59,18 +59,33 @@ html(lang="zh")
               document.getElementById("FRMIDE").style.display=document.getElementById("FRMIDE").style.display=="block"?"none":"block";
           }
         }
-
+      function showMsg(data){
+          document.getElementById("MessageBoxTxt").innerText= data;
+          document.getElementById("MessageBox").style.display="block";
+      }
       function SaveRun(){
         $.post("!{posturl}",
            {CreatAEqCode:editor.getValue(),CheckAnsCode:editor_ans.getValue()}, 
         function( data ) {
-          alert(data);
+          showMsg("Saved: id("+ data+")");
+          document.getElementById("FRMIDE").style.display="block";
           var x = document.getElementById("myframe");
           x.src="/internal/equed/edUI/!{book.id}"
         });
       }
   body
-   
+    style.
+      #MessageBox{ width: 180px; height: 180px;
+       position: fixed;
+       bottom: 0;
+       right: 0;
+       border-style: solid;
+       display:none;
+      } 
+    #MessageBox()
+      button#MessageBoxTxtCancelBtn(onclick="document.getElementById('MessageBox').style.display='none';") X
+      #MessageBoxTxt
+      
     //.navbar.navbar-default
     //.navbar.navbar-inverse.navbar-fixed-top(style="margin:0;padding:0;")
     .navbar.navbar-inverse(style="margin:0;padding:0;")
@@ -98,7 +113,7 @@ html(lang="zh")
             li    
               a(href="#")
                 input(type="radio",name="code_name",value="EQUTAB",onclick="showTab(1);")
-                span CreateEqu
+                span CreatAEq
             li  
               a(href="#")
                 input(type="radio",name="code_name",value="ANSTAB",onclick="showTab(2);")
@@ -106,7 +121,7 @@ html(lang="zh")
             li  
               a(href="#")
                 input(type="radio",name="code_name",value="ANSTAB",onclick="showTab(3);")
-                span Mode3
+                span AllWin
             li  
               a(href="#")
                 input(type="checkbox",name="code_namex",value="ANSTABx",onclick="showTab(4);")
@@ -114,9 +129,9 @@ html(lang="zh")
 
               //button(onclick='Load();') Load
             li  
-              a(href="#",onclick='SaveRun();') SaveRun
+              a(href="#",onclick='SaveRun();') 儲存並運行
             li  
-              a(href=`/internal/equed/edUI/${book.id}`, target="_blank") MathUI              
+              a(href=`/internal/equed/edUI/${book.id}`, target="_blank") 獨立MathUI              
 
           ul.navbar-text.navbar-right
             // [START profile]

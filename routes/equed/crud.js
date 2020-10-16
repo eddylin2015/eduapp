@@ -65,13 +65,13 @@ function fmt_now() {
 }
 
 router.get('/ed/add',oauthAG.MahtsRequired, (req, res, next) => {
-  let qizcode= ["// 工具箱 Utils","let TE={St:'',Val:'',ACnt:1, ATyp:'num'};//num,txt,mathinput", 
+  let qizcode= ["//定義變量:Tx [1:4]","//工具集: tmsU ","let TE={St:'',Val:'',ACnt:1, ATyp:'num',Range:[]};//num,txt,mathinput", 
   'let a=Math.floor(Math.random()*10);', 
   'let b=Math.floor(Math.random()*10);', 
   'TE.St=`${a} \\\\times ${b}`;',
   'TE.Val=a*b;',
   ''].join('\n');
-  let anscode=[ "//IAns1,IAns,TE", "if(TE.ACnt==1 && TE.ATyp=='num') return IAns1==TE.Val;"].join('\n')
+  let anscode=[ "//定義變量:IAns1,IAns2,TE", "if(TE.ACnt==1 && TE.ATyp=='num') return IAns1==TE.Val;"].join('\n')
   res.render('equed/edit/form.pug', {
     profile: req.user,
     book:{

@@ -25,7 +25,7 @@ block content
             -let typeGrade=["空","小三","小四","小五","小六","中一","中二","中三","高一","高二","高三"]
             select.form-control(type="text", name="qgrade", id="qgrade", value=book.qgrade)
               each t_index in [0,1,2,3,4,5,6,7,8,9,10]
-                option(value=t_index,selected= typeGrade[t_index]==book.qgrade?true:false)= typeGrade[t_index]
+                option(value=typeGrade[t_index],selected= typeGrade[t_index]==book.qgrade?true:false)= typeGrade[t_index]
 
         td
           .form-group
@@ -33,7 +33,7 @@ block content
             -let typeField=["空","數學"]
             select.form-control(type="text", name="qfield", id="qfield", value=book.qfield)
               each t_index in [0,1]
-                option(value=t_index,selected= typeField[t_index]==book.qfield?true:false)= typeField[t_index]
+                option(value=typeField[t_index],selected= typeField[t_index]==book.qfield?true:false)= typeField[t_index]
 
         td    
           .form-group
