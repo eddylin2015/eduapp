@@ -40,8 +40,10 @@ router.use((req, res, next) => {
  * Display a page of books (up to ten at a time).
  */
 router.get('/',
-  oauth2.required,
+  //oauth2.required,
   (req, res, next) => {
+
+    if(req.user){
     model.listQizTx((err, entities, cursor) => {
       if (err) {
         next(err);
@@ -54,6 +56,9 @@ router.get('/',
         nextPageToken: cursor
       });
     });
+  }else{
+    res.redirect("/internal/login?subpath=TMS");
+  }
 
   });
 router.get('/math.html', (req, res, next) => {
