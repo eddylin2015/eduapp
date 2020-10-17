@@ -29,6 +29,7 @@ gsuite_gmail_inboundgateway_mailrelayserver_log.txt
 node_modules/
 obj/
 package-lock.json
+public/monaco-editor/
 public/acme-challenge/
 public/ckeditor/
 public/ckeditorimages/

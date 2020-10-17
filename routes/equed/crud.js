@@ -195,17 +195,36 @@ router.get('/edUI/:book', (req, res, next) => {
     }
     res.render('equed/TmsUiTrain.mlx3.pug', {
       profile: req.user,
+      CreatAEqCodeBaseLine:223,
       formulajs: entity.qid,
       ft: entity.qid,
       MathTitle: entity.qtitle,
       CreatAEqCode:entity.qizcode,
       CheckAnsCode:entity.anscode,
-      profile: req.user,
+      AnsCnt:JSON.parse(entity.acnt),
+      AnsType:JSON.parse(entity.atype),
       posturl:req.baseUrl+req.url,
       book: entity,
     });
   });
- 
+});
+router.post('/edUI/:book', (req, res, next) => {
+  if (!req.user) { res.end("Error: no login user!"); }
+  else {
+    let username = req.user.username;
+    let studref = req.user.email.split('@')[0];
+    let fn = req.body.fn;
+    let d = new Date();
+    let yy = d.getFullYear(); let mm = d.getMonth() + 1; let dd = d.getDate();
+    let HH = d.getHours(); let MM = d.getMinutes(); let SS = d.getSeconds();
+    let md = `${yy}${mm < 10 ? "0" : ""}${mm}${dd < 10 ? "0" : ""}${dd}${HH < 10 ? "0" : ""}${HH}${MM < 10 ? "0" : ""}${MM}${SS < 10 ? "0" : ""}${SS}`;
+    let fnn = `TMS${studref}_${fn}.txt`;
+    let jsondata = req.body.data;
+    model.AddTMSQF(fnn, md, jsondata, username, (err, ins_id) => {
+      if (err) { console.log(err); return res.end("error"); }
+      res.end(`存儲成功. 記錄編號: ${ins_id} .`);
+    });
+  }
 });
 
 ///////////////////////

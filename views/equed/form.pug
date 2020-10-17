@@ -19,11 +19,17 @@ block content
   div#FRMIDE(style="display:none;")
     iframe#myframe
 
-  script.
+  //script.
     var require = { paths: { vs: 'https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs' } };
-  script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js")
-  script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.nls.js")
-  script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.js")
+  //script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js")
+  //script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.nls.js")
+  //script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.js")
+  script.
+    var require = { paths: { vs: '/monaco-editor/min/vs' } };
+  script(src="/monaco-editor/min/vs/loader.js")
+  script(src="/monaco-editor/min/vs/editor/editor.main.nls.js")
+  script(src="/monaco-editor/min/vs/editor/editor.main.js")
+
   script.
     var editor = monaco.editor.create(document.getElementById('container_qiz'), {
         value: !{qiz_code}.join("\n"),
