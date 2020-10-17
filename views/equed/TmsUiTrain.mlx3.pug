@@ -1,53 +1,54 @@
 extends ./base.f1.mlx3.pug
 block content
-  mixin MathTestPanelMathlive(tabid,pstyle,pintype)
+  mixin MathTestPanelMathlive(tabid,inputType,input_cnt)
     table(style="margin:10px auto;")
       tr
         td
-          span(id=`QNO00${tabid}`) 命題:&nbsp;&nbsp;
+          span(id=`QNO00${tabid}`) 題:&nbsp;&nbsp;
         td
           div(id=`QT00${tabid}`)
       tr
-        td 解題:   
+        td(valign="top") 解:   
         td  
           table
-            tr
-              td 
-              td
-                span(class="mathfield",style='font-size:28px;width:200px;',id=`mlANSQT00${tabid}`) 
-              td                
-                input(readonly=true,style="width:60px;min-width:1px;font-size:10px;border:0;outline:none;",name=`ANSQT00${tabid}`, id=`ANSQT00${tabid}`)
+            each AnsInputIdx in [0,1,2,3,4,5,6,7,8,9]
+              if AnsInputIdx < input_cnt
+                tr
+                  td
+                    small= `(${AnsInputIdx+1}):`
+                  case inputType
+                    when "m"
+                      td
+                        span(class="mathfield",style='font-size:28px;width:200px;',id=`mlInputAns${tabid}${AnsInputIdx}`) 
+                        script.
+                          mf_li.push(!{`mlInputAns${tabid}${AnsInputIdx}`});
+                      td                
+                        input(readonly=true,style="width:60px;min-width:1px;font-size:10px;border:0;outline:none;", id=`InputAns${tabid}${AnsInputIdx}`)
+                    when "n"  
+                      td                
+                        input(class="AnsInput",type="number", id=`InputAns${tabid}${AnsInputIdx}`)
+                    when "t"
+                      td  
+                        input(class="AnsExpInput",type="text", id=`InputAns${tabid}${AnsInputIdx}`)
+                    default
+                      td
+                        span -    
                 
-            tr(style="border-top:0px solid black;")
-              td             
-              td    
-                div(class="mathfield",style='font-size:28px;width:200px;',id=`mlANSQTM00${tabid}`)  
-              td  
-                //input(name=`ANSQTM00${tabid}`, id=`ANSQTM00${tabid}`,value="")
-                input(readonly=false,style="width:60px;min-width:1px;font-size:10px;border:0;outline:none;",name=`ANSQTM00${tabid}`, id=`ANSQTM00${tabid}`)
             td(colspan=3) 分數用(-a/b)格式; 
-
       tr
         td
         td
-          //span(class="dot",id=`helpCHKQT00${tabid}`) ?9
           button(class="btn btn-info btn-sm",id=`CHKQT00${tabid}`) Start
-
-  
-  //end mix //
-
-
+  //end mix//
   div(class="tab-content")
     -let instyle="AnsInput";
     -let inTxt="number";
     -let tabpane=["","tab-pane fade in active","tab-pane fade","tab-pane fade","tab-pane fade"]
     each tabid in [1,2,3,4,5,6,7,8,9]
-      - instyle="AnsExpInput"
-      - inTxt="text"   
-      - tabidflag=       tabid<=book.tx
+      - tabidflag= tabid<=book.tx
       if tabidflag
         div(id=`menu${tabid}` class=tabpane[tabid])
-          +MathTestPanelMathlive(tabid,instyle,inTxt)
+          +MathTestPanelMathlive(tabid,AnsType[tabid],AnsCnt[tabid])  
       else
         div(id=`menu${tabid}` class=tabpane[tabid])    
 
@@ -55,7 +56,6 @@ block content
   style.
     .MathJax span{font-size:20px;}
   script.
-    
     ////////////Init App(UIMathClass interface) Load fX.js and Init Equation Data 4 x 10
     function CreatAEq(Tx, Tk, Range) {
       let tmsU = new TmsUts();// 工具箱 Utils
@@ -68,10 +68,11 @@ block content
         console.log(excep.message);
         console.log(excep.stack);
         let ErrorLineNum = excep.stack.match(/[0-9][0-9][0-9]/);
-        alert(`ERROR: LNo. ${Number(ErrorLineNum)-223} : Message: ${excep.message}`);
+        alert(`ERROR: LNo. ${Number(ErrorLineNum)-!{CreatAEqCodeBaseLine}} : Message: ${excep.message}`);
       }
     }
     function CheckAns(IAns1,IAns2,TE){
+      console.log(IAns1,IAns2,TE);
       !{CheckAnsCode}
       return null;
     }
@@ -111,20 +112,18 @@ block content
     }
     let App=new UIMathClassEquEd();
     App.InitQizData();
-    ////////////End Init app
+    //End Init app//
     $(document).ready(function(){
-      let mathtitle={"f1":"一元一次方程","f2":"有理數運算","f201":"十字相乘法因式分","f202":"一元二次方程式","p2":"加減","p5":"方程式","f1001":"有理數的運算"};
       //Buttom Pannel > help#ttl| score#btnAnsMsgRes | username | txtdate | txtft | MathTitle | username
       var d = (new Date()).toISOString().substring(0, 10).replace(/-/g,"");
       var t = (new Date()).toISOString().substring(11, 19).split(':');
       let h=Number(t[0])+8;  h=h>9?""+h:"0"+h;
       var ti=h+""+t[1]+""+t[2];   //Number(t[0])+8 +""+t[1]+""+t[2];
       $( "#txtdate" ).text(d+ti); 
-      $( "#MathTitle" ).text(mathtitle[ft]); 
+      $( "#MathTitle" ).text("!{MathTitle}"); 
       $( "#txtuser" ).text(username);
       $( "#txtft" ).text(ft); 
       //End buttom pannel
-      
       //Dialog Define
       //Dialog 得分表
       $("#AnsMsgRes").dialog( { autoOpen: false, width:'80%'});      
@@ -142,23 +141,19 @@ block content
       
       $('#ttl').click(function(){ $( "#infomsg" ).dialog("open"); });
       //End Dialog Define
-
       //Check Ans Event
       $('#CHKQT001').click(function(){  GetCheckAns(1);  });
       $('#CHKQT002').click(function(){  GetCheckAns(2);  });
       $('#CHKQT003').click(function(){  GetCheckAns(3);  });
       $('#CHKQT004').click(function(){  GetCheckAns(4);  });
-      $('#helpCHKQT001').click(function(){  GetHelpCheckAns(1);  });
-      $('#helpCHKQT002').click(function(){  GetHelpCheckAns(2);  });
-      $('#helpCHKQT003').click(function(){  GetHelpCheckAns(3);  });
-      $('#helpCHKQT004').click(function(){  GetHelpCheckAns(4);  });
       $('input').keyup(function(e){
          if(e.keyCode == 13)
          {
+          /*
           let id= $(this).attr("id");
           id=id.substring(id.length-1);
-          let ansZ= $( "#ANSQT00"+id).val();
-          let ansM= $( "#ANSQTM00"+id).val();
+          let ansZ= $( "#InputAns"+id+"0").val();
+          let ansM= $( "#InputAns"+id+"1").val();
           if(ansZ=="" || ansM=="" ){
             if(ansZ=="")  $( "#ANSQT00"+id).focus();
             else if(ansM=="")  $( "#ANSQTM00"+id).focus();
@@ -169,13 +164,13 @@ block content
             case 3:GetCheckAns(3);break;
             case 4:GetCheckAns(4);break;
             }     
-           }
+           }*/
          }
       });
       //End def Check Ans Event
       import('/mathlive/dist/mathlive.mjs')
         .then(module => {
-          for (let i = 0; i < 4; i++) {
+          for (let i = 0; i < mf_li.length; i++) {
               let mf__ = module.default.makeMathField(mf_li[i], {
                   smartMode: true,
                   virtualKeyboardMode: 'onfocus',
@@ -187,20 +182,10 @@ block content
               });
               mf.push(mf__);
           }
-          /* 
-          let mf__ = module.default.makeMathField("mlANSQT001", {
-            smartMode: true,
-            virtualKeyboardMode: 'manual',
-            onContentDidChange: (mf__) => {
-              let latex = mf__.$text();
-              document.getElementById("ANSQT001").value = escapeHtml(latex);
-            },
-           });  */
         })
         .catch(err => {
           console.log( err.message);
         });
     });
-  //<script type="module" src="/math/ml0.js"></script>
   
   

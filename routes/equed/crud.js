@@ -77,7 +77,7 @@ router.get('/ed/add',oauthAG.MahtsRequired, (req, res, next) => {
     book:{
       id:0,tx:1,
       acnt:"[1,1,1,1,1,1,1,1,1,1,1]",
-      atype:"['txt','txt','txt','txt','txt','txt','txt','txt','txt','txt']",
+      atype:`["t","t","t","t","t","t","t","t"]`,
       qizcode:qizcode,
       anscode:anscode,
       pflag:0,

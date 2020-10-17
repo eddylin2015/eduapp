@@ -26,8 +26,7 @@ html(lang="zh")
     <script type="module" src="/mathlive/dist/mathlive.mjs"></script>
     script.
       var mf=[];
-      //const mf_li = ["mlANSQT001", "mlANSQT002", "mlANSQT003", "mlANSQT004", "mlANSQTM001", "mlANSQTM002", "mlANSQTM003", "mlANSQTM004"];
-      const mf_li = ["mlANSQT001", "mlANSQT002", "mlANSQT003", "mlANSQT004"];//, "mlANSQTM001", "mlANSQTM002", "mlANSQTM003", "mlANSQTM004"];
+      var mf_li=[];
       function escapeHtml(string) {
           return String(string).replace(/[&<>"'`=/\u200b]/g, function ( s ) {
               return (
@@ -47,54 +46,28 @@ html(lang="zh")
       function GetQuestion(x) {  
         if(App.NTE[x-1].length==0){alert("不設此題型");return;}
         let qno= ($('#CHKQT00'+x).text()=="Start") ? 1: Number($('#CHKQT00'+x).text().split("/")[0])+1;
-        $("#ANSQT00"+x).val("");       
-        $("#ANSQTM00"+x).val("");    
-        $("#ANSQT00"+x).prop('disabled', false);
-        $("#ANSQT00"+x).css("display", "block");      
-        $("#ANSQT00"+x).focus();     
-        $("#ANSQTM00"+x).css("display", "block");  
-        if( !App.IsFraction(x,qno) )  {
-           //$("#ANSQTM00"+x).css("display", "none");  
-           $("#ANSQTM00"+x).val("1");      
-        }
+        $("#InputAns"+x+"0").val("");       
+        $("#InputAns"+x+"0").prop('disabled', false);
+        $("#InputAns"+x+"0").css("display", "block");      
+        $("#InputAns"+x+"0").focus();     
+        try{
+        $("#InputAns"+x+"1").val("");    
+        $("#InputAns"+x+"1").css("display", "block");  
+        }catch(InputAnsExcept){console.log(InputAnsExcept.message);}
         $('#CHKQT00'+x).text(qno+ "/10确定");
         $('#QT00'+x).html("\\("+App.GetQizStatement(x,qno)+"\\)");  
         App.UpdateMathContent(x);
-        
         import('/mathlive/dist/mathlive.mjs')
         .then(module => {
-          for (let i = 0; i < 8; i++) {
-              let elen0="mlANSQT00"+x
-              let elen1="mlANSQTM00"+x
-              if(mf_li[i]==elen0 || mf_li[i]==elen1) {
+          for (let i = 0; i < mf_li.length; i++) {
+              let elen0=mf_li[i];
+              if(mf_li[i]==elen0) {
                 let mf__=mf[i];
                 mf__.$perform('selectAll');
                 mf__.$clearSelection();
                 if(mf_li[i]==elen0) mf__.$focus()
               }
-              /*
-              let mf__ = module.default.makeMathField(mf_li[i], {
-                  smartMode: true,
-                  virtualKeyboardMode: 'manual',
-                  onContentDidChange: (mf__) => {
-                      let latex = mf__.$text();
-                      let lx_name=(mf__.element.id.substring(2));
-                      document.getElementById(lx_name).value = escapeHtml(latex);
-                  },
-              });
-              mf__.$perform('selectAll');
-              mf__.$clearSelection();
-              */
           }
-          /* 
-          let mf__ = module.default.makeMathField("mlANSQT001", {
-            smartMode: true,
-            virtualKeyboardMode: 'manual',
-            onContentDidChange: (mf__) => {
-              let latex = mf__.$text();
-              document.getElementById("ANSQT001").value = escapeHtml(latex);
-            },
-           });  */
         })
         .catch(err => {
           console.log( err.message);
@@ -102,33 +75,23 @@ html(lang="zh")
         close_msgbox('AnsMsgbox');
       }
       function GetCheckAns(x) {  
+        console.log(`check start ${x}`);
         if($('#CHKQT00'+x).text()=="Start"){ GetQuestion(x);
         }else{
           let qno=  Number($('#CHKQT00'+x).text().split("/")[0]);
-          let ansZ= $( "#ANSQT00"+x).val();
-          let ansM= $( "#ANSQTM00"+x).val();
+          let InputAnsBox1=$( "#InputAns"+x+"0");
+          let InputAnsBox2=$( "#InputAns"+x+"1");
+          let ansZ=InputAnsBox1 ? InputAnsBox1.val() : null;
+          let ansM=InputAnsBox2 ? InputAnsBox2.val() : null;
+          
           if(ansZ=="" || ansM=="" ){}
           else{
-            $("#ANSQT00"+x).prop('disabled', true);
+            if(InputAnsBox1) InputAnsBox1.prop('disabled', true);
+            if(InputAnsBox2) InputAnsBox2.prop('disabled', true);
             show_AnsMsgbox(x,qno,ansZ,ansM);  
           }
         }
-      }
-      function GetHelpCheckAns(x) {  
-        let qhelpNum=Number($('#helpCHKQT00'+x).text().replace("?",""));
-        if(qhelpNum < 1 ) return;
-        if($('#CHKQT00'+x).text()=="Start"){ 
-        }else{
-          let qno=  Number($('#CHKQT00'+x).text().split("/")[0]);
-          let ansZ= $( "#ANSQT00"+x).val();
-          let ansM= $( "#ANSQTM00"+x).val();
-          if(ansZ=="" || ansM=="" ){}
-          else{
-            show_HelpAnsMsgbox(x,qno,ansZ,ansM);  
-            qhelpNum--;
-            $('#helpCHKQT00'+x).text("?"+qhelpNum);
-          }
-        }
+        console.log("check end.");
       }
   body
     if !profile        
