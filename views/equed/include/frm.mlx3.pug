@@ -147,9 +147,7 @@ script.
       document.getElementById("CHKQT00"+x).style.display = "none";    
       document.getElementById("QT00"+x).style.display = "none";      
       document.getElementById("InputAns"+x+"0").style.display = "none";      
-      try{
-      document.getElementById("InputAns"+x+"1").style.display = "none";      
-      }catch(){}
+      try{ document.getElementById("InputAns"+x+"1").style.display = "none";}catch(excep){}
       
       $( "#AnsMsgRes" ).dialog("open");    
       alert("上載成績!!");          

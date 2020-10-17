@@ -1,5 +1,7 @@
 extends ./base.f1.mlx3.pug
+
 block content
+  include include/frm.mlx3.pug
   mixin MathTestPanelMathlive(tabid,inputType,input_cnt)
     table(style="margin:10px auto;")
       tr
@@ -52,7 +54,7 @@ block content
       else
         div(id=`menu${tabid}` class=tabpane[tabid])    
 
-  include include/frm.mlx3.pug
+  
   style.
     .MathJax span{font-size:20px;}
   script.
