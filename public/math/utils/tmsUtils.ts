@@ -416,7 +416,7 @@ KeySigns['-'] = 3;
 KeySigns[':'] = 2;
 KeySigns[','] = 2;
 class TmsCalcu {
-    VMCalc(ValSt) { }
+    VMCalc(ValSt) { alert("no implement!");}
     //處理 二目運算符如 = + - * / ( ) 生成樹狀型式//static TreeItem
     proc2opt(l1, prenode) {
         let cnt = 0;

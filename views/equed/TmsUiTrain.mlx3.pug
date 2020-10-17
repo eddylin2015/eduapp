@@ -72,6 +72,7 @@ block content
       }
     }
     function CheckAns(IAns1,IAns2,TE){
+      let tmsU = new TmsUts();// 工具箱 Utils
       console.log(IAns1,IAns2,TE);
       !{CheckAnsCode}
       return null;
@@ -96,19 +97,12 @@ block content
       CheckAns(qti,qno, AnsZ,AnsM){
         let AnsTE=App.NTE[Number(qti)-1][qno-1];
         return CheckAns(AnsZ,AnsM,AnsTE);
-        /*
-        let ansx= App.AQT[Number(qti)-1][qno-1];
-        if(this.IsFraction(qti,qno)){
-          return Math.abs(ansx-(AnsZ/AnsM))<0.0001
-        }else{
-          if((typeof ansx)=="number") return ansx==AnsZ;
-          if((typeof ansx)=="string") return ansx==AnsZ;
-          if((typeof ansx)=="object") return ansx["F116"]==AnsZ && ansx["G116"]==AnsM;
-        }*/
       }
+      //de_ca 
       GetAns_Num(qti,qno){return App.AQT[Number(qti)-1][qno-1]["F116"];}
       GetAns_Den(qti,qno){return App.AQT[Number(qti)-1][qno-1]["G116"];}
       GetAnsSt(qti,qno) {return this.AQT[Number(qti) - 1][qno - 1];   }
+      //end de_ca
     }
     let App=new UIMathClassEquEd();
     App.InitQizData();
