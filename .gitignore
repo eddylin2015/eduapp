@@ -1,5 +1,6 @@
 *.*~
 *.*.swp
+secert_*.*
 routes/act/stdAttend/*
 public/math-input/*
 public/mathlive/*

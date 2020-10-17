@@ -12,7 +12,7 @@ html(lang="zh")
     link( href='/jquery-ui-dist/jquery-ui.min.css',rel='stylesheet' )   
     link(href="/stylesheets/cool/act/sp.css", rel="stylesheet")
   body
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar.navbar-inverse
       .container
         .navbar-header
           button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -28,8 +28,14 @@ html(lang="zh")
           ul.nav.navbar-nav
             li
               a(href="/internal") 
-                span 返回主頁
+                span 主頁
             li
+              a(href="/internal/sportday") 
+                span 校運會
+            li
+              a(href="/internal/sportday/charter")    
+                span 章程 
+            //li
               a(href="/internal/sportday/datagrid") 
                 span datagrid                
           ul.navbar-text.navbar-right

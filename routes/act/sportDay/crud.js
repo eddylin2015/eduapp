@@ -36,9 +36,15 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-  res.render('act/sportday/index.pug');
+  res.render('act/sportday/index.pug',{
+    profile: req.user,
+  });
 });
-
+router.get('/charter', (req, res, next) => {
+  res.render('act/sportday/charter.pug',{
+    profile: req.user,
+  });
+});
 router.get('/spreg.jsp', (req, res, next) => {
   if (req.user) {
     let userName = req.user.email.split('@')[0].toUpperCase();
