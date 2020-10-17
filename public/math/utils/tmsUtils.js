@@ -145,6 +145,27 @@ var TmsUts = /** @class */ (function () {
         }
         return s1;
     };
+    TmsUts.prototype.AdjExpFmtList = function (cc_x) {
+        var s1 = [];
+        for (var i = 0; i < cc_x.length; i++) {
+            if (cc_x[i] == '1x') {
+                s1.push("x");
+            }
+            else if (cc_x[i] == '+x') {
+                s1.push("x");
+            }
+            else if (cc_x[i] == '+1x') {
+                s1.push("x");
+            }
+            else if (cc_x[i] == '-1x') {
+                s1.push("-x");
+            }
+            else if (cc_x[i] == "+" && cc_x[i + 1] == "-") { }
+            else
+                s1.push(cc_x[i]);
+        }
+        return s1;
+    };
     TmsUts.prototype.MJaxFmt = function (St) {
         var patt1 = /[(][-]*\d+[/][-]*\d+[)]/g;
         var result = St.match(patt1);
@@ -477,7 +498,7 @@ KeySigns[','] = 2;
 var TmsCalcu = /** @class */ (function () {
     function TmsCalcu() {
     }
-    TmsCalcu.prototype.VMCalc = function (ValSt) { };
+    TmsCalcu.prototype.VMCalc = function (ValSt) { alert("no implement!"); };
     //處理 二目運算符如 = + - * / ( ) 生成樹狀型式//static TreeItem
     TmsCalcu.prototype.proc2opt = function (l1, prenode) {
         var cnt = 0;

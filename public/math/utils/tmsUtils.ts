@@ -132,6 +132,18 @@ class TmsUts {
         }
         return s1;        
     }
+    AdjExpFmtList(cc_x:any){
+        let s1=[];
+        for(let i=0;i<cc_x.length;i++){
+            if(cc_x[i]=='1x') {s1.push("x");}
+            else if(cc_x[i]=='+x') {s1.push("x");}
+            else if(cc_x[i]=='+1x') {s1.push("x");}
+            else if(cc_x[i]=='-1x') {s1.push("-x");}
+            else if(cc_x[i]=="+" && cc_x[i+1]=="-") {}
+            else s1.push(cc_x[i]);
+        }
+        return s1;        
+    }
     MJaxFmt(St:string) {
         var patt1 = /[(][-]*\d+[/][-]*\d+[)]/g;
         var result = St.match(patt1);
