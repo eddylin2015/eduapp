@@ -68,7 +68,7 @@ block content
         console.log(excep.message);
         console.log(excep.stack);
         let ErrorLineNum = excep.stack.match(/[0-9][0-9][0-9]/);
-        alert(`ERROR: LNo. ${Number(ErrorLineNum)-!{CreatAEqCodeBaseLine}} : Message: ${excep.message}`);
+        alert(`ERROR: Line No. ${Number(ErrorLineNum)-!{CreatAEqCodeBaseLine}} : Message: ${excep.message}`);
       }
     }
     function CheckAns(IAns1,IAns2,TE){
