@@ -429,17 +429,24 @@ KeySigns[','] = 2;
 class TmsCalcu {
     RunVMCalc(St) { alert("no implement!"); }
     RunExpr(St, VSet = { x: 1 }) {
-        let xVal=VSet.x;
         let tmsU=new TmsUts();
         let St1 = St.toLowerCase();
-        let r_ = /[0-9]+x/g
-        let mr_ = St1.match(r_)
-        if (mr_)
-            for (let j = 0; j < mr_.length; j++) {
-                let r_mr_ = mr_[j].replace("x", "*x")
-                St1 = St1.replace(mr_[j], r_mr_)
-            }
-        St1 = St1.replace(/x/g, `${xVal}`)
+        let Vkeys = Object.keys(VSet);
+        console.log(Vkeys)
+        for(let i=0;i<Vkeys.length;i++)
+        {
+            let xKey=Vkeys[i];
+            let xVal=VSet[xKey];
+            let r_ = new RegExp(`[0-9]+${xKey}`, 'g');
+            let mr_ = St1.match(r_)
+            if (mr_)
+                for (let j = 0; j < mr_.length; j++) {
+                    let r_mr_ = mr_[j].replace(`${xKey}`, `*${xKey}`)
+                    St1 = St1.replace(mr_[j], r_mr_)
+                }
+            let x_r= new RegExp(`${xKey}`, 'g');   
+            St1 = St1.replace(x_r, `${xVal}`)
+        }
         console.log(St1)
         let cc_list1 = this.Sytex_cclist(St1);
         cc_list1 = tmsU.AdjExpFmtList(cc_list1);

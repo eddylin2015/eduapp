@@ -501,17 +501,23 @@ var TmsCalcu = /** @class */ (function () {
     TmsCalcu.prototype.RunVMCalc = function (St) { alert("no implement!"); };
     TmsCalcu.prototype.RunExpr = function (St, VSet) {
         if (VSet === void 0) { VSet = { x: 1 }; }
-        var xVal = VSet.x;
         var tmsU = new TmsUts();
         var St1 = St.toLowerCase();
-        var r_ = /[0-9]+x/g;
-        var mr_ = St1.match(r_);
-        if (mr_)
-            for (var j = 0; j < mr_.length; j++) {
-                var r_mr_ = mr_[j].replace("x", "*x");
-                St1 = St1.replace(mr_[j], r_mr_);
-            }
-        St1 = St1.replace(/x/g, "" + xVal);
+        var Vkeys = Object.keys(VSet);
+        console.log(Vkeys);
+        for (var i = 0; i < Vkeys.length; i++) {
+            var xKey = Vkeys[i];
+            var xVal = VSet[xKey];
+            var r_ = new RegExp("[0-9]+" + xKey, 'g');
+            var mr_ = St1.match(r_);
+            if (mr_)
+                for (var j = 0; j < mr_.length; j++) {
+                    var r_mr_ = mr_[j].replace("" + xKey, "*" + xKey);
+                    St1 = St1.replace(mr_[j], r_mr_);
+                }
+            var x_r = new RegExp("" + xKey, 'g');
+            St1 = St1.replace(x_r, "" + xVal);
+        }
         console.log(St1);
         var cc_list1 = this.Sytex_cclist(St1);
         cc_list1 = tmsU.AdjExpFmtList(cc_list1);
