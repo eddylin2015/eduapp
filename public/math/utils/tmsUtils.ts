@@ -4,7 +4,7 @@ class AFrc {
     Sgn: number;
     Val: any;
     St: any;
-    St1: any; 
+    St1: any;
     CalVal: any; //tmsCalcu
     //分數的結構 AFrc :   fraction , denominator
     constructor() {
@@ -20,13 +20,13 @@ class AFrc {
 
 class AExps {
     //'運算式(最多4項)的結構
-    Nf:any;
-    OPr:any;
-    St:any;
-    Val:any;
-    CalcVal:any;
-    FrcVal:any;
-    constructor() { 
+    Nf: any;
+    OPr: any;
+    St: any;
+    Val: any;
+    CalcVal: any;
+    FrcVal: any;
+    constructor() {
         this.Nf = [null, null, null, null, null];  //  As AFrc '' 各項可以是分數或整數(fenz）     
         this.OPr = ["", "", "", "", ""];   // As String   ' 操作符' 運運算元（括弧和指數)
         this.St = "";               // As String    ' 代數表逹式子 ' 單行字串式
@@ -39,8 +39,7 @@ class AExps {
 Module1.bas  Utils
 */
 class TmsUts {
-    TakeAOpr(TOprRang)
-    {
+    TakeAOpr(TOprRang) {
         return TOprRang[this.Int(100 * this.Rnd()) % TOprRang.length];
     }
     /*
@@ -118,33 +117,33 @@ class TmsUts {
         return f
     }
     //調整式子格式: +x/+1x -> x ; -1x-> -x
-    AdjExpFmt(St:string){
+    AdjExpFmt(St: string) {
         let calc_ = new TmsCalcu();
-        let cc_x=calc_.Sytex_cclist_x(St);
-        let s1="";
-        for(let i=0;i<cc_x.length;i++){
-            if(cc_x[i]=='1x') {s1+="x";}
-            else if(cc_x[i]=='+x') {s1+="x";}
-            else if(cc_x[i]=='+1x') {s1+="x";}
-            else if(cc_x[i]=='-1x') {s1+="-x";}
-            else if(cc_x[i]=="+" && cc_x[i+1]=="-") {}
-            else s1+=cc_x[i];
+        let cc_x = calc_.Sytex_cclist_x(St);
+        let s1 = "";
+        for (let i = 0; i < cc_x.length; i++) {
+            if (cc_x[i] == '1x') { s1 += "x"; }
+            else if (cc_x[i] == '+x') { s1 += "x"; }
+            else if (cc_x[i] == '+1x') { s1 += "x"; }
+            else if (cc_x[i] == '-1x') { s1 += "-x"; }
+            else if (cc_x[i] == "+" && cc_x[i + 1] == "-") { }
+            else s1 += cc_x[i];
         }
-        return s1;        
+        return s1;
     }
-    AdjExpFmtList(cc_x:any){
-        let s1=[];
-        for(let i=0;i<cc_x.length;i++){
-            if(cc_x[i]=='1x') {s1.push("x");}
-            else if(cc_x[i]=='+x') {s1.push("x");}
-            else if(cc_x[i]=='+1x') {s1.push("x");}
-            else if(cc_x[i]=='-1x') {s1.push("-x");}
-            else if(cc_x[i]=="+" && cc_x[i+1]=="-") {}
+    AdjExpFmtList(cc_x: any) {
+        let s1 = [];
+        for (let i = 0; i < cc_x.length; i++) {
+            if (cc_x[i] == '1x') { s1.push("x"); }
+            else if (cc_x[i] == '+x') { s1.push("x"); }
+            else if (cc_x[i] == '+1x') { s1.push("x"); }
+            else if (cc_x[i] == '-1x') { s1.push("-x"); }
+            else if (cc_x[i] == "+" && cc_x[i + 1] == "-") { }
             else s1.push(cc_x[i]);
         }
-        return s1;        
+        return s1;
     }
-    MJaxFmt(St:string) {
+    MJaxFmt(St: string) {
         var patt1 = /[(][-]*\d+[/][-]*\d+[)]/g;
         var result = St.match(patt1);
         if (result == null) { }
@@ -195,9 +194,9 @@ class TmsUts {
     ' ------- Ts 是 ± 號
     //Public Function FPlusF(Tf1 As AFrc, Tf2 As AFrc, Ts As String) As AFrc
     */
-    FPlusF(Tf1:AFrc, Tf2:AFrc, Ts:string) {
-        let a1:number, b1:number, a2:number, b2:number;//Int
-        let u:number, v:number, n:number, f = new AFrc;  // u,v as single; n as int; f As AFrc
+    FPlusF(Tf1: AFrc, Tf2: AFrc, Ts: string) {
+        let a1: number, b1: number, a2: number, b2: number;//Int
+        let u: number, v: number, n: number, f = new AFrc;  // u,v as single; n as int; f As AFrc
         if (Tf1.Sgn == 0) Tf1.Sgn = 1
         if (Tf2.Sgn == 0) Tf2.Sgn = 1
         a1 = Tf1.Sgn * Tf1.FenZ                                         //     '   ' 將符號加到分子上
@@ -428,7 +427,39 @@ KeySigns['-'] = 3;
 KeySigns[':'] = 2;
 KeySigns[','] = 2;
 class TmsCalcu {
-    VMCalc(ValSt) { alert("no implement!");}
+    RunVMCalc(St) { alert("no implement!"); }
+    RunExpr(St, VSet = { x: 1 }) {
+        let xVal=VSet.x;
+        let tmsU=new TmsUts();
+        let St1 = St.toLowerCase();
+        let r_ = /[0-9]+x/g
+        let mr_ = St1.match(r_)
+        if (mr_)
+            for (let j = 0; j < mr_.length; j++) {
+                let r_mr_ = mr_[j].replace("x", "*x")
+                St1 = St1.replace(mr_[j], r_mr_)
+            }
+        St1 = St1.replace(/x/g, `${xVal}`)
+        console.log(St1)
+        let cc_list1 = this.Sytex_cclist(St1);
+        cc_list1 = tmsU.AdjExpFmtList(cc_list1);
+        console.log(cc_list1)
+        let yy1 = [];
+        this.proc2opt(cc_list1, yy1);
+        return this.exprCalc(yy1);
+        return 0;
+    }
+    RunFrcExpr(St, VSet = { x: 1 }) {
+        console.log(St);
+        let cc_list = this.Sytex_cclist(St);
+        console.log("cc_list",cc_list);
+        let frc_yy = [];
+        this.procfrc2opt(cc_list, frc_yy);
+        console.log(frc_yy);
+        let frc_val=this.exprfrcCalc(frc_yy); console.log("frc_val=", frc_val);
+        return frc_val;        
+        return "-1/2";
+    }
     //處理 二目運算符如 = + - * / ( ) 生成樹狀型式//static TreeItem
     proc2opt(l1, prenode) {
         let cnt = 0;
