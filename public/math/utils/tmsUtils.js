@@ -498,7 +498,42 @@ KeySigns[','] = 2;
 var TmsCalcu = /** @class */ (function () {
     function TmsCalcu() {
     }
-    TmsCalcu.prototype.VMCalc = function (ValSt) { alert("no implement!"); };
+    TmsCalcu.prototype.RunVMCalc = function (St) { alert("no implement!"); };
+    TmsCalcu.prototype.RunExpr = function (St, VSet) {
+        if (VSet === void 0) { VSet = { x: 1 }; }
+        var xVal = VSet.x;
+        var tmsU = new TmsUts();
+        var St1 = St.toLowerCase();
+        var r_ = /[0-9]+x/g;
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++) {
+                var r_mr_ = mr_[j].replace("x", "*x");
+                St1 = St1.replace(mr_[j], r_mr_);
+            }
+        St1 = St1.replace(/x/g, "" + xVal);
+        console.log(St1);
+        var cc_list1 = this.Sytex_cclist(St1);
+        cc_list1 = tmsU.AdjExpFmtList(cc_list1);
+        console.log(cc_list1);
+        var yy1 = [];
+        this.proc2opt(cc_list1, yy1);
+        return this.exprCalc(yy1);
+        return 0;
+    };
+    TmsCalcu.prototype.RunFrcExpr = function (St, VSet) {
+        if (VSet === void 0) { VSet = { x: 1 }; }
+        console.log(St);
+        var cc_list = this.Sytex_cclist(St);
+        console.log("cc_list", cc_list);
+        var frc_yy = [];
+        this.procfrc2opt(cc_list, frc_yy);
+        console.log(frc_yy);
+        var frc_val = this.exprfrcCalc(frc_yy);
+        console.log("frc_val=", frc_val);
+        return frc_val;
+        return "-1/2";
+    };
     //處理 二目運算符如 = + - * / ( ) 生成樹狀型式//static TreeItem
     TmsCalcu.prototype.proc2opt = function (l1, prenode) {
         var cnt = 0;
@@ -1007,53 +1042,7 @@ var TmsCalcu = /** @class */ (function () {
     };
     return TmsCalcu;
 }());
-/////////
-function VMCalc(ValSt) {
-    if (typeof module !== 'undefined' && module.exports) {
-    }
-    else {
-        return "No VM!";
-    }
-    var vm = require('vm');
-    var sandbox = { x: 0 };
-    if (ValSt.indexOf('^') < 1) {
-        vm.createContext(sandbox);
-        var code = 'x ' + ValSt;
-        vm.runInContext(code, sandbox);
-        return sandbox.x;
-    }
-    else {
-        var blockopt = 0;
-        var blockoptposi = [-1, -1, -1, -1, -1];
-        for (var i = 0; i < ValSt.length; i++) {
-            var s = ValSt[i];
-            if (s == "(") {
-                blockoptposi[Number(blockopt)] = i;
-                blockopt += 1;
-            }
-            if (s == ")") {
-                blockopt -= 1;
-                if (i < ValSt.length - 2 && ValSt[i + 1] == "^") {
-                    var posi = blockoptposi[blockopt];
-                    ValSt = ValSt.substring(0, posi) + "Math.pow(" + ValSt.substring(posi + 1, i) + "," + ValSt[i + 2] + ")" + ValSt.substring(i + 3);
-                    blockoptposi = [-1, -1, -1, -1, -1];
-                }
-            }
-        }
-        for (var i = 0; i < ValSt.length; i++) {
-            var s = ValSt[i];
-            if (s == "^") {
-                ValSt = ValSt.substring(0, i - 1) + "Math.pow(" + ValSt.substring(i - 1, i) + "," + ValSt[i + 1] + ")" + ValSt.substring(i + 2);
-            }
-        }
-        vm.createContext(sandbox);
-        var code = 'x ' + ValSt;
-        vm.runInContext(code, sandbox);
-        return sandbox.x;
-    }
-}
-////////////
 var calc = new TmsCalcu();
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { calc: calc, VMCalc: VMCalc, AFrc: AFrc, AExps: AExps, TmsUts: TmsUts };
+    module.exports = { calc: calc, AFrc: AFrc, AExps: AExps, TmsUts: TmsUts, TmsCalcu: TmsCalcu };
 }

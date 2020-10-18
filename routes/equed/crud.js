@@ -65,13 +65,13 @@ function fmt_now() {
 }
 
 router.get('/ed/add',oauthAG.MahtsRequired, (req, res, next) => {
-  let qizcode= ["//定義變量:Tx [1:4]","//工具集: tmsU, calc","let TE={St:'',Val:'',ACnt:1, ATyp:'n',Range:[]};//n,t,m", 
+  let qizcode= ["//定義變量:Tx : [1:9]","//工具集: tmsU, tmsCalcu","let TE={St:'',Val:'',ACnt:1, ATyp:'n',Range:[]};//n,t,m", 
   'let a=Math.floor(Math.random()*10);', 
   'let b=Math.floor(Math.random()*10);', 
   'TE.St=`${a} \\\\times ${b}`;',
   'TE.Val=a*b;',
   ''].join('\n');
-  let anscode=[ "//工具集: tmsU, calc \n//定義變量:IAns1,IAns2,TE", "if(TE.ACnt==1 && TE.ATyp=='n') return IAns1==TE.Val;"].join('\n')
+  let anscode=[ "//工具集: tmsU, tmsCalcu \n//定義變量:IAns1,IAns2,TE", "if(TE.ACnt==1 && TE.ATyp=='n') return IAns1==TE.Val;"].join('\n')
   res.render('equed/edit/form.pug', {
     profile: req.user,
     book:{
