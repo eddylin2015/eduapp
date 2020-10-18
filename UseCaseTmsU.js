@@ -15,5 +15,10 @@ console.log(yy1)
 console.log(tmsCalcu.exprCalc(yy1));
 
 
+let v1=tmsCalcu.RunExpr("0x+-10");
+let v2=tmsCalcu.RunExpr("-110");
+console.log(v1!=v2,typeof(v1),typeof(v2))
+
+
 
 
