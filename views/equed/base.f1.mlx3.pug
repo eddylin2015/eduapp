@@ -52,6 +52,7 @@ html(lang="zh")
         $("#InputAns"+x+"0").focus();     
         try{
         $("#InputAns"+x+"1").val("");    
+        $("#InputAns"+x+"1").prop('disabled', false);
         $("#InputAns"+x+"1").css("display", "block");  
         }catch(InputAnsExcept){console.log(InputAnsExcept.message);}
         $('#CHKQT00'+x).text(qno+ "/10确定");
