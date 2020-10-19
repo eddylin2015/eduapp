@@ -156,7 +156,7 @@ function CreatAEq(Tx, Tk, Range) {
       let s2_= `${c}x^(${u}-${m})y^(${v}-${n})`
       let s3_= `${d}x^(${g}-${m})y^(${h}-${n})` 
       TE.St = AdjustExp(`${s1}+${s2}+${s3}`)
-      TE.Val =`${a}x${m}y${n}(${s1_}+ ${s2_}+ ${s3_})`
+      TE.Val =`${a}x${m}y${n}*(${s1_}+ ${s2_}+ ${s3_})`
       TE.CalcVal = 0;
       TE.FrcVal = "";
       //TE.St=tmsU.MJaxFmt(TE.St);
