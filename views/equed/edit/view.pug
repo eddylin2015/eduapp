@@ -6,43 +6,73 @@ block content
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js")
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.nls.js")
   script(src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.js")
+  script(src='https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815')
+
   style.
     #container_qiz{width:100%;height:400px}
     #container_ans{width:100%;height:400px}
-  div= book.id
+  
   div
     a(href=`/internal/equed/ed/${book.id}/edit`, class='btn btn-success btn-sm')
       span 編輯設定
     a(href=`/internal/equed/edCode/${book.id}`, class='btn btn-success btn-sm')
       span JS編程
-  div= book.gid
-  div= book.qtitle
-  div= book.qgrade
-  div= book.qfield
-  div= book.tx
-  div= book.acnt
-  div= book.atype
-  table(width="100%")
+  table(border="1")
+    tr
+      th 編號
+      th 代號
+      th 標題
+      th 年級
+      th 學科
+      th 題型Tx
+      th 作答欄位
+      th 作答n,t,m(num,txt,mathinput)
+    tr
+      td= book.id
+      td= book.gid
+      td= book.qtitle
+      td= book.qgrade
+      td= book.qfield
+      td= book.tx
+      td= book.acnt
+      td= book.atype
+  //table(width="100%")
     tr
       td(width="50%")
         div#container_qiz
       td(width="50%")
         div#container_ans
+  h4 題目描述
+  div(style="border:1px")#qnote !{book.qnote}
+
+  h4 出題        
   pre= book.qizcode        
+  h4 檢查答案
   pre= book.anscode
-  div(style="border:1px") !{book.qnote}
-  div(style="border:1px") !{book.snote}
-  div= book.pflag
-  div= book.pdate
-  div= book.createbyid
-  div= book.createbyname
-  div= book.createdate
-  div= book.modifybyid
-  div= book.modifybyname
-  div= book.modifydate
+  h4 學生提示
+  div(style="border:1px")#snote !{book.snote}
+  table
+    tr
+      td= book.pflag
+      td= book.pdate
+  table
+    tr
+      td= book.createbyid
+      td= book.createbyname
+      td= book.createdate
+  table
+    tr
+      td= book.modifybyid
+      td= book.modifybyname
+      td= book.modifydate
 
   script.
-      
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] } });
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, "qnote"]);
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] } });
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, "snote"]);
+
+      /*
       require(['vs/editor/editor.main'], function () {
       var editor = monaco.editor.create(document.getElementById('container_qiz'), {
           value:!{qiz_code}.join("\n"),
@@ -61,5 +91,6 @@ block content
           .addExtraLib(`var tmsU={TakeARnd:"亂數TakeARnd(Ta,Tb,Desm=0,SwIs(0,1,2)=1,Tc=0,Td=0)",TakeAFra:""}`
           )
       });
+      */
 
 

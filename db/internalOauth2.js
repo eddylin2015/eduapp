@@ -74,6 +74,7 @@ router.post('/login',
            res.redirect('/internal/');
         }
     });
+    
 router.post('/auth/login',
     passport.authenticate('local', { failureRedirect: '/login' }),
     function (req, res) {
