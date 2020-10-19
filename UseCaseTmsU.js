@@ -28,7 +28,13 @@ let Vals=[
 "7*x^0*y^0*(1*x^(0)* y^(8)+ (3*x^(1)* y^(4))+ (1*x^(2)* y^(0)))",
     ]
 Vals.forEach(vst => {
-   console.log( tmsCalcu.RunExpr(vst,{x:1,y:2}));
+   //console.log( tmsCalcu.RunExpr(vst,{x:1,y:2}));
+   let cc_list1 = tmsCalcu.Sytex_cclist_x(vst,{x:1,y:2},true);
+   //cc_list1 = tmsU.AdjExpFmtList(cc_list1);
+   console.log(cc_list1)
+   let yy1 = [];
+   tmsCalcu.proc2opt(cc_list1, yy1);
+   console.log(yy1)   
 });
 
 

@@ -428,7 +428,7 @@ KeySigns[':'] = 2;
 KeySigns[','] = 2;
 class TmsCalcu {
     RunVMCalc(St) { alert("no implement!"); }
-    RunExpr(St, VSet = { x: 1 }) {
+    RunExpr(St, VSet={x:1},trace=false) {
         let tmsU=new TmsUts();
         let St1 = St.toLowerCase();
         let Vkeys = Object.keys(VSet);
@@ -516,7 +516,7 @@ class TmsCalcu {
         }
     }
 
-    Sytex_cclist(data) {
+    Sytex_cclist(data,VSet={x:1},trace=false) {
         let cc_list = []
         let lcnt = 0;
         let blockOpt = 0;
@@ -581,13 +581,13 @@ class TmsCalcu {
         }
         return cc_list;
     }
-    Sytex_cclist_x(data) {
+    Sytex_cclist_x(data,VSet={x:1},trace=false) {
+        let Vkeys = Object.keys(VSet);
         let cc_list = []
         let lcnt = 0;
         let blockOpt = 0;
         for (let j = 0; j < data.length; j++) {
             let c = data[j];
-
             switch (c) {
                 case '(': ;
                     blockOpt += 10;
