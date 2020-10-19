@@ -22,6 +22,7 @@ block content
                     when "m"
                       td
                         span(class="mathfield",style='font-size:28px;width:200px;',id=`mlInputAns${tabid}${AnsInputIdx}`) 
+                        br
                         script.
                           mf_li.push(!{`mlInputAns${tabid}${AnsInputIdx}`});
                       td                
@@ -45,15 +46,12 @@ block content
   div(class="tab-content")
     -let instyle="AnsInput";
     -let inTxt="number";
-    -let tabpane=["","tab-pane fade in active","tab-pane fade","tab-pane fade","tab-pane fade"]
     each tabid in [1,2,3,4,5,6,7,8,9]
       - tabidflag= tabid<=book.tx
       if tabidflag
-        div(id=`menu${tabid}` class=tabpane[tabid])
-          +MathTestPanelMathlive(tabid,AnsType[tabid],AnsCnt[tabid])  
-      else
-        div(id=`menu${tabid}` class=tabpane[tabid])    
-
+        -tabpaneclass= tabid==1?"tab-pane fade in active":"tab-pane fade"
+        div(id=`menu${tabid}`,class=tabpaneclass)    
+            +MathTestPanelMathlive(tabid,AnsType[tabid],AnsCnt[tabid])  
   
   style.
     .MathJax span{font-size:20px;}
@@ -166,24 +164,7 @@ block content
          }
       });
       //End def Check Ans Event
-      import('/mathlive/dist/mathlive.mjs')
-        .then(module => {
-          for (let i = 0; i < mf_li.length; i++) {
-              let mf__ = module.default.makeMathField(mf_li[i], {
-                  smartMode: true,
-                  virtualKeyboardMode: 'onfocus',
-                  onContentDidChange: (mf__) => {
-                      let latex = mf__.$text();
-                      let lx_name=(mf__.element.id.substring(2));
-                      document.getElementById(lx_name).value = escapeHtml(latex);
-                  },
-              });
-              mf.push(mf__);
-          }
-        })
-        .catch(err => {
-          console.log( err.message);
-        });
+      InitMathField(mf_li,mf);
     });
   
   

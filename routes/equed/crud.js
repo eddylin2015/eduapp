@@ -95,7 +95,7 @@ router.post('/ed/add', oauthAG.MahtsRequired, images.multer.single('image'),  (r
     });
 });
  
-router.get('/ed/:book', oauthAG.MahtsRequired,(req, res, next) => {
+router.get('/ed/:book', (req, res, next) => {
   model.read(req.params.book, (err, entity) => {
     if (err) {
       next(err);

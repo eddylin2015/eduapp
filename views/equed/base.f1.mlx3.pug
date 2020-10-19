@@ -24,6 +24,53 @@ html(lang="zh")
     script(src='https://getbootstrap.com/docs/3.4/dist/js/bootstrap.min.js')
     script(src='https://cdn.kastatic.org/third_party/javascript-khansrc/khan-mathjax/2.1/MathJax.js?config=KAthJax-730d56e87e9c926b91584f6030314815')
     <script type="module" src="/mathlive/dist/mathlive.mjs"></script>
+    -let AnsMType=false;
+    each _anstype in AnsType
+      -AnsMType=  _anstype=="m"?true:false;
+    if AnsMType
+      script.
+        function InitMathField(mf_li,mf){
+          console.log(mf_li)
+          import('/mathlive/dist/mathlive.mjs')
+          .then(module => {
+            for (let i = 0; i < mf_li.length; i++) {
+                let mf__ = module.default.makeMathField(mf_li[i], {
+                    smartMode: true,
+                    virtualKeyboardMode: 'onfocus',
+                    onContentDidChange: (mf__) => {
+                        let latex = mf__.$text();
+                        let lx_name=(mf__.element.id.substring(2));
+                        document.getElementById(lx_name).value = escapeHtml(latex);
+                    },
+                });
+                mf.push(mf__);
+            }
+          })
+          .catch(err => {
+            console.log( err.message);
+          });        
+        };
+        function ClearMathField(mf_li,mf){
+          import('/mathlive/dist/mathlive.mjs')
+          .then(module => {
+            for (let i = 0; i < mf_li.length; i++) {
+                let elen0=mf_li[i];
+                if(mf_li[i]==elen0) {
+                  let mf__=mf[i];
+                  mf__.$perform('selectAll');
+                  mf__.$clearSelection();
+                  if(mf_li[i]==elen0) mf__.$focus()
+                }
+            }
+          })
+          .catch(err => {
+            console.log( err.message);
+          });
+        };
+    else
+      script.
+        function InitMathField(mf_li,mf){}
+        function ClearMathField(mf_li,mf){}
     script.
       var mf=[];
       var mf_li=[];
@@ -51,28 +98,14 @@ html(lang="zh")
         $("#InputAns"+x+"0").css("display", "block");      
         $("#InputAns"+x+"0").focus();     
         try{
-        $("#InputAns"+x+"1").val("");    
-        $("#InputAns"+x+"1").prop('disabled', false);
-        $("#InputAns"+x+"1").css("display", "block");  
+            $("#InputAns"+x+"1").val("");    
+            $("#InputAns"+x+"1").prop('disabled', false);
+            $("#InputAns"+x+"1").css("display", "block");  
         }catch(InputAnsExcept){console.log(InputAnsExcept.message);}
         $('#CHKQT00'+x).text(qno+ "/10确定");
         $('#QT00'+x).html("\\("+App.GetQizStatement(x,qno)+"\\)");  
         App.UpdateMathContent(x);
-        import('/mathlive/dist/mathlive.mjs')
-        .then(module => {
-          for (let i = 0; i < mf_li.length; i++) {
-              let elen0=mf_li[i];
-              if(mf_li[i]==elen0) {
-                let mf__=mf[i];
-                mf__.$perform('selectAll');
-                mf__.$clearSelection();
-                if(mf_li[i]==elen0) mf__.$focus()
-              }
-          }
-        })
-        .catch(err => {
-          console.log( err.message);
-        });
+        ClearMathField(mf_li,mf);
         close_msgbox('AnsMsgbox');
       }
       function GetCheckAns(x) {  
@@ -96,14 +129,7 @@ html(lang="zh")
   body
     if !profile        
       <table id=login_forom>
-        <c:choose>
-        <c:when test="${empty userEmail}">
-        <tr>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;<td>請<a href="/login">登入</a>!
-        </c:when>
-        <c:otherwise>           
-        </c:otherwise>
-        </c:choose>      
       </table>          
     ul(class="nav nav-tabs")
       li(class="nav-item")
