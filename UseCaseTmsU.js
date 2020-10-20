@@ -36,7 +36,8 @@ Vals.forEach(vst => {
    tmsCalcu.proc2opt(cc_list1, yy1);
    console.log(yy1)   
 });
-
+console.log('["t","m"]'.match(/[a-z]/g))
+console.log('[1,2,4,5]'.match(/[0-9]/g))
 
 
 

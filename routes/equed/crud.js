@@ -201,8 +201,8 @@ router.get('/edUI/:book', (req, res, next) => {
       MathTitle: entity.qtitle,
       CreatAEqCode:entity.qizcode,
       CheckAnsCode:entity.anscode,
-      AnsCnt:JSON.parse(entity.acnt),
-      AnsType:JSON.parse(entity.atype),
+      AnsCnt:entity.acnt.match(/[0-9]/g),
+      AnsType:entity.atype.match(/[a-z]/g),
       posturl:req.baseUrl+req.url,
       book: entity,
     });
