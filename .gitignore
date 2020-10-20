@@ -2,6 +2,7 @@
 *.*.swp
 secert_*.*
 routes/act/stdAttend/*
+public/mathjs/*
 public/math-input/*
 public/mathlive/*
 public/mathlive/*
