@@ -211,6 +211,10 @@ html
       		if(jsondata[i].type.substring(0,3)=="vol"){
       			$('#volunteer_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
       		}          
+      		if(jsondata[i].type.substring(0,2)=="sw"){
+      			$('#sw_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
+      		}		           
+
       		if(jsondata[i].type.substring(0,3)=="mor"){
       			$('#moral_tab').append(li_mudtd(jsondata[i].id,jsondata[i].item,1));
       		}						
@@ -218,6 +222,7 @@ html
       	$('#act_tab').append("<tr><td class=mutd>&nbsp;<td class=mutd>&nbsp;");
       	$('#news_tab').append("<tr><td class=mutd>&nbsp;<td class=mutd>&nbsp;");
         $('#volunteer_tab').append("<tr><td class=mutd>&nbsp;<td class=mutd>&nbsp;");
+      	$('#sw_tab').append("<tr><td class=mutd>&nbsp;<td class=mutd>&nbsp;");        
       	$('#moral_tab').append("<tr><td class=mudtd>&nbsp;<td class=mudtd>&nbsp;");
       	for (var i = 0; i < jsondata.length; i++) {
       		if(jsondata[i].type=='slideimg'){
@@ -361,7 +366,15 @@ html
               td.titlebg_r(valign="top",colspan=2)
                 span &nbsp;&nbsp;義工專區
                 span(style="width:50%;min-width:50%; display: inline-block;") &nbsp;
-                img(src="/app_static_file/me/img/more.png", id="btn_volunteer_more", onclick="mu_link('volunteer');")
+                //img(src="/app_static_file/me/img/more.png", id="btn_volunteer_more", onclick="mu_link('volunteer');")
+          
+          table#sw_tab(style="width:310px")
+            tr.titlebg_r
+              td.titlebg_r(valign="top",colspan=2)
+                span 輔導員專區
+                span(style="width:47%;min-width:47%; display: inline-block;") &nbsp;
+                a(href="#link_main_content")
+                  img(src="/app_static_file/me/img/more.png", id="btn_sw_more", onclick="mu_link('sw_more');")
 
           table#comm_tab(width="310px")
             tr
