@@ -22,10 +22,11 @@ block content
                     when "m"
                       td
                         span(class="mathfield",style='font-size:28px;width:200px;',id=`mlInputAns${tabid}${AnsInputIdx}`) 
+                        
                         br
                         script.
                           mf_li.push(!{`mlInputAns${tabid}${AnsInputIdx}`});
-                      td                
+                      td  
                         input(readonly=true,style="width:60px;min-width:1px;font-size:10px;border:0;outline:none;", id=`InputAns${tabid}${AnsInputIdx}`)
                     when "n"  
                       td                

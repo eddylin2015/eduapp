@@ -444,6 +444,17 @@ class TmsCalcu {
                     St1 = St1.replace(mr_[j], r_mr_)
                 }
         }
+        for (let i = 1; i < Vkeys.length; i++) {
+            let xKey0 = Vkeys[i-1];
+            let xKey1 = Vkeys[i];
+            let r_ = new RegExp(`${xKey0}[ ]*${xKey1}`, 'g');
+            let mr_ = St1.match(r_)
+            if (mr_)
+                for (let j = 0; j < mr_.length; j++) {
+                    let r_mr_ = mr_[j].replace(`${xKey1}`, `*${xKey1}`)
+                    St1 = St1.replace(mr_[j], r_mr_)
+                }
+        }        
         let bkeys = Vkeys.concat(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
         for (let i = 0; i < bkeys.length; i++) {
             let xKey = bkeys[i];

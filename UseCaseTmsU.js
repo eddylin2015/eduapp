@@ -30,7 +30,8 @@ let Vals = [
     "\\frac{x^{2} + 3x}{x + 3}",
     "1+\\mleft(5\\times5\\mright?",
     "\\mleft(a\\mleft(b+c\\mright?\\mright?",
-    "7\\mleft(2x^6y^4-42x^2y^5-1\\mright?"
+    "7\\mleft(2x^6y^4-42x^2y^5-1\\mright?",
+    "xy"
 
 ]
 function fracMark2Expr(vst, idx) {
