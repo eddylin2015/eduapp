@@ -213,12 +213,16 @@ html
       		if(jsondata[i].type.substring(0,3)=="new"){
       			$('#news_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
       		}
+      		if(jsondata[i].type.substring(0,3)=="vol"){
+      			$('#volunteer_tab').append(li_mutd(jsondata[i].id,jsondata[i].item,1));
+      		}
       		if(jsondata[i].type.substring(0,3)=="mor"){
       			$('#moral_tab').append(li_mudtd(jsondata[i].id,jsondata[i].item,1));
       		}						
       	}
       	$('#act_tab').append("<tr><td class=mutd>&nbsp;<td class=mutd>&nbsp;");
       	$('#news_tab').append("<tr><td class=mutd>&nbsp;<td class=mutd>&nbsp;");
+        $('#volunteer_tab').append("<tr><td class=mutd>&nbsp;<td class=mutd>&nbsp;");
       	$('#moral_tab').append("<tr><td class=mudtd>&nbsp;<td class=mudtd>&nbsp;");
       	screenwidth=550;
       	screenheight=screenwidth*10 /23;
