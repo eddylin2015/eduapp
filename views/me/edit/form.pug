@@ -12,11 +12,11 @@ block content
         td   
           .form-group
             label(for="type") type
-            -let typeE=["act","news","sw","moral1","moral2","moral3","moral4","moral5","moral6","moral7","moral8","moral9","morala","slideimg"]
-            -let typeN=["活動","新聞","社工","生命教育","性教育","品德","勵志","情緒","網絡","濫藥","社會新聞","生命教育","環保節能","slideimg"]
+            -let typeE=["act","news","sw","moral1","moral2","moral3","moral4","moral5","moral6","moral7","moral8","moral9","morala","slideimg","volunteer"]
+            -let typeN=["活動","新聞","社工","生命教育","性教育","品德","勵志","情緒","網絡","濫藥","社會新聞","生命教育","環保節能","slideimg","義工專區"]
             select.form-control(type="text", name="type", id="type", value=book.type)
               option(value="") 空
-              each t_index in [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
+              each t_index in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
                 option(value=typeE[t_index],selected= typeE[t_index]==book.type?true:false)= typeN[t_index]
         td
           .form-group

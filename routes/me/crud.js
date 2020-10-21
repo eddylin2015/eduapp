@@ -41,6 +41,7 @@ function checkuser(req) {
   if (req.user.email == "leichoison@mail.mbc.edu.mo") return true;
   if (req.user.email == "aoieongonnei@mail.mbc.edu.mo") return true;
   if (req.user.email == "fongsioman@mail.mbc.edu.mo") return true;
+  if (req.user.email == "wongkuanwa7e4@mail.mbc.edu.mo") return true;
   return false;
 }
 const router = express.Router();
