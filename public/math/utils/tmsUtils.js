@@ -499,8 +499,9 @@ var TmsCalcu = /** @class */ (function () {
     function TmsCalcu() {
     }
     TmsCalcu.prototype.RunVMCalc = function (St) { alert("no implement!"); };
-    TmsCalcu.prototype.RunExpr = function (St, VSet) {
+    TmsCalcu.prototype.RunExpr = function (St, VSet, trace) {
         if (VSet === void 0) { VSet = { x: 1 }; }
+        if (trace === void 0) { trace = false; }
         var tmsU = new TmsUts();
         var St1 = St.toLowerCase();
         var Vkeys = Object.keys(VSet);
@@ -515,6 +516,21 @@ var TmsCalcu = /** @class */ (function () {
                     var r_mr_ = mr_[j].replace("" + xKey, "*" + xKey);
                     St1 = St1.replace(mr_[j], r_mr_);
                 }
+        }
+        var bkeys = Vkeys.concat(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
+        for (var i = 0; i < bkeys.length; i++) {
+            var xKey = bkeys[i];
+            var r_ = new RegExp(xKey + "[(]", 'g');
+            var mr_ = St1.match(r_);
+            if (mr_)
+                for (var j = 0; j < mr_.length; j++) {
+                    var r_mr_ = mr_[j].replace(xKey + "(", xKey + "*(");
+                    St1 = St1.replace(mr_[j], r_mr_);
+                }
+        }
+        for (var i = 0; i < Vkeys.length; i++) {
+            var xKey = Vkeys[i];
+            var xVal = VSet[xKey];
             var x_r = new RegExp("" + xKey, 'g');
             St1 = St1.replace(x_r, "" + xVal);
         }
@@ -588,7 +604,9 @@ var TmsCalcu = /** @class */ (function () {
             }
         }
     };
-    TmsCalcu.prototype.Sytex_cclist = function (data) {
+    TmsCalcu.prototype.Sytex_cclist = function (data, VSet, trace) {
+        if (VSet === void 0) { VSet = { x: 1 }; }
+        if (trace === void 0) { trace = false; }
         var cc_list = [];
         var lcnt = 0;
         var blockOpt = 0;
@@ -669,7 +687,10 @@ var TmsCalcu = /** @class */ (function () {
         }
         return cc_list;
     };
-    TmsCalcu.prototype.Sytex_cclist_x = function (data) {
+    TmsCalcu.prototype.Sytex_cclist_x = function (data, VSet, trace) {
+        if (VSet === void 0) { VSet = { x: 1 }; }
+        if (trace === void 0) { trace = false; }
+        var Vkeys = Object.keys(VSet);
         var cc_list = [];
         var lcnt = 0;
         var blockOpt = 0;

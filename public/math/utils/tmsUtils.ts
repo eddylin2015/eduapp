@@ -428,15 +428,14 @@ KeySigns[':'] = 2;
 KeySigns[','] = 2;
 class TmsCalcu {
     RunVMCalc(St) { alert("no implement!"); }
-    RunExpr(St, VSet={x:1},trace=false) {
-        let tmsU=new TmsUts();
+    RunExpr(St, VSet = { x: 1 }, trace = false) {
+        let tmsU = new TmsUts();
         let St1 = St.toLowerCase();
         let Vkeys = Object.keys(VSet);
         console.log(Vkeys)
-        for(let i=0;i<Vkeys.length;i++)
-        {
-            let xKey=Vkeys[i];
-            let xVal=VSet[xKey];
+        for (let i = 0; i < Vkeys.length; i++) {
+            let xKey = Vkeys[i];
+            let xVal = VSet[xKey];
             let r_ = new RegExp(`[0-9]+${xKey}`, 'g');
             let mr_ = St1.match(r_)
             if (mr_)
@@ -444,7 +443,22 @@ class TmsCalcu {
                     let r_mr_ = mr_[j].replace(`${xKey}`, `*${xKey}`)
                     St1 = St1.replace(mr_[j], r_mr_)
                 }
-            let x_r= new RegExp(`${xKey}`, 'g');   
+        }
+        let bkeys = Vkeys.concat(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
+        for (let i = 0; i < bkeys.length; i++) {
+            let xKey = bkeys[i];
+            let r_ = new RegExp(`${xKey}[(]`, 'g');
+            let mr_ = St1.match(r_)
+            if (mr_)
+                for (let j = 0; j < mr_.length; j++) {
+                    let r_mr_ = mr_[j].replace(`${xKey}(`, `${xKey}*(`)
+                    St1 = St1.replace(mr_[j], r_mr_)
+                }
+        }
+        for (let i = 0; i < Vkeys.length; i++) {
+            let xKey = Vkeys[i];
+            let xVal = VSet[xKey];
+            let x_r = new RegExp(`${xKey}`, 'g');
             St1 = St1.replace(x_r, `${xVal}`)
         }
         console.log(St1)
@@ -459,12 +473,12 @@ class TmsCalcu {
     RunFrcExpr(St, VSet = { x: 1 }) {
         console.log(St);
         let cc_list = this.Sytex_cclist(St);
-        console.log("cc_list",cc_list);
+        console.log("cc_list", cc_list);
         let frc_yy = [];
         this.procfrc2opt(cc_list, frc_yy);
         console.log(frc_yy);
-        let frc_val=this.exprfrcCalc(frc_yy); console.log("frc_val=", frc_val);
-        return frc_val;        
+        let frc_val = this.exprfrcCalc(frc_yy); console.log("frc_val=", frc_val);
+        return frc_val;
         return "-1/2";
     }
     //處理 二目運算符如 = + - * / ( ) 生成樹狀型式//static TreeItem
@@ -516,7 +530,7 @@ class TmsCalcu {
         }
     }
 
-    Sytex_cclist(data,VSet={x:1},trace=false) {
+    Sytex_cclist(data, VSet = { x: 1 }, trace = false) {
         let cc_list = []
         let lcnt = 0;
         let blockOpt = 0;
@@ -581,7 +595,7 @@ class TmsCalcu {
         }
         return cc_list;
     }
-    Sytex_cclist_x(data,VSet={x:1},trace=false) {
+    Sytex_cclist_x(data, VSet = { x: 1 }, trace = false) {
         let Vkeys = Object.keys(VSet);
         let cc_list = []
         let lcnt = 0;
@@ -882,5 +896,5 @@ class TmsCalcu {
 const calc = new TmsCalcu();
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { calc: calc,  AFrc: AFrc, AExps: AExps, TmsUts: TmsUts,TmsCalcu:TmsCalcu };
+    module.exports = { calc: calc, AFrc: AFrc, AExps: AExps, TmsUts: TmsUts, TmsCalcu: TmsCalcu };
 }

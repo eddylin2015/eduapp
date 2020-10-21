@@ -1,7 +1,7 @@
-const TmsUti=require('./public/math/utils/tmsUtils')
-const tmsU=new TmsUti.TmsUts();
-const tmsCalcu=new TmsUti.TmsCalcu();
-console.log(tmsU.TakeAOpr(["+","-","*","/"]))
+const TmsUti = require('./public/math/utils/tmsUtils')
+const tmsU = new TmsUti.TmsUts();
+const tmsCalcu = new TmsUti.TmsCalcu();
+console.log(tmsU.TakeAOpr(["+", "-", "*", "/"]))
 console.log(tmsCalcu.RunFrcExpr("1/2+2/8"))
 console.log(tmsCalcu.RunExpr("1/2+2/8"))
 /*
@@ -15,29 +15,75 @@ tmsCalcu.proc2opt(cc_list1, yy1);
 console.log(yy1)
 console.log(tmsCalcu.exprCalc(yy1));
 */
-let Vals=[
-"5*x^0*y^0*(8*x^(5)* y^(0)+ (2*x^(5)* y^(2))+ (-7*x^(0)* y^(2)))",
-"-7*x^0*y^0*(3*x^(0)* y^(6)+ (-6*x^(0)* y^(0))+ (-1*x^(5)* y^(8)))",
-"-6*x^0*y^3*(6*x^(0)* y^(0)+ (-2*x^(6)* y^(4))+ (-6*x^(2)* y^(3)))",
-"-7*x^0*y^0*(-8*x^(0)* y^(6)+ (7*x^(4)* y^(0))+ (0*x^(3)* y^(6)))",
-"-6*x^0*y^0*(4*x^(0)* y^(0)+ (5*x^(6)* y^(2))+ (-4*x^(8)* y^(6)))",
-"-2*x^0*y^0*(4*x^(6)* y^(0)+ (5*x^(0)* y^(0))+ (-2*x^(2)* y^(3)))",
-"7*x^0*y^5*(5*x^(0)* y^(0)+ (-3*x^(7)* y^(2))+ (0*x^(2)* y^(3)))",
-"-7*x^4*y^6*(8*x^(2)* y^(1)+ (3*x^(4)* y^(2))+ (-2*x^(0)* y^(0)))",
-"4*x^0*y^0*(-6*x^(0)* y^(6)+ (6*x^(4)* y^(0))+ (-8*x^(3)* y^(4)))",
-"7*x^0*y^0*(1*x^(0)* y^(8)+ (3*x^(1)* y^(4))+ (1*x^(2)* y^(0)))",
-    ]
+let Vals = [
+    "5*x^0*y^0*(8*x^(5)* y^(0)+ (2*x^(5)* y^(2))+ (-7*x^(0)* y^(2)))",
+    "-7*x^0*y^0*(3*x^(0)* y^(6)+ (-6*x^(0)* y^(0))+ (-1*x^(5)* y^(8)))",
+    "-6*x^0*y^3*(6*x^(0)* y^(0)+ (-2*x^(6)* y^(4))+ (-6*x^(2)* y^(3)))",
+    "-7*x^0*y^0*(-8*x^(0)* y^(6)+ (7*x^(4)* y^(0))+ (0*x^(3)* y^(6)))",
+    "-6*x^0*y^0*(4*x^(0)* y^(0)+ (5*x^(6)* y^(2))+ (-4*x^(8)* y^(6)))",
+    "-2*x^0*y^0*(4*x^(6)* y^(0)+ (5*x^(0)* y^(0))+ (-2*x^(2)* y^(3)))",
+    "7*x^0*y^5*(5*x^(0)* y^(0)+ (-3*x^(7)* y^(2))+ (0*x^(2)* y^(3)))",
+    "-7*x^4*y^6*(8*x^(2)* y^(1)+ (3*x^(4)* y^(2))+ (-2*x^(0)* y^(0)))",
+    "4*x^0*y^0*(-6*x^(0)* y^(6)+ (6*x^(4)* y^(0))+ (-8*x^(3)* y^(4)))",
+    "7*x^0*y^0*(1*x^(0)* y^(8)+ (3*x^(1)* y^(4))+ (1*x^(2)* y^(0)))",
+    "\\frac{4}{\\frac{4}{8}}\\times4\\frac{9}{6}+7\\div7",
+    "\\frac{x^{2} + 3x}{x + 3}",
+    "1+\\mleft(5\\times5\\mright?",
+    "\\mleft(a\\mleft(b+c\\mright?\\mright?",
+    "7\\mleft(2x^6y^4-42x^2y^5-1\\mright?"
+
+]
+function fracMark2Expr(vst, idx) {
+    function fracFM(vst, idx) {
+        let posi = [-1, -1]
+        let lbcnt = 0;
+        console.log(idx)
+        if (idx > -1)
+            for (let i = idx; i < vst.length; i++) {
+                console.log(i, vst[i]);
+                if (vst[i] === '{') { if (lbcnt == 0) { posi[0] = i; }; lbcnt++; }
+                else if (vst[i] === '}') { posi[1] = i; lbcnt--; if (lbcnt == 0) { break; } }
+            }
+        return ([posi[0], posi[1], vst.substring(posi[0], posi[1] + 1)]);
+    }
+    let fZ = fracFM(vst, idx + 5);
+    console.log(fZ);
+    console.log(fZ[1]);
+    let fM = fracFM(vst, fZ[1] + 1);
+    console.log(fM);
+    return [vst.substring(idx, fM[1] + 1), ` ((${fZ[2]}) / (${fM[2]})) `];
+}
 Vals.forEach(vst => {
-   //console.log( tmsCalcu.RunExpr(vst,{x:1,y:2}));
-   let cc_list1 = tmsCalcu.Sytex_cclist_x(vst,{x:1,y:2},true);
-   //cc_list1 = tmsU.AdjExpFmtList(cc_list1);
-   console.log(cc_list1)
-   let yy1 = [];
-   tmsCalcu.proc2opt(cc_list1, yy1);
-   console.log(yy1)   
+    //console.log( tmsCalcu.RunExpr(vst,{x:1,y:2}));
+    vst = vst.replace(/\\times/g, "*")
+    vst = vst.replace(/\\div/g, "/")
+    vst = vst.replace(/\\mleft/g, "")
+    vst = vst.replace(/\\mright[?]/g, ")")
+    console.log(vst);
+    let FenZ = "";
+    let FenM = "";
+    let idx = vst.indexOf('\\frac')
+    while(idx>-1){
+       let res=fracMark2Expr(vst,idx);
+       console.log(res)
+       vst=vst.replace(res[0],res[1]);
+       idx= vst.indexOf('\\frac')
+    }
+    console.log(vst);
+
+    
+    
+    
+    let cc_list1 = tmsCalcu.Sytex_cclist_x(vst,{x:1,y:2},true);
+    cc_list1 = tmsU.AdjExpFmtList(cc_list1);
+    console.log(cc_list1)
+    let yy1 = [];
+    tmsCalcu.proc2opt(cc_list1, yy1);
+    console.log(yy1)   
+    console.log(tmsCalcu.exprCalc(yy1))
+    console.log(tmsCalcu.RunExpr(vst,{x:1,y:2}))
+    
 });
-console.log('["t","m"]'.match(/[a-z]/g))
-console.log('[1,2,4,5]'.match(/[0-9]/g))
 
 
 
