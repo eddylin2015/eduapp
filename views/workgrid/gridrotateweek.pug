@@ -1,0 +1,141 @@
+﻿extends ./base.pug
+
+block content
+  meta( HTTP-EQUIV="refresh", CONTENT="300")
+  
+  script(src='/javascripts/cool/webtoolkit.aim.js')
+  link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
+  script(src='//code.jquery.com/ui/1.12.1/jquery-ui.js')     
+  
+  style.
+    div.container{ margin:0px; }  
+  script.
+    var cnt=0;
+    function hidshow(){
+      var tbl="desc";
+        $( '#'+tbl ).find('tr').each(function() {
+          let ite=$(this).children('td').eq(1);
+          if(cnt==0){
+          ite.css("display", "none")
+          cnt++;
+          }else{
+          if(ite.css("display")== "none")   
+          {
+            ite.css("display","block")
+            ite.css("width","40px")
+          }else {
+            ite.css("display", "none")
+          }
+          }
+        });
+    }
+
+  - var tdtitle=[null,null,null,null,null,null,null]
+  p .
+  p .
+  
+  table(style=' border: 1px solid black;width:110%;position: relative;top:-10px; left: -10px;')#desc
+    each book, ind in books
+      case ind
+        when 0
+          tr
+            each val, inx in book
+              -tdtitle[inx]=val
+              td() 
+        when 1
+          tr 
+            each val, inx in book
+              -var xid =tdtitle[inx]
+              if xid
+                td= val
+                  a( href=`/internal/workgrid/${xid}` ) +
+              else
+                td
+                  a(onclick="hidshow()")= val
+
+        default
+          tr
+            each val, inx in book
+              -var xid =tdtitle[inx]
+              if inx<1
+                td(style="width:10px;")= val
+              else if inx<2
+                td(style = "border: 1px solid black; margins:0; padding:0;width:10px")
+                  div(style='width:32px;border:0px;margin:0;padding:0;color: #aaa;background-color:#222;')= val
+              else
+                td(id=`${xid}x${ind}`,style = "position: relative;border: 1px solid black; margins:0; padding:0")
+                  textarea.form-control(rows=4,wrap="off", readonly=true, style='overflow-x: hidden; margin:0;padding:0;color: white;background-color:black;')= val
+                  if OriPageToken<0
+                    input(onclick="CFMACT(this);",type="bottun",id="child4",style=" position: absolute;  top: 0px; right: 0px;  height: 30px; width: 35px; " ,value="�̻{") 
+  span Count Down:                   
+  span#CountDown 300
+  span s
+  div(title="basic info")#BasicInfoBox
+    div#BasicInfoBoxKeyText no.
+    p#BasicInfoBoxText
+    
+
+  if !books.length
+    p No work log found.
+  -var prePageToken = nextPageToken - 10 > 0 ? nextPageToken - 10 : 0
+  if nextPageToken 
+    nav
+      ul.pager
+        if nextPageToken==5
+          li 
+            a(href=`?pageToken=${encodeURIComponent(-14)}`) -14
+          li
+            a(href=`?pageToken=${encodeURIComponent(-7)}`) -7                
+        li            
+        li
+          a(href=`?pageToken=${encodeURIComponent(prePageToken)}`) Prev
+        li
+          a(href=`?pageToken=${encodeURIComponent(nextPageToken)}`) Next
+  else 
+    nav
+      ul.pager
+        li
+          a(href=`?pageToken=${encodeURIComponent(prePageToken)}`) Prev
+  if cflag            
+    li
+      a(href="/internal/workgrid/add") Add Rec
+  script.
+    function CFMACT(x){
+      //blank form
+      $('#ConfirmBoxKeyText').text($(x.parentElement).attr('id')); 
+      $('#ConfirmBoxText').html("");
+      for(let i=1;i<5;i++)
+      {
+         $('#ConfirmBoxText'+i).text(""); $('#ConfirmBoxChb'+i).prop("checked",false);
+      }
+      //end blank form
+      let a=$(x.parentElement).text().split('\n');
+      let cnt=0;
+      if(cnt>0){ $( "#ConfirmBox" ).dialog("open"); }else{ $( "#ConfirmBox" ).dialog("close");}
+    }  
+    
+    
+    //Timer refresh context
+    var startTime=new Date().getTime();
+    var x=setInterval(function(){
+        var now = new Date().getTime();
+        var distance = (300000 +(startTime-now) )/1000;
+        try{
+          document.getElementById("CountDown").innerHTML = distance ;
+          if (distance < 0) {
+            clearInterval(x); document.getElementById("demo").innerHTML = "EXPIRED";
+          }
+        }catch(excep){}
+    },10000)  
+    //End Timer
+    $( function() {
+      $( "#BasicInfoBox" ).dialog({autoOpen: false,buttons: [ { text: "Close",  icon: "ui-icon-closethick", click: function() {  $( this ).dialog( "close" ); }} ]});
+      function TD_CLICK_ACT(x){
+          if($(x).html().indexOf(":3")>0||$(x).html().indexOf(":6")>0||$(x).html().indexOf(":9")>0){  
+            $( "#BasicInfoBox" ).dialog("open");  
+            $( "#BasicInfoBoxText" ).html($(x).text().split('\n').join("<br>"));  
+          }
+      }
+      $('textarea').click(function(){  TD_CLICK_ACT(this);   });
+      $('textarea').dblclick(function(){TD_CLICK_ACT(this);  });
+    } );      

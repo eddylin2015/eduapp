@@ -61,8 +61,6 @@ routes/dashboard/
 routes/kideval/
 routes/mail/
 routes/sslforfree/
-routes/workgrid/
-routes/worknote/
 routes/maths/
 views/attend/
 views/azwg/
@@ -70,7 +68,5 @@ views/dashboard/
 views/kideval/
 views/mail/
 views/sslforfree/
-views/workgrid/
-views/worknote/
 views/maths/
 Web.njsproj
