@@ -16,15 +16,15 @@ console.log(yy1)
 console.log(tmsCalcu.exprCalc(yy1));
 */
 let Vals = [
-
+    "-1*x^3*y^0*(8*x^(0)* y^(2)+ (2*x^(3)* y^(0))+ (8*x^(4)* y^(1)))",
     "\\frac{x^{2} + 3x}{x + 3}",
     "1+\\mleft(5\\times5\\mright?",
     "\\mleft(a\\mleft(b+c\\mright?\\mright?",
-    "7\\mleft(2x^6y^4-42x^2y^5-1\\mright?",
+    "7\\mleft(2x^6y^4-42x^2y^5-1\\mright)",
     "xy",
     "-8x^3 y^2+-2x^6 y^0+-18x^7y^1",
-    "-2x^3\mleft(4y^2+2x^3+9x^5y\mright?",
-    "-1*x^3*y^0*(8*x^(0)* y^(2)+ (2*x^(3)* y^(0))+ (8*x^(4)* y^(1)))",
+    "-2x^3\\mleft(4y^2+2x^3+9x^5y\\mright?+ 4\\times5\\div3+xy",
+
 
 ]
 function fracMark2Expr(vst, idx) {
@@ -49,33 +49,36 @@ function fracMark2Expr(vst, idx) {
 }
 Vals.forEach(vst => {
     //console.log( tmsCalcu.RunExpr(vst,{x:1,y:2}));
-    vst = vst.replace(/\\times/g, "*")
-    vst = vst.replace(/\\div/g, "/")
-    vst = vst.replace(/\\mleft/g, "")
-    vst = vst.replace(/\\mright[?]/g, ")")
-    console.log(vst);
+    let IAns1=vst;
+    console.log(1,IAns1);
+    IAns1 = IAns1.replace(/\\times/g, "*")
+    IAns1 = IAns1.replace(/\\times/g, "*")
+    IAns1 = IAns1.replace(/\\div/g, "/")
+    IAns1 = IAns1.replace(/\\mleft/g, "")
+    IAns1 = IAns1.replace(/\\mright[?|)]/g, ")")
+    console.log(2,IAns1);
     let FenZ = "";
     let FenM = "";
-    let idx = vst.indexOf('\\frac')
+    let idx = IAns1.indexOf('\\frac')
     while(idx>-1){
-       let res=fracMark2Expr(vst,idx);
+       let res=fracMark2Expr(IAns1,idx);
        console.log(res)
-       vst=vst.replace(res[0],res[1]);
-       idx= vst.indexOf('\\frac')
+       IAns1=IAns1.replace(res[0],res[1]);
+       idx= IAns1.indexOf('\\frac')
     }
-    console.log(vst);
+    console.log(3,IAns1);
 
     
     
     
-    let cc_list1 = tmsCalcu.Sytex_cclist_x(vst,{x:1,y:2},true);
+    let cc_list1 = tmsCalcu.Sytex_cclist_x(IAns1,{x:1,y:2},true);
     cc_list1 = tmsU.AdjExpFmtList(cc_list1);
     console.log(cc_list1)
     let yy1 = [];
     tmsCalcu.proc2opt(cc_list1, yy1);
     console.log(yy1)   
-    console.log(tmsCalcu.exprCalc(yy1))
-    console.log(tmsCalcu.RunExpr(vst,{x:1,y:2}))
+    console.log(1,tmsCalcu.exprCalc(yy1 ,{x:1,y:2}))
+    console.log(2,tmsCalcu.RunExpr(IAns1,{x:1,y:2}))
     
 });
 

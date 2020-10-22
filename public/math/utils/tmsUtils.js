@@ -1078,6 +1078,38 @@ var TmsCalcu = /** @class */ (function () {
         var f = this.D2Frc(st);
         return f.FenM == 1 ? f.Sgn * f.FenZ : st;
     };
+    TmsCalcu.prototype.FracMark2Expr = function (vst, idx) {
+        function fracFM(vst, idx) {
+            var posi = [-1, -1];
+            var lbcnt = 0;
+            console.log(idx);
+            if (idx > -1)
+                for (var i = idx; i < vst.length; i++) {
+                    console.log(i, vst[i]);
+                    if (vst[i] === '{') {
+                        if (lbcnt == 0) {
+                            posi[0] = i;
+                        }
+                        ;
+                        lbcnt++;
+                    }
+                    else if (vst[i] === '}') {
+                        posi[1] = i;
+                        lbcnt--;
+                        if (lbcnt == 0) {
+                            break;
+                        }
+                    }
+                }
+            return ([posi[0], posi[1], vst.substring(posi[0], posi[1] + 1)]);
+        }
+        var fZ = fracFM(vst, idx + 5);
+        console.log(fZ);
+        console.log(fZ[1]);
+        var fM = fracFM(vst, fZ[1] + 1);
+        console.log(fM);
+        return [vst.substring(idx, fM[1] + 1), " ((" + fZ[2] + ") / (" + fM[2] + ")) "];
+    };
     return TmsCalcu;
 }());
 var calc = new TmsCalcu();

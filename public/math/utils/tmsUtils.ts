@@ -903,6 +903,27 @@ class TmsCalcu {
         let f = this.D2Frc(st)
         return f.FenM == 1 ? f.Sgn * f.FenZ : st;
     }
+    FracMark2Expr(vst, idx) {
+        function fracFM(vst, idx) {
+            let posi = [-1, -1]
+            let lbcnt = 0;
+            console.log(idx)
+            if (idx > -1)
+                for (let i = idx; i < vst.length; i++) {
+                    console.log(i, vst[i]);
+                    if (vst[i] === '{') { if (lbcnt == 0) { posi[0] = i; }; lbcnt++; }
+                    else if (vst[i] === '}') { posi[1] = i; lbcnt--; if (lbcnt == 0) { break; } }
+                }
+            return ([posi[0], posi[1], vst.substring(posi[0], posi[1] + 1)]);
+        }
+
+        let fZ = fracFM(vst, idx + 5);
+        console.log(fZ);
+        console.log(fZ[1]);
+        let fM = fracFM(vst, fZ[1] + 1);
+        console.log(fM);
+        return [vst.substring(idx, fM[1] + 1), ` ((${fZ[2]}) / (${fM[2]})) `];
+    }
 }
 const calc = new TmsCalcu();
 
