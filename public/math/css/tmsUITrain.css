@@ -8,7 +8,7 @@ input.AnsInput
 }
 input.AnsExpInput
 {
-    font-size:26px;width:360px;display:none;
+    font-size:26px;width:320px;display:none;
     margin:5px;
 }
 a {
@@ -61,7 +61,7 @@ a {
         bottom: 10;
         left: 0;
         width: 90%;
-        height: 10%;
+        height: 30%;
         border: 3px solid #00BFFF;
         padding: 3px;
         background-color: black;
