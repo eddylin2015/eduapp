@@ -197,7 +197,7 @@ router.get('/edUI/:book', (req, res, next) => {
       profile: req.user,
       CreatAEqCodeBaseLine:223,
       formulajs: entity.qid,
-      ft: entity.qid,
+      ft: entity.gid,
       MathTitle: entity.qtitle,
       CreatAEqCode:entity.qizcode,
       CheckAnsCode:entity.anscode,

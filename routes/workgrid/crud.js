@@ -2,6 +2,8 @@
 
 const express = require('express');
 const images = require('./images');
+var oauth2 = require('../../db/internalOauth2.js')
+var adoauth2 = require('../../db/usersAdGROUP.js')
 function getModel () { return require(`./model-mysql-pool`);}
 function fmt_title(username, datestr, description) {
     description = description.split("\n")[0];
@@ -11,7 +13,7 @@ function fmt_title(username, datestr, description) {
 function fmt_now() {
     var d = new Date();
     var dstr = d.getFullYear() + "-";
-    if (d.getMonth() < 10) dstr += "0";
+    if (d.getMonth() < 9) dstr += "0";
     dstr += d.getMonth()+1 + "-";
     if (d.getDate() < 10) dstr += "0";
     dstr += d.getDate();
@@ -56,7 +58,7 @@ router.use((req, res, next) => {
  *
  * Display a page of books (up to ten at a time).
  */
-router.get('/', require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/',  oauth2.required, (req, res, next) => {
     getModel().listWeek(
         null,
         4,
@@ -72,7 +74,7 @@ router.get('/', require('connect-ensure-login').ensureLoggedIn(), (req, res, nex
         }
     );
 });
-router.get('/records', require('connect-ensure-login').ensureLoggedIn(),  (req, res, next) => {
+router.get('/records',  oauth2.required,  (req, res, next) => {
     getModel().list(req.user.id, 10, req.query.pageToken, (err, entities, cursor) => {
         if (err) {
             next(err);
@@ -87,7 +89,7 @@ router.get('/records', require('connect-ensure-login').ensureLoggedIn(),  (req, 
 });
 // Use the oauth2.required middleware to ensure that only logged-in users
 // can access this handler.
-router.get('/week', require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/week',  oauth2.required, (req, res, next) => {
     getModel().listWeek(
         req.user.id,
         7,
@@ -106,7 +108,7 @@ router.get('/week', require('connect-ensure-login').ensureLoggedIn(), (req, res,
         }
     );
 });
-router.get('/weekgrid', require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/weekgrid',  oauth2.required, (req, res, next) => {
     getModel().listWeek(
         req.user.id,
         7,
@@ -124,7 +126,7 @@ router.get('/weekgrid', require('connect-ensure-login').ensureLoggedIn(), (req, 
 });
 // Use the oauth2.required middleware to ensure that only logged-in users
 // can access this handler.
-router.get('/mine', require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/mine',  oauth2.required, (req, res, next) => {
   getModel().listBy(
     req.user.id,
     10,
@@ -173,7 +175,7 @@ router.get('/add', (req, res) => {
 router.post(
     '/add',
     images.multer.single('image'),
-    require('connect-ensure-login').ensureLoggedIn(), 
+     oauth2.required, 
   (req, res, next) => {
      const data = req.body;
     // If the user is logged in, set them as the creator of the book.
@@ -205,7 +207,7 @@ router.post(
  *
  * Display a book for editing.
  */
-router.get('/:book/edit',  require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/:book/edit',   oauth2.required, (req, res, next) => {
     getModel().read(req.user.id, req.params.book, (err, entity) => {
     if (err) {
       next(err);
@@ -227,7 +229,7 @@ router.get('/:book/edit',  require('connect-ensure-login').ensureLoggedIn(), (re
  */
 router.post(
     '/:book/edit',
-    images.multer.single('image'), require('connect-ensure-login').ensureLoggedIn(),
+    images.multer.single('image'),  oauth2.required,
     (req, res, next) => {
         const data = req.body;
         if (req.user) {
@@ -255,7 +257,7 @@ router.post(
  *
  * Display a book.
  */
-router.get('/:book',  require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
+router.get('/:book',   oauth2.required, (req, res, next) => {
     console.log("read");
   getModel().read(req.user.id, req.params.book, (err, entity) => {
     if (err) {
@@ -273,7 +275,7 @@ router.get('/:book',  require('connect-ensure-login').ensureLoggedIn(), (req, re
  *
  * Delete a book.
  */
-router.get('/:book/delete', require('connect-ensure-login').ensureLoggedIn(),  (req, res, next) => {
+router.get('/:book/delete',  oauth2.required,  (req, res, next) => {
     getModel().delete(req.user.id,req.params.book, (err) => {
     if (err) {
       next(err);
