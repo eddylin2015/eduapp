@@ -43,8 +43,8 @@ function list(userId, cb) {
     });
 }
 
-function AddTMSQF(fn, md, jsondata, username, cb) {
-    let data = { id: 0, fn: fn, md: md, jsondata: jsondata, username: username };
+function AddTMSQF(fn, md, jsondata, username,dname, cb) {
+    let data = { id: 0, fn: fn, md: md, jsondata: jsondata, username: username,displayname:dname };
     console.log(data);
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
