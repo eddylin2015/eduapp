@@ -76,7 +76,7 @@ block content
           if totalflag >2    
             tr
               td= cnt
-              td= r.displayname.substring(r.displayname.length-6)
+              td= r.displayname?r.displayname.substring(r.displayname.length-6):""
               td= `總計(${fn_[1]}):`
               td= rowcnt
               td= total

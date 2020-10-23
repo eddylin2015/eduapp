@@ -179,6 +179,7 @@ let isArray = (data) => {
   return (Object.prototype.toString.call(data) === "[object Array]");
 }
 router.get('/tmsMyReport', oauth2.required, (req, Response, next) => {
+  
   model.list(null, (err, maths_data) => {
     if (err) console.log(err);
     if (dbis === "redis") {

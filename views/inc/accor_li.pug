@@ -1,0 +1,34 @@
+mixin accor_li(link, itemName,ico,btnid)
+  tr
+    td(width=260,style='color:white;background:black')
+      a(href=link,id=btnid) 
+        img(src=`/images/markicon/${ico}`)
+        span(style='color:white;background:black')= itemName        
+mixin accor_li0(link,dlink,itemName,ico,btnid)
+  tr
+    td(width=260,style='color:white;background:black')
+      img(src=`/images/markicon/${ico}`)
+      a(href=link,id=btnid) 
+        span(style='color:white;background:black')= itemName        
+      a(href=dlink)           
+        span(class="glyphicon",style='color:white;background:black') &#xe026;
+      a(href='#',id=`${btnid}Upd`)             
+        span(class="glyphicon",style='color:white;background:black') &#xe027;
+mixin accor_li1(link, itemName, ico, btnid)
+  tr
+    td(width=260,style='color:white;background:black')
+      img(src=`/images/markicon/${ico}`)
+      a(href=link,id=btnid) 
+        span(style='color:white;background:black')= itemName        
+      a(href='#',id=`${btnid}_upd`) 
+        span(class="glyphicon",style='color:white;background:black') &#xe027;   
+mixin accor_li3(itemName, ico, btnid)
+  tr
+    td(width=260,style='color:white;background:black')
+      img(src=`/images/markicon/${ico}`)
+      a(href=link,id=btnid) 
+        span(style='color:white;background:black')= itemName        
+      a(href='#',id=`${btnid}_dow`)           
+        span(class="glyphicon",style='color:white;background:black') &#xe026;
+      a(href='#',id=`${btnid}_upd`) 
+        span(class="glyphicon",style='color:white;background:black') &#xe027;   
