@@ -203,6 +203,7 @@ function CreatAEq(Tx, Tk, Range) {
 }
 //______MAIN________________________________
 function calc_expr(expr){
+    /*
     let cc_list = calc.Sytex_cclist(expr);
     let yy = [];
     calc.proc2opt(cc_list, yy);
@@ -210,6 +211,8 @@ function calc_expr(expr){
     let vmval=VMCalc(expr);
     if(Math.abs(val-vmval)>0.000001) throw `${val} ${vmval} ERROR VM`;
     return val;
+    */
+   return false;
 }
 function calc_frc_expr(expr){
     console.log(expr);
