@@ -54,45 +54,8 @@ function GetRndInt(max) {
 //Tx Tixing  題型, Tk Random_base -TK..TK ------
 function CreatAEq(Tx, Tk, Range) {
   let TE = new AExps();
-  let TOp = ["+", "-"];
-  let TSn = ["", "", "", ""];
-  let a = 1, b = 1, c = 1, d = 1;
-  switch (Tx) {
-    case 1:  //题型1：a+b+c=d  |a|,|b|,|c|< 100 整数
-      Tk = 100;
-      for (let i = 0; i < 3; i++) {
-        TE.Nf[i] = tmsU.TakeAFrc(Tk, 4);
-        TE.OPr[i] = TOp[tmsU.Int(100 * tmsU.Rnd()) % 2];
-      }
-      TE.St = TE.Nf[0].St1 + TE.OPr[0] + TE.Nf[1].St1 + TE.OPr[1] + TE.Nf[2].St1;
-      TE.Val = 0;
-      TE.CalcVal = 0;
-      break;
-    case 2:
-    case 3:
-    case 4: //题型2：b/a+c/a=d   |a|,|b|,|c|< 10整数，|a|≠0
-      Tk = 10
-      for (let i = 0; i < 2; i++) {
-        TE.Nf[i] = tmsU.TakeAFrc(Tk, 2);
-        TE.OPr[i] = TOp[tmsU.Int(100 * tmsU.Rnd()) % 2];
-      }
-      TE.St = TE.Nf[0].St1 + TE.OPr[0] + TE.Nf[1].St1
-      TE.Val = 0;
-      TE.CalcVal = 0;
-      break;
-  }
-  let cc_list = calc.Sytex_cclist(TE.St);
-  let yy = [];
-  calc.proc2opt(cc_list, yy);
-  TE.CalcVal = calc.exprCalc(yy);
-  TE.Val = TE.CalcVal;
-  let fcc_list = calc.Sytex_cclist(TE.St);
-  let frc_yy = [];
-  calc.procfrc2opt(fcc_list, frc_yy);
-  TE.FrcVal = calc.exprfrcCalc(frc_yy);
-  TE.FrcVal = calc.simplifyFrc(TE.FrcVal);
-  //TE.St = tmsU.MJaxFmt(TE.St);
-  return TE;
+
+  ..............
 }
 class UIMathClassF1001 extends UIMathClass {
   constructor() {
