@@ -42,9 +42,25 @@ function list(userId, cb) {
         );
     });
 }
+function listByUser(username, cb) {
+    pool.getConnection(function (err, connection) {
+        if (err) { cb(err); return; }
+        connection.query(
+            'SELECT * FROM `reltbl` where username=? order by id DESC ', [username],
+            (err, results) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                cb(null, results);
+                connection.release();
+            }
+        );
+    });
+}
 
-function AddTMSQF(fn, md, jsondata, username,dname, cb) {
-    let data = { id: 0, fn: fn, md: md, jsondata: jsondata, username: username,displayname:dname };
+function AddTMSQF(fn, md, jsondata, username,dname,classname,seat, cb) {
+    let data = { id: 0, fn: fn, md: md, jsondata: jsondata, username: username,displayname:dname,classno:classname,seat:seat };
     console.log(data);
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
@@ -77,6 +93,7 @@ module.exports = {
     AddTMSQF: AddTMSQF,
     TMSQFlistbydate: TMSQFlistbydate,
     list: list,
+    listByUser: listByUser,
     listQizTx:listQizTx,
 };
 /*

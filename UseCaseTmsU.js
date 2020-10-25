@@ -81,6 +81,21 @@ Vals.forEach(vst => {
     console.log(2,tmsCalcu.RunExpr(IAns1,{x:1,y:2}))
     
 });
+let str=[];
+str[0]="abcdee SG1A4"
+str[1]="abcdee SC1A04"
+str[2]="abcdee "
+for( let i=0;i<str.length;i++)
+{
+    let a_=/S[C|G][0-9][A-E][0-9]+/i.exec(str[i])
+    if(a_){
+      let  classname=a_[0].substring(0,4);
+      let   seat=a_[0].substring(4);
+      console.log(classname,seat)
+      }
+  
+}
+
 
 
 
