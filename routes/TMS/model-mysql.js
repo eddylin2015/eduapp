@@ -1,6 +1,5 @@
 'use strict';
 
-const { to } = require('mathjs');
 const mysql = require('mysql');
 const config = require('../../config');
 const options = {
