@@ -147,23 +147,13 @@ block content
       $('input').keyup(function(e){
          if(e.keyCode == 13)
          {
-          /*
-          let id= $(this).attr("id");
-          id=id.substring(id.length-1);
-          let ansZ= $( "#InputAns"+id+"0").val();
-          let ansM= $( "#InputAns"+id+"1").val();
-          if(ansZ=="" || ansM=="" ){
-            if(ansZ=="")  $( "#ANSQT00"+id).focus();
-            else if(ansM=="")  $( "#ANSQTM00"+id).focus();
-          }else{            
-            switch(Number(id)){
-            case 1:GetCheckAns(1);break;
-            case 2:GetCheckAns(2);break;
-            case 3:GetCheckAns(3);break;
-            case 4:GetCheckAns(4);break;
-            }     
-           }*/
-         }
+           let id= $(this).attr("id");
+           if(id.startsWith("InputAns"))
+            {
+              id=id.substring(id.length-2,id.length-1);
+              GetCheckAns(Number(id));
+            }
+          }
       });
       //End def Check Ans Event
       InitMathField(mf_li,mf);

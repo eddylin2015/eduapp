@@ -99,7 +99,6 @@ router.post('/AddTMSQF', (req, res, next) => {
 router.get('/trianing.jsp', (req, res, next) => {
   let ft = req.query.ft;
   let MathTitle = ""
-  if (ft == "p2") { MathTitle = '加減'; }
   if (ft == "p5") { MathTitle = '方程式'; }
   if (ft == "f1") { MathTitle = '一元一次方程式'; }
   if (ft == "f2") { MathTitle = '有理數運算'; }
