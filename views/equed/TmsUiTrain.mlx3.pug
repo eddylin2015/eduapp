@@ -8,7 +8,7 @@ block content
         td
           span(id=`QNO00${tabid}`) 題:&nbsp;&nbsp;
         td
-          div(id=`QT00${tabid}`)
+          div(id=`QT00${tabid}`,style="font-size:20px;")
       tr
         td(valign="top") 解:   
         td  
@@ -58,7 +58,7 @@ block content
     .MathJax span{font-size:20px;}
   script.
     ////////////Init App(UIMathClass interface) Load fX.js and Init Equation Data 4 x 10
-    function CreatAEq(Tx, Tk, Range) {
+    function CreatAEq(Tx, Tk, Range,QueId) {
       let tmsU = new TmsUts();// 工具箱 Utils
       let tmsCalc=new TmsCalcu();
       let tmsCalcu=new TmsCalcu();
@@ -86,7 +86,7 @@ block content
         for (let i = 0; i < 4; i++) {
             for(let j=0;j<10;j++){
               let TiXing = i+1;
-              let s1 = CreatAEq(TiXing, 9, null)
+              let s1 = CreatAEq(TiXing, 9, null,j)
               this.NTE[i][j]=s1;
               this.QT[i][j]=s1.St;
               this.AQT[i][j]=s1.Val;
