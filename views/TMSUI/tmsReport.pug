@@ -88,6 +88,19 @@ block content
         else
           div ERROR    
       hr
+      
+  if nextPageToken
+    nav
+      ul.pager
+        li
+          a(href=`?${queryToken}`) More
+
+  //if nextPageToken
+    nav
+      ul.pager
+        li
+          a(href=`?pageToken=${encodeURIComponent(nextPageToken)}`) More
+
   script(type="text/javascript").
     $(document).ready(function(){
       $('#exportbtn').click(function(){

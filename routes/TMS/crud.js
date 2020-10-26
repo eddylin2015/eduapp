@@ -15,7 +15,7 @@
 
 const express = require('express');
 //const images = require('./images');
-
+const querystring = require('querystring');
 const config = require('../../config');
 const dbis = config.get('DataBaseEngine'); //"redis","mysql"
 const model = require('./model-mysql');
@@ -159,13 +159,20 @@ function d2s(x, fix) {
   return y + (m < 10 ? "0" : "") + m + (d_ < 10 ? "0" : "") + d_ + fix;
 }
 router.get('/tmsReportQuery', oauth2.required, (req, Response, next) => {
+  let sd=req.query.sd?req.query.sd:fmt_now(3);
+  let ed=req.query.ed?req.query.ed:fmt_now();
+  let classname=req.query.classname?req.query.classname:"";
   Response.render('TMSUI/tmsReportQuery.pug', {
     profile: req.user,
-    dt: fmt_now()
+    sd: sd,
+    ed: ed,
+    classname:classname
   });
 });
 router.post('/tmsReportQuery', images.multer.array('upload', 16),
+
   oauth2.required, (req, Response, next) => {
+    console.log(1,req.query.pageToken);
     let sd = d2s(req.body.sd, "000000");
     let ed = d2s(req.body.ed, "999999");
     let fmt = req.body.fmt;
@@ -173,9 +180,17 @@ router.post('/tmsReportQuery', images.multer.array('upload', 16),
     if (dbis === "redis") {
       Response.redirect('/internal/TMS/tmsMyReport');
     } else {
-      model.TMSQFlistbydate(sd, ed,classname, (err, maths_data) => {
+      model.TMSQFlistbydate(sd, ed,classname,1500,req.query.pageToken, (err, maths_data,cursor) => {
+        console.log(cursor);
         Response.render('TMSUI/tmsReport.pug', {
           profile: req.user,
+          queryToken:querystring.stringify({ 
+            sd:req.body.sd,
+            ed:req.body.ed,
+            classname:classname,
+            pageToken: cursor,
+          }),
+          nextPageToken:cursor,
           data: maths_data
         });
       });
@@ -185,9 +200,9 @@ let isArray = (data) => {
   return (Object.prototype.toString.call(data) === "[object Array]");
 }
 router.get('/tmsMyReport', oauth2.required, (req, Response, next) => {
-
+//10,req.query.pageToken,
   if (dbis === "redis") {
-    model.list(req.user.username, (err, maths_data) => {
+    model.list(req.user.username,(err, maths_data) => {
       if (err) console.log(err);
 
       if (!maths_data) { Response.end("<button onclick='window.history.back();'>no thing! return</button>"); return; }
@@ -202,10 +217,11 @@ router.get('/tmsMyReport', oauth2.required, (req, Response, next) => {
       });
     });
   } else {
-    model.listByUser(req.user.username, (err, maths_data) => {
+    model.listByUser(req.user.username,500,req.query.pageToken,  (err, maths_data,cursor) => {
       if (err) console.log(err);
       Response.render('TMSUI/tmsReport.pug', {
         profile: req.user,
+        nextPageToken: cursor,
         data: maths_data
       });
     });

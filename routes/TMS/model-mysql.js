@@ -1,5 +1,6 @@
 'use strict';
 
+const { to } = require('mathjs');
 const mysql = require('mysql');
 const config = require('../../config');
 const options = {
@@ -42,17 +43,19 @@ function list(userId, cb) {
         );
     });
 }
-function listByUser(username, cb) {
+function listByUser(username, limit,token,cb) {
+    token = token ? parseInt(token, 10) : 0;
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
         connection.query(
-            'SELECT * FROM `reltbl` where username=? order by id DESC ', [username],
+            'SELECT * FROM `reltbl` where username=? order by id DESC LIMIT ? OFFSET ?', [username, limit, token],
             (err, results) => {
                 if (err) {
                     cb(err);
                     return;
                 }
-                cb(null, results);
+                const hasMore = results.length === limit ? token + results.length : false;
+                cb(null, results, hasMore);
                 connection.release();
             }
         );
@@ -75,18 +78,20 @@ function AddTMSQF(fn, md, jsondata, username,dname,classname,seat, cb) {
         });
     });
 }
-function TMSQFlistbydate(sd, ed,classname, cb) {
+function TMSQFlistbydate(sd, ed,classname,limit,token, cb) {
+    token = token ? parseInt(token, 10) : 0;
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
-        let sql=`SELECT * FROM reltbl where md >= ? and md <= ? ;`
-        if(classname&&classname.length>2)  sql=`SELECT * FROM reltbl where classno='${classname}' and md >= ? and md <= ? ;`
+        let sql=`SELECT * FROM reltbl where md >= ? and md <= ?  order by id DESC  LIMIT ? OFFSET ?;`
+        if(classname&&classname.length>2)  sql=`SELECT * FROM reltbl where classno='${classname}' and md >= ? and md <= ?  order by id DESC LIMIT ? OFFSET ?;`
         console.log(sql);
-        connection.query(sql, [sd, ed], function (err, rows) {
+        connection.query(sql, [sd, ed,limit,token], function (err, results) {
             if (err) {
                 cb(err);
                 return;
             }
-            cb(null, rows);
+            const hasMore = results.length === limit ? token + results.length : false;
+            cb(null, results, hasMore);
             connection.release();
         })
     })
