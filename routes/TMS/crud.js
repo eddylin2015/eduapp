@@ -169,10 +169,11 @@ router.post('/tmsReportQuery', images.multer.array('upload', 16),
     let sd = d2s(req.body.sd, "000000");
     let ed = d2s(req.body.ed, "999999");
     let fmt = req.body.fmt;
+    let classname=req.body.classname;
     if (dbis === "redis") {
       Response.redirect('/internal/TMS/tmsMyReport');
     } else {
-      model.TMSQFlistbydate(sd, ed, (err, maths_data) => {
+      model.TMSQFlistbydate(sd, ed,classname, (err, maths_data) => {
         Response.render('TMSUI/tmsReport.pug', {
           profile: req.user,
           data: maths_data

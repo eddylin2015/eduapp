@@ -75,10 +75,13 @@ function AddTMSQF(fn, md, jsondata, username,dname,classname,seat, cb) {
         });
     });
 }
-function TMSQFlistbydate(sd, ed, cb) {
+function TMSQFlistbydate(sd, ed,classname, cb) {
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
-        connection.query('SELECT * FROM reltbl where md >= ? and md <= ? ;', [sd, ed], function (err, rows) {
+        let sql=`SELECT * FROM reltbl where md >= ? and md <= ? ;`
+        if(classname&&classname.length>2)  sql=`SELECT * FROM reltbl where classno='${classname}' and md >= ? and md <= ? ;`
+        console.log(sql);
+        connection.query(sql, [sd, ed], function (err, rows) {
             if (err) {
                 cb(err);
                 return;

@@ -27,7 +27,8 @@ block content
           document.write('---');
         }
     }    
-  div= `total ${data.length} rec.`
+  if data  
+    div= `total ${data.length} rec.`
   div#tableContent
     -let cnt=0
     each r in data
