@@ -58,13 +58,12 @@ html(lang="zh")
                 li
                   a(href="/internal/TMS/tmsReportQuery") 
                     span 查詢
-
-            if(profile)    
-              -let flag=profile.email=="sousoiteng@mail.mbc.edu.mo"||profile.email=="lammou@mail.mbc.edu.mo" ||profile.email=="laitakseng@mail.mbc.edu.mo"    
               if(flag)
                 li
                   a(href="/internal/equed") 
-                    span 設計編輯
+                    span 題庫設計
+            if(profile)    
+              -let flag=profile.email=="sousoiteng@mail.mbc.edu.mo"||profile.email=="lammou@mail.mbc.edu.mo" ||profile.email=="laitakseng@mail.mbc.edu.mo"    
                 li
                   a(href="/internal/maths/tmsReportQuery") 
                     span mbc6thQuery

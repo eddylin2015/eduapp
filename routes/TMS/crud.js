@@ -74,9 +74,11 @@ router.post('/AddTMSQF', (req, res, next) => {
     let displayname = req.user.displayName;
     let classname="";
     let seat="";
+    let grade="";
     let a_=/S[C|G][0-9][A-E][0-9]+/i.exec(displayname)
     if(a_){
       classname=a_[0].substring(0,4);
+      grade=a_[0].substring(0,3);
       seat=a_[0].substring(4);
     }
     let studref = req.user.email.split('@')[0];
@@ -87,7 +89,7 @@ router.post('/AddTMSQF', (req, res, next) => {
     let md = `${yy}${mm < 10 ? "0" : ""}${mm}${dd < 10 ? "0" : ""}${dd}${HH < 10 ? "0" : ""}${HH}${MM < 10 ? "0" : ""}${MM}${SS < 10 ? "0" : ""}${SS}`;
     let fnn = `TMS${studref}_${fn}.txt`;
     let jsondata = req.body.data;
-    model.AddTMSQF(fnn, md, jsondata, username, displayname,classname,seat, (err, ins_id) => {
+    model.AddTMSQF(fnn, md, jsondata, username, displayname, grade, classname,seat, (err, ins_id) => {
       if (err) { console.log(err); return res.end("error"); }
       res.end(`存儲成功. 記錄編號: ${ins_id} .`);
     });

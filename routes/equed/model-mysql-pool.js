@@ -182,11 +182,13 @@ function createSchema(config) {
             \`jsondata\` text collate utf8mb4_unicode_ci default NULL,
             \`username\` VARCHAR(128) NULL,
             \`studref\` VARCHAR(8) NULL,
+            grade varchar(3) null,
             \`classno\` VARCHAR(4) NULL,
             \`seat\` VARCHAR(2) NULL,
             PRIMARY KEY (\`id\`),
             UNIQUE KEY \`fn\` (\`fn\`)
             );        
+        ## alter table maths.reltbl add column grade varch(3) null after studref;    
         `,
 
 

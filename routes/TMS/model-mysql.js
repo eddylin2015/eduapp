@@ -61,9 +61,8 @@ function listByUser(username, limit,token,cb) {
     });
 }
 
-function AddTMSQF(fn, md, jsondata, username,dname,classname,seat, cb) {
-    let data = { id: 0, fn: fn, md: md, jsondata: jsondata, username: username,displayname:dname,classno:classname,seat:seat };
-    console.log(data);
+function AddTMSQF(fn, md, jsondata, username,dname,grade,classname,seat, cb) {
+    let data = { id: 0, fn: fn, md: md, jsondata: jsondata, username: username,displayname:dname,grade:grade,classno:classname,seat:seat };
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
         connection.query('INSERT INTO `reltbl` SET ? ', [data], (err, res) => {
@@ -71,7 +70,6 @@ function AddTMSQF(fn, md, jsondata, username,dname,classname,seat, cb) {
                 cb(err);
                 return;
             }
-            console.log(res.insertId);
             cb(null, res.insertId);
             connection.release();
         });
@@ -82,8 +80,8 @@ function TMSQFlistbydate(sd, ed,classname,limit,token, cb) {
     pool.getConnection(function (err, connection) {
         if (err) { cb(err); return; }
         let sql=`SELECT * FROM reltbl where md >= ? and md <= ?  order by id DESC  LIMIT ? OFFSET ?;`
-        if(classname&&classname.length>2)  sql=`SELECT * FROM reltbl where classno='${classname}' and md >= ? and md <= ?  order by id DESC LIMIT ? OFFSET ?;`
-        console.log(sql);
+        if(classname&&classname.length>3)  sql=`SELECT * FROM reltbl where classno='${classname}' and md >= ? and md <= ?  order by id DESC LIMIT ? OFFSET ?;`
+        else if(classname&&classname.length>2)  sql=`SELECT * FROM reltbl where grade='${classname}' and md >= ? and md <= ?  order by id DESC LIMIT ? OFFSET ?;`
         connection.query(sql, [sd, ed,limit,token], function (err, results) {
             if (err) {
                 cb(err);
