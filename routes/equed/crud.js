@@ -18,6 +18,10 @@ function authMathsRequired(req, res, next) {
     || profile.email == "sousoiteng@mail.mbc.edu.mo"
     || profile.email == "laitakseng@mail.mbc.edu.mo"
     || profile.email == "ngpuiieng7e3@mail.mbc.edu.mo"
+    || profile.email == "ngchikin@mail.mbc.edu.mo"
+    || profile.email == "fuhunglei@mail.mbc.edu.mo"
+    || profile.email == "chaninpeng@mail.mbc.edu.mo"
+    || profile.email == "caibinguan@mail.mbc.edu.mo"
   ) {
     next();
   } else {
