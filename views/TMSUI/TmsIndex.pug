@@ -1,6 +1,21 @@
 
 extends ./base.pug
 block content
+  mixin accor_li2(link,id,itemName,ico,btnid,ctxt)
+    tr
+      td
+        a(href=link,id=btnid) 
+          h4= id.toUpperCase()
+      td
+        button(style="border:0;border-radius:50%",onclick=`showClassTag('${id}info',null,'id');`) ?
+      td(width="90%")    
+        a(href=link) 
+          h4= itemName.toUpperCase()
+    tr          
+      td(colspan=3)
+        div(style="display:none;",id=`${id}info`) !{ctxt}
+          
+
   mixin accor_li(link,id,itemName,ico,btnid)
     tr
       td
@@ -81,10 +96,6 @@ block content
   P .
   -var p0data=[],f0data=[],f1data=[ ],f2data=[ ],f3data=[ ];
   -p0data.push({id:'p5',name:'方程式'});
-  -f0data.push({id:'f1',name:'一元一次方程'});
-  -f0data.push({id:'f2',name:'有理數運算'});
-  -f0data.push({id:'f201',name:'十字相乘法'});
-  -f0data.push({id:'f202',name:'一元二次方程'});
   -f1data.push({id:'f1004',name:'一元一次方程'});
   -f1data.push({id:'f1005',name:'解二元一次方程組'});
   -f1data.push({id:'f1006',name:'一元一次不等式'});
@@ -92,7 +103,6 @@ block content
   -f1data.push({id:'f1008',name:'整式的乘法'});
   -f2data.push({id:'f2001',name:'根式的運算'});
   -f2data.push({id:'f2002',name:'整式的乘法公式'});
-  -f2data.push({id:'f20031',name:'因式分解 tx={1,2,3}'});
   -f2data.push({id:'f2004',name:'分式的乘除'});
   -f2data.push({id:'f2005',name:'分式的加減'});
   -f2data.push({id:'f2006',name:'分式方程'});
@@ -112,7 +122,7 @@ block content
     h3  數學練習 2
     table(width="100%")
       each qiztx in books
-        +accor_li(`/internal/equed/edUI/${qiztx.id}`,`${qiztx.gid}`,`${qiztx.qtitle}`,"math-formula.png","btnSTUDFORM")
+        +accor_li2(`/internal/equed/edUI/${qiztx.id}`,`${qiztx.gid}`,`${qiztx.qtitle}`,"math-formula.png","btnSTUDFORM",qiztx.snote)
 
     h3
       span 小學
