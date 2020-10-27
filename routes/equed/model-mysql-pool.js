@@ -32,6 +32,24 @@ function list(limit, token, cb) {
     });
 }
 
+function listByUser(username, limit, token, cb) {
+    token = token ? parseInt(token, 10) : 0;
+    pool.getConnection(function (err, connection) {
+        if (err) { cb(err); return; }
+        connection.query(
+            'SELECT * FROM `qiztx` where modifybyid=? or createbyid=?  order by id DESC LIMIT ? OFFSET ?', [username,username,limit, token],
+            (err, results) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                const hasMore = results.length === limit ? token + results.length : false;
+                cb(null, results, hasMore);
+                connection.release();
+            }
+        );
+    });
+}
 function read(id, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
@@ -120,6 +138,7 @@ module.exports = {
     createSchema: createSchema,
     read: read,
     list: list,
+    listByUser:listByUser,
     update: update,
     create: create,
     delete:_delete,

@@ -22,6 +22,7 @@ function authMathsRequired(req, res, next) {
     || profile.email == "fuhunglei@mail.mbc.edu.mo"
     || profile.email == "chaninpeng@mail.mbc.edu.mo"
     || profile.email == "caibinguan@mail.mbc.edu.mo"
+    || profile.email == "fongsioman@mail.mbc.edu.mo"
   ) {
     next();
   } else {
@@ -86,8 +87,21 @@ router.get('/list',
       });
     });
   });
-
-
+  router.get('/mylist',
+  oauth2.required,
+  (req, res, next) => {
+    model.listByUser(req.user.username, 100, req.query.pageToken, (err, entities, cursor) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.render('equed/edit/list.pug', {
+        profile: req.user,
+        books: entities,
+        nextPageToken: cursor
+      });
+    });
+  });
 router.get('/ed/add', authMathsRequired, (req, res, next) => {
   let qizcode = ["//定義變量:Tx : [1:9]", "//工具集: tmsU, tmsCalcu", "let TE={St:'',Val:'',ACnt:1, ATyp:'n',Range:[]};//n,t,m",
     'let a=Math.floor(Math.random()*10);',
