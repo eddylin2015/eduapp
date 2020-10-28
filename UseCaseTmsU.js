@@ -67,10 +67,6 @@ Vals.forEach(vst => {
        idx= IAns1.indexOf('\\frac')
     }
     console.log(3,IAns1);
-
-    
-    
-    
     let cc_list1 = tmsCalcu.Sytex_cclist_x(IAns1,{x:1,y:2},true);
     cc_list1 = tmsU.AdjExpFmtList(cc_list1);
     console.log(cc_list1)
@@ -95,6 +91,8 @@ for( let i=0;i<str.length;i++)
       }
   
 }
+var GROUP_Name = ["男A", "男B", "男C", "男D",, "女A", "女B", "女C", "女D", "男E", "女E"];
+console.log(GROUP_Name);
 
 
 

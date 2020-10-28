@@ -1,0 +1,133 @@
+extends ./base.pug
+block content  
+  script(src='/javascripts/cool/grid_export.js')
+  script(src='/javascripts/cool/table2csv.js')
+  .btn-group
+    a(href='#', class='btn btn-primary btn-sm')#exportCSV
+      i.glyphicon.glyphicon-download-alt
+      span  匯出CSV        
+  div#tableContent
+    h4 報名人數
+    table(width="100%",border=1)
+      <tr><td><td><td> 11(0)<td> 12(1)<td> 13(2)<td> 14(3)<td> 15(8)<td> 21(4)<td> 22(5)<td>23(6) <td> 24(7)<td>25(9)<td>
+      <tr><td><td> 項目/組別<td>男A<td> 男B<td> 男C<td> 男D<td> 男E<td> 女A<td> 女B<td> 女C<td> 女D<td> 女E<td> 小計
+      <tr><td>01<td> 50M <td>-<td>-<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>02<td> 60M <td>-<td>-<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>03<td> 100M<td>65<td>78<td>  68<td>  -<td>   -<td>   58<td>  46<td>  66<td>  -<td>   -<td>   381
+      <tr><td>04<td> 200M<td>28<td>42<td>  32<td>  -<td>   -<td>   28<td>  19<td>  18<td>  -<td>   -<td>   167
+      <tr><td>05<td> 400M<td>12<td>6<td>   -<td>   -<td>   -<td>   8<td>   6<td>   -<td>   -<td>   -<td>   32
+      <tr><td>06<td> 800M<td>20<td>6<td>   -<td>   -<td>   -<td>   15<td>  5<td>   -<td>   -<td>   -<td>   46
+      <tr><td>07<td> 1000M<td>-<td>-<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>08<td> 1500M<td>22<td>18<td>  12<td>  -<td>   -<td>   17<td>  4<td>   5<td>   -<td>   -<td>   78
+      <tr><td>09<td> 3000M<td>-<td>5<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   5
+      <tr><td>10<td> 5000M<td>34<td>  -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   34
+      <tr><td>11<td> 60米欄<td> -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>12<td> 80米欄<td> -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>13<td> 100米欄<td>-<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>14<td> 110米欄<td>-<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>15<td> 4x50M<td>  -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>16<td> 4x100M<td> -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>17<td> 4x400M<td> -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>18<td> 跳高<td>   37<td>  17<td>  16<td>  -<td>   -<td>   42<td>  24<td>  22<td>  -<td>   -<td>   158
+      <tr><td>19<td> 跳遠<td>   70<td>  52<td>  60<td>  -<td>   -<td>   77<td>  49<td>  78<td>  -<td>   -<td>   386
+      <tr><td>20<td> 三級跳遠<td>7<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   7
+      <tr><td>21<td> 壘球<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -<td>   -
+      <tr><td>22<td> 鉛球<td>   60<td>  50<td>  44<td>  -<td>   -<td>   64<td>  45<td>  35<td>  -<td>   -<td>   298
+      <tr><td><td> 小計<td>   355<td> 274<td> 232<td> -<td>   -<td>   309<td> 198<td> 224<td> -<td>   -<td>   1592
+    h4 賽會記錄
+    table(width="100%",border=1)
+      <tr><td>01<td>11030<td>10"80<td>鍾君濠<td>高一愛<td>第九屆<td>2014.11<td>男A100米
+      <tr><td>02<td>11040<td>22''54 <td>鍾君濠<td>高三善<td>第十一屆<td>2016.11<td>男A200米
+      <tr><td>03<td>11050<td>53"89<td>鍾君濠<td>高一愛<td>第九屆<td>2014.11<td>男A400米
+      <tr><td>04<td>11060<td>2'15"91<td>歐陽健龍<td>高二愛B<td>第四屆<td>2010.1<td>男A800米
+      <tr><td>05<td>11080<td>4'51''84<td>廖亮<td>高二愛B<td>第四屆<td>2010.1<td>男A1500米
+      <tr><td>06<td>11100<td> 19'53''46<td>楊錦龍<td>初三善<td>第十四屆<td>2019.11<td>男A5000米
+      <tr><td>07<td>11140<td>18"73<td>林庸<td>高三信<td>第十一屆<td>2016.11<td>男A110米欄
+      <tr><td>08<td>11180<td>1米89<td>易仲景<td>高二望A<td>第一屆<td>2006.12<td>男A跳高
+      <tr><td>09<td>11190<td>6米19<td>賴嘉耀<td>高二善<td>第十屆<td>2016.1<td>男A跳遠
+      <tr><td>10<td>11200<td>11米86<td>施傑峰<td>高三望<td>第十三屆<td>2018.11<td>男A三級跳遠
+      <tr><td>11<td>11220<td>10米60<td>鄺衛豪<td>高三信B<td>第五屆<td>2011.1<td>男A鉛球
+      <tr><td>12<td>11160<td>46"24<td>關冠華,陳星豪,賴嘉耀,鍾君濠<td>高一愛<td>第九屆<td>2014.11<td>男A4x100M
+      <tr><td>13<td>11170<td>3'51"71<td>鍾君濠,林庸,關冠華,賴嘉耀<td>高二聯<td>第十屆<td>2016.1<td>男A4X400M
+      <tr><td>14<td>12030<td>11"62<td>鍾君濠<td>初三信<td>第八屆<td>2013.10~<td>男B100米
+      <tr><td>15<td>12040<td>24"24<td>鍾君濠<td>初三信<td>第八屆<td>2013.10~<td>男B200米
+      <tr><td>16<td>12050<td>59"11<td>鍾君濠<td>初三信<td>第八屆<td>2013.10~<td>男B400米
+      <tr><td>17<td>12060<td> 02'21''78<td>趙子豪<td>初三善<td>第十四屆<td>2019.11<td>男B800米
+      <tr><td>18<td>12080<td> 05'11''93<td>趙子豪<td>初三善<td>第十四屆<td>2019.11<td>男B1500米
+      <tr><td>19<td>12090<td>11'40"98<td>姚龍<td>高一信<td>第十屆<td>2016.1<td>男B3000米
+      <tr><td>20<td>12130<td>17"49<td>苗軒<td>初三愛<td>第十二屆<td>2017.11<td>男B100米欄
+      <tr><td>21<td>12180<td>1米75<td>鄺禮宏<td>高一愛B<td>第三屆<td>2009.1<td>男B跳高
+      <tr><td>22<td>12190<td>5米54<td>劉烱全<td>初三望A<td>第一屆<td>2006.12<td>男B跳遠
+      <tr><td>23<td>12200<td>11米40<td>黃曉迪<td>高一信<td>第十一屆<td>2016.11<td>男B三級跳遠
+      <tr><td>24<td>12220<td>10米53<td>佘自成<td>初三信B<td>第一屆<td>2006.12<td>男B鉛球
+      <tr><td>25<td>12160<td> 51''40<td>黃聲灃,何珈駿,曾廣豪,李文卓<td> 初三聯 隊 <td>第十四屆<td>2019.11<td>男B4x100M
+      <tr><td>26<td>12170<td>4'53"42<td>何冠澤,甄景城,劉嘉俊,林俊樂<td>高一聯隊<td>第十一屆<td>2016.11<td>男B4X400M
+      <tr><td>27<td>13030<td>12"68<td>鍾君濠<td>初一信<td>第六屆<td>2011.11<td>男C100米
+      <tr><td>28<td>13040<td> 25''20<td>林溢峰<td>初一善<td>第十四屆<td>2019.11<td>男C200米
+      <tr><td>29<td>13080<td>5'05"58<td>鄭世杰<td>初一愛<td>第十一屆<td>2016.11<td>男C1500米
+      <tr><td>30<td>13120<td>14"96<td>苗軒<td>初一愛<td>第十屆<td>2016.1<td>男C80米欄
+      <tr><td>31<td>13180<td>1米55<td>鄺禮宏<td>初二愛A<td>第一屆<td>2006.12<td>男C跳高
+      <tr><td>32<td>13190<td>4米98<td>鄺禮宏<td>初二愛A<td>第一屆<td>2006.12<td>男C跳遠
+      <tr><td>33<td>13220<td>10米08<td>黃曉迪<td>初二愛<td>第九屆<td>2014.11<td>男C鉛球
+      <tr><td>34<td>13160<td> 00'52''47<td>吳銘軒,關梓榮,鄭熙民,林溢峰<td> 初一聯 一隊<td>第十四屆<td>2019.11<td>男C4x100M
+      <tr><td>35<td>14020<td>8"42<td>李文卓<td>小六信<td>第十一屆<td>2016.11<td>男D60米
+      <tr><td>36<td>14070<td>3'28''86<td>林溢峰<td>小五望<td>第十二屆<td>2017.11<td>男D1000米
+      <tr><td>37<td>14180<td>1米23<td>李文卓<td>小六信<td>第十一屆<td>2016.11<td>男D跳高
+      <tr><td>38<td>14190<td>3米54<td>林俊樂<td>小六信<td>第七屆<td>2012.11<td>男D跳遠
+      <tr><td>39<td>14210<td>32.24 <td>林溢峰<td>小五望<td>第十二屆<td>2017.11<td>男D壘球
+      <tr><td>40<td>14150<td> 31''79<td>李梓樂,黃昊月,賴駿東,吳柏稀<td> 小六聯 隊<td>第十四屆<td>2019.11<td>男D4x50M
+      <tr><td>41<td>15010<td>8''10<td>黃昊月<td>小四信<td>第十二屆<td>2017.11<td>男E50米
+      <tr><td>42<td>15180<td>1米20<td>林嘉銘<td>小四信<td>第十三屆<td>2018.11<td>男E跳高
+      <tr><td>43<td>15190<td> 3.08 <td>梁文傑<td>小四信<td>第十四屆<td>2019.11<td>男E跳遠
+      <tr><td>44<td>15210<td>19米36<td>張誠浩<td>小四信<td>第十一屆<td>2016.11<td>男E壘球
+      <tr><td>45<td>15150<td>36"44<td>許振超,黃煒傑,楊奇鑫,鄺俊軒<td>小四愛<td>第十一屆<td>2016.11<td>男E4x50M
+      <tr><td>46<td>21030<td>12"91<td>程詠欣<td>初三信B<td>第四屆<td>2010.1<td>女A100米
+      <tr><td>47<td>21040<td>27"85<td>程詠欣<td>初二愛A<td>第二屆<td>2008.1<td>女A200米
+      <tr><td>48<td>21050<td>1'07"78<td>程詠欣,伍詠兒<td>初二信B,高三信B<td>第三屆<td>2009.1<td>女A400米
+      <tr><td>49<td>21060<td>2'49''64<td>莫嘉敏<td>高三愛<td>第六屆<td>2011.11<td>女A800米
+      <tr><td>50<td>21080<td>5'54"06<td>莫嘉敏<td>高三愛<td>第六屆<td>2011.11<td>女A1500米
+      <tr><td>51<td>21090<td>15'41"'85<td>黃穎詩<td>高二信<td>第十三屆<td>2018.11<td>女A3000米
+      <tr><td>52<td>21130<td>21''45<td>梁慧彤<td>高三善<td>第十二屆<td>2017.11<td>女A100米欄
+      <tr><td>53<td>21180<td>1米45<td>呂芷茵<td>高三愛<td>第八屆<td>2013.10~<td>女A跳高
+      <tr><td>54<td>21190<td>4米36<td>馬穎柔<td>高三樂<td>第七屆<td>2012.11<td>女A跳遠
+      <tr><td>55<td>21220<td>7米88<td>林靜宜<td>高二信<td>第八屆<td>2013.10~<td>女A鉛球
+      <tr><td>56<td>21160<td> 01'01''71<td>陳意林,周嘉怡,黃嘉琪,黃穎詩<td> 高三聯 隊<td>第十四屆<td>2019.11<td>女A4x100M
+      <tr><td>57<td>21170<td>5'39"43<td>甘倩欣,周希文,黃希瑜,李美嘉<td>高二聯<td>第九屆<td>2014.11<td>女A4x400M
+      <tr><td>58<td>22030<td>13"65<td>程詠欣<td>初一愛A<td>第一屆<td>2006.12<td>女B100米
+      <tr><td>59<td>22040<td> 28''97<td>卓世鑫<td>初三望<td>第十四屆<td>2019.11<td>女B200米
+      <tr><td>60<td>22050<td> 01'09''20<td>卓世鑫<td>初三望<td>第十四屆<td>2019.11<td>女B400米
+      <tr><td>61<td>22060<td>2'52"94<td>莫嘉敏<td>初三望B<td>第三屆<td>2009.1<td>女B800米
+      <tr><td>62<td>22080<td>6'15"00<td>雷嘉敏<td>初三望B<td>第一屆<td>2006.12<td>女B1500米
+      <tr><td>63<td>22120<td>18"30<td>梁慧彤<td>初三愛<td>第九屆<td>2014.11<td>女B80米欄
+      <tr><td>64<td>22180<td>1米40<td>呂芷茵<td>初一信A<td>第三屆<td>2009.1<td>女B跳高
+      <tr><td>65<td>22190<td>4米26<td>程詠欣<td>初一愛A<td>第一屆<td>2006.12<td>女B跳遠
+      <tr><td>66<td>22220<td>6米93<td>林雪瑜<td>初三信<td>第十屆<td>2016.1<td>女B鉛球
+      <tr><td>67<td>22160<td> 01'01''21<td>卓世鑫,張芷燁,戴希而,梁鳳如<td> 初三聯 隊<td>第十四屆<td>2019.11<td>女B4x100M
+      <tr><td>68<td>22170<td>6'24"29<td>汪艷儀,胡樂敏,許凱琪,許嘉慧<td>初三善<td>第九屆<td>2014.11<td>女B4x400M
+      <tr><td>69<td>23030<td> 13''48<td>林詩晴<td>初一愛<td>第十四屆<td>2019.11<td>女C100米
+      <tr><td>70<td>23040<td> 29''14<td>林詩晴<td>初一愛<td>第十四屆<td>2019.11<td>女C200米
+      <tr><td>71<td>23080<td>06'17"65<td>戴希而<td>初二望<td>第十三屆<td>2018.11<td>女C1500米
+      <tr><td>72<td>23110<td>12"86<td>卓世鑫<td>初二望<td>第十三屆<td>2018.11<td>女C60米欄
+      <tr><td>73<td>23180<td> 1.25 <td>林詩晴<td>初一愛<td>第十四屆<td>2019.11<td>女C跳高
+      <tr><td>74<td>23190<td>3米91<td>梁慧彤<td>初一愛<td>第七屆<td>2012.11<td>女C跳遠
+      <tr><td>75<td>23220<td>7米26<td>施惠瑩<td>初二信A<td>第三屆<td>2009.1<td>女C鉛球
+      <tr><td>76<td>23160<td> 00'58''00<td>林詩晴,關寶琪,潘思淇,吳佩琪<td> 初一聯 一隊<td>第十四屆<td>2019.11<td>女C4x100M
+      <tr><td>77<td>24020<td> 08''78<td>郭銘恩<td>小六望<td>第十四屆<td>2019.11<td>女D60米
+      <tr><td>78<td>24070<td>04'04"13<td>吳佩琪<td>小六愛<td>第十三屆<td>2018.11<td>女D1000米
+      <tr><td>79<td>24180<td>1米15<td>林詩晴<td>小五愛<td>第十一屆<td>2016.11<td>女D跳高
+      <tr><td>80<td>24190<td>3.47 <td>林詩晴<td>小五望<td>第十二屆<td>2017.11<td>女D跳遠
+      <tr><td>81<td>24210<td>32.65 <td>邢麗嬅<td>小六望<td>第十二屆<td>2017.11<td>女D壘球
+      <tr><td>82<td>24150<td>31"37<td>關寶琪,湯邵蓉,潘思淇,吳佩琪<td>小六聯隊<td>第十三屆<td>2018.11<td>女D4x50M
+      <tr><td>83<td>25010<td> 07''91<td>錢良彤<td>小四信<td>第十四屆<td>2019.11<td>女E50米
+      <tr><td>84<td>25180<td>0.92 <td>郭銘恩<td>小四望<td>第十二屆<td>2017.11<td>女E跳高
+      <tr><td>85<td>25190<td> 2.79 <td>鄭筠佩<td>小四信<td>第十四屆<td>2019.11<td>女E跳遠
+      <tr><td>86<td>25210<td> 15.75<td>何樂兒<td>小四望<td>第十四屆<td>2019.11<td>女E壘球
+      <tr><td>87<td>25150<td> 38''15<td>蔡汶熹,鄭悅瑤,鄭筠佩,錢良彤<td> 小四信 一隊<td>第十四屆<td>2019.11<td>女E4x50M
+      <tr><td>88<td>22090<td>19'55''04<td>盧泳思<td>初三信<td>第十三屆<td>2018.11<td>女B3000M
+  script(type="text/javascript").
+    $(document).ready(function(){
+      $("#exportCSV").on('click', function(event) {
+        var args = [$('#tableContent>table'), 'export.csv'];
+        exportTableToCSV.apply(this, args);
+      });
+    });

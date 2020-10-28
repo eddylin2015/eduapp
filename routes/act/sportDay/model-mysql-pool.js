@@ -1,17 +1,4 @@
-﻿// Copyright 2017, Google, Inc.
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-'use strict';
+﻿'use strict';
 
 const mysql = require('mysql');
 const config = require('../../../config');
@@ -21,10 +8,10 @@ const options = {
     password: config.get('ACTMYSQL_PASSWORD'),
     database: config.get('ACTMYSQL_DATABASE')
 };
-//const connection = mysql.createConnection(options);
+
 const pool = mysql.createPool(options);
 
-function readbyUserName(UserName,  cb) {
+function readbyUserName(UserName, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
             'SELECT * FROM `stdsportitem` WHERE `username` = ? ', UserName, (err, results) => {
@@ -40,7 +27,7 @@ function readbyUserName(UserName,  cb) {
 function updateByUserName(username, rec_data, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
-            "UPDATE `stdsportitem` SET logtime=now(),rec= concat(rec,';',?) WHERE `username` = ? ", [ rec_data, username], (err) => {
+            "UPDATE `stdsportitem` SET logtime=now(),rec= concat(rec,';',?) WHERE `username` = ? ", [rec_data, username], (err) => {
                 if (err) {
                     cb(err);
                     return;
@@ -53,7 +40,6 @@ function updateByUserName(username, rec_data, cb) {
 
 function list(userId, cb) {
     pool.getConnection(function (err, connection) {
-        // Use the connection
         connection.query(
             'SELECT * FROM `stdsportitem` order by id;', [],
             (err, results) => {
@@ -87,13 +73,12 @@ function listBy(userId, limit, token, cb) {
 }
 
 
-function listTimestampBy(userId, activity, sdate,edate, limit, token, cb) {
+function listTimestampBy(userId, activity, sdate, edate, limit, token, cb) {
     token = token ? parseInt(token, 10) : 0;
-
     pool.getConnection(function (err, connection) {
         connection.query(
             'SELECT * FROM `stdsportitem` WHERE `activity` = ?  and (`logDate` between ? and ? ) order by  id  LIMIT ? OFFSET ?',
-            [activity,sdate,edate,limit, token],
+            [activity, sdate, edate, limit, token],
             (err, results) => {
                 if (err) {
                     cb(err);
@@ -114,13 +99,13 @@ function create(userId, data, cb) {
                 cb(err);
                 return;
             }
-            read(userId,res.insertId, cb);
+            read(userId, res.insertId, cb);
             connection.release();
         });
     });
 }
 
-function read(id,  cb) {
+function read(id, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
             'SELECT * FROM `stdsportitem` WHERE `id` = ? ', id, (err, results) => {
@@ -153,24 +138,113 @@ function update(userId, id, data, cb) {
             });
     });
 }
-function _delete(userId,id, cb) {
+function _delete(userId, id, cb) {
     pool.getConnection(function (err, connection) {
-        connection.query('DELETE FROM `stdsportitem` WHERE `id` = ?  and  `createdById` = ?',[ id, userId ],  cb);
+        connection.query('DELETE FROM `stdsportitem` WHERE `id` = ?  and  `createdById` = ?', [id, userId], cb);
         connection.release();
     });
 }
+//SP//
+function SPReadName(si_id, cb) {
+    pool.getConnection(function (err, connection) {
+        connection.query(
+            'SELECT s_item,lock_time,name_ctx FROM `sport_item` WHERE `si_id` = ? ', si_id, (err, results) => {
+                if (!err && !results.length) {
+                    err = {
+                        code: 404,
+                        message: 'Not found'
+                    };
+                }
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                cb(null, results[0]);
+                connection.release();
+            });
+    });
+}
+function SPReadRC(si_id, cb) {
+    pool.getConnection(function (err, connection) {
+        connection.query(
+            'SELECT si_id,s_item,lock_time,rc_ctx FROM `sport_item` WHERE `si_id` = ? ', si_id, (err, results) => {
+                if (!err && !results.length) {
+                    err = {
+                        code: 404,
+                        message: 'Not found'
+                    };
+                }
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                cb(null, results[0]);
+                connection.release();
+            });
+    });
+}
 
+function SPUpdateRC(siid, data, cb) {
+    pool.getConnection(function (err, connection) {
+        connection.query(
+            'UPDATE `sport_item` SET ? WHERE `si_id` = ?  ', [data, siid, userId], (err) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                read(userId, id, cb);
+                connection.release();
+            });
+    });
+}
+function SPUpdateName(siid, data, cb) {
+    pool.getConnection(function (err, connection) {
+        connection.query(
+            'UPDATE `sport_item` SET ? WHERE `id` = ? ', [data, siid], (err) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                read(userId, id, cb);
+                connection.release();
+            });
+    });
+}
+function SPIndexList(cb) {
+    pool.getConnection(function (err, connection) {
+        connection.query(
+            'SELECT si_id,s_item,lock_time,lock_item FROM `sport_item` order by lock_time desc;', [],
+            (err, results) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                cb(null, results);
+                connection.release();
+            }
+        );
+    });
+}
+
+
+
+//SP end//
 module.exports = {
     createSchema: createSchema,
-    readbyUserName:readbyUserName,
-    updateByUserName:updateByUserName,    
+    readbyUserName: readbyUserName,
+    updateByUserName: updateByUserName,
     list: list,
     listBy: listBy,
     listTimestampBy: listTimestampBy,
     create: create,
     read: read,
     update: update,
-    delete: _delete
+    delete: _delete,
+    SPReadName:SPReadName,
+    SPReadRC:SPReadRC,
+    SPIndexList:SPIndexList,
+    SPUpdateName:SPUpdateName,
+    SPUpdateRC:SPUpdateRC,
 };
 if (module === require.main) {
     const prompt = require('prompt');
@@ -190,7 +264,7 @@ function createSchema(config) {
         multipleStatements: true
     }, config));
     connection.query(
-    `CREATE DATABASE IF NOT EXISTS \`act\`
+        `CREATE DATABASE IF NOT EXISTS \`act\`
       DEFAULT CHARACTER SET = 'utf8mb4'
       DEFAULT COLLATE 'utf8mb4_unicode_ci';
     USE \`act\`;

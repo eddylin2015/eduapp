@@ -36,15 +36,78 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-  res.render('act/sportday/index.pug',{
+
+  res.render('act/sportday/index.pug', {
+    profile: req.user,
+  });
+
+});
+function fmt_now() {
+  var d = new Date();
+  var dstr = d.getFullYear() + "-";
+  if (d.getMonth() < 9) dstr += "0";
+  dstr += d.getMonth() + 1 + "-";
+  if (d.getDate() < 10) dstr += "0";
+  dstr += d.getDate();
+  return dstr;
+}
+
+router.get('/rclist', (req, res, next) => {
+  getModel().SPIndexList((err, entities) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('act/sportday/spindex.pug', {
+      profile: req.user,
+      spitems: entities,
+    });
+  });
+});
+
+router.get('/name/:siid', (req, res, next) => {
+  getModel().SPReadName(req.params.siid, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('act/sportday/report.pug', {
+      profile: req.user,
+      datahtml: entity.name_ctx,
+    });
+  });
+});
+
+router.get('/rc/:siid', (req, res, next) => {
+  getModel().SPReadRC(req.params.siid, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('act/sportday/report.pug', {
+      profile: req.user,
+      datahtml: entity.rc_ctx,
+    });
+
+  });
+});
+
+router.post('/api/updaterc/:siid', (req, res, next) => { });
+
+router.post('/api/updatename/:siid', (req, res, next) => { });
+
+router.get('/statisc', (req, res, next) => {
+  res.render('act/sportday/statisc.pug', {
     profile: req.user,
   });
 });
+
 router.get('/charter', (req, res, next) => {
-  res.render('act/sportday/charter.pug',{
+  res.render('act/sportday/charter.pug', {
     profile: req.user,
   });
 });
+
 router.get('/spreg.jsp', (req, res, next) => {
   if (req.user) {
     let userName = req.user.email.split('@')[0].toUpperCase();
@@ -78,7 +141,7 @@ router.post('/read', oauth2.required, (req, res, next) => {
 });
 
 function ShowGroupName(x) {
-  var GROUP_Name = ["男A", "男B", "男C", "男D", , "女A", "女B", "女C", "女D", "男E", "女E"];
+  var GROUP_Name = ["男A", "男B", "男C", "男D", "女A", "女B", "女C", "女D", "男E", "女E"];
   return GROUP_Name[x];
 }
 function ShowItemName(rec) {
@@ -121,17 +184,17 @@ router.post('/update', oauth2.required, images.multer.any(), (req, res, next) =>
 });
 
 router.get('/datagrid', (req, res) => {
-  if(!checkuser(req)){ res.end("no right");return;}
-    getModel().list(req.user.id, (err, entities) => {
-        if (err) {
-            next(err);
-            return;
-        }
-        res.render('act/sportday/grid.pug', {
-            profile: req.user,
-            books: entities
-        });
+  if (!checkuser(req)) { res.end("no right"); return; }
+  getModel().list(req.user.id, (err, entities) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('act/sportday/grid.pug', {
+      profile: req.user,
+      books: entities
     });
+  });
 });
 /**
  * Errors on "/sportday/*" routes.

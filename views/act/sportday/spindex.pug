@@ -1,0 +1,31 @@
+extends ./base.pug
+block content
+  style.
+    container{margin:0;padding:0}
+    td{padding-right:5px;}
+  table
+    tr
+      td 號編
+      td 項目
+      td 時間
+      td 標
+      td 成績
+      td 名單
+    each ite_ in spitems
+      tr
+        td= ite_.si_id
+        td !{ite_.s_item.replace("("," (")}
+        td
+          small !{ite_.lock_time.toISOString().substring(0,19).replace("T"," ")}
+        td= ite_.lock_item
+        if ite_.lock_item && ite_.lock_item==1
+          td
+            a(href=`rc/${ite_.si_id}`, class='btn btn-primary btn-sm')
+              span  成績              
+        else
+          td -  
+        td 
+          a(href=`name/${ite_.si_id}`, class='btn btn-info btn-sm')
+            span 名單  
+
+  

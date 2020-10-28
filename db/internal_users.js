@@ -4,6 +4,7 @@ const config = require('../config');
 var records = [
     { id: 1, username: 'jack', password: '123', displayName: 'Jack', email: 'jack@example.com' , encode_username: "" }
     , { id: 2, username: 'cool', password: '123', displayName: 'lammou SC6E09', email: 'lammou@mail.mbc.edu.mo' , encode_username: "" }
+    , { id: 2, username: 'sp', password: '470388', displayName: 'lammou SC6E09', email: 'lammou@mail.mbc.edu.mo' , encode_username: "" }
 ];
 function encode_key(x) {
     var d = new Date();
