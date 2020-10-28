@@ -19,7 +19,6 @@ function listQizTx(cb) {
                     cb(err);
                     return;
                 }
-                console.log(results)
                 cb(null, results);
                 connection.release();
             }

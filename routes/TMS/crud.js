@@ -42,14 +42,12 @@ router.use((req, res, next) => {
 router.get('/',
   //oauth2.required,
   (req, res, next) => {
-
     if (req.user) {
       model.listQizTx((err, entities, cursor) => {
         if (err) {
           next(err);
           return;
         }
-        console.log(entities)
         res.render('TMSUI/TmsIndex.pug', {
           profile: req.user,
           books: entities,
@@ -59,7 +57,6 @@ router.get('/',
     } else {
       res.redirect("/internal/login?subpath=TMS");
     }
-
   });
 router.get('/math.html', (req, res, next) => {
   res.redirect("/internal/TMS");
@@ -72,14 +69,14 @@ router.post('/AddTMSQF', (req, res, next) => {
   else {
     let username = req.user.username;
     let displayname = req.user.displayName;
-    let classname="";
-    let seat="";
-    let grade="";
-    let a_=/S[C|G][0-9][A-E][0-9]+/i.exec(displayname)
-    if(a_){
-      classname=a_[0].substring(0,4);
-      grade=a_[0].substring(0,3);
-      seat=a_[0].substring(4);
+    let classname = "";
+    let seat = "";
+    let grade = "";
+    let a_ = /S[C|G][0-9][A-E][0-9]+/i.exec(displayname)
+    if (a_) {
+      classname = a_[0].substring(0, 4);
+      grade = a_[0].substring(0, 3);
+      seat = a_[0].substring(4);
     }
     let studref = req.user.email.split('@')[0];
     let fn = req.body.fn;
@@ -89,7 +86,7 @@ router.post('/AddTMSQF', (req, res, next) => {
     let md = `${yy}${mm < 10 ? "0" : ""}${mm}${dd < 10 ? "0" : ""}${dd}${HH < 10 ? "0" : ""}${HH}${MM < 10 ? "0" : ""}${MM}${SS < 10 ? "0" : ""}${SS}`;
     let fnn = `TMS${studref}_${fn}.txt`;
     let jsondata = req.body.data;
-    model.AddTMSQF(fnn, md, jsondata, username, displayname, grade, classname,seat, (err, ins_id) => {
+    model.AddTMSQF(fnn, md, jsondata, username, displayname, grade, classname, seat, (err, ins_id) => {
       if (err) { console.log(err); return res.end("error"); }
       res.end(`存儲成功. 記錄編號: ${ins_id} .`);
     });
@@ -160,38 +157,38 @@ function d2s(x, fix) {
   return y + (m < 10 ? "0" : "") + m + (d_ < 10 ? "0" : "") + d_ + fix;
 }
 router.get('/tmsReportQuery', oauth2.required, (req, Response, next) => {
-  let sd=req.query.sd?req.query.sd:fmt_now(3);
-  let ed=req.query.ed?req.query.ed:fmt_now();
-  let classname=req.query.classname?req.query.classname:"";
+  let sd = req.query.sd ? req.query.sd : fmt_now(3);
+  let ed = req.query.ed ? req.query.ed : fmt_now();
+  let classname = req.query.classname ? req.query.classname : "";
   Response.render('TMSUI/tmsReportQuery.pug', {
     profile: req.user,
     sd: sd,
     ed: ed,
-    classname:classname
+    classname: classname
   });
 });
 router.post('/tmsReportQuery', images.multer.array('upload', 16),
 
   oauth2.required, (req, Response, next) => {
-    console.log(1,req.query.pageToken);
+    console.log(1, req.query.pageToken);
     let sd = d2s(req.body.sd, "000000");
     let ed = d2s(req.body.ed, "999999");
     let fmt = req.body.fmt;
-    let classname=req.body.classname;
+    let classname = req.body.classname;
     if (dbis === "redis") {
       Response.redirect('/internal/TMS/tmsMyReport');
     } else {
-      model.TMSQFlistbydate(sd, ed,classname,1500,req.query.pageToken, (err, maths_data,cursor) => {
+      model.TMSQFlistbydate(sd, ed, classname, 1500, req.query.pageToken, (err, maths_data, cursor) => {
         console.log(cursor);
         Response.render('TMSUI/tmsReport.pug', {
           profile: req.user,
-          queryToken:querystring.stringify({ 
-            sd:req.body.sd,
-            ed:req.body.ed,
-            classname:classname,
+          queryToken: querystring.stringify({
+            sd: req.body.sd,
+            ed: req.body.ed,
+            classname: classname,
             pageToken: cursor,
           }),
-          nextPageToken:cursor,
+          nextPageToken: cursor,
           data: maths_data
         });
       });
@@ -201,9 +198,9 @@ let isArray = (data) => {
   return (Object.prototype.toString.call(data) === "[object Array]");
 }
 router.get('/tmsMyReport', oauth2.required, (req, Response, next) => {
-//10,req.query.pageToken,
+  //10,req.query.pageToken,
   if (dbis === "redis") {
-    model.list(req.user.username,(err, maths_data) => {
+    model.list(req.user.username, (err, maths_data) => {
       if (err) console.log(err);
 
       if (!maths_data) { Response.end("<button onclick='window.history.back();'>no thing! return</button>"); return; }
@@ -218,7 +215,7 @@ router.get('/tmsMyReport', oauth2.required, (req, Response, next) => {
       });
     });
   } else {
-    model.listByUser(req.user.username,500,req.query.pageToken,  (err, maths_data,cursor) => {
+    model.listByUser(req.user.username, 500, req.query.pageToken, (err, maths_data, cursor) => {
       if (err) console.log(err);
       Response.render('TMSUI/tmsReport.pug', {
         profile: req.user,

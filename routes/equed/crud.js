@@ -74,7 +74,6 @@ router.get('/',
 router.get('/list',
   oauth2.required,
   (req, res, next) => {
-    console.log();
     model.list(100, req.query.pageToken, (err, entities, cursor) => {
       if (err) {
         next(err);
@@ -103,13 +102,13 @@ router.get('/list',
     });
   });
 router.get('/ed/add', authMathsRequired, (req, res, next) => {
-  let qizcode = ["//定義變量:Tx : [1:9]", "//工具集: tmsU, tmsCalcu", "let TE={St:'',Val:'',ACnt:1, ATyp:'n',Range:[]};//n,t,m",
+  let qizcode = ["//定義變量:Tx QueId: [1:9]", "//工具集: tmsU, tmsCalcu", "let TE={St:'',Val:'',ACnt:1, ATyp:'n',Range:[]};//n,t,m",
     'let a=Math.floor(Math.random()*10);',
     'let b=Math.floor(Math.random()*10);',
     'TE.St=`${a} \\\\times ${b}`;',
     'TE.Val=a*b;',
     ''].join('\n');
-  let anscode = ["//工具集: tmsU, tmsCalcu \n//定義變量:IAns1,IAns2,TE", "if(TE.ACnt==1 && TE.ATyp=='n') return IAns1==TE.Val;"].join('\n')
+  let anscode = ["//工具集: tmsU, tmsCalcu \n//定義變量:IAns1,IAns2,TE,AnsList", "if(TE.ACnt==1 && TE.ATyp=='n') return IAns1==TE.Val;"].join('\n')
   res.render('equed/edit/form.pug', {
     profile: req.user,
     book: {

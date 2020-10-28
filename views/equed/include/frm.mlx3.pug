@@ -79,23 +79,16 @@ script.
     let gno= document.getElementById("AnsMsgboxQNO").innerHTML;      
     GetQuestion(qt);
   }
-  function show_HelpAnsMsgbox(x,qno,ansZ,ansM) {
-    let equans=App.GetQizAns(x,qno);
-    let ans_res=[];
-    ans_res[0]=x;
-    ans_res[1]=qno;
+  function show_HelpAnsMsgbox(x,qno,ansZ,ansM,a_li) {
     let spanxv="";
-    if(App.CheckAns(x,qno,ansZ,ansM)){
-      ans_res[2]="1";
+    if(App.CheckAns(x,qno,ansZ,ansM,a_li)){
       spanxv="<span class='glyphicon glyphicon-ok'></span>"
     }else{
-      ans_res[2]="0";
       spanxv="<span class='glyphicon glyphicon-remove'></span>"
     }
     alertmsg(spanxv)
-    
   }
-  function show_AnsMsgbox(x,qno,ansZ,ansM) {
+  function show_AnsMsgbox(x,qno,ansZ,ansM,a_li) {
     let equans=App.GetQizAns(x,qno);
     document.getElementById("AnsMsgboxQT").innerHTML=x;
     document.getElementById("AnsMsgboxQNO").innerHTML=qno;
@@ -108,7 +101,7 @@ script.
     let ans_res=[];
     ans_res[0]=x;
     ans_res[1]=qno;
-    if(App.CheckAns(x,qno,ansZ,ansM)){
+    if(App.CheckAns(x,qno,ansZ,ansM,a_li)){
       ans_res[2]="1";
       document.getElementById("AnsMsgboxCheckAns").innerHTML="<span class='glyphicon glyphicon-ok'></span>"
     }else{
