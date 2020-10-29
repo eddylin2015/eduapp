@@ -99,8 +99,13 @@ for(let i=0;i<temp_.length;i++)
         }
     }
 }
-let eSt=" -x^3+5-x"
-for(let i=2;i<5;i++)
-console.log(eSt,tmsCalcu.RunExpr(eSt,{x:i}));
+let eSt1="-58/35"
+let eSt2="(-58/35)"
+let eStv1=tmsCalcu.RunExpr(eSt1,{x:1});
+let eStv2=tmsCalcu.RunExpr(eSt2,{x:1});
+console.log(eSt1,eStv1);
+console.log(eSt2,eStv2);
+console.log(eStv1==eStv2)
+
 
 
