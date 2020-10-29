@@ -495,6 +495,26 @@ KeySigns['+'] = 3;
 KeySigns['-'] = 3;
 KeySigns[':'] = 2;
 KeySigns[','] = 2;
+function addstar(St1) {
+    if (St1.startsWith("-x^"))
+        St1 = St1.replace("-x^", "-1*x^");
+    console.log(St1);
+    {
+        var r_ = new RegExp("[)][ ]*[(]", 'g');
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++)
+                St1 = St1.replace(mr_[j], ")*(");
+    }
+    {
+        var r_ = new RegExp("[)][ ]*x", 'g');
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++)
+                St1 = St1.replace(mr_[j], ")*x");
+    }
+    return St1;
+}
 var TmsCalcu = /** @class */ (function () {
     function TmsCalcu() {
     }
@@ -502,6 +522,8 @@ var TmsCalcu = /** @class */ (function () {
     TmsCalcu.prototype.RunExpr = function (St, VSet, trace) {
         if (VSet === void 0) { VSet = { x: 1 }; }
         if (trace === void 0) { trace = false; }
+        St = St.replace(/ +/g, " ");
+        St = addstar(St);
         var tmsU = new TmsUts();
         var St1 = St.toLowerCase();
         var Vkeys = Object.keys(VSet);

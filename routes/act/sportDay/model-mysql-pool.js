@@ -185,14 +185,13 @@ function SPReadRC(si_id, cb) {
 }
 
 function SPUpdateRC(siid, data, cb) {
+    console.log(siid,data)
     pool.getConnection(function (err, connection) {
         connection.query(
-            'UPDATE `sport_item` SET ? WHERE `si_id` = ?  ', [data, siid, userId], (err) => {
-                if (err) {
-                    cb(err);
-                    return;
-                }
-                read(userId, id, cb);
+            'UPDATE `sport_item` SET ? WHERE `si_id` = ?  ', [data, siid], (err,entity) => {
+                if (err) {cb(err);return;}
+                cb(null,entity);
+                //read(userId, id, cb);
                 connection.release();
             });
     });
@@ -200,12 +199,13 @@ function SPUpdateRC(siid, data, cb) {
 function SPUpdateName(siid, data, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
-            'UPDATE `sport_item` SET ? WHERE `id` = ? ', [data, siid], (err) => {
+            'UPDATE `sport_item` SET ? WHERE `id` = ? ', [data, siid], (err,entity) => {
                 if (err) {
                     cb(err);
                     return;
                 }
-                read(userId, id, cb);
+                cb(null,entity);
+                //read(userId, id, cb);
                 connection.release();
             });
     });

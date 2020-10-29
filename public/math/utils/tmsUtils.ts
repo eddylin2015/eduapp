@@ -426,9 +426,27 @@ KeySigns['+'] = 3;
 KeySigns['-'] = 3;
 KeySigns[':'] = 2;
 KeySigns[','] = 2;
+function addstar(St1){
+    if(St1.startsWith("-x^")) St1=St1.replace("-x^","-1*x^"); 
+    console.log(St1)
+    {
+        let r_ = new RegExp(`[)][ ]*[(]`, 'g');
+        let mr_ = St1.match(r_)
+        if (mr_) for (let j = 0; j < mr_.length; j++)  St1 = St1.replace(mr_[j], ")*(");
+    }
+    {
+        let r_ = new RegExp(`[)][ ]*x`, 'g');
+        let mr_ = St1.match(r_)
+        if (mr_) for (let j = 0; j < mr_.length; j++)  St1 = St1.replace(mr_[j], ")*x");
+   
+    }
+    return St1;  
+}
 class TmsCalcu {
     RunVMCalc(St) { alert("no implement!"); }
     RunExpr(St, VSet = { x: 1 }, trace = false) {
+        St = St.replace(/ +/g, " ");
+        St=addstar(St)
         let tmsU = new TmsUts();
         let St1 = St.toLowerCase();
         let Vkeys = Object.keys(VSet);

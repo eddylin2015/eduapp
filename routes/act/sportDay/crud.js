@@ -2,7 +2,8 @@
 
 const express = require('express');
 const images = require('./images');
-var oauth2 = require('../../../db/internalOauth2.js')
+var oauth2 = require('../../../db/internalOauth2.js');
+const { json } = require('body-parser');
 function getModel() {
   return require(`./model-mysql-pool`);
 }
@@ -92,9 +93,33 @@ router.get('/rc/:siid', (req, res, next) => {
   });
 });
 
-router.post('/api/updaterc/:siid', (req, res, next) => { });
+router.post('/api/updaterc/:siid', 
+images.multer.single('image'),
+  (req, res, next) => {
+    if(!req.user) {res.end("error!") ;return;}
+    if(req.user && req.user.id !== 2 ) {res.end("error!") ;return;}
+      const data = req.body;
+  getModel().SPUpdateRC(req.params.siid, data, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.end(JSON.stringify(entity));
+  });
+});
 
-router.post('/api/updatename/:siid', (req, res, next) => { });
+router.post('/api/updatename/:siid',
+images.multer.single('image'),
+  (req, res, next) => {
+    if(req.user.id !== 2 ) {res.end("error!") ;return;}
+  getModel().SPUpdateName(req.params.siid, data, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.end(JSON.stringify(entity));
+  });
+});
 
 router.get('/statisc', (req, res, next) => {
   res.render('act/sportday/statisc.pug', {
