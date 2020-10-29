@@ -112,7 +112,7 @@ script.
     ans_res[4]= ans_res[2];
     ans_res[5]= App.GetQizSt(x, qno);
     ans_res[6]= ansZ;
-    if(App.IsFraction(x,qno)) ans_res[6] = ansZ+" / "+ ansM ;
+    if(ansM && ansM !="") ans_res[6] = ansZ+" / "+ ansM ;
     ans_res[7] = App.GetAnsSt(x, qno);
     var table = document.getElementById("AnsMsgResTable");    
     table.deleteRow(table.rows.length-1);  

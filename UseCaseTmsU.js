@@ -1,4 +1,5 @@
 const TmsUti = require('./public/math/utils/tmsUtils')
+const fs=require('fs')
 const tmsU = new TmsUti.TmsUts();
 const tmsCalcu = new TmsUti.TmsCalcu();
 console.log(tmsU.TakeAOpr(["+", "-", "*", "/"]))
@@ -24,8 +25,6 @@ let Vals = [
     "xy",
     "-8x^3 y^2+-2x^6 y^0+-18x^7y^1",
     "-2x^3\\mleft(4y^2+2x^3+9x^5y\\mright?+ 4\\times5\\div3+xy",
-
-
 ]
 function fracMark2Expr(vst, idx) {
     function fracFM(vst, idx) {
@@ -77,23 +76,31 @@ Vals.forEach(vst => {
     console.log(2,tmsCalcu.RunExpr(IAns1,{x:1,y:2}))
     
 });
-let str=[];
-str[0]="abcdee SG1A4"
-str[1]="abcdee SC1A04"
-str[2]="abcdee "
-for( let i=0;i<str.length;i++)
-{
-    let a_=/S[C|G][0-9][A-E][0-9]+/i.exec(str[i])
-    if(a_){
-      let  classname=a_[0].substring(0,4);
-      let   seat=a_[0].substring(4);
-      console.log(classname,seat)
-      }
-  
-}
 var GROUP_Name = ["男A", "男B", "男C", "男D",, "女A", "女B", "女C", "女D", "男E", "女E"];
-console.log(GROUP_Name);
 
-
+let temp_=fs.readFileSync('export.csv').toString();
+ temp_=temp_.split("\n");
+for(let i=0;i<temp_.length;i++)
+{
+    let row=temp_[i].split(",");
+    if(row.length==10 && row[9].indexOf('x')>-1)
+    {
+        let St=row[7].replace(/"/g,"  ");
+        let Ans=row[8].replace(/"/g," ");
+        let SAns=row[9].replace(/"/g," ");
+        let v=tmsCalcu.RunExpr(St,{x:11})
+        let v0=tmsCalcu.RunExpr(Ans,{x:11})
+        let v1=tmsCalcu.RunExpr(SAns,{x:11})
+        if(v0!=undefined && row[4].indexOf("0")>-1)
+        {
+        if(row[8].startsWith('"-x^'))
+        if(v!=v0)
+          console.log(v,v0,v1,row[4],St,Ans,SAns);
+        }
+    }
+}
+let eSt=" -x^3+5-x"
+for(let i=2;i<5;i++)
+console.log(eSt,tmsCalcu.RunExpr(eSt,{x:i}));
 
 

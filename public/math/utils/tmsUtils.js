@@ -495,10 +495,19 @@ KeySigns['+'] = 3;
 KeySigns['-'] = 3;
 KeySigns[':'] = 2;
 KeySigns[','] = 2;
+function PlusMin2Min(St1) {
+    {
+        var r_ = new RegExp("[+][ ]*[-]", 'g');
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++)
+                St1 = St1.replace(mr_[j], "-");
+    }
+    return St1;
+}
 function addstar(St1) {
     if (St1.startsWith("-x^"))
         St1 = St1.replace("-x^", "-1*x^");
-    console.log(St1);
     {
         var r_ = new RegExp("[)][ ]*[(]", 'g');
         var mr_ = St1.match(r_);
@@ -513,6 +522,13 @@ function addstar(St1) {
             for (var j = 0; j < mr_.length; j++)
                 St1 = St1.replace(mr_[j], ")*x");
     }
+    {
+        var r_ = new RegExp("[+][ ]*[-]", 'g');
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++)
+                St1 = St1.replace(mr_[j], "-");
+    }
     return St1;
 }
 var TmsCalcu = /** @class */ (function () {
@@ -522,12 +538,12 @@ var TmsCalcu = /** @class */ (function () {
     TmsCalcu.prototype.RunExpr = function (St, VSet, trace) {
         if (VSet === void 0) { VSet = { x: 1 }; }
         if (trace === void 0) { trace = false; }
+        St = St.replace(/^ +/g, "");
         St = St.replace(/ +/g, " ");
         St = addstar(St);
         var tmsU = new TmsUts();
         var St1 = St.toLowerCase();
         var Vkeys = Object.keys(VSet);
-        console.log(Vkeys);
         for (var i = 0; i < Vkeys.length; i++) {
             var xKey = Vkeys[i];
             var xVal = VSet[xKey];
@@ -567,10 +583,8 @@ var TmsCalcu = /** @class */ (function () {
             var x_r = new RegExp("" + xKey, 'g');
             St1 = St1.replace(x_r, "" + xVal);
         }
-        console.log(St1);
         var cc_list1 = this.Sytex_cclist(St1);
         cc_list1 = tmsU.AdjExpFmtList(cc_list1);
-        console.log(cc_list1);
         var yy1 = [];
         this.proc2opt(cc_list1, yy1);
         return this.exprCalc(yy1);
@@ -578,14 +592,10 @@ var TmsCalcu = /** @class */ (function () {
     };
     TmsCalcu.prototype.RunFrcExpr = function (St, VSet) {
         if (VSet === void 0) { VSet = { x: 1 }; }
-        console.log(St);
         var cc_list = this.Sytex_cclist(St);
-        console.log("cc_list", cc_list);
         var frc_yy = [];
         this.procfrc2opt(cc_list, frc_yy);
-        console.log(frc_yy);
         var frc_val = this.exprfrcCalc(frc_yy);
-        console.log("frc_val=", frc_val);
         return frc_val;
         return "-1/2";
     };
@@ -849,7 +859,6 @@ var TmsCalcu = /** @class */ (function () {
                     break;
             }
             else {
-                //console.log(result)
                 break;
             }
         }
@@ -1104,10 +1113,8 @@ var TmsCalcu = /** @class */ (function () {
         function fracFM(vst, idx) {
             var posi = [-1, -1];
             var lbcnt = 0;
-            console.log(idx);
             if (idx > -1)
                 for (var i = idx; i < vst.length; i++) {
-                    console.log(i, vst[i]);
                     if (vst[i] === '{') {
                         if (lbcnt == 0) {
                             posi[0] = i;
@@ -1126,10 +1133,7 @@ var TmsCalcu = /** @class */ (function () {
             return ([posi[0], posi[1], vst.substring(posi[0], posi[1] + 1)]);
         }
         var fZ = fracFM(vst, idx + 5);
-        console.log(fZ);
-        console.log(fZ[1]);
         var fM = fracFM(vst, fZ[1] + 1);
-        console.log(fM);
         return [vst.substring(idx, fM[1] + 1), " ((" + fZ[2] + ") / (" + fM[2] + ")) "];
     };
     return TmsCalcu;
