@@ -7,20 +7,44 @@ const { json } = require('body-parser');
 function getModel() {
   return require(`./model-mysql-pool`);
 }
-function fmt_title(username, datestr, description) {
-  description = description.split("\n")[0];
-  datestr = datestr.length > 10 ? datestr.substring(0, 10) : datestr;
-  return username + ":" + datestr + ":" + description;
+function fmt_now_(intdays = 0) {
+  var d = new Date();
+  if (Math.abs(intdays) > 0) { d = new Date(new Date() - intdays * 3600 * 1000 * 24); }
+  var y = d.getFullYear(); var m = d.getMonth() + 1; var d_ = d.getDate();
+  return y + "-" + (m < 10 ? "0" : "") + m + "-" + (d_ < 10 ? "0" : "") + d_;
 }
 function fmt_now() {
   var d = new Date();
   var dstr = d.getFullYear() + "-";
-  if (d.getMonth() < 10) dstr += "0";
+  if (d.getMonth() < 9) dstr += "0";
   dstr += d.getMonth() + 1 + "-";
   if (d.getDate() < 10) dstr += "0";
   dstr += d.getDate();
   return dstr;
 }
+function fmt_now_time() {
+  var d = new Date();
+  var dstr = d.getFullYear() + "-";
+  if (d.getMonth() < 9) dstr += "0";
+  dstr += d.getMonth() + 1 + "-";
+  if (d.getDate() < 10) dstr += "0";
+  dstr += d.getDate();
+  dstr+=" ";
+  if(d.getHours()<10) dstr+="0"
+  dstr+=d.getHours()+":" 
+  if(d.getMinutes()<10) dstr+="0" 
+  dstr+=d.getMinutes()+":" 
+  if(d.getSeconds()<10) dstr+="0"
+  dstr+=d.getSeconds()
+  console.log(dstr)
+  return dstr;
+}
+function fmt_title(username, datestr, description) {
+  description = description.split("\n")[0];
+  datestr = datestr.length > 10 ? datestr.substring(0, 10) : datestr;
+  return username + ":" + datestr + ":" + description;
+}
+
 function checkuser(req) {
   if (req.user.email == "lammou@mail.mbc.edu.mo") return true;
   if (req.user.email == "joe853.hong@mail.mbc.edu.mo") return true;
@@ -43,18 +67,10 @@ router.get('/', (req, res, next) => {
   });
 
 });
-function fmt_now() {
-  var d = new Date();
-  var dstr = d.getFullYear() + "-";
-  if (d.getMonth() < 9) dstr += "0";
-  dstr += d.getMonth() + 1 + "-";
-  if (d.getDate() < 10) dstr += "0";
-  dstr += d.getDate();
-  return dstr;
-}
+
 
 router.get('/rclist', (req, res, next) => {
-  getModel().SPIndexList((err, entities) => {
+  getModel().SPIndexList(fmt_now_(4),(err, entities) => {
     if (err) {
       next(err);
       return;
@@ -98,21 +114,10 @@ images.multer.single('image'),
   (req, res, next) => {
     if(!req.user) {res.end("error!") ;return;}
     if(req.user && req.user.id !== 2 ) {res.end("error!") ;return;}
-      const data = req.body;
+    const data = req.body;
+    data.lock_time=fmt_now_time();
+    console.log(data.lock_time)
   getModel().SPUpdateRC(req.params.siid, data, (err, entity) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    res.end(JSON.stringify(entity));
-  });
-});
-
-router.post('/api/updatename/:siid',
-images.multer.single('image'),
-  (req, res, next) => {
-    if(req.user.id !== 2 ) {res.end("error!") ;return;}
-  getModel().SPUpdateName(req.params.siid, data, (err, entity) => {
     if (err) {
       next(err);
       return;

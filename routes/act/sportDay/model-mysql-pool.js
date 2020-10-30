@@ -185,7 +185,6 @@ function SPReadRC(si_id, cb) {
 }
 
 function SPUpdateRC(siid, data, cb) {
-    console.log(siid,data)
     pool.getConnection(function (err, connection) {
         connection.query(
             'UPDATE `sport_item` SET ? WHERE `si_id` = ?  ', [data, siid], (err,entity) => {
@@ -196,24 +195,12 @@ function SPUpdateRC(siid, data, cb) {
             });
     });
 }
-function SPUpdateName(siid, data, cb) {
+
+function SPIndexList(nowdate,cb) {
+    console.log(nowdate)
     pool.getConnection(function (err, connection) {
         connection.query(
-            'UPDATE `sport_item` SET ? WHERE `id` = ? ', [data, siid], (err,entity) => {
-                if (err) {
-                    cb(err);
-                    return;
-                }
-                cb(null,entity);
-                //read(userId, id, cb);
-                connection.release();
-            });
-    });
-}
-function SPIndexList(cb) {
-    pool.getConnection(function (err, connection) {
-        connection.query(
-            'SELECT si_id,s_item,lock_time,lock_item FROM `sport_item` order by lock_time desc;', [],
+            'SELECT si_id,s_item,lock_time,lock_item FROM `sport_item` where lock_time>? order by lock_time desc;', [nowdate],
             (err, results) => {
                 if (err) {
                     cb(err);
@@ -243,7 +230,6 @@ module.exports = {
     SPReadName:SPReadName,
     SPReadRC:SPReadRC,
     SPIndexList:SPIndexList,
-    SPUpdateName:SPUpdateName,
     SPUpdateRC:SPUpdateRC,
 };
 if (module === require.main) {

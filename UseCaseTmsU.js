@@ -117,6 +117,3 @@ let eSt2="(-58/35)"
 let eStv1=tmsCalcu.RunExpr(eSt1,{x:1});
 let eStv2=tmsCalcu.RunExpr(eSt2,{x:1});
 console.log(eSt1,eStv1,eSt2,eStv2,eStv1==eStv2);
-
-
-
