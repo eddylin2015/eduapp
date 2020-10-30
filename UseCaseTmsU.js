@@ -80,32 +80,43 @@ var GROUP_Name = ["男A", "男B", "男C", "男D",, "女A", "女B", "女C", "女D
 
 let temp_=fs.readFileSync('export.csv').toString();
  temp_=temp_.split("\n");
+ temp_.push("0,1,2,3,4,5,6,x^2-1,(-x-8)(-x^2+2),9+x");
+
 for(let i=0;i<temp_.length;i++)
 {
     let row=temp_[i].split(",");
     if(row.length==10 && row[9].indexOf('x')>-1)
     {
-        let St=row[7].replace(/"/g,"  ");
-        let Ans=row[8].replace(/"/g," ");
-        let SAns=row[9].replace(/"/g," ");
-        let v=tmsCalcu.RunExpr(St,{x:11})
-        let v0=tmsCalcu.RunExpr(Ans,{x:11})
-        let v1=tmsCalcu.RunExpr(SAns,{x:11})
-        if(v0!=undefined && row[4].indexOf("0")>-1)
+        let St=row[7].replace(/"/g,"");
+        let Ans=row[8].replace(/"/g,"");
+        let SAns=row[9].replace(/"/g,"");
+        //if(Ans.indexOf('x')>-1)
         {
-        if(row[8].startsWith('"-x^'))
-        if(v!=v0)
-          console.log(v,v0,v1,row[4],St,Ans,SAns);
+        //if(v0!=undefined && row[4].indexOf("-x-12")>-1)
+
+        let v0=tmsCalcu.RunExpr(St,{x:11})
+        let v1=tmsCalcu.RunExpr(Ans,{x:11})
+        let v2=tmsCalcu.RunExpr(SAns,{x:11})
+        let v3=tmsCalcu.RunExprV1(St,{x:11})
+        let v4=tmsCalcu.RunExprV1(Ans,{x:11})
+        let v5=tmsCalcu.RunExprV1(SAns,{x:11})
+        if(isNaN(v4) ){}
+        else if(v0==v3 && v1==v4 && v2==v5)
+        {
+        }
+        else{
+          tmsCalcu.RunExprV1(Ans,{x:11},true)
+          console.log(v0,v1,v2,v3,v4,v5,   row[4],St,Ans,SAns);
         }
     }
+    }
 }
+
 let eSt1="-58/35"
 let eSt2="(-58/35)"
 let eStv1=tmsCalcu.RunExpr(eSt1,{x:1});
 let eStv2=tmsCalcu.RunExpr(eSt2,{x:1});
-console.log(eSt1,eStv1);
-console.log(eSt2,eStv2);
-console.log(eStv1==eStv2)
+console.log(eSt1,eStv1,eSt2,eStv2,eStv1==eStv2);
 
 
 

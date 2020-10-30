@@ -116,8 +116,17 @@ class TmsUts {
         if (f.Sgn < 0 || f.FenM > 1) f.St1 = "(" + f.St + ")";
         return f
     }
-    //調整式子格式: +x/+1x -> x ; -1x-> -x
+    PlusMin2Min(St1:string){
+        {
+            let r_ = new RegExp(`[+][ ]*[-]`, 'g');
+            let mr_ = St1.match(r_)
+            if (mr_) for (let j = 0; j < mr_.length; j++)  St1 = St1.replace(mr_[j], "-");
+        }
+        return St1;  
+    }
+    //調整式子格式: +x/+1x -> x ; -1x-> -x; +- -> -
     AdjExpFmt(St: string) {
+        St=this.PlusMin2Min(St);//+- -> -
         let calc_ = new TmsCalcu();
         let cc_x = calc_.Sytex_cclist_x(St);
         let s1 = "";
@@ -126,7 +135,6 @@ class TmsUts {
             else if (cc_x[i] == '+x') { s1 += "x"; }
             else if (cc_x[i] == '+1x') { s1 += "x"; }
             else if (cc_x[i] == '-1x') { s1 += "-x"; }
-            else if (cc_x[i] == "+" && cc_x[i + 1] == "-") { }
             else s1 += cc_x[i];
         }
         return s1;
@@ -426,11 +434,82 @@ KeySigns['+'] = 3;
 KeySigns['-'] = 3;
 KeySigns[':'] = 2;
 KeySigns[','] = 2;
-function PlusMin2Min(St1){
+function St2Expr(St1,VSet:any = { x: 1 }, trace:boolean = false){
+    St1=St1.replace(/[（]/g, "(").replace(/[）]/g, ")")
+    St1=St1.replace(/^ +/g, "").replace(/ +/g, " ");
+    let regex_li=[
+        new RegExp(`[)][ ]*[(]`, 'g'),
+        new RegExp(`[)][ ]*x`, 'g'),
+        new RegExp(`[+][ ]*[-]`, 'g'),
+    ];
+    let regex_ReplaceV=[
+        ")*(",
+        ")*x",
+        "-",
+    ];
+    for(let i=0;i<regex_li.length;i++)
     {
-        let r_ = new RegExp(`[+][ ]*[-]`, 'g');
+        let mr_ = St1.match(regex_li[i]);
+        if (mr_) for (let j = 0; j < mr_.length; j++)  St1 = St1.replace(mr_[j], regex_ReplaceV[i]);
+    }        
+    let Vkeys = Object.keys(VSet);
+    for (let i = 0; i < Vkeys.length; i++) {
+        let xKey = Vkeys[i];
+        let xVal = VSet[xKey];
+        let r_ = new RegExp(`^[-]${xKey}`, 'g');
+        let mr_ = St1.match(r_);
+        if (mr_) 
+          for (let j = 0; j < mr_.length; j++)  
+          {
+            let r_mr_ = mr_[j].replace(`-${xKey}`, `-1*${xKey}`)
+            St1 = St1.replace(mr_[j], r_mr_);
+          }
+    }
+    for (let i = 0; i < Vkeys.length; i++) {
+        let xKey = Vkeys[i];
+        let xVal = VSet[xKey];
+        let r_ = new RegExp(`[(][-]${xKey}`, 'g');
+        let mr_ = St1.match(r_);
+        if (mr_) 
+          for (let j = 0; j < mr_.length; j++)  
+          {
+            let r_mr_ = mr_[j].replace(`(-${xKey}`, `(-1*${xKey}`)
+            St1 = St1.replace(mr_[j], r_mr_);
+          }
+    }
+
+    for (let i = 0; i < Vkeys.length; i++) {
+        let xKey = Vkeys[i];
+        let xVal = VSet[xKey];
+        let r_ = new RegExp(`[0-9]+${xKey}`, 'g');
         let mr_ = St1.match(r_)
-        if (mr_) for (let j = 0; j < mr_.length; j++)  St1 = St1.replace(mr_[j], "-");
+        if (mr_)
+            for (let j = 0; j < mr_.length; j++) {
+                let r_mr_ = mr_[j].replace(`${xKey}`, `*${xKey}`)
+                St1 = St1.replace(mr_[j], r_mr_)
+            }
+    }
+    for (let i = 1; i < Vkeys.length; i++) {
+        let xKey0 = Vkeys[i-1];
+        let xKey1 = Vkeys[i];
+        let r_ = new RegExp(`${xKey0}[ ]*${xKey1}`, 'g');
+        let mr_ = St1.match(r_)
+        if (mr_)
+            for (let j = 0; j < mr_.length; j++) {
+                let r_mr_ = mr_[j].replace(`${xKey1}`, `*${xKey1}`)
+                St1 = St1.replace(mr_[j], r_mr_)
+            }
+    }          
+    let bkeys = Vkeys.concat(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
+    for (let i = 0; i < bkeys.length; i++) {
+        let xKey = bkeys[i];
+        let r_ = new RegExp(`${xKey}[ ]*[(]`, 'g');
+        let mr_ = St1.match(r_)
+        if (mr_)
+            for (let j = 0; j < mr_.length; j++) {
+                let r_mr_ = mr_[j].replace(`(`, `*(`)
+                St1 = St1.replace(mr_[j], r_mr_)
+            }
     }
     return St1;  
 }
@@ -456,11 +535,27 @@ function addstar(St1){
     return St1;  
 }
 class TmsCalcu {
-    RunVMCalc(St) { alert("no implement!"); }
-    RunExpr(St, VSet = { x: 1 }, trace = false) {
-        St = St.replace(/^ +/g, "");
-        St = St.replace(/ +/g, " ");
-
+    RunVMCalc(St:string) { alert("no implement!"); }
+    RunExprV1(St:string, VSet:any = { x: 1 }, trace:boolean = false){
+        if(trace) console.log(St)
+        let Vkeys = Object.keys(VSet);
+        let St1 =St2Expr(St.toLowerCase(),VSet);
+        let tmsU = new TmsUts();
+        for (let i = 0; i < Vkeys.length; i++) {
+            let xKey = Vkeys[i];
+            let xVal = VSet[xKey];
+            let x_r = new RegExp(`${xKey}`, 'g');
+            St1 = St1.replace(x_r, `${xVal}`)
+        }
+        if(trace) console.log(St1)
+        let cc_list1 = this.Sytex_cclist(St1);
+        cc_list1 = tmsU.AdjExpFmtList(cc_list1);
+        let yy1 = [];
+        this.proc2opt(cc_list1, yy1);
+        return this.exprCalc(yy1);
+    }
+    RunExpr(St:string, VSet:any = { x: 1 }, trace:boolean = false) {
+        St = St.replace(/^ +/g, "").replace(/ +/g, " ");
         St=addstar(St)
         let tmsU = new TmsUts();
         let St1 = St.toLowerCase();

@@ -121,8 +121,19 @@ var TmsUts = /** @class */ (function () {
             f.St1 = "(" + f.St + ")";
         return f;
     };
-    //調整式子格式: +x/+1x -> x ; -1x-> -x
+    TmsUts.prototype.PlusMin2Min = function (St1) {
+        {
+            var r_ = new RegExp("[+][ ]*[-]", 'g');
+            var mr_ = St1.match(r_);
+            if (mr_)
+                for (var j = 0; j < mr_.length; j++)
+                    St1 = St1.replace(mr_[j], "-");
+        }
+        return St1;
+    };
+    //調整式子格式: +x/+1x -> x ; -1x-> -x; +- -> -
     TmsUts.prototype.AdjExpFmt = function (St) {
+        St = this.PlusMin2Min(St); //+- -> -
         var calc_ = new TmsCalcu();
         var cc_x = calc_.Sytex_cclist_x(St);
         var s1 = "";
@@ -139,7 +150,6 @@ var TmsUts = /** @class */ (function () {
             else if (cc_x[i] == '-1x') {
                 s1 += "-x";
             }
-            else if (cc_x[i] == "+" && cc_x[i + 1] == "-") { }
             else
                 s1 += cc_x[i];
         }
@@ -495,13 +505,82 @@ KeySigns['+'] = 3;
 KeySigns['-'] = 3;
 KeySigns[':'] = 2;
 KeySigns[','] = 2;
-function PlusMin2Min(St1) {
-    {
-        var r_ = new RegExp("[+][ ]*[-]", 'g');
-        var mr_ = St1.match(r_);
+function St2Expr(St1, VSet, trace) {
+    if (VSet === void 0) { VSet = { x: 1 }; }
+    if (trace === void 0) { trace = false; }
+    St1 = St1.replace(/[（]/g, "(").replace(/[）]/g, ")");
+    St1 = St1.replace(/^ +/g, "").replace(/ +/g, " ");
+    var regex_li = [
+        new RegExp("[)][ ]*[(]", 'g'),
+        new RegExp("[)][ ]*x", 'g'),
+        new RegExp("[+][ ]*[-]", 'g'),
+    ];
+    var regex_ReplaceV = [
+        ")*(",
+        ")*x",
+        "-",
+    ];
+    for (var i = 0; i < regex_li.length; i++) {
+        var mr_ = St1.match(regex_li[i]);
         if (mr_)
             for (var j = 0; j < mr_.length; j++)
-                St1 = St1.replace(mr_[j], "-");
+                St1 = St1.replace(mr_[j], regex_ReplaceV[i]);
+    }
+    var Vkeys = Object.keys(VSet);
+    for (var i = 0; i < Vkeys.length; i++) {
+        var xKey = Vkeys[i];
+        var xVal = VSet[xKey];
+        var r_ = new RegExp("^[-]" + xKey, 'g');
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++) {
+                var r_mr_ = mr_[j].replace("-" + xKey, "-1*" + xKey);
+                St1 = St1.replace(mr_[j], r_mr_);
+            }
+    }
+    for (var i = 0; i < Vkeys.length; i++) {
+        var xKey = Vkeys[i];
+        var xVal = VSet[xKey];
+        var r_ = new RegExp("[(][-]" + xKey, 'g');
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++) {
+                var r_mr_ = mr_[j].replace("(-" + xKey, "(-1*" + xKey);
+                St1 = St1.replace(mr_[j], r_mr_);
+            }
+    }
+    for (var i = 0; i < Vkeys.length; i++) {
+        var xKey = Vkeys[i];
+        var xVal = VSet[xKey];
+        var r_ = new RegExp("[0-9]+" + xKey, 'g');
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++) {
+                var r_mr_ = mr_[j].replace("" + xKey, "*" + xKey);
+                St1 = St1.replace(mr_[j], r_mr_);
+            }
+    }
+    for (var i = 1; i < Vkeys.length; i++) {
+        var xKey0 = Vkeys[i - 1];
+        var xKey1 = Vkeys[i];
+        var r_ = new RegExp(xKey0 + "[ ]*" + xKey1, 'g');
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++) {
+                var r_mr_ = mr_[j].replace("" + xKey1, "*" + xKey1);
+                St1 = St1.replace(mr_[j], r_mr_);
+            }
+    }
+    var bkeys = Vkeys.concat(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
+    for (var i = 0; i < bkeys.length; i++) {
+        var xKey = bkeys[i];
+        var r_ = new RegExp(xKey + "[ ]*[(]", 'g');
+        var mr_ = St1.match(r_);
+        if (mr_)
+            for (var j = 0; j < mr_.length; j++) {
+                var r_mr_ = mr_[j].replace("(", "*(");
+                St1 = St1.replace(mr_[j], r_mr_);
+            }
     }
     return St1;
 }
@@ -535,11 +614,32 @@ var TmsCalcu = /** @class */ (function () {
     function TmsCalcu() {
     }
     TmsCalcu.prototype.RunVMCalc = function (St) { alert("no implement!"); };
+    TmsCalcu.prototype.RunExprV1 = function (St, VSet, trace) {
+        if (VSet === void 0) { VSet = { x: 1 }; }
+        if (trace === void 0) { trace = false; }
+        if (trace)
+            console.log(St);
+        var Vkeys = Object.keys(VSet);
+        var St1 = St2Expr(St.toLowerCase(), VSet);
+        var tmsU = new TmsUts();
+        for (var i = 0; i < Vkeys.length; i++) {
+            var xKey = Vkeys[i];
+            var xVal = VSet[xKey];
+            var x_r = new RegExp("" + xKey, 'g');
+            St1 = St1.replace(x_r, "" + xVal);
+        }
+        if (trace)
+            console.log(St1);
+        var cc_list1 = this.Sytex_cclist(St1);
+        cc_list1 = tmsU.AdjExpFmtList(cc_list1);
+        var yy1 = [];
+        this.proc2opt(cc_list1, yy1);
+        return this.exprCalc(yy1);
+    };
     TmsCalcu.prototype.RunExpr = function (St, VSet, trace) {
         if (VSet === void 0) { VSet = { x: 1 }; }
         if (trace === void 0) { trace = false; }
-        St = St.replace(/^ +/g, "");
-        St = St.replace(/ +/g, " ");
+        St = St.replace(/^ +/g, "").replace(/ +/g, " ");
         St = addstar(St);
         var tmsU = new TmsUts();
         var St1 = St.toLowerCase();
