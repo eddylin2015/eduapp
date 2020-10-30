@@ -617,6 +617,7 @@ var TmsCalcu = /** @class */ (function () {
     TmsCalcu.prototype.RunExprV1 = function (St, VSet, trace) {
         if (VSet === void 0) { VSet = { x: 1 }; }
         if (trace === void 0) { trace = false; }
+        St = St.toString();
         if (trace)
             console.log(St);
         var Vkeys = Object.keys(VSet);
