@@ -1,5 +1,5 @@
-﻿# 學教應用網頁
-## Maths TestMySelf
+﻿# 學教應用
+## TestMySelf
 
 get-content f1003n.js -encoding utf8 | select -skip 1 | set-content f1003.js -encoding utf8
 
