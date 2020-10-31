@@ -441,11 +441,13 @@ function St2Expr(St1,VSet:any = { x: 1 }, trace:boolean = false){
         new RegExp(`[)][ ]*[(]`, 'g'),
         new RegExp(`[)][ ]*x`, 'g'),
         new RegExp(`[+][ ]*[-]`, 'g'),
+        new RegExp(`^[-][(]`),
     ];
     let regex_ReplaceV=[
         ")*(",
         ")*x",
         "-",
+        "-1*("
     ];
     for(let i=0;i<regex_li.length;i++)
     {
@@ -535,6 +537,7 @@ function addstar(St1){
     return St1;  
 }
 class TmsCalcu {
+    Compare(x,y){return Math.abs(x-y)<0.00001}
     RunVMCalc(St:string) { alert("no implement!"); }
     RunExprV1(St:string, VSet:any = { x: 1 }, trace:boolean = false){
         St=St.toString();

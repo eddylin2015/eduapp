@@ -514,11 +514,13 @@ function St2Expr(St1, VSet, trace) {
         new RegExp("[)][ ]*[(]", 'g'),
         new RegExp("[)][ ]*x", 'g'),
         new RegExp("[+][ ]*[-]", 'g'),
+        new RegExp("^[-][(]"),
     ];
     var regex_ReplaceV = [
         ")*(",
         ")*x",
         "-",
+        "-1*("
     ];
     for (var i = 0; i < regex_li.length; i++) {
         var mr_ = St1.match(regex_li[i]);
@@ -613,6 +615,7 @@ function addstar(St1) {
 var TmsCalcu = /** @class */ (function () {
     function TmsCalcu() {
     }
+    TmsCalcu.prototype.Compare = function (x, y) { return Math.abs(x - y) < 0.00001; };
     TmsCalcu.prototype.RunVMCalc = function (St) { alert("no implement!"); };
     TmsCalcu.prototype.RunExprV1 = function (St, VSet, trace) {
         if (VSet === void 0) { VSet = { x: 1 }; }
