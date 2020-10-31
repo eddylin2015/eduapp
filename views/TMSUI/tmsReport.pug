@@ -3,6 +3,9 @@ extends ./base.pug
 block content
   script(src='/javascripts/cool/grid_export.js')
   script(src='/javascripts/cool/table2csv.js')
+  script(src='/math/utils/tmsUtils.js')
+  script.
+    let adj_mark=0;
   -var fn= "math_report";
   -var act_link="/internal/PublicAPI/ExpXls.php?charset=utf-8&filename="+fn+".xls"
   form(method="POST", enctype="multipart/form-data",action=`/internal/PublicAPI/ExpXls.php?charset=utf-8&filename=${fn}.xls`)#CSVFrmPOST
@@ -56,6 +59,8 @@ block content
       -let tx=0
       -let txtime=0
       -let totalflag=0
+      script.
+        adj_mark=0      
       table
         if arr  
           each arr1 in arr
@@ -71,8 +76,39 @@ block content
                   - txtime+=Number(arr1[3])
                 td= cnt
                 td= r.username
-                each arr2 in arr1
-                  td= arr2
+                if fmt=='AC'
+                  -let St1="";
+                  -let St2="";
+                  -let OX=0;
+                  each arr2,idx in arr1
+                    td= arr2
+                    case idx
+                      when 2
+                        -OX=arr2
+                      when 6
+                        -St1=arr2
+                      when 7
+                        -St2=arr2
+                  td      
+                    script.
+                      {
+                      let OX='!{OX}';
+                      let St1='!{St1}';
+                      let St2='!{St2}';
+                      console.log(OX,St1,St2);   
+                      if(OX==='0'){
+                        let v1=calc.RunExprV1(St1,{x:73});
+                        let v2=calc.RunExprV1(St2,{x:73});
+                        if(Math.abs(v1-v2)<0.00001){
+                          document.write("(checked)");
+                          adj_mark++;
+                        }
+                      }
+                      }
+                else
+                  each arr2 in arr1
+                    td= arr2
+
                 -totalflag = arr1.length
           if totalflag >2    
             tr
@@ -80,7 +116,12 @@ block content
               td= r.displayname?r.displayname.substring(r.displayname.length-6):""
               td= `總計(${fn_[1]}):`
               td= rowcnt
-              td= total
+              td(id=`total${r.id}`)= total
+              script.
+                {
+                  let x=document.getElementById('total!{r.id}')
+                  x.innerText=Number(x.innerText)+adj_mark;
+                }
               td= txtime.toFixed(2)
               td= `tx=${fn_[2]}`
               td= r.displayname

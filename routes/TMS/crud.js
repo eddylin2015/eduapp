@@ -1,20 +1,6 @@
-// Copyright 2017, Google, Inc.
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 'use strict';
 
 const express = require('express');
-//const images = require('./images');
 const querystring = require('querystring');
 const config = require('../../config');
 const dbis = config.get('DataBaseEngine'); //"redis","mysql"
@@ -26,7 +12,6 @@ const router = express.Router();
 
 // Use the oauth middleware to automatically get the user's profile
 // information and expose login/logout URLs to templates.
-
 
 // Set Content-Type for all responses for these routes
 router.use((req, res, next) => {
@@ -90,8 +75,6 @@ router.post('/AddTMSQF', (req, res, next) => {
       if (err) { console.log(err); return res.end("error"); }
       res.end(`存儲成功. 記錄編號: ${ins_id} .`);
     });
-    //console.log(fnn,md,jsondata);
-    //res.end(JSON.stringify(req.body));
   }
 });
 
@@ -189,7 +172,8 @@ router.post('/tmsReportQuery', images.multer.array('upload', 16),
             pageToken: cursor,
           }),
           nextPageToken: cursor,
-          data: maths_data
+          data: maths_data,
+          fmt:fmt
         });
       });
     }
@@ -220,7 +204,8 @@ router.get('/tmsMyReport', oauth2.required, (req, Response, next) => {
       Response.render('TMSUI/tmsReport.pug', {
         profile: req.user,
         nextPageToken: cursor,
-        data: maths_data
+        data: maths_data,
+        fmt:"AC",
       });
     });
   }

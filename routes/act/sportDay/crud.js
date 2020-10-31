@@ -61,11 +61,9 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-
   res.render('act/sportday/index.pug', {
     profile: req.user,
   });
-
 });
 
 
@@ -118,10 +116,7 @@ images.multer.single('image'),
     data.lock_time=fmt_now_time();
     console.log(data.lock_time)
   getModel().SPUpdateRC(req.params.siid, data, (err, entity) => {
-    if (err) {
-      next(err);
-      return;
-    }
+    if (err) { next(err);  return; }
     res.end(JSON.stringify(entity));
   });
 });
