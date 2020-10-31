@@ -108,10 +108,10 @@ class F201_UIMathClass extends UIMathClass {
     }
     CheckAns(qti, qno, AnsZ, AnsM) {
         let ansx = this.AQTR[Number(qti) - 1][qno - 1];
+        let AnsSt =  this.AQT[Number(qti) - 1][qno - 1];   
         let ansxx=[ansx["F116"],ansx["G116"],ansx["H116"],ansx["I116"]];
         let ccx=calc.Sytex_cclist_x(AnsZ);
         let flag=[false,false,false,false];
-        console.log(ansxx);
         for(let i=0;i<ccx.length;i++){
             let ccxx=ccx[i];
             if (ccxx[0] == "(" && ccxx[ccxx.length-1] == ")") {
@@ -119,8 +119,13 @@ class F201_UIMathClass extends UIMathClass {
             }
             for(let j=0;j<4;j++) if(ccxx==ansxx[j]) flag[j]=true;
         }
-        console.log(flag)
-        return flag[0] && flag[1] || flag[2] && flag[3] ;
+        if(flag[0] && flag[1] || flag[2] && flag[3] )
+        {
+           return true;
+        }
+        else{
+           return calc.RunExprV1(AnsSt,{x:73})==calc.RunExprV1(AnsZ,{x:73})
+        };
         /*
         if (this.IsFraction(qti, qno)) {
             return Math.abs(ansx - (AnsZ / AnsM)) < 0.0001
@@ -143,7 +148,7 @@ function f201_main() {
             for (let TiXing = 1; TiXing < 2; TiXing++) {
                 let Range = {}
                 let s1 = CreatAEq(TiXing, Tk_Arr[TiXing], Range)
-                console.log(s1.St,s1.Val,s1.CalcVal);
+                //console.log(s1.St,s1.Val,s1.CalcVal);
                 //console.log(TiXing," St ",s1.St, "Val ",s1.Val," Val:",calcvm.calc(s1.Val)); // 42
             }
         }

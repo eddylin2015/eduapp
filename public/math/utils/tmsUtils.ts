@@ -537,6 +537,7 @@ function addstar(St1){
 class TmsCalcu {
     RunVMCalc(St:string) { alert("no implement!"); }
     RunExprV1(St:string, VSet:any = { x: 1 }, trace:boolean = false){
+        St=St.toString();
         if(trace) console.log(St)
         let Vkeys = Object.keys(VSet);
         let St1 =St2Expr(St.toLowerCase(),VSet);
