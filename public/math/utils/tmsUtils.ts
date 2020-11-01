@@ -437,6 +437,7 @@ KeySigns[','] = 2;
 function St2Expr(St1,VSet:any = { x: 1 }, trace:boolean = false){
     St1=St1.replace(/[（]/g, "(").replace(/[）]/g, ")")
     St1=St1.replace(/^ +/g, "").replace(/ +/g, " ");
+    St1=St1.replace(/^[+]/g, "");
     let regex_li=[
         new RegExp(`[)][ ]*[(]`, 'g'),
         new RegExp(`[)][ ]*x`, 'g'),

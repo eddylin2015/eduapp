@@ -100,8 +100,8 @@ for(let i=0;i<temp_.length;i++)
         let v3=tmsCalcu.RunExprV1(St,{x:11})
         let v4=tmsCalcu.RunExprV1(Ans,{x:11})
         let v5=tmsCalcu.RunExprV1(SAns,{x:11})
-        if(isNaN(v4) ){}
-        else if(v0==v3 && v1==v4 && v2==v5)
+        //if(isNaN(v4) ){}        else 
+        if(v0==v3 && v1==v4 && v2==v5)
         {
         }
         else{

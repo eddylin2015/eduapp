@@ -510,6 +510,7 @@ function St2Expr(St1, VSet, trace) {
     if (trace === void 0) { trace = false; }
     St1 = St1.replace(/[（]/g, "(").replace(/[）]/g, ")");
     St1 = St1.replace(/^ +/g, "").replace(/ +/g, " ");
+    St1 = St1.replace(/^[+]/g, "");
     var regex_li = [
         new RegExp("[)][ ]*[(]", 'g'),
         new RegExp("[)][ ]*x", 'g'),
