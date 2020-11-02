@@ -44,6 +44,7 @@ app.use(routes);
 app.use('/internal/me', require('./routes/me/crud'));
 app.use('/internal/equed', require('./routes/equed/crud'));
 app.use('/internal/sportday', require('./routes/act/sportDay/crud'));
+app.use('/internal/sportdayblogs', require('./routes/act/sportDayBlogs/crud'));
 app.use('/internal/TMS', require('./routes/TMS/crud'));
 app.use('/internal/RELI', require('./routes/Reli/crud'));
 app.use('/internal/workgrid', require('./routes/workgrid/crud'));
