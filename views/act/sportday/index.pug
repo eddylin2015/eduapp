@@ -11,11 +11,11 @@ block content
       a(href="/internal/sportday/statisc")    
         span 本屆各組報名人數資料及歷年各組最佳成績
 
-  each book in books
-    .media
-      a(href=`/internal/sportdayblogs/${book.id}`)
-        .media-left
-            //img(src=book.imageUrl || "/images/report.jpg")
-        .media-body
-          h4= book.title
-          p= book.author
+    each book in books
+      li.list-group-item
+        a(href=`/internal/sportday/content/${book.id}`)
+          .media-left
+              //img(src=book.imageUrl || "/images/report.jpg")
+          .media-body
+            h4= book.title
+            p= book.author

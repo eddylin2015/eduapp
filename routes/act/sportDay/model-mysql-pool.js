@@ -234,11 +234,32 @@ function SPIndexList(nowdate,cb) {
     });
 }
 
+function readContent( id, cb) {
+    pool.getConnection(function (err, connection) {
+        if(err){cb(err);return;}
+        connection.query(
+            'SELECT * FROM `blogs` WHERE `id` = ? ', id, (err, results) => {
+                if (!err && !results.length) {
+                    err = {
+                        code: 404,
+                        message: 'Not found'
+                    };
+                }
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                cb(null, results[0]);
+                connection.release();
+            });
+    });
+}
 
 
 //SP end//
 module.exports = {
     listForFont:listForFont,
+    readContent:readContent,
     createSchema: createSchema,
     readbyUserName: readbyUserName,
     updateByUserName: updateByUserName,

@@ -67,7 +67,17 @@ router.get('/', (req, res, next) => {
       });
   });
 });
-
+router.get('/content/:book', (req, res, next) => {
+  getModel().readContent(req.params.book, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('act/sportDay/viewcontent.pug', {
+      book: entity,
+    });
+  });
+});
 
 router.get('/rclist', (req, res, next) => {
   getModel().SPIndexList(fmt_now(4),(err, entities) => {
