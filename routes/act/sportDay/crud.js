@@ -7,21 +7,13 @@ const { json } = require('body-parser');
 function getModel() {
   return require(`./model-mysql-pool`);
 }
-function fmt_now_(intdays = 0) {
+function fmt_now(intdays = 0) {
   var d = new Date();
   if (Math.abs(intdays) > 0) { d = new Date(new Date() - intdays * 3600 * 1000 * 24); }
   var y = d.getFullYear(); var m = d.getMonth() + 1; var d_ = d.getDate();
   return y + "-" + (m < 10 ? "0" : "") + m + "-" + (d_ < 10 ? "0" : "") + d_;
 }
-function fmt_now() {
-  var d = new Date();
-  var dstr = d.getFullYear() + "-";
-  if (d.getMonth() < 9) dstr += "0";
-  dstr += d.getMonth() + 1 + "-";
-  if (d.getDate() < 10) dstr += "0";
-  dstr += d.getDate();
-  return dstr;
-}
+
 function fmt_now_time() {
   var d = new Date();
   var dstr = d.getFullYear() + "-";
@@ -61,14 +53,24 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-  res.render('act/sportday/index.pug', {
-    profile: req.user,
+  let pdate = fmt_now(2);
+  getModel().listForFont(pdate, 10, req.query.pageToken, (err, entities, cursor) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('act/sportday/index.pug',
+      {
+        profile: req.user,
+        items: entities,
+        nextPageToken: cursor
+      });
   });
 });
 
 
 router.get('/rclist', (req, res, next) => {
-  getModel().SPIndexList(fmt_now_(4),(err, entities) => {
+  getModel().SPIndexList(fmt_now(4),(err, entities) => {
     if (err) {
       next(err);
       return;

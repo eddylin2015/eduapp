@@ -2,6 +2,7 @@
 *.*.swp
 secert_*.*
 export.csv
+spdata.csv
 routes/act/stdAttend/*
 public/mathjs/*
 public/math-input/*

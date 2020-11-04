@@ -14,16 +14,16 @@
 extends ./base.pug
 
 block content
-  h3 Book
+  h3 資訊
     small
 
   .btn-group
-    a(href=`/bbs/${book.id}/edit`, class='btn btn-primary btn-sm')
+    a(href=`/internal/sportdayblogs/${book.id}/edit`, class='btn btn-primary btn-sm')
       i.glyphicon.glyphicon-edit
-      span  Edit book
-    a(href=`/bbs/${book.id}/delete`, class='btn btn-danger btn-sm')
+      span  Edit 
+    a(href=`/internal/sportdayblogs/${book.id}/delete`, class='btn btn-danger btn-sm')
       i.glyphicon.glyphicon-trash
-      span  Delete book
+      span  Delete 
 
   .media
     .media-left
@@ -32,7 +32,6 @@ block content
       h4= book.title
         | &nbsp;
         small= book.publishedDate
-      pre= book.newstxt
+      pre= book.description
       h5 By #{book.author||'unknown'}
-      p= book.description
       small Added by #{book.createdBy}

@@ -14,22 +14,20 @@
 extends ./base.pug
 
 block content
-  h3 #{action} book
+  h3 #{action} 資訊
   form(method="POST", enctype="multipart/form-data")
     .form-group
       label(for="title") Title
       input.form-control(type="text", name="title", id="title", value=book.title)
     .form-group
-      textarea.form-control#newstxt(name="newstxt", cols="60", rows="10")= book.newstxt
+      label(for="description") Description    
+      textarea.form-control#description(name="description", cols="60", rows="10")= book.description
     .form-group
       label(for="author") Author
       input.form-control(type="text", name="author", id="author", value=book.author)
     .form-group
       label(for="publishedDate") Date Published
       input.form-control(type="text", name="publishedDate", id="publishedDate", value=book.publishedDate)
-    .form-group
-      label(for="description") Description
-      input.form-control(type="text", name="description", id="description", value=book.description)
     .form-group
       label(for="image") Cover Image
       input.form-control(type="file", name="image", id="image")

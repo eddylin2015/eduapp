@@ -11,6 +11,27 @@ const options = {
 
 const pool = mysql.createPool(options);
 
+
+function listForFont(pdate, limit, token, cb) {
+    token = token ? parseInt(token, 10) : 0;
+    limit = 10;
+    token = 0;
+    pool.getConnection(function (err, connection) {
+        connection.query(
+            "SELECT id,title,description,publishedDate FROM `blogs` WHERE `publishedDate` >= ?  order by id desc LIMIT ? OFFSET ?;",
+            [pdate, limit, token],
+            (err, results) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                //const hasMore = results.length === limit ? token + results.length : false;
+                const hasMore = true;
+                cb(null, results, hasMore);
+                connection.release();
+            });
+    });
+}
 function readbyUserName(UserName, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
@@ -217,6 +238,7 @@ function SPIndexList(nowdate,cb) {
 
 //SP end//
 module.exports = {
+    listForFont:listForFont,
     createSchema: createSchema,
     readbyUserName: readbyUserName,
     updateByUserName: updateByUserName,

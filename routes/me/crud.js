@@ -25,6 +25,7 @@ function fmt_title(username, datestr, description) {
   datestr = datestr.length > 10 ? datestr.substring(0, 10) : datestr;
   return username + ":" + datestr + ":" + description;
 }
+/*
 function fmt_now() {
   var d = new Date();
   var dstr = d.getFullYear() + "-";
@@ -33,7 +34,7 @@ function fmt_now() {
   if (d.getDate() < 10) dstr += "0";
   dstr += d.getDate();
   return dstr;
-}
+}*/
 function checkuser(req) {
   if(!req.user) return false;
   if (req.user.email == "lammou@mail.mbc.edu.mo") return true;
@@ -65,11 +66,21 @@ function isMobile(x) {
     return x.match(toMatchItem);
   });
 }
+
+function fmt_now(intdays = 0) {
+  var d = new Date();
+  console.log("xxxx",d)
+  if (Math.abs(intdays) > 0) { d = new Date(new Date() - intdays * 3600 * 1000 * 24); }
+  console.log("xxxx",d)
+  var y = d.getFullYear(); var m = d.getMonth() + 1; var d_ = d.getDate();
+  return  y + "-" + (m < 10 ? "0" : "") + m + "-" + (d_ < 10 ? "0" : "") + d_;
+}
 router.get('/', (req, res, next) => {
   var source = req.headers['user-agent'];
   let pugtmplt = "index.pug";
   if (isMobile(source)) pugtmplt = "index_mobile.pug";
-  let pdate = '2020-09-01';
+  let pdate = fmt_now(60);//'2020-09-01';
+  console.log(pdate);
   getModel().listForFont(pdate, 100, 0, (err, entities, cursor) => {
     if (err) {
       next(err);
@@ -92,7 +103,8 @@ router.get('/', (req, res, next) => {
 });
 router.get('/mobile', (req, res, next) => {
   let pugtmplt = "index_mobile.pug";
-  let pdate = '2020-09-01';
+  let pdate = fmt_now(60);//'2020-09-01';
+  console.log(pdate);
   getModel().listForFont(pdate, 100, 0, (err, entities, cursor) => {
     if (err) {
       next(err);
@@ -227,15 +239,7 @@ router.get('/deleteitem/:book', adoauth2.required, (req, res, next) => {
     res.end('delete item.'+JSON.stringify(entity));
   });
 });
-function fmt_now() {
-  var d = new Date();
-  var dstr = d.getFullYear() + "-";
-  if (d.getMonth() < 9) dstr += "0";
-  dstr += d.getMonth() + 1 + "-";
-  if (d.getDate() < 10) dstr += "0";
-  dstr += d.getDate();
-  return dstr;
-}
+
 router.get('/editdata/add', oauth2.required, (req, res, next) => {
   let entity = { id: 0 ,item_date:fmt_now() };
   res.render('me/edit/form.pug', {

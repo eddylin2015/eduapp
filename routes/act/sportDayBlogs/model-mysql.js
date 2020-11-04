@@ -11,7 +11,6 @@ const options = {
 
 const pool = mysql.createPool(options);
 
-
 function list( userId , cb) {
     pool.getConnection(function (err, connection) {
         if(err){cb(err);return;}

@@ -14,15 +14,15 @@
 extends ./base.pug
 
 block content
-  h3 BBS
+  h4 資訊
 
-  a(href="/bbs/add", class='btn btn-success btn-sm')
+  a(href="/internal/sportdayblogs/add", class='btn btn-success btn-sm')
     i.glyphicon.glyphicon-plus
-    span  Add book
+    span  Add 資訊
 
   each book in books
     .media
-      a(href=`/bbs/${book.id}`)
+      a(href=`/internal/sportdayblogs/${book.id}`)
         .media-left
             img(src=book.imageUrl || "/images/report.jpg")
         .media-body

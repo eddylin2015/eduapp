@@ -41,7 +41,7 @@ router.get('/', (req, res, next) => {
       next(err);
       return;
     }
-    res.render('sportDayBlogs/list.pug', {
+    res.render('act/sportDayBlogs/list.pug', {
       books: entities,
       nextPageToken: cursor,
     });
@@ -61,7 +61,7 @@ router.get('/mine', oauth2.required, (req, res, next) => {
         next(err);
         return;
       }
-      res.render('sportDayBlogs/list.pug', {
+      res.render('act/sportDayBlogs/list.pug', {
         books: entities,
         nextPageToken: cursor,
       });
@@ -71,19 +71,19 @@ router.get('/mine', oauth2.required, (req, res, next) => {
 // [END mine]
 
 /**
- * GET /sportDayBlogs/add
+ * GET /act/sportDayBlogs/add
  *
  * Display a form for creating a book.
  */
 router.get('/add', (req, res) => {
-  res.render('sportDayBlogs/form.pug', {
+  res.render('act/sportDayBlogs/form.pug', {
     book: {},
     action: 'Add',
   });
 });
 
 /**
- * POST /sportDayBlogs/add
+ * POST /act/sportDayBlogs/add
  *
  * Create a book.
  */
@@ -118,7 +118,7 @@ router.post(
 // [END add]
 
 /**
- * GET /sportDayBlogs/:id/edit
+ * GET /act/sportDayBlogs/:id/edit
  *
  * Display a book for editing.
  */
@@ -128,14 +128,14 @@ router.get('/:book/edit', (req, res, next) => {
       next(err);
       return;
     }
-    res.render('sportDayBlogs/form.pug', {
+    res.render('act/sportDayBlogs/form.pug', {
       book: entity,
       action: 'Edit',
     });
   });
 });
 /**
- * POST /sportDayBlogs/:id/edit
+ * POST /act/sportDayBlogs/:id/edit
  *
  * Update a book.
  */
@@ -156,7 +156,7 @@ router.post(
 );
 
 /**
- * GET /sportDayBlogs/:id
+ * GET /act/sportDayBlogs/:id
  *
  * Display a book.
  */
@@ -166,14 +166,14 @@ router.get('/:book', (req, res, next) => {
       next(err);
       return;
     }
-    res.render('sportDayBlogs/view.pug', {
+    res.render('act/sportDayBlogs/view.pug', {
       book: entity,
     });
   });
 });
 
 /**
- * GET /sportDayBlogs/:id/delete
+ * GET /act/sportDayBlogs/:id/delete
  *
  * Delete a book.
  */
@@ -188,7 +188,7 @@ router.get('/:book/delete', (req, res, next) => {
 });
 
 /**
- * Errors on "/sportDayBlogs/*" routes.
+ * Errors on "/act/sportDayBlogs/*" routes.
  */
 router.use((err, req, res, next) => {
   // Format error and forward to generic error handler for logging and

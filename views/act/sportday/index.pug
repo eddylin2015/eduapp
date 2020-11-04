@@ -1,12 +1,28 @@
 extends ./base.pug
 block content
-  ul
-    li
+  ul.list-group
+    li.list-group-item
       a(href="/internal/sportday/rclist") 
-        span 名單成績                
-    li
+        span 最新入圍/獲獎名單及比賽成績               
+    li.list-group-item
       a(href="/internal/sportday/charter")    
-        span 章程 
-    li
+        span 第十五屆校運會章程 
+    li.list-group-item
       a(href="/internal/sportday/statisc")    
-        span 數據
+        span 本屆各組報名人數資料及歷年各組最佳成績
+  each book in items
+    
+    .media
+      a(href=`/internal/sportdayblogs/${book.id}`)
+        .media-left
+            //img(src=book.imageUrl || "/images/report.jpg")
+        .media-body
+          h4= items.title
+          //p= items.author
+  if !items.length
+    p No books found.
+  if nextPageToken
+    nav
+      ul.pager
+        li
+          a(href=`?pageToken=${encodeURIComponent(nextPageToken)}`) More
