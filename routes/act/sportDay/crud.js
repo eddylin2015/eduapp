@@ -62,7 +62,7 @@ router.get('/', (req, res, next) => {
     res.render('act/sportday/index.pug',
       {
         profile: req.user,
-        items: entities,
+        books: entities,
         nextPageToken: cursor
       });
   });
