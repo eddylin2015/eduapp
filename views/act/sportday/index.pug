@@ -3,13 +3,19 @@ block content
   ul.list-group
     li.list-group-item
       a(href="/internal/sportday/rclist") 
-        span 最新入圍/獲獎名單及比賽成績               
+        .media-left
+        .media-body      
+          span 最新入圍/獲獎名單及比賽成績               
     li.list-group-item
       a(href="/internal/sportday/charter")    
-        span 第十五屆校運會章程 
+        .media-left
+        .media-body      
+          span 第十五屆校運會章程 
     li.list-group-item
       a(href="/internal/sportday/statisc")    
-        span 本屆各組報名人數資料及歷年各組最佳成績
+        .media-left
+        .media-body
+          span 本屆各組報名人數資料及歷年各組最佳成績
 
     each book in books
       li.list-group-item
@@ -17,5 +23,4 @@ block content
           .media-left
               //img(src=book.imageUrl || "/images/report.jpg")
           .media-body
-            h4= book.title
-            p= book.author
+            span= book.title
