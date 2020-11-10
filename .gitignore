@@ -1,6 +1,7 @@
 *.*~
 *.*.swp
 secert_*.*
+public/app_static_file/act/bbs
 export.csv
 spdata.csv
 routes/act/stdAttend/*
