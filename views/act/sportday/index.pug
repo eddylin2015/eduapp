@@ -21,6 +21,7 @@ block content
       li.list-group-item
         a(href=`/internal/sportday/content/${book.id}`)
           .media-left
-              //img(src=book.imageUrl || "/images/report.jpg")
+            if book.imageUrl
+              img(src=`/app_static_file/act/bbs/${book.imageUrl}`,width=100)
           .media-body
             span= book.title

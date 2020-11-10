@@ -18,7 +18,7 @@ function listForFont(pdate, limit, token, cb) {
     token = 0;
     pool.getConnection(function (err, connection) {
         connection.query(
-            "SELECT id,title,description,publishedDate FROM `blogs` WHERE `publishedDate` >= ?  order by id desc LIMIT ? OFFSET ?;",
+            "SELECT id,title,description,publishedDate,imageUrl FROM `blogs` WHERE `publishedDate` >= ?  order by id desc LIMIT ? OFFSET ?;",
             [pdate, limit, token],
             (err, results) => {
                 if (err) {
