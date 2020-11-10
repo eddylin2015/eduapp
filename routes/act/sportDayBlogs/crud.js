@@ -122,7 +122,7 @@ router.post(
  *
  * Display a book for editing.
  */
-router.get('/:book/edit', (req, res, next) => {
+router.get('/:book/edit',oauth2.required, (req, res, next) => {
   model.read(req.params.book, (err, entity) => {
     if (err) {
       next(err);
@@ -140,7 +140,7 @@ router.get('/:book/edit', (req, res, next) => {
  * Update a book.
  */
 router.post(
-  '/:book/edit',
+  '/:book/edit',oauth2.required,
   images.multer.single('image'),
   (req, res, next) => {
     const data = req.body;
@@ -154,7 +154,14 @@ router.post(
     });
   }
 );
-
+router.post('/:book/imageUploader', oauth2.required, images.multer.any(),   function(req, res) {
+  //req.file/req.files
+res.send({
+  "uploaded": 1,
+    "fileName": "IMAGE.PNG",
+    "url": "/app_static_file/act/bbs/"+req.files[0].filename
+})
+})
 /**
  * GET /act/sportDayBlogs/:id
  *
@@ -177,7 +184,7 @@ router.get('/:book', (req, res, next) => {
  *
  * Delete a book.
  */
-router.get('/:book/delete', (req, res, next) => {
+router.get('/:book/delete', oauth2.required,(req, res, next) => {
   model.delete(req.user.id,req.params.book, err => {
     if (err) {
       next(err);

@@ -11,7 +11,7 @@ var storage = Multer.diskStorage({
     //给上传文件重命名
     filename: function (req, file, cb) {
         var fileFormat = (file.originalname).split(".");
-        cb(null,req.user.id+"/"+ file.originalname);
+        cb(null,req.user.id+"."+ file.originalname);
         //cb(null, file.fieldname + "." + fileFormat[fileFormat.length - 1]);
     }
 });

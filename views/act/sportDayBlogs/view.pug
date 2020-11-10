@@ -27,7 +27,7 @@ block content
 
   .media
     .media-left
-      img(src=book.imageUrl || "/images/report.jpg")
+      img(src=`/app_static_file/act/bbs/${book.imageUrl}` || "/images/report.jpg")
     .media-body
       h4= book.title
         | &nbsp;
