@@ -3,7 +3,8 @@
 const express = require('express');
 const images = require('./images');
 var oauth2 = require('../../../db/internalOauth2.js');
-const { json } = require('body-parser');
+const config = require('../../../config');
+
 function getModel() {
   return require(`./model-mysql-pool`);
 }
@@ -21,13 +22,13 @@ function fmt_now_time() {
   dstr += d.getMonth() + 1 + "-";
   if (d.getDate() < 10) dstr += "0";
   dstr += d.getDate();
-  dstr+=" ";
-  if(d.getHours()<10) dstr+="0"
-  dstr+=d.getHours()+":" 
-  if(d.getMinutes()<10) dstr+="0" 
-  dstr+=d.getMinutes()+":" 
-  if(d.getSeconds()<10) dstr+="0"
-  dstr+=d.getSeconds()
+  dstr += " ";
+  if (d.getHours() < 10) dstr += "0"
+  dstr += d.getHours() + ":"
+  if (d.getMinutes() < 10) dstr += "0"
+  dstr += d.getMinutes() + ":"
+  if (d.getSeconds() < 10) dstr += "0"
+  dstr += d.getSeconds()
   console.log(dstr)
   return dstr;
 }
@@ -80,7 +81,7 @@ router.get('/content/:book', (req, res, next) => {
 });
 
 router.get('/rclist', (req, res, next) => {
-  getModel().SPIndexList(fmt_now(4),(err, entities) => {
+  getModel().SPIndexList(fmt_now(4), (err, entities) => {
     if (err) {
       next(err);
       return;
@@ -118,20 +119,35 @@ router.get('/rc/:siid', (req, res, next) => {
 
   });
 });
-
-router.post('/api/updaterc/:siid', 
-images.multer.single('image'),
-  (req, res, next) => {
-    if(!req.user) {res.end("error!") ;return;}
-    if(req.user && req.user.id !== 2 ) {res.end("error!") ;return;}
-    const data = req.body;
-    data.lock_time=fmt_now_time();
-    console.log(data.lock_time)
-  getModel().SPUpdateRC(req.params.siid, data, (err, entity) => {
-    if (err) { next(err);  return; }
-    res.end(JSON.stringify(entity));
+router.get('/mymark',  oauth2.required, (req, res, next) => {
+  let userName = req.user.email.split('@')[0].toUpperCase();
+  getModel().SPReadMarkbyUserName(userName,15, (err, entity) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('act/sportday/myMark.pug', {
+      profile: req.user,
+      books: entity,
+    });
   });
 });
+router.post('/api/updaterc/:siid',
+  images.multer.single('image'),
+  (req, res, next) => {
+    if (req.query.token && config.get("API_SP_TOKEN")) {
+      const data = req.body;
+      data.lock_time = fmt_now_time();
+      console.log(data.lock_time)
+      getModel().SPUpdateRC(req.params.siid, data, (err, entity) => {
+        if (err) { next(err); return; }
+        res.end(JSON.stringify(entity));
+      });
+    } else {
+      res.end("Token Error!");
+    }
+
+  });
 
 router.get('/statisc', (req, res, next) => {
   res.render('act/sportday/statisc.pug', {

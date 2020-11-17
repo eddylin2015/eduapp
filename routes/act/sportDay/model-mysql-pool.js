@@ -32,6 +32,7 @@ function listForFont(pdate, limit, token, cb) {
             });
     });
 }
+
 function readbyUserName(UserName, cb) {
     pool.getConnection(function (err, connection) {
         connection.query(
@@ -233,7 +234,19 @@ function SPIndexList(nowdate,cb) {
         );
     });
 }
-
+function SPReadMarkbyUserName(UserName, pno, cb) {
+    pool.getConnection(function (err, connection) {
+        connection.query(
+            'SELECT * FROM `sport_history` WHERE `STUD_REF` = ? and PERIOD_NO= ? ;', [UserName,pno], (err, results) => {
+                if (err) {
+                    cb(err);
+                    return;
+                }
+                cb(null, results);
+                connection.release();
+            });
+    });
+}
 function readContent( id, cb) {
     pool.getConnection(function (err, connection) {
         if(err){cb(err);return;}
@@ -274,6 +287,7 @@ module.exports = {
     SPReadRC:SPReadRC,
     SPIndexList:SPIndexList,
     SPUpdateRC:SPUpdateRC,
+    SPReadMarkbyUserName:SPReadMarkbyUserName,
 };
 if (module === require.main) {
     const prompt = require('prompt');
