@@ -27,6 +27,6 @@ block content
         a(href=`/internal/sportday/content/${book.id}`)
           .media-left
             if book.imageUrl
-              img(src=`/app_static_file/act/bbs/${book.imageUrl}`,width=100)
+              img(src=`/app_static_file/act/bbs/${book.imageUrl}`,style="max-width:100px")
           .media-body
             span= book.title
