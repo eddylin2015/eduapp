@@ -1,6 +1,8 @@
 extends ./base.pug
 block content
+  table.table
   each ite in books
-     div= ite.PEROID_NO
-     div= ite.SP_ITEM
-     div= ite.SP_MARK
+    tr
+       td= ite.PERIOD_NO
+       td= ite.SP_ITEM
+       td= ite.SP_MRK
